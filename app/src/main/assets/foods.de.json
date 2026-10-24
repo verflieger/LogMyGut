@@ -246,7 +246,7 @@
    "parent": "Gebäck",
    "aliases": [
     "Mohnzopf",
-    "Salzstangerl (Gebäck)"
+    "Mohnweckerl"
    ],
    "unit": "count",
    "unitLabel": "Stück",
@@ -495,10 +495,7 @@
     "fructans",
     "gluten"
    ],
-   "doseTags": {
-    "fat": "L"
-   },
-   "source": "BLS 4.0 X711512"
+   "source": "BLS 4.0 E432032"
   },
   {
    "name": "Couscous",
@@ -521,16 +518,15 @@
   {
    "name": "Grieß",
    "aliases": [
-    "Grießbrei",
-    "Weizengrieß"
+    "Weizengrieß",
+    "Hartweizengrieß",
+    "Grießnockerl"
    ],
    "unit": "size",
    "tags": [
-    "lactose",
     "fructans",
     "gluten"
-   ],
-   "source": "BLS 4.0 X951113"
+   ]
   },
   {
    "name": "Quinoa",
@@ -617,9 +613,9 @@
    "unit": "size",
    "tags": [],
    "doseTags": {
-    "fat": "L"
+    "fat": "M"
    },
-   "source": "BLS 4.0 K130492"
+   "source": "BLS 4.0 X654042"
   },
   {
    "name": "Bratkartoffeln",
@@ -1342,7 +1338,8 @@
    "aliases": [
     "Vanillepudding",
     "Schokopudding",
-    "Grießkoch"
+    "Grießkoch",
+    "Grießbrei"
    ],
    "unit": "size",
    "tags": [
@@ -2396,7 +2393,11 @@
     "Studentenfutter (Obst)"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [
+    "fructose",
+    "polyols",
+    "fructans"
+   ]
   },
   {
    "name": "Datteln",
@@ -2406,12 +2407,13 @@
    ],
    "unit": "count",
    "unitLabel": "Stück",
-   "tags": [
-    "fructans"
-   ],
+   "tags": [],
    "doseTags": {
     "fructose": 2
    },
+   "removeTags": [
+    "polyols"
+   ],
    "source": "BLS 4.0 F504400"
   },
   {
@@ -2422,10 +2424,7 @@
     "Weinbeeren getrocknet"
    ],
    "unit": "size",
-   "tags": [
-    "fructose",
-    "fructans"
-   ],
+   "tags": [],
    "doseTags": {
     "polyols": "L"
    },
@@ -2440,8 +2439,9 @@
    ],
    "unit": "count",
    "unitLabel": "Stück",
-   "tags": [
-    "polyols"
+   "tags": [],
+   "removeTags": [
+    "fructose"
    ],
    "source": "BLS 4.0 F220400"
   },
@@ -2453,9 +2453,9 @@
    ],
    "unit": "count",
    "unitLabel": "Stück",
-   "tags": [
-    "polyols",
-    "fructans"
+   "tags": [],
+   "removeTags": [
+    "fructose"
    ],
    "source": "BLS 4.0 F201400"
   },
@@ -2467,8 +2467,10 @@
    ],
    "unit": "count",
    "unitLabel": "Stück",
-   "tags": [
-    "fructans"
+   "tags": [],
+   "removeTags": [
+    "fructose",
+    "polyols"
    ],
    "source": "BLS 4.0 F505400"
   },
@@ -2479,12 +2481,13 @@
     "Getrocknete Cranberries"
    ],
    "unit": "size",
-   "tags": [
-    "fructose"
-   ],
+   "tags": [],
    "doseTags": {
     "polyols": "M"
    },
+   "removeTags": [
+    "fructans"
+   ],
    "source": "BLS 4.0 F414400"
   },
   {

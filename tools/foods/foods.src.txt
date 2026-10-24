@@ -22,7 +22,7 @@ Gebäck | count:Stück | g=55 | bls=B511000 | aliases=Gebäck allgemein | tags=f
   Kornspitz | count:Stück | g=70 | bls=B406000 | aliases=Körndlweckerl, Mehrkornweckerl
   Brezel | count:Stück | g=80 | bls=B723100 | aliases=Laugenbrezel, Breze, Laugenstangerl, Laugengebäck
   Croissant | count:Stück | g=60 | bls=D771600 | aliases=Butterkipferl, Kipferl
-  Mohnflesserl | count:Stück | g=60 | bls=B511000 | aliases=Mohnzopf, Salzstangerl (Gebäck)
+  Mohnflesserl | count:Stück | g=60 | bls=B511000 | aliases=Mohnzopf, Mohnweckerl
   Glutenfreie Semmel | count:Stück | g=60 | bls=B8A2000 | aliases=Glutenfreies Brötchen | no=fructans, gluten
 Reiswaffel | count:Stück | g=8 | bls=C532700 | aliases=Reiscracker
 Salzstangerl | size | g=30 | bls=D064000 | aliases=Salzstangen, Salzbrezel, Soletti | tags=fructans, gluten
@@ -43,10 +43,10 @@ Nudeln | size | g=200 | bls=E401032 | aliases=Pasta, Spaghetti, Penne, Fusilli |
   Reisnudeln | size | g=200 | bls=C559032 | aliases=Glasnudeln | no=fructans, gluten
   Tortellini | size | g=200 | bls=E609232 | aliases=Ravioli, Gefüllte Nudeln
   Gnocchi | size | g=200 | bls=K270000 | aliases=Erdäpfelnockerl
-Spätzle | size | g=200 | bls=X711512 | aliases=Nockerl, Knöpfle | tags=fructans, gluten
+Spätzle | size | g=200 | bls=E432032 | aliases=Nockerl, Knöpfle | tags=fructans, gluten
 Couscous | size | g=150 | bls=C119232 | tags=fructans, gluten
 Bulgur | size | g=150 | bls=C119132 | tags=fructans, gluten
-Grieß | size | g=150 | bls=X951113 | aliases=Grießbrei, Weizengrieß | tags=fructans, gluten
+Grieß | size | g=50 | aliases=Weizengrieß, Hartweizengrieß, Grießnockerl | tags=fructans, gluten
 Quinoa | size | g=150 | bls=C118122
 Hirse | size | g=150 | bls=C332000 | aliases=Hirsebrei
 Buchweizen | size | g=150 | bls=C322000 | aliases=Heidenmehl
@@ -54,7 +54,7 @@ Polenta | size | g=200 | bls=C526000 | aliases=Maisgrieß, Sterz
 Weizenmehl | size | g=50 | bls=C213100 | aliases=Mehl, Dinkelmehl | tags=fructans, gluten
 Semmelbrösel | size | g=20 | bls=B821000 | aliases=Paniermehl, Panade, Brösel | tags=fructans, gluten
 Erdäpfel | size | g=200 | bls=K110132 | aliases=Kartoffeln, Salzerdäpfel, Petersilerdäpfel
-  Pommes frites | size | g=150 | bls=K130492 | aliases=Pommes, Fritten
+  Pommes frites | size | g=150 | bls=X654042 | aliases=Pommes, Fritten
   Bratkartoffeln | size | g=200 | bls=X651063 | aliases=Geröstete, Röstkartoffeln
   Rösti | size | g=150 | bls=K391200 | aliases=Erdäpfelpuffer, Kartoffelpuffer, Reiberdatschi
 Chips | size | g=50 | bls=K280100 | aliases=Kartoffelchips, Pringles
@@ -118,7 +118,7 @@ Käse | size | g=30 | bls=M400600 | aliases=Käsescheibe
 # ---------- Süßes mit Milch ----------
 Milcheis | count:Kugel | g=60 | bls=S241000 | aliases=Eis, Eiscreme, Speiseeis, Vanilleeis
 Sorbet | count:Kugel | g=60 | bls=S220000 | aliases=Fruchteis, Wassereis
-Pudding | size | g=125 | bls=Y862143 | aliases=Vanillepudding, Schokopudding, Grießkoch
+Pudding | size | g=125 | bls=Y862143 | aliases=Vanillepudding, Schokopudding, Grießkoch, Grießbrei
 Milchreis | size | g=200 | bls=X810413
 Kakao | count:Tasse | g=250 | aliases=Trinkschokolade, Heiße Schokolade, Kakaomilch | tags=lactose
 
@@ -215,13 +215,13 @@ Kaki | count:Stück | g=200 | bls=F507100 | aliases=Sharonfrucht, Persimone
 Rhabarber | size | g=100 | bls=F081100
 Avocado | size | g=50 | bls=F502100 | tags=polyols:M | note=Ca. 1/8 Avocado gilt als verträglich.
 Kokosnuss | size | g=30 | aliases=Kokosraspel, Kokosflocken | tags=polyols:L
-Trockenobst | size | g=30 | aliases=Dörrobst, Studentenfutter (Obst)
+Trockenobst | size | g=30 | aliases=Dörrobst, Studentenfutter (Obst) | tags=fructose, polyols, fructans
   Datteln | count:Stück | g=8 | bls=F504400 | aliases=Dattel | tags=fructans
   Rosinen | size | g=30 | bls=F840100 | aliases=Sultaninen, Weinbeeren getrocknet | tags=fructans
   Dörrzwetschken | count:Stück | g=10 | bls=F220400 | aliases=Trockenpflaumen, Dörrpflaumen
   Dörrmarillen | count:Stück | g=8 | bls=F201400 | aliases=Getrocknete Aprikosen | tags=fructans
   Getrocknete Feigen | count:Stück | g=20 | bls=F505400 | aliases=Feigen getrocknet | tags=fructans
-  Cranberrys | size | g=30 | bls=F414400 | aliases=Getrocknete Cranberries
+  Cranberrys | size | g=30 | bls=F414400 | aliases=Getrocknete Cranberries | no=fructans
 Apfelmus | size | g=100 | bls=Y864112 | aliases=Apfelkompott, Kompott
 
 # ---------- Gemüse ----------

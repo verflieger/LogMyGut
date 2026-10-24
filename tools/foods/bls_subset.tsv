@@ -171,7 +171,6 @@ H861100	Seidentofu	2.9	0	0	<LOD or <LOQ	0	-	-	-	-
 H880200	Erdnussbutter/Erdnusscreme	47.78	0	0.86	<LOD	0	<LOD	<LOD	<LOD	-
 H960000	Hummus/Kichererbsenmus	28.5	0	0.3	0.1	0	0	0	0	-
 K110132	Kartoffel geschält, gekocht	0.1	0	0.23	0.205	<LOD or <LOQ	-	-	-	-
-K130492	Pommes frites tiefgefroren, frittiert	9.04	0	<LOD	0.06	0	TR	TR	TR	-
 K270000	Gnocchi roh	0.61	0	0.122	0.107	0	0	0	0	-
 K280100	Kartoffelchips/Stapelchips, diverse Sorten	34.3	<LOD	0.85	<LOD	0.16	<LOD	<LOD	<LOD	-
 K391200	Kartoffelrösti tiefgefroren	8.557	0	1.3	0.57	0	0	0	0	-
@@ -302,9 +301,8 @@ X416243	Gemüsebrühe	0.1	0	0.13	0.03	0	-	-	-	0
 X571453	Weiße Bohnen gekocht, in Tomatensauce (aus Tomaten Konserve)	2.1	0	0.33	0.33	0	0	0	0	-
 X5A8000	Grüne Bohnen gekocht	0.232	0	0.91	1.17	0	0.16	0.11	0	-
 X651063	Bratkartoffeln aus rohen Kartoffeln, mit Zwiebeln	12.697	0	0.628	0.503	0	0	0	0	-
-X711512	Eier-Frischteigwaren Spätzle, selbstgemacht, roh	3.93	0	0.112	0.00737	0	0	0	0	-
+X654042	Pommes frites	10.656	0	0.868	0.694	0	0	0	0	-
 X810413	Milchreis gesüßt, mit Milch 3,5 % Fett und Rosinen, aufgezogen, gebacken	4.3	0	1.3	1.4	3.42	0.039	0	0	-
-X951113	Grießbrei einfach, gesüßt	3.39	0	0.00209	0.00101	3.69	0	0	0	-
 Y384112	Gyros (Schweinefleisch) gebraten	14.48	0	0.25	0.17	0	0	0	0	-
 Y771510	Kräuterquark (aus Magerquark)	2.7	0	0.005	0.003	3.3	0	0	0	-
 Y862143	Vanilleflammeri/Vanillepudding, mit Eigelb	5.26	0	0.013	0	4.03	0	0	0	-
