@@ -13,6 +13,12 @@ sealed interface Amount {
         is Count -> if (n >= 2) PortionSize.L else PortionSize.M
     }
 
+    /** Grams eaten, given the food's [portionGrams] (M portion, or one piece for counts). */
+    fun grams(portionGrams: Double): Double = when (this) {
+        is Count -> n * portionGrams
+        is Size -> size.factor * portionGrams
+    }
+
     /** Count view, used when comparing against a count threshold (SPEC 4.2): S, M → 1, L → 2. */
     fun asCount(): Int = when (this) {
         is Count -> n

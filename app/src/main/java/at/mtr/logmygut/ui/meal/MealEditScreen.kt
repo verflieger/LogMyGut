@@ -165,7 +165,7 @@ private fun MealItemCard(item: MealItemUi, onAmount: (at.mtr.logmygut.domain.Amo
                 Text(item.food.name, Modifier.weight(1f).padding(horizontal = 8.dp), style = MaterialTheme.typography.titleMedium)
                 IconButton(onClick = onRemove) { Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.action_remove)) }
             }
-            AmountSelector(item.amount, item.food.unitLabel, onAmount)
+            AmountSelector(item.amount, item.food.unitLabel, item.food.portionGrams, onAmount)
             if (item.food.kind == FoodKind.DISH) {
                 Text(item.ingredients.joinToString(", ") { it.name }, style = MaterialTheme.typography.bodySmall)
                 TextButton(onClick = onAdjust, contentPadding = PaddingValues(0.dp)) { Text(stringResource(R.string.meal_adjust_ingredients)) }

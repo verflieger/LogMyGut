@@ -163,15 +163,21 @@ fun DateTimeField(value: Instant, onChange: (Instant) -> Unit, isError: Boolean,
     }
 }
 
-/** Count stepper or S/M/L segmented control, depending on the amount type. */
+/**
+ * Count stepper or S/M/L segmented control, depending on the amount type.
+ * [portionGrams] (M portion or one piece) adds gram hints: "S · 15 g", "2 Stück · ≈ 120 g".
+ */
 @Composable
-fun AmountSelector(amount: Amount, unitLabel: String?, onChange: (Amount) -> Unit, modifier: Modifier = Modifier) {
+fun AmountSelector(amount: Amount, unitLabel: String?, portionGrams: Double?, onChange: (Amount) -> Unit, modifier: Modifier = Modifier) {
     when (amount) {
         is Amount.Count -> Row(modifier, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FilledTonalIconButton(onClick = { onChange(Amount.Count(amount.n - 1)) }, enabled = amount.n > 1) {
                 Icon(Icons.Outlined.Remove, contentDescription = null)
             }
-            Text(countLabel(amount.n, unitLabel), style = MaterialTheme.typography.bodyLarge)
+            Text(
+                countLabel(amount.n, unitLabel) + (portionGrams?.let { " · ≈ " + gramsLabel(amount.grams(it)) } ?: ""),
+                style = MaterialTheme.typography.bodyLarge,
+            )
             FilledTonalIconButton(onClick = { onChange(Amount.Count(amount.n + 1)) }) {
                 Icon(Icons.Outlined.Add, contentDescription = null)
             }
@@ -182,7 +188,7 @@ fun AmountSelector(amount: Amount, unitLabel: String?, onChange: (Amount) -> Uni
                     selected = amount.size == size,
                     onClick = { onChange(Amount.Size(size)) },
                     shape = SegmentedButtonDefaults.itemShape(index, PortionSize.entries.size),
-                ) { Text(size.name) }
+                ) { Text(size.name + (portionGrams?.let { " · " + gramsLabel(Amount.Size(size).grams(it)) } ?: "")) }
             }
         }
     }

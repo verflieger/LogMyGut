@@ -12,7 +12,8 @@ import at.mtr.logmygut.domain.normalizeForSearch
 /**
  * Brings the built-in foods in line with the seed file (SPEC 4). Safe to run on every start:
  * - seed entries missing from the database are added;
- * - built-in foods the user hasn't changed get the seed's current name, aliases, note, tags, parent or recipe;
+ * - built-in foods the user hasn't changed get the seed's current name, aliases, note, portion weight, tags,
+ *   parent or recipe;
  * - foods the user changed, and user-created foods, are never touched.
  * Units are never changed on existing foods, because logged meal items depend on them.
  */
@@ -40,6 +41,7 @@ class SeedImporter(private val db: LogMyGutDatabase) {
                         unit = ingredient.unit,
                         unitLabel = ingredient.unitLabel,
                         note = ingredient.note,
+                        portionGrams = ingredient.grams,
                         builtIn = true,
                         seedKey = ingredient.key,
                         searchText = searchTextFor(ingredient.name, ingredient.aliases),
@@ -50,7 +52,7 @@ class SeedImporter(private val db: LogMyGutDatabase) {
                 inserted++
                 managed += ingredient.key
             } else if (current.builtIn && !current.userModified) {
-                val synced = current.copy(name = ingredient.name, aliases = ingredient.aliases, note = ingredient.note)
+                val synced = current.copy(name = ingredient.name, aliases = ingredient.aliases, note = ingredient.note, portionGrams = ingredient.grams)
                     .withSearchText()
                 val tagsChanged = dao.getTags(current.id).map { it.copy(foodId = 0) }.toSet() != tags.toSet()
                 if (synced != current) dao.updateFood(synced)

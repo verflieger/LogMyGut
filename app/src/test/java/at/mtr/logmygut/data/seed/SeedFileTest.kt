@@ -26,6 +26,7 @@ class SeedFileTest {
         assertEquals(FoodUnit.COUNT, oatMilk.unit)
         assertEquals(IngredientTag(Tag.FRUCTANS, Threshold.MinCount(2)), oatMilk.tags.single { it.tag == Tag.FRUCTANS })
         assertEquals("Pflanzendrink", oatMilk.parent)
+        assertEquals(250.0, oatMilk.grams)
     }
 
     @Test fun renamedFoodsKeepTheirSeedKey() {

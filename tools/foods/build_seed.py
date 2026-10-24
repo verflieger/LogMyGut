@@ -185,6 +185,7 @@ def build(ingredients, dishes, full, by_name):
             entry["doseTags"] = dose
         if removed:
             entry["removeTags"] = sorted(removed, key=TAG_ORDER.index)
+        entry["grams"] = float(food["g"])
         if "note" in food:
             entry["note"] = food["note"]
         if "bls" in food:

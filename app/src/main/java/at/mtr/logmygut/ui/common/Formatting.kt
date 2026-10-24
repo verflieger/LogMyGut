@@ -7,6 +7,7 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Locale
+import kotlin.math.roundToInt
 
 /** Austrian German, so months read "Jänner" etc. */
 val AppLocale: Locale = Locale.forLanguageTag("de-AT")
@@ -35,6 +36,9 @@ fun countLabel(n: Int, unitLabel: String?): String {
     val label = unitLabel ?: "Stück"
     return "$n ${if (n == 1) label else plurals[label] ?: label}"
 }
+
+/** "120 g", rounded to whole grams; amounts below 1 g show as "< 1 g". */
+fun gramsLabel(grams: Double): String = if (grams < 1) "< 1 g" else "${grams.roundToInt()} g"
 
 /** Short amount for timelines: "2 Stück" or "L". */
 fun Amount.short(unitLabel: String?): String = when (this) {

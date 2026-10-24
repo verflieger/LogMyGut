@@ -58,6 +58,23 @@ class MigrationTest {
         }
     }
 
+    @Test fun migrate3To4AddsEmptyPortionWeight() {
+        helper.createDatabase(DB, 3).use { db ->
+            db.execSQL(
+                "INSERT INTO food (id, kind, name, aliases, unit, builtIn, userModified, hidden, seedKey, searchText) " +
+                    "VALUES (1, 'INGREDIENT', 'Mandeln', '[]', 'SIZE', 1, 0, 0, 'Mandeln', 'mandeln')",
+            )
+        }
+
+        val db = helper.runMigrationsAndValidate(DB, 4, true, MIGRATION_3_4)
+
+        db.query("SELECT name, portionGrams FROM food").use { c ->
+            c.moveToFirst()
+            assertEquals("Mandeln", c.getString(0))
+            assertEquals(true, c.isNull(1))
+        }
+    }
+
     private companion object {
         const val DB = "migration-test"
     }

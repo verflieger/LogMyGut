@@ -110,7 +110,7 @@ Seed data and editing:
 
 - Seeded from `app/src/main/assets/foods.de.json`, which is **generated** from `tools/foods/foods.src.txt` by
   `tools/foods/build_seed.py` (see 4.5). About 380 ingredients and 60 dishes, with Austrian names and standard German
-  aliases, `unit`, `unitLabel`, and for ingredients `tags`, optional `doseTags`, `parent`, `removeTags` and `note`.
+  aliases, `unit`, `unitLabel`, and for ingredients `grams`, `tags`, optional `doseTags`, `parent`, `removeTags` and `note`.
   Dishes list their `ingredients` by seed key.
 - On every app start the importer syncs the built-in foods with the seed (cheap when nothing changed):
   missing entries are added; built-in entries the user hasn't changed get the seed's current name, aliases, note,
@@ -249,13 +249,16 @@ Käse → Weichkäse → Camembert. At most 3 levels.
   (e.g. Heidelbeeren, Brokkoli, Stangensellerie), the curated tag wins; the build prints these conflicts.
 - The SIGHI histamine list is not used as data: it is copyrighted and members-only.
 - The BLS must be credited on the info pages (section 8).
+- The portion weight is stored per food (`portionGrams`) and shown next to amounts in the meal editor:
+  "S · 15 g | M · 30 g | L · 60 g", or "2 Stück · ≈ 120 g". Dishes and foods without a weight show no grams.
 
 ## 5. Data model (Room)
 
 ```
 Food(id, kind: INGREDIENT|DISH, name, aliases: List<String>, unit: COUNT|SIZE, unitLabel?, note?,
      builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?,
-     searchText, lastUsedAt: Instant?, parentId?)       -- searchText = normalized "name|alias|…"; lastUsedAt for ranking
+     searchText, lastUsedAt: Instant?, parentId?,       -- searchText = normalized "name|alias|…"; lastUsedAt for ranking
+     portionGrams: Double?)                             -- grams of an M portion / one piece; null if unknown
                                                         -- seedKey = the seed entry's key (never changes)
                                                         -- parentId: ingredients only, SPEC 4.4
 FoodTag(foodId, tag, minSize: M|L?, minCount: Int?,     -- PK (foodId, tag); both null = always applies

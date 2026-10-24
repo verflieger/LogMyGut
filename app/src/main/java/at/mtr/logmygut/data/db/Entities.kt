@@ -40,6 +40,8 @@ data class FoodEntity(
     val lastUsedAt: Instant? = null,
     /** Ingredients only: the more general food this one inherits tags from (SPEC 4.4), e.g. Essig for Apfelessig. */
     val parentId: Long? = null,
+    /** Grams of an M portion, or of one piece for count units; shown next to amounts. Null if unknown. */
+    val portionGrams: Double? = null,
 )
 
 /**

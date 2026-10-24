@@ -26,6 +26,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 45.0,
    "source": "BLS 4.0 B251000"
   },
   {
@@ -38,6 +39,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 40.0,
    "source": "BLS 4.0 B311000"
   },
   {
@@ -51,6 +53,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 45.0,
    "source": "BLS 4.0 B251000"
   },
   {
@@ -63,6 +66,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 45.0,
    "source": "BLS 4.0 B271000"
   },
   {
@@ -75,6 +79,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 B121000"
   },
   {
@@ -86,6 +91,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 45.0,
    "source": "BLS 4.0 B710500"
   },
   {
@@ -97,6 +103,7 @@
    "removeTags": [
     "fructans"
    ],
+   "grams": 45.0,
    "note": "Lange Teigführung baut Fructane weitgehend ab.",
    "source": "BLS 4.0 B710500"
   },
@@ -110,6 +117,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 45.0,
    "source": "BLS 4.0 B8A9000"
   },
   {
@@ -122,6 +130,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 25.0,
    "source": "BLS 4.0 B314000"
   },
   {
@@ -133,6 +142,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 B6A2100"
   },
   {
@@ -145,7 +155,8 @@
    ],
    "unit": "count",
    "unitLabel": "Stück",
-   "tags": []
+   "tags": [],
+   "grams": 120.0
   },
   {
    "name": "Weizentortilla",
@@ -157,6 +168,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 B783012"
   },
   {
@@ -170,6 +182,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 55.0,
    "source": "BLS 4.0 B511000"
   },
   {
@@ -185,6 +198,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 55.0,
    "source": "BLS 4.0 B511000"
   },
   {
@@ -197,6 +211,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 B406000"
   },
   {
@@ -209,6 +224,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 70.0,
    "source": "BLS 4.0 B406000"
   },
   {
@@ -223,6 +239,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 80.0,
    "source": "BLS 4.0 B723100"
   },
   {
@@ -239,6 +256,7 @@
     "lactose": 2,
     "fat": 2
    },
+   "grams": 60.0,
    "source": "BLS 4.0 D771600"
   },
   {
@@ -251,6 +269,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 B511000"
   },
   {
@@ -266,6 +285,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 60.0,
    "source": "BLS 4.0 B8A2000"
   },
   {
@@ -276,6 +296,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 8.0,
    "source": "BLS 4.0 C532700"
   },
   {
@@ -290,6 +311,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 D064000"
   },
   {
@@ -305,6 +327,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 E606000"
   },
   {
@@ -319,6 +342,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 D621200"
   },
   {
@@ -333,6 +357,7 @@
     "fructans": "L",
     "gos": "L"
    },
+   "grams": 50.0,
    "note": "Oft mit Gluten verunreinigt (relevant bei Zöliakie).",
    "source": "BLS 4.0 C133000"
   },
@@ -349,6 +374,7 @@
    "doseTags": {
     "fructose": "L"
    },
+   "grams": 60.0,
    "note": "Typisch mit Weizenflocken und Trockenobst.",
    "source": "BLS 4.0 C512600"
   },
@@ -366,6 +392,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 50.0,
    "source": "BLS 4.0 C514300"
   },
   {
@@ -375,6 +402,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 40.0,
    "source": "BLS 4.0 C515000"
   },
   {
@@ -386,6 +414,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 C352032"
   },
   {
@@ -396,6 +425,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 C351032"
   },
   {
@@ -411,6 +441,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 200.0,
    "source": "BLS 4.0 E401032"
   },
   {
@@ -421,6 +452,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 200.0,
    "source": "BLS 4.0 E500032"
   },
   {
@@ -433,6 +465,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 200.0,
    "source": "BLS 4.0 E432032"
   },
   {
@@ -447,6 +480,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 200.0,
    "source": "BLS 4.0 E612032"
   },
   {
@@ -461,6 +495,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 200.0,
    "source": "BLS 4.0 C559032"
   },
   {
@@ -472,6 +507,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 200.0,
    "source": "BLS 4.0 E609232"
   },
   {
@@ -482,6 +518,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 200.0,
    "source": "BLS 4.0 K270000"
   },
   {
@@ -495,6 +532,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 200.0,
    "source": "BLS 4.0 E432032"
   },
   {
@@ -504,6 +542,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 C119232"
   },
   {
@@ -513,6 +552,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 C119132"
   },
   {
@@ -526,12 +566,14 @@
    "tags": [
     "fructans",
     "gluten"
-   ]
+   ],
+   "grams": 50.0
   },
   {
    "name": "Quinoa",
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 C118122"
   },
   {
@@ -541,6 +583,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 C332000"
   },
   {
@@ -550,6 +593,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 C322000"
   },
   {
@@ -563,6 +607,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 200.0,
    "source": "BLS 4.0 C526000"
   },
   {
@@ -576,6 +621,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 50.0,
    "source": "BLS 4.0 C213100"
   },
   {
@@ -590,6 +636,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 B821000"
   },
   {
@@ -601,6 +648,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 200.0,
    "source": "BLS 4.0 K110132"
   },
   {
@@ -615,6 +663,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 X654042"
   },
   {
@@ -629,6 +678,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 200.0,
    "source": "BLS 4.0 X651063"
   },
   {
@@ -644,6 +694,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 K391200"
   },
   {
@@ -657,6 +708,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 50.0,
    "source": "BLS 4.0 K280100"
   },
   {
@@ -669,6 +721,7 @@
    "doseTags": {
     "polyols": "M"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 K420100"
   },
   {
@@ -686,6 +739,7 @@
    "doseTags": {
     "fat": 2
    },
+   "grams": 250.0,
    "source": "BLS 4.0 M111300"
   },
   {
@@ -701,6 +755,7 @@
    "removeTags": [
     "lactose"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 M114300"
   },
   {
@@ -712,6 +767,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 M150000"
   },
   {
@@ -724,6 +780,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 M130300"
   },
   {
@@ -735,6 +792,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 M021000"
   },
   {
@@ -745,7 +803,8 @@
    ],
    "unit": "count",
    "unitLabel": "Glas",
-   "tags": []
+   "tags": [],
+   "grams": 250.0
   },
   {
    "name": "Hafermilch",
@@ -759,6 +818,7 @@
    "doseTags": {
     "fructans": 2
    },
+   "grams": 250.0,
    "source": "BLS 4.0 C660000"
   },
   {
@@ -772,6 +832,7 @@
    "tags": [
     "gos"
    ],
+   "grams": 250.0,
    "note": "Aus Sojaprotein hergestellt ist sie FODMAP-arm.",
    "source": "BLS 4.0 H841100"
   },
@@ -784,6 +845,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 H800000"
   },
   {
@@ -795,6 +857,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 C650000"
   },
   {
@@ -807,6 +870,7 @@
    "tags": [
     "lactose"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 M141300"
   },
   {
@@ -820,6 +884,7 @@
    "removeTags": [
     "lactose"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 M1E3300"
   },
   {
@@ -831,6 +896,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 M241300"
   },
   {
@@ -845,6 +911,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 M141500"
   },
   {
@@ -852,6 +919,7 @@
    "parent": "Joghurt",
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 M710100"
   },
   {
@@ -864,6 +932,7 @@
    "tags": [
     "lactose"
    ],
+   "grams": 125.0,
    "source": "BLS 4.0 M713100"
   },
   {
@@ -878,6 +947,7 @@
    "doseTags": {
     "lactose": "M"
    },
+   "grams": 60.0,
    "source": "BLS 4.0 Y771510"
   },
   {
@@ -894,6 +964,7 @@
     "lactose": "L",
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 M173800"
   },
   {
@@ -909,6 +980,7 @@
     "lactose",
     "fat"
    ],
+   "grams": 10.0,
    "source": "BLS 4.0 M171500"
   },
   {
@@ -923,6 +995,7 @@
     "lactose": "L",
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 M176800"
   },
   {
@@ -936,6 +1009,7 @@
     "lactose": "L",
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 M172900"
   },
   {
@@ -949,6 +1023,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 10.0,
    "source": "BLS 4.0 Q611000"
   },
   {
@@ -959,6 +1034,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 Q683000"
   },
   {
@@ -972,6 +1048,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 10.0,
    "source": "BLS 4.0 Q400000"
   },
   {
@@ -984,6 +1061,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 M400600"
   },
   {
@@ -998,6 +1076,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 M300600"
   },
   {
@@ -1013,6 +1092,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 15.0,
    "source": "BLS 4.0 M306400"
   },
   {
@@ -1025,6 +1105,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 M302600"
   },
   {
@@ -1035,6 +1116,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 M304600"
   },
   {
@@ -1045,6 +1127,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 M402600"
   },
   {
@@ -1055,6 +1138,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 M400600"
   },
   {
@@ -1070,6 +1154,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 M402600"
   },
   {
@@ -1081,6 +1166,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 M401600"
   },
   {
@@ -1094,6 +1180,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 M403700"
   },
   {
@@ -1110,6 +1197,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 M501600"
   },
   {
@@ -1125,6 +1213,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 60.0,
    "source": "BLS 4.0 M307700"
   },
   {
@@ -1134,6 +1223,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 40.0,
    "source": "BLS 4.0 M602600"
   },
   {
@@ -1141,6 +1231,7 @@
    "parent": "Weichkäse",
    "unit": "size",
    "tags": [],
+   "grams": 40.0,
    "source": "BLS 4.0 M602600"
   },
   {
@@ -1148,6 +1239,7 @@
    "parent": "Weichkäse",
    "unit": "size",
    "tags": [],
+   "grams": 40.0,
    "source": "BLS 4.0 M601800"
   },
   {
@@ -1160,6 +1252,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 M5B1600"
   },
   {
@@ -1174,6 +1267,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 M603500"
   },
   {
@@ -1191,6 +1285,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 M710800"
   },
   {
@@ -1204,6 +1299,7 @@
    "tags": [
     "lactose"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 M711100"
   },
   {
@@ -1211,6 +1307,7 @@
    "parent": "Frischkäse",
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 M741600"
   },
   {
@@ -1221,6 +1318,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 M7A6800"
   },
   {
@@ -1234,6 +1332,7 @@
    "doseTags": {
     "lactose": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 M7A1600"
   },
   {
@@ -1245,6 +1344,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 M032100"
   },
   {
@@ -1257,6 +1357,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 M012200"
   },
   {
@@ -1270,6 +1371,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 60.0,
    "source": "BLS 4.0 M524500"
   },
   {
@@ -1287,6 +1389,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 M810600"
   },
   {
@@ -1305,6 +1408,7 @@
    "removeTags": [
     "fat"
    ],
+   "grams": 40.0,
    "source": "BLS 4.0 M730100"
   },
   {
@@ -1320,6 +1424,7 @@
    "tags": [
     "lactose"
    ],
+   "grams": 60.0,
    "source": "BLS 4.0 S241000"
   },
   {
@@ -1331,6 +1436,7 @@
    "unit": "count",
    "unitLabel": "Kugel",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 S220000"
   },
   {
@@ -1345,6 +1451,7 @@
    "tags": [
     "lactose"
    ],
+   "grams": 125.0,
    "source": "BLS 4.0 Y862143"
   },
   {
@@ -1356,6 +1463,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 200.0,
    "source": "BLS 4.0 X810413"
   },
   {
@@ -1369,7 +1477,8 @@
    "unitLabel": "Tasse",
    "tags": [
     "lactose"
-   ]
+   ],
+   "grams": 250.0
   },
   {
    "name": "Ei",
@@ -1383,6 +1492,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 E111100"
   },
   {
@@ -1396,6 +1506,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 V4A6100"
   },
   {
@@ -1406,6 +1517,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 V486100"
   },
   {
@@ -1418,6 +1530,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 U284100"
   },
   {
@@ -1429,6 +1542,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 U687000"
   },
   {
@@ -1437,7 +1551,8 @@
     "Lamm"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 150.0
   },
   {
    "name": "Wild",
@@ -1450,6 +1565,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 V242100"
   },
   {
@@ -1464,6 +1580,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 125.0,
    "source": "BLS 4.0 U050100"
   },
   {
@@ -1480,6 +1597,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 W415000"
   },
   {
@@ -1493,6 +1611,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 W510000"
   },
   {
@@ -1505,6 +1624,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 20.0,
    "source": "BLS 4.0 W424000"
   },
   {
@@ -1520,6 +1640,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 15.0,
    "source": "BLS 4.0 W441000"
   },
   {
@@ -1529,7 +1650,8 @@
     "Wurstwaren"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 50.0
   },
   {
    "name": "Extrawurst",
@@ -1545,6 +1667,7 @@
    "unit": "count",
    "unitLabel": "Scheibe",
    "tags": [],
+   "grams": 15.0,
    "source": "BLS 4.0 W231100"
   },
   {
@@ -1560,6 +1683,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 10.0,
    "source": "BLS 4.0 W149300"
   },
   {
@@ -1574,6 +1698,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 W880100"
   },
   {
@@ -1588,6 +1713,7 @@
    "tags": [
     "fat"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 W256100"
   },
   {
@@ -1602,6 +1728,7 @@
    "tags": [
     "fat"
    ],
+   "grams": 120.0,
    "source": "BLS 4.0 W221100"
   },
   {
@@ -1620,6 +1747,7 @@
    "doseTags": {
     "fat": 2
    },
+   "grams": 50.0,
    "source": "BLS 4.0 W211200"
   },
   {
@@ -1635,6 +1763,7 @@
    "tags": [
     "fat"
    ],
+   "grams": 120.0,
    "source": "BLS 4.0 W255300"
   },
   {
@@ -1650,6 +1779,7 @@
    "doseTags": {
     "fat": 2
    },
+   "grams": 100.0,
    "source": "BLS 4.0 W343000"
   },
   {
@@ -1666,6 +1796,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 W331000"
   },
   {
@@ -1679,6 +1810,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 120.0,
    "source": "BLS 4.0 Y384112"
   },
   {
@@ -1691,6 +1823,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 T207100"
   },
   {
@@ -1704,6 +1837,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 T410100"
   },
   {
@@ -1713,7 +1847,8 @@
     "Saibling"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 150.0
   },
   {
    "name": "Kabeljau",
@@ -1725,6 +1860,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 T207100"
   },
   {
@@ -1736,6 +1872,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 T603100"
   },
   {
@@ -1746,6 +1883,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 T501100"
   },
   {
@@ -1757,6 +1895,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 80.0,
    "source": "BLS 4.0 T121902"
   },
   {
@@ -1769,6 +1908,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 50.0,
    "source": "BLS 4.0 T410600"
   },
   {
@@ -1785,6 +1925,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 80.0,
    "source": "BLS 4.0 T811100"
   },
   {
@@ -1798,6 +1939,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 80.0,
    "source": "BLS 4.0 T105100"
   },
   {
@@ -1811,6 +1953,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 T753100"
   },
   {
@@ -1826,6 +1969,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 120.0,
    "source": "BLS 4.0 T930100"
   },
   {
@@ -1839,7 +1983,8 @@
     "fructans",
     "gluten",
     "fat"
-   ]
+   ],
+   "grams": 150.0
   },
   {
    "name": "Tofu (fest)",
@@ -1849,6 +1994,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 H861000"
   },
   {
@@ -1857,12 +2003,14 @@
    "tags": [
     "gos"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 H861100"
   },
   {
    "name": "Tempeh",
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 100.0
   },
   {
    "name": "Hülsenfrüchte",
@@ -1872,7 +2020,8 @@
    "unit": "size",
    "tags": [
     "gos"
-   ]
+   ],
+   "grams": 150.0
   },
   {
    "name": "Erbsen",
@@ -1885,6 +2034,7 @@
    "tags": [
     "fructans"
    ],
+   "grams": 80.0,
    "source": "BLS 4.0 G760100"
   },
   {
@@ -1897,6 +2047,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 H742100"
   },
   {
@@ -1909,6 +2060,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 X571453"
   },
   {
@@ -1916,6 +2068,7 @@
    "parent": "Hülsenfrüchte",
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 H720902"
   },
   {
@@ -1927,6 +2080,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 H730132"
   },
   {
@@ -1940,6 +2094,7 @@
    "doseTags": {
     "gos": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 G750100"
   },
   {
@@ -1950,6 +2105,7 @@
    "tags": [
     "fructans"
    ],
+   "grams": 25.0,
    "source": "BLS 4.0 Y9A1050"
   },
   {
@@ -1965,6 +2121,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 50.0,
    "source": "BLS 4.0 H960000"
   },
   {
@@ -1978,6 +2135,7 @@
     "fructose",
     "polyols"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 F110100"
   },
   {
@@ -1989,6 +2147,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 F110100"
   },
   {
@@ -2000,6 +2159,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 170.0,
    "source": "BLS 4.0 F130100"
   },
   {
@@ -2008,6 +2168,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 F140100"
   },
   {
@@ -2018,7 +2179,8 @@
    "unit": "size",
    "tags": [
     "polyols"
-   ]
+   ],
+   "grams": 150.0
   },
   {
    "name": "Kirschen",
@@ -2030,6 +2192,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 F211100"
   },
   {
@@ -2044,6 +2207,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 F220100"
   },
   {
@@ -2055,6 +2219,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 130.0,
    "source": "BLS 4.0 F203100"
   },
   {
@@ -2063,6 +2228,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 130.0,
    "source": "BLS 4.0 F202100"
   },
   {
@@ -2075,6 +2241,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 40.0,
    "source": "BLS 4.0 F201100"
   },
   {
@@ -2088,6 +2255,7 @@
    "removeTags": [
     "polyols"
    ],
+   "grams": 200.0,
    "source": "BLS 4.0 F516100"
   },
   {
@@ -2097,7 +2265,8 @@
     "Beerenmischung"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 125.0
   },
   {
    "name": "Erdbeeren",
@@ -2110,6 +2279,7 @@
    "doseTags": {
     "fructose": "L"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 F301100"
   },
   {
@@ -2123,6 +2293,7 @@
    "doseTags": {
     "fructans": "L"
    },
+   "grams": 125.0,
    "source": "BLS 4.0 F302100"
   },
   {
@@ -2134,6 +2305,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 125.0,
    "note": "BLS weist Fructoseüberschuss aus; Monash misst Heidelbeeren als verträglich.",
    "source": "BLS 4.0 F304100"
   },
@@ -2147,6 +2319,7 @@
    "tags": [
     "polyols"
    ],
+   "grams": 125.0,
    "source": "BLS 4.0 F303100"
   },
   {
@@ -2161,6 +2334,7 @@
    "doseTags": {
     "fructose": "M"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 F321100"
   },
   {
@@ -2171,6 +2345,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 F401100"
   },
   {
@@ -2184,6 +2359,7 @@
    "tags": [
     "fructose"
    ],
+   "grams": 125.0,
    "source": "BLS 4.0 F310100"
   },
   {
@@ -2193,7 +2369,8 @@
    ],
    "unit": "count",
    "unitLabel": "Stück",
-   "tags": []
+   "tags": [],
+   "grams": 150.0
   },
   {
    "name": "Orange",
@@ -2205,6 +2382,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 F603100"
   },
   {
@@ -2217,6 +2395,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 F606100"
   },
   {
@@ -2230,6 +2409,7 @@
    "tags": [
     "fructans"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 F604100"
   },
   {
@@ -2242,6 +2422,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 60.0,
    "source": "BLS 4.0 F601100"
   },
   {
@@ -2254,6 +2435,7 @@
    "tags": [
     "fructans"
    ],
+   "grams": 120.0,
    "note": "Reife Bananen enthalten Fructane, unreife (grünliche) kaum.",
    "source": "BLS 4.0 F503100"
   },
@@ -2262,12 +2444,14 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 70.0,
    "source": "BLS 4.0 F514100"
   },
   {
    "name": "Ananas",
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 F501100"
   },
   {
@@ -2280,6 +2464,7 @@
    "doseTags": {
     "polyols": "M"
    },
+   "grams": 200.0,
    "source": "BLS 4.0 F535100"
   },
   {
@@ -2293,6 +2478,7 @@
    "doseTags": {
     "fructans": "L"
    },
+   "grams": 200.0,
    "source": "BLS 4.0 F533100"
   },
   {
@@ -2305,6 +2491,7 @@
    "tags": [
     "fructans"
    ],
+   "grams": 50.0,
    "source": "BLS 4.0 F505100"
   },
   {
@@ -2317,12 +2504,14 @@
    "doseTags": {
     "fructose": "M"
    },
+   "grams": 80.0,
    "source": "BLS 4.0 F506100"
   },
   {
    "name": "Papaya",
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 F517100"
   },
   {
@@ -2333,6 +2522,7 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 20.0,
    "source": "BLS 4.0 F508100"
   },
   {
@@ -2345,6 +2535,7 @@
    "doseTags": {
     "polyols": "M"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 F515100"
   },
   {
@@ -2356,12 +2547,14 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
+   "grams": 200.0,
    "source": "BLS 4.0 F507100"
   },
   {
    "name": "Rhabarber",
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 F081100"
   },
   {
@@ -2371,6 +2564,7 @@
    "doseTags": {
     "polyols": "M"
    },
+   "grams": 50.0,
    "note": "Ca. 1/8 Avocado gilt als verträglich.",
    "source": "BLS 4.0 F502100"
   },
@@ -2384,7 +2578,8 @@
    "tags": [],
    "doseTags": {
     "polyols": "L"
-   }
+   },
+   "grams": 30.0
   },
   {
    "name": "Trockenobst",
@@ -2397,7 +2592,8 @@
     "fructose",
     "polyols",
     "fructans"
-   ]
+   ],
+   "grams": 30.0
   },
   {
    "name": "Datteln",
@@ -2414,6 +2610,7 @@
    "removeTags": [
     "polyols"
    ],
+   "grams": 8.0,
    "source": "BLS 4.0 F504400"
   },
   {
@@ -2428,6 +2625,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 F840100"
   },
   {
@@ -2443,6 +2641,7 @@
    "removeTags": [
     "fructose"
    ],
+   "grams": 10.0,
    "source": "BLS 4.0 F220400"
   },
   {
@@ -2457,6 +2656,7 @@
    "removeTags": [
     "fructose"
    ],
+   "grams": 8.0,
    "source": "BLS 4.0 F201400"
   },
   {
@@ -2472,6 +2672,7 @@
     "fructose",
     "polyols"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 F505400"
   },
   {
@@ -2488,6 +2689,7 @@
    "removeTags": [
     "fructans"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 F414400"
   },
   {
@@ -2503,6 +2705,7 @@
    "doseTags": {
     "polyols": "M"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 Y864112"
   },
   {
@@ -2513,7 +2716,8 @@
    "unit": "size",
    "tags": [
     "fructans"
-   ]
+   ],
+   "grams": 50.0
   },
   {
    "name": "Zwiebel",
@@ -2526,6 +2730,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G480100"
   },
   {
@@ -2537,6 +2742,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 4.0,
    "source": "BLS 4.0 G490100"
   },
   {
@@ -2548,6 +2754,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 80.0,
    "source": "BLS 4.0 G470100"
   },
   {
@@ -2559,6 +2766,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 20.0,
    "note": "Nur der grüne Teil ist FODMAP-arm.",
    "source": "BLS 4.0 G482100"
   },
@@ -2570,6 +2778,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 20.0,
    "source": "BLS 4.0 G485100"
   },
   {
@@ -2580,6 +2789,7 @@
    "removeTags": [
     "fructans"
    ],
+   "grams": 5.0,
    "note": "FODMAP-arm, auch in größeren Mengen.",
    "source": "BLS 4.0 G081100"
   },
@@ -2590,7 +2800,8 @@
     "Kraut"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 100.0
   },
   {
    "name": "Weißkraut",
@@ -2604,6 +2815,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 G342100"
   },
   {
@@ -2615,6 +2827,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G341100"
   },
   {
@@ -2629,6 +2842,7 @@
    "doseTags": {
     "fructans": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 G343100"
   },
   {
@@ -2644,6 +2858,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 G332100"
   },
   {
@@ -2656,6 +2871,7 @@
    "tags": [
     "polyols"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 G311100"
   },
   {
@@ -2669,6 +2885,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 150.0,
    "note": "Röschen sind gut verträglich, Stiele enthalten mehr Fructose.",
    "source": "BLS 4.0 G312100"
   },
@@ -2677,6 +2894,7 @@
    "parent": "Kohl",
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G331100"
   },
   {
@@ -2688,6 +2906,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G321100"
   },
   {
@@ -2701,6 +2920,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 G322100"
   },
   {
@@ -2710,6 +2930,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 G345902"
   },
   {
@@ -2722,6 +2943,7 @@
    "tags": [
     "polyols"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 K701100"
   },
   {
@@ -2733,6 +2955,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 K701100"
   },
   {
@@ -2746,6 +2969,7 @@
    "doseTags": {
     "polyols": "M"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 K713100"
   },
   {
@@ -2756,13 +2980,15 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 K718100"
   },
   {
    "name": "Shiitake",
    "parent": "Schwammerl",
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 100.0
   },
   {
    "name": "Austernpilze",
@@ -2776,6 +3002,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 K740100"
   },
   {
@@ -2790,6 +3017,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 X5A8000"
   },
   {
@@ -2804,6 +3032,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 80.0,
    "source": "BLS 4.0 G570100"
   },
   {
@@ -2814,6 +3043,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G543100"
   },
   {
@@ -2824,6 +3054,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 20.0,
    "source": "BLS 4.0 G553100"
   },
   {
@@ -2837,6 +3068,7 @@
    "tags": [
     "spicy"
    ],
+   "grams": 5.0,
    "source": "BLS 4.0 G554100"
   },
   {
@@ -2848,6 +3080,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G520100"
   },
   {
@@ -2862,6 +3095,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 G520802"
   },
   {
@@ -2877,6 +3111,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 G561100"
   },
   {
@@ -2890,6 +3125,7 @@
    "doseTags": {
     "fructose": "L"
    },
+   "grams": 10.0,
    "source": "BLS 4.0 G560400"
   },
   {
@@ -2902,6 +3138,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G620100"
   },
   {
@@ -2914,6 +3151,7 @@
    "doseTags": {
     "fructans": "L"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 G582100"
   },
   {
@@ -2928,6 +3166,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 G510100"
   },
   {
@@ -2940,12 +3179,14 @@
    "tags": [
     "histamine"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 G211100"
   },
   {
    "name": "Mangold",
    "unit": "size",
    "tags": [],
+   "grams": 150.0,
    "source": "BLS 4.0 G230100"
   },
   {
@@ -2959,6 +3200,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 G581000"
   },
   {
@@ -2973,6 +3215,7 @@
     "fructans",
     "gos"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 G613100"
   },
   {
@@ -2986,6 +3229,7 @@
    "doseTags": {
     "polyols": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 G660100"
   },
   {
@@ -2999,6 +3243,7 @@
    "tags": [
     "polyols"
    ],
+   "grams": 50.0,
    "note": "Monash misst deutlich mehr Mannit als BLS.",
    "source": "BLS 4.0 G220100"
   },
@@ -3013,6 +3258,7 @@
     "polyols": "M",
     "fructans": "L"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 G430100"
   },
   {
@@ -3022,7 +3268,8 @@
     "Wurzelwerk"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 100.0
   },
   {
    "name": "Pastinake",
@@ -3032,6 +3279,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G640100"
   },
   {
@@ -3046,6 +3294,7 @@
    "doseTags": {
     "polyols": "M"
    },
+   "grams": 50.0,
    "source": "BLS 4.0 G670100"
   },
   {
@@ -3057,7 +3306,8 @@
    "unit": "size",
    "tags": [
     "fructans"
-   ]
+   ],
+   "grams": 100.0
   },
   {
    "name": "Rettich",
@@ -3067,6 +3317,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G680100"
   },
   {
@@ -3074,6 +3325,7 @@
    "parent": "Wurzelgemüse",
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G691100"
   },
   {
@@ -3089,6 +3341,7 @@
    "doseTags": {
     "fructose": "L"
    },
+   "grams": 150.0,
    "source": "BLS 4.0 G450100"
   },
   {
@@ -3100,6 +3353,7 @@
    "tags": [
     "fructans"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 G410100"
   },
   {
@@ -3110,6 +3364,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G105100"
   },
   {
@@ -3121,6 +3376,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G105100"
   },
   {
@@ -3131,6 +3387,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G103100"
   },
   {
@@ -3142,6 +3399,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G104100"
   },
   {
@@ -3152,6 +3410,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 G130100"
   },
   {
@@ -3163,6 +3422,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G102100"
   },
   {
@@ -3174,6 +3434,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 G106100"
   },
   {
@@ -3185,18 +3446,21 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 H650100"
   },
   {
    "name": "Bambussprossen",
    "unit": "size",
    "tags": [],
+   "grams": 50.0,
    "source": "BLS 4.0 H610100"
   },
   {
    "name": "Okra",
    "unit": "size",
    "tags": [],
+   "grams": 100.0,
    "source": "BLS 4.0 G530100"
   },
   {
@@ -3207,12 +3471,14 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 H510802"
   },
   {
    "name": "Kapern",
    "unit": "size",
    "tags": [],
+   "grams": 5.0,
    "source": "BLS 4.0 G012902"
   },
   {
@@ -3222,6 +3488,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 5.0,
    "source": "BLS 4.0 R211200"
   },
   {
@@ -3236,6 +3503,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 5.0,
    "source": "BLS 4.0 G061000"
   },
   {
@@ -3245,7 +3513,8 @@
     "Studentenfutter"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 30.0
   },
   {
    "name": "Cashewkerne",
@@ -3261,6 +3530,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 H170100"
   },
   {
@@ -3274,6 +3544,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 H250600"
   },
   {
@@ -3288,6 +3559,7 @@
     "gos": "L",
     "fat": "L"
    },
+   "grams": 30.0,
    "note": "Bis ca. 10 Stück gilt als verträglich.",
    "source": "BLS 4.0 H210100"
   },
@@ -3303,6 +3575,7 @@
     "gos": "L",
     "fat": "M"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 H130100"
   },
   {
@@ -3317,6 +3590,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 H120100"
   },
   {
@@ -3331,6 +3605,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 H110600"
   },
   {
@@ -3344,6 +3619,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 H190600"
   },
   {
@@ -3354,6 +3630,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 30.0,
    "source": "BLS 4.0 H180100"
   },
   {
@@ -3364,6 +3641,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 15.0,
    "source": "BLS 4.0 H320100"
   },
   {
@@ -3377,6 +3655,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 20.0,
    "source": "BLS 4.0 H880200"
   },
   {
@@ -3386,7 +3665,8 @@
     "Saaten"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 15.0
   },
   {
    "name": "Leinsamen",
@@ -3396,6 +3676,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 15.0,
    "source": "BLS 4.0 H410100"
   },
   {
@@ -3406,6 +3687,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 15.0,
    "source": "BLS 4.0 H480100"
   },
   {
@@ -3416,6 +3698,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 15.0,
    "source": "BLS 4.0 H310100"
   },
   {
@@ -3427,6 +3710,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 H420100"
   },
   {
@@ -3441,6 +3725,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 25.0,
    "source": "BLS 4.0 S530000"
   },
   {
@@ -3451,6 +3736,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 25.0,
    "source": "BLS 4.0 S539900"
   },
   {
@@ -3465,6 +3751,7 @@
    "removeTags": [
     "lactose"
    ],
+   "grams": 25.0,
    "source": "BLS 4.0 S570000"
   },
   {
@@ -3472,6 +3759,7 @@
    "parent": "Schokolade",
    "unit": "size",
    "tags": [],
+   "grams": 25.0,
    "source": "BLS 4.0 S580000"
   },
   {
@@ -3485,6 +3773,7 @@
    "doseTags": {
     "lactose": "L"
    },
+   "grams": 20.0,
    "source": "BLS 4.0 S145000"
   },
   {
@@ -3503,7 +3792,8 @@
    ],
    "doseTags": {
     "fat": 2
-   }
+   },
+   "grams": 70.0
   },
   {
    "name": "Sahnetorte",
@@ -3520,7 +3810,8 @@
     "fructans",
     "gluten",
     "fat"
-   ]
+   ],
+   "grams": 120.0
   },
   {
    "name": "Topfenkuchen",
@@ -3539,6 +3830,7 @@
    "doseTags": {
     "fat": 2
    },
+   "grams": 120.0,
    "source": "BLS 4.0 D480200"
   },
   {
@@ -3555,6 +3847,7 @@
     "gluten",
     "fat"
    ],
+   "grams": 150.0,
    "source": "BLS 4.0 D483400"
   },
   {
@@ -3573,6 +3866,7 @@
    "doseTags": {
     "fructose": 2
    },
+   "grams": 150.0,
    "source": "BLS 4.0 D540400"
   },
   {
@@ -3587,6 +3881,7 @@
     "gluten",
     "fat"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 D083000"
   },
   {
@@ -3604,7 +3899,8 @@
     "fructans",
     "gluten",
     "fat"
-   ]
+   ],
+   "grams": 150.0
   },
   {
    "name": "Krapfen",
@@ -3623,6 +3919,7 @@
     "lactose": 2,
     "fat": 2
    },
+   "grams": 70.0,
    "source": "BLS 4.0 D741600"
   },
   {
@@ -3638,6 +3935,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 D630400"
   },
   {
@@ -3654,6 +3952,7 @@
    "doseTags": {
     "lactose": 2
    },
+   "grams": 30.0,
    "source": "BLS 4.0 D650600"
   },
   {
@@ -3667,6 +3966,7 @@
     "fructans",
     "gluten"
    ],
+   "grams": 25.0,
    "source": "BLS 4.0 S830000"
   },
   {
@@ -3676,6 +3976,7 @@
    "tags": [
     "polyols"
    ],
+   "grams": 50.0,
    "note": "Enthalten oft Zuckeralkohole (Maltit, Sorbit). Zutatenliste prüfen."
   },
   {
@@ -3686,6 +3987,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 S361000"
   },
   {
@@ -3697,7 +3999,8 @@
    "unitLabel": "Stück",
    "tags": [
     "polyols"
-   ]
+   ],
+   "grams": 2.0
   },
   {
    "name": "Zuckerfreie Bonbons",
@@ -3708,12 +4011,14 @@
    "unitLabel": "Stück",
    "tags": [
     "polyols"
-   ]
+   ],
+   "grams": 3.0
   },
   {
    "name": "Popcorn",
    "unit": "size",
    "tags": [],
+   "grams": 30.0,
    "source": "BLS 4.0 C533000"
   },
   {
@@ -3725,6 +4030,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 S111000"
   },
   {
@@ -3737,6 +4043,7 @@
    "tags": [
     "fructose"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 S120000"
   },
   {
@@ -3747,12 +4054,14 @@
    "unit": "size",
    "tags": [
     "fructose"
-   ]
+   ],
+   "grams": 20.0
   },
   {
    "name": "Ahornsirup",
    "unit": "size",
    "tags": [],
+   "grams": 20.0,
    "source": "BLS 4.0 S151100"
   },
   {
@@ -3763,6 +4072,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 20.0,
    "source": "BLS 4.0 S132000"
   },
   {
@@ -3773,7 +4083,8 @@
    "unit": "size",
    "tags": [
     "polyols"
-   ]
+   ],
+   "grams": 5.0
   },
   {
    "name": "Sorbit",
@@ -3785,6 +4096,7 @@
    "tags": [
     "polyols"
    ],
+   "grams": 5.0,
    "source": "BLS 4.0 S162000"
   },
   {
@@ -3794,6 +4106,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 5.0,
    "note": "Wird kaum vergoren und gilt als gut verträglich."
   },
   {
@@ -3809,6 +4122,7 @@
    "tags": [
     "caffeine"
    ],
+   "grams": 200.0,
    "source": "BLS 4.0 N410100"
   },
   {
@@ -3823,6 +4137,7 @@
    "tags": [
     "caffeine"
    ],
+   "grams": 30.0,
    "source": "BLS 4.0 N411100"
   },
   {
@@ -3832,7 +4147,8 @@
    ],
    "unit": "count",
    "unitLabel": "Tasse",
-   "tags": []
+   "tags": [],
+   "grams": 250.0
   },
   {
    "name": "Schwarzer Tee",
@@ -3846,6 +4162,7 @@
    "tags": [
     "caffeine"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 N630000"
   },
   {
@@ -3861,6 +4178,7 @@
    "tags": [
     "caffeine"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 N610100"
   },
   {
@@ -3874,7 +4192,8 @@
    "tags": [
     "fructans",
     "caffeine"
-   ]
+   ],
+   "grams": 250.0
   },
   {
    "name": "Kamillentee",
@@ -3883,7 +4202,8 @@
    "unitLabel": "Tasse",
    "tags": [
     "fructans"
-   ]
+   ],
+   "grams": 250.0
   },
   {
    "name": "Fencheltee",
@@ -3895,7 +4215,8 @@
    "unitLabel": "Tasse",
    "tags": [
     "fructans"
-   ]
+   ],
+   "grams": 250.0
   },
   {
    "name": "Pfefferminztee",
@@ -3907,6 +4228,7 @@
    "unit": "count",
    "unitLabel": "Tasse",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 N721000"
   },
   {
@@ -3919,6 +4241,7 @@
    "unit": "count",
    "unitLabel": "Tasse",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 N710000"
   },
   {
@@ -3934,6 +4257,7 @@
     "caffeine",
     "carbonated"
    ],
+   "grams": 330.0,
    "source": "BLS 4.0 N330000"
   },
   {
@@ -3946,7 +4270,8 @@
    "tags": [
     "caffeine",
     "carbonated"
-   ]
+   ],
+   "grams": 330.0
   },
   {
    "name": "Limonade",
@@ -3962,6 +4287,7 @@
    "tags": [
     "carbonated"
    ],
+   "grams": 330.0,
    "source": "BLS 4.0 N314000"
   },
   {
@@ -3973,6 +4299,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 330.0,
    "source": "BLS 4.0 N314000"
   },
   {
@@ -3987,6 +4314,7 @@
    "removeTags": [
     "carbonated"
    ],
+   "grams": 330.0,
    "source": "BLS 4.0 N019000"
   },
   {
@@ -4001,7 +4329,8 @@
    "unitLabel": "Glas",
    "tags": [
     "carbonated"
-   ]
+   ],
+   "grams": 250.0
   },
   {
    "name": "Energydrink",
@@ -4013,7 +4342,8 @@
    "tags": [
     "caffeine",
     "carbonated"
-   ]
+   ],
+   "grams": 250.0
   },
   {
    "name": "Fruchtsaft",
@@ -4028,6 +4358,7 @@
     "fructose",
     "polyols"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 F016600"
   },
   {
@@ -4040,6 +4371,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 F110600"
   },
   {
@@ -4057,6 +4389,7 @@
    "removeTags": [
     "polyols"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 F603600"
   },
   {
@@ -4068,6 +4401,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 250.0,
    "source": "BLS 4.0 F032600"
   },
   {
@@ -4077,7 +4411,8 @@
    "tags": [
     "histamine",
     "carbonated"
-   ]
+   ],
+   "grams": 250.0
   },
   {
    "name": "Bier",
@@ -4096,6 +4431,7 @@
     "alcohol",
     "carbonated"
    ],
+   "grams": 330.0,
    "source": "BLS 4.0 P163000"
   },
   {
@@ -4108,6 +4444,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 500.0,
    "source": "BLS 4.0 P150000"
   },
   {
@@ -4119,6 +4456,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 330.0,
    "source": "BLS 4.0 P192000"
   },
   {
@@ -4132,7 +4470,8 @@
    "tags": [],
    "removeTags": [
     "alcohol"
-   ]
+   ],
+   "grams": 330.0
   },
   {
    "name": "Wein",
@@ -4145,6 +4484,7 @@
    "tags": [
     "alcohol"
    ],
+   "grams": 125.0,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4157,6 +4497,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 125.0,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4171,6 +4512,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 125.0,
    "source": "BLS 4.0 P253000"
   },
   {
@@ -4182,6 +4524,7 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
+   "grams": 125.0,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4197,6 +4540,7 @@
    "tags": [
     "carbonated"
    ],
+   "grams": 250.0,
    "note": "Halb Wein, halb Soda.",
    "source": "BLS 4.0 P210000"
   },
@@ -4215,6 +4559,7 @@
     "histamine",
     "carbonated"
    ],
+   "grams": 100.0,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4229,6 +4574,7 @@
    "tags": [
     "alcohol"
    ],
+   "grams": 250.0,
    "source": "BLS 4.0 P353100"
   },
   {
@@ -4246,6 +4592,7 @@
    "tags": [
     "alcohol"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 P712000"
   },
   {
@@ -4256,6 +4603,7 @@
    "tags": [
     "fructose"
    ],
+   "grams": 20.0,
    "source": "BLS 4.0 P741000"
   },
   {
@@ -4268,7 +4616,8 @@
    ],
    "unit": "count",
    "unitLabel": "Glas",
-   "tags": []
+   "tags": [],
+   "grams": 20.0
   },
   {
    "name": "Ketchup",
@@ -4281,6 +4630,7 @@
    "doseTags": {
     "fructans": "L"
    },
+   "grams": 15.0,
    "note": "1 EL gilt als verträglich.",
    "source": "BLS 4.0 R141100"
   },
@@ -4294,6 +4644,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 20.0,
    "source": "BLS 4.0 Q991000"
   },
   {
@@ -4307,6 +4658,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 20.0,
    "source": "BLS 4.0 Q999000"
   },
   {
@@ -4318,6 +4670,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 R132000"
   },
   {
@@ -4330,6 +4683,7 @@
    "tags": [
     "spicy"
    ],
+   "grams": 10.0,
    "source": "BLS 4.0 G630100"
   },
   {
@@ -4343,6 +4697,7 @@
     "gluten",
     "histamine"
    ],
+   "grams": 15.0,
    "source": "BLS 4.0 R143000"
   },
   {
@@ -4357,7 +4712,8 @@
    ],
    "doseTags": {
     "fat": "L"
-   }
+   },
+   "grams": 30.0
   },
   {
    "name": "Paradeissauce",
@@ -4371,7 +4727,8 @@
    "tags": [
     "fructans",
     "histamine"
-   ]
+   ],
+   "grams": 100.0
   },
   {
    "name": "Bratensaft",
@@ -4385,7 +4742,8 @@
    "tags": [
     "fructans",
     "fat"
-   ]
+   ],
+   "grams": 60.0
   },
   {
    "name": "Sauce Hollandaise",
@@ -4395,6 +4753,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 40.0,
    "source": "BLS 4.0 U990400"
   },
   {
@@ -4409,7 +4768,8 @@
    "tags": [
     "fructans",
     "spicy"
-   ]
+   ],
+   "grams": 15.0
   },
   {
    "name": "Currypulver",
@@ -4420,7 +4780,8 @@
    "unit": "size",
    "tags": [
     "spicy"
-   ]
+   ],
+   "grams": 3.0
   },
   {
    "name": "Paprikapulver",
@@ -4429,7 +4790,8 @@
     "Rosenpaprika"
    ],
    "unit": "size",
-   "tags": []
+   "tags": [],
+   "grams": 3.0
   },
   {
    "name": "Pfeffer",
@@ -4440,7 +4802,8 @@
    "unit": "size",
    "tags": [
     "spicy"
-   ]
+   ],
+   "grams": 1.0
   },
   {
    "name": "Essig",
@@ -4451,6 +4814,7 @@
    "tags": [
     "histamine"
    ],
+   "grams": 10.0,
    "source": "BLS 4.0 R121000"
   },
   {
@@ -4462,6 +4826,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 R121000"
   },
   {
@@ -4474,6 +4839,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 R125000"
   },
   {
@@ -4485,6 +4851,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 R123100"
   },
   {
@@ -4500,6 +4867,7 @@
    "removeTags": [
     "histamine"
    ],
+   "grams": 10.0,
    "source": "BLS 4.0 R122000"
   },
   {
@@ -4514,6 +4882,7 @@
    "tags": [
     "fructans"
    ],
+   "grams": 250.0,
    "note": "Fertigbrühen enthalten meist Zwiebel- und Knoblauchpulver.",
    "source": "BLS 4.0 X416243"
   },
@@ -4527,7 +4896,8 @@
    "unit": "size",
    "tags": [
     "fructans"
-   ]
+   ],
+   "grams": 5.0
   },
   {
    "name": "Kokosmilch",
@@ -4539,6 +4909,7 @@
    "doseTags": {
     "fat": "M"
    },
+   "grams": 100.0,
    "source": "BLS 4.0 H154000"
   },
   {
@@ -4551,6 +4922,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 10.0,
    "source": "BLS 4.0 Q180000"
   },
   {
@@ -4558,6 +4930,7 @@
    "parent": "Speiseöl",
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 Q120000"
   },
   {
@@ -4565,6 +4938,7 @@
    "parent": "Speiseöl",
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 Q180000"
   },
   {
@@ -4572,6 +4946,7 @@
    "parent": "Speiseöl",
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 Q320000"
   },
   {
@@ -4583,6 +4958,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 Q180000"
   },
   {
@@ -4593,6 +4969,7 @@
    ],
    "unit": "size",
    "tags": [],
+   "grams": 10.0,
    "source": "BLS 4.0 Q550000"
   },
   {
@@ -4603,7 +4980,8 @@
    "unit": "size",
    "tags": [
     "fat"
-   ]
+   ],
+   "grams": 20.0
   },
   {
    "name": "Schmalz",
@@ -4616,6 +4994,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 10.0,
    "source": "BLS 4.0 Q860000"
   },
   {
@@ -4629,7 +5008,8 @@
     "fructans",
     "gluten",
     "fat"
-   ]
+   ],
+   "grams": 150.0
   },
   {
    "name": "Frühlingsrolle",
@@ -4642,7 +5022,8 @@
     "fructans",
     "gluten",
     "fat"
-   ]
+   ],
+   "grams": 70.0
   },
   {
    "name": "Tortillachips",
@@ -4655,6 +5036,7 @@
    "doseTags": {
     "fat": "L"
    },
+   "grams": 50.0,
    "source": "BLS 4.0 C546000"
   },
   {
@@ -4667,7 +5049,8 @@
    "tags": [
     "lactose",
     "fructans"
-   ]
+   ],
+   "grams": 50.0
   }
  ],
  "dishes": [

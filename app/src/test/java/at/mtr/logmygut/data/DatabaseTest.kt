@@ -9,6 +9,7 @@ import at.mtr.logmygut.data.db.MealItemEntity
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
 import at.mtr.logmygut.data.seed.toEntity
+import at.mtr.logmygut.domain.Amount
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
@@ -70,6 +71,13 @@ class DatabaseTest {
 
         val ketchup = foods.search("ketchup").first { it.kind == FoodKind.INGREDIENT }
         assertEquals(listOf(IngredientTag(Tag.FRUCTANS, Threshold.MinSize(PortionSize.L))), foods.getIngredientTags(ketchup.id))
+    }
+
+    @Test fun seedImportStoresPortionWeight() = runTest {
+        SeedImporter(db).import(seed)
+        val nuts = foods.search("cashewkerne").single()
+        assertEquals(30.0, nuts.portionGrams)
+        assertEquals(60.0, Amount.Size(PortionSize.L).grams(nuts.portionGrams!!), 0.0)
     }
 
     @Test fun searchIsUmlautInsensitiveAndFindsGermanAliases() = runTest {

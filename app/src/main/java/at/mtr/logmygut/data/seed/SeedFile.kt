@@ -31,6 +31,7 @@ private data class IngredientJson(
     val note: String? = null,
     val parent: String? = null,
     val removeTags: List<String> = emptyList(),
+    val grams: Double? = null,
 )
 
 @Serializable
@@ -57,6 +58,8 @@ data class SeedIngredient(
     val removedTags: List<Tag> = emptyList(),
     /** Permanent seed key; the original name, kept when the food is renamed. */
     val key: String = name,
+    /** Grams of an M portion, or of one piece for count units. */
+    val grams: Double? = null,
 )
 
 data class SeedDish(
@@ -117,7 +120,8 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
             require(tagKeys.size == tagKeys.toSet().size) { "'${j.name}': tag listed twice" }
             val removed = j.removeTags.map { Tag.fromKey(it) }
             require(removed.none { it in tagKeys }) { "'${j.name}': tag both set and removed" }
-            return SeedIngredient(j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note, j.parent, removed, j.key ?: j.name)
+            require(j.grams == null || j.grams > 0) { "'${j.name}': grams must be positive" }
+            return SeedIngredient(j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note, j.parent, removed, j.key ?: j.name, j.grams)
         }
 
         private fun validateHierarchy(ingredients: List<SeedIngredient>) {
