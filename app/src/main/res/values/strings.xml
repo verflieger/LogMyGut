@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LogMyGut</string>
+
+    <string name="tab_today">Heute</string>
+    <string name="tab_history">Verlauf</string>
+    <string name="tab_analysis">Analyse</string>
+    <string name="tab_settings">Einstellungen</string>
+
+    <string name="placeholder_coming_soon">Kommt in einem späteren Meilenstein.</string>
+</resources>
