@@ -186,9 +186,9 @@ fun NewFoodDialog(
 internal fun hitContext(hit: FoodHit, kind: String?): String =
     listOfNotNull(hit.matchedAlias?.let { "„$it“" }, hit.parentName, kind).joinToString(" · ")
 
-/** Current ingredients with ✕, plus a search to add more. Used inside dialogs, so no lazy lists. */
+/** Current ingredients with ✕, plus a search to add more. Used inside dialogs and scrolling screens, so no lazy lists. */
 @Composable
-private fun IngredientListEditor(
+fun IngredientListEditor(
     selected: List<FoodEntity>,
     onChange: (List<FoodEntity>) -> Unit,
     search: suspend (String) -> List<FoodHit>,

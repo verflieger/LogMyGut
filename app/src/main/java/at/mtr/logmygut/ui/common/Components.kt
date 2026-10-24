@@ -68,6 +68,7 @@ fun EditorScaffold(
     onSave: () -> Unit,
     saveEnabled: Boolean,
     onDelete: (() -> Unit)?,
+    menu: (@Composable () -> Unit)? = null,
     content: @Composable (Modifier) -> Unit,
 ) {
     // Guards against double taps saving an entry twice; the screen closes after saving.
@@ -87,6 +88,7 @@ fun EditorScaffold(
                             Icon(Icons.Outlined.DeleteOutline, contentDescription = stringResource(R.string.action_delete))
                         }
                     }
+                    menu?.invoke()
                 },
             )
         },

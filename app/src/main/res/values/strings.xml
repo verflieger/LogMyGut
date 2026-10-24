@@ -155,4 +155,61 @@
     <string name="checkin_sleep_hint">1 = sehr schlecht, 5 = sehr gut</string>
     <string name="checkin_summary">Stress %1$d · Schlaf %2$d</string>
     <string name="action_edit">Ändern</string>
+
+    <!-- Einstellungen (SPEC 2, 3.7) -->
+    <string name="settings_reminder_section">Erinnerung</string>
+    <string name="settings_reminder">Tägliche Erinnerung</string>
+    <string name="settings_reminder_hint">„Hast du heute alles eingetragen?“</string>
+    <string name="settings_reminder_time">Uhrzeit</string>
+    <string name="settings_notifications_off">Benachrichtigungen sind ausgeschaltet, daher kommt keine Erinnerung.</string>
+    <string name="settings_notifications_allow">Erlauben</string>
+    <string name="settings_food_section">Lebensmittel</string>
+    <string name="settings_library_hint">Zutaten und Gerichte bearbeiten, eigene anlegen, Auslöser anpassen</string>
+    <string name="reminder_channel">Tägliche Erinnerung</string>
+    <string name="reminder_text">Hast du heute alles eingetragen?</string>
+
+    <!-- Lebensmittel & Gerichte (SPEC 4.1) -->
+    <string name="library_title">Lebensmittel &amp; Gerichte</string>
+    <string name="library_tab_dishes">Gerichte</string>
+    <string name="library_tab_ingredients">Zutaten</string>
+    <string name="library_search">Suchen …</string>
+    <string name="library_own">Eigene</string>
+    <string name="library_builtin">Vorgegeben</string>
+    <string name="library_hidden">Ausgeblendet</string>
+    <string name="library_modified">geändert</string>
+    <string name="library_nothing_found">Nichts gefunden.</string>
+    <string name="library_new_dish">Neues Gericht</string>
+    <string name="library_new_ingredient">Neue Zutat</string>
+    <string name="food_menu">Weitere Aktionen</string>
+    <string name="food_hide">Ausblenden</string>
+    <string name="food_unhide">Einblenden</string>
+    <string name="food_duplicate">Duplizieren</string>
+    <string name="food_reset">Auf Standard zurücksetzen</string>
+    <string name="food_copy_suffix">(Kopie)</string>
+    <string name="food_hidden_hint">Ausgeblendet: erscheint nicht mehr in der Suche, bleibt aber in alten Einträgen.</string>
+    <string name="food_from_now_on">Änderungen gelten ab jetzt. Frühere Mahlzeiten behalten ihre Zutaten.</string>
+    <string name="food_name">Name</string>
+    <string name="food_aliases">Andere Namen</string>
+    <string name="food_aliases_hint">Mit Komma trennen, z. B. Tomate, Paradeiser</string>
+    <string name="food_unit">Menge</string>
+    <string name="food_unit_locked">Schon eingetragen, daher bleibt die Einheit gleich.</string>
+    <string name="food_grams_size">Gramm einer normalen Portion (M)</string>
+    <string name="food_grams_count">Gramm pro %1$s</string>
+    <string name="food_note">Notiz</string>
+    <string name="food_parent">Gehört zu</string>
+    <string name="food_parent_none">Keinem Oberbegriff</string>
+    <string name="food_parent_choose">Oberbegriff wählen</string>
+    <string name="food_parent_hint">Die Zutat übernimmt die Auslöser des Oberbegriffs, z. B. Apfelessig von Essig.</string>
+    <string name="food_tags">Auslöser</string>
+    <string name="food_tags_hint">„ab …“: gilt erst ab dieser Menge.</string>
+    <string name="food_tag_inherited">wie %1$s</string>
+    <string name="tag_off">aus</string>
+    <string name="tag_always">immer</string>
+    <string name="tag_from">ab %1$s</string>
+    <string name="food_used_in">Verwendet in</string>
+    <string name="title_ingredient_new">Neue Zutat</string>
+    <string name="title_dish_new">Neues Gericht</string>
+    <string name="dish_ingredients">Zutaten</string>
+    <string name="dish_triggers">Auslöser (automatisch)</string>
+    <string name="dish_no_triggers">keine</string>
 </resources>

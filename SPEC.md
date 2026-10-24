@@ -98,6 +98,10 @@ Each touched slider becomes its own `SymptomEntry` with the shared timestamp.
 ### 3.7 Reminder
 - One daily notification at a user-chosen time (default 21:00, can be switched off):
   "Hast du heute alles eingetragen?" Tapping it opens Heute. Survives reboot.
+- Scheduled with WorkManager, one run at a time, each scheduling the next. This keeps 21:00 across
+  daylight-saving changes. The time may be off by a few minutes; exact alarms would need an extra permission.
+- Android 13+ needs the notification permission: the app asks once on first start, and Einstellungen
+  shows a hint with "Erlauben" while it's missing.
 
 ## 4. Food library
 

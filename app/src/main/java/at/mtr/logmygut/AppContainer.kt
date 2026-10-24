@@ -2,15 +2,19 @@ package at.mtr.logmygut
 
 import android.content.Context
 import android.util.Log
+import androidx.work.ExistingWorkPolicy
 import at.mtr.logmygut.data.FoodRepository
 import at.mtr.logmygut.data.JournalRepository
+import at.mtr.logmygut.data.SettingsRepository
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
 import at.mtr.logmygut.domain.TagSuggester
+import at.mtr.logmygut.reminder.Reminder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 /** Creates and owns long-lived objects (database, repositories, settings). */
@@ -22,9 +26,27 @@ class AppContainer(private val context: Context) {
 
     private val tagSuggester: TagSuggester by lazy { TagSuggester.fromJson(readAsset("keyword_rules.de.json")) }
 
-    val foodRepository: FoodRepository by lazy { FoodRepository(database, tagSuggester) }
+    val foodRepository: FoodRepository by lazy {
+        FoodRepository(database, tagSuggester, loadSeed = { SeedFile.parse(readAsset("foods.de.json")) })
+    }
 
     val journalRepository: JournalRepository by lazy { JournalRepository(database) }
+
+    val settings: SettingsRepository by lazy { SettingsRepository.create(context) }
+
+    /**
+     * Keeps the daily reminder scheduled for the life of the process. On start only a missing schedule is
+     * created (KEEP), so a process started by the reminder itself doesn't cancel it; later changes replace it.
+     */
+    fun keepReminderScheduled() {
+        appScope.launch {
+            var first = true
+            settings.reminder.distinctUntilChanged().collect { reminder ->
+                Reminder.schedule(context, reminder, if (first) ExistingWorkPolicy.KEEP else ExistingWorkPolicy.REPLACE)
+                first = false
+            }
+        }
+    }
 
     /** Syncs the built-in foods with the seed file (see [SeedImporter]). Cheap when nothing changed. */
     fun importSeedInBackground() {

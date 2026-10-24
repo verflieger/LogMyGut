@@ -1,6 +1,7 @@
 package at.mtr.logmygut.ui.meal
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -48,8 +49,9 @@ import at.mtr.logmygut.ui.common.label
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/** [onOpenFood] opens a food's library detail; reached by long-pressing a search result (SPEC 4.1). */
 @Composable
-fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit) {
+fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenFood: (FoodEntity) -> Unit) {
     val container = appContainer()
     val vm = viewModel { MealEditViewModel(container.foodRepository, container.journalRepository, mealId) }
     val scope = rememberCoroutineScope()
@@ -75,7 +77,9 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
                 )
             }
             if (vm.query.isNotBlank()) {
-                items(vm.results, key = { "result-${it.food.id}" }) { hit -> SearchResultRow(hit) { vm.addFood(hit.food) } }
+                items(vm.results, key = { "result-${it.food.id}" }) { hit ->
+                    SearchResultRow(hit, onClick = { vm.addFood(hit.food) }, onLongClick = { onOpenFood(hit.food) })
+                }
                 item {
                     ListItem(
                         modifier = Modifier.clickable { creatingName = vm.query },
@@ -146,10 +150,10 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
 }
 
 @Composable
-private fun SearchResultRow(hit: FoodHit, onClick: () -> Unit) {
+private fun SearchResultRow(hit: FoodHit, onClick: () -> Unit, onLongClick: () -> Unit) {
     val kind = stringResource(if (hit.food.kind == FoodKind.DISH) R.string.kind_dish else R.string.kind_ingredient)
     ListItem(
-        modifier = Modifier.clickable(onClick = onClick),
+        modifier = Modifier.combinedClickable(onClick = onClick, onLongClick = onLongClick),
         leadingContent = { Icon(hit.food.kindIcon(), contentDescription = null) },
         headlineContent = { Text(hit.food.name) },
         supportingContent = { Text(hitContext(hit, kind)) },
@@ -180,4 +184,5 @@ private fun MealItemCard(item: MealItemUi, onAmount: (at.mtr.logmygut.domain.Amo
     }
 }
 
-private fun FoodEntity.kindIcon() = if (kind == FoodKind.DISH) Icons.Outlined.LunchDining else Icons.Outlined.Eco
+/** Dish or ingredient icon, shared by the meal editor and the library. */
+fun FoodEntity.kindIcon() = if (kind == FoodKind.DISH) Icons.Outlined.LunchDining else Icons.Outlined.Eco

@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import at.mtr.logmygut.domain.FoodKind
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FoodDao {
@@ -23,6 +24,19 @@ interface FoodDao {
     @Query("SELECT ingredientId FROM dish_ingredient WHERE dishId = :dishId") suspend fun getDishIngredientIds(dishId: Long): List<Long>
 
     @Query("SELECT id, parentId FROM food WHERE id IN (:ids)") suspend fun getParentIds(ids: Collection<Long>): List<FoodParent>
+    @Query("SELECT id FROM food WHERE parentId IN (:ids)") suspend fun getChildIds(ids: Collection<Long>): List<Long>
+
+    // Library screen (SPEC 4.1)
+    @Query("SELECT * FROM food WHERE kind = :kind ORDER BY name COLLATE NOCASE") fun observeByKind(kind: FoodKind): Flow<List<FoodEntity>>
+    @Query("SELECT * FROM food WHERE id = :id") fun observeFood(id: Long): Flow<FoodEntity?>
+    @Query("UPDATE food SET hidden = :hidden WHERE id = :id") suspend fun setHidden(id: Long, hidden: Boolean)
+    @Query("UPDATE food SET userModified = 0 WHERE id = :id") suspend fun clearUserModified(id: Long)
+    @Query(
+        "SELECT EXISTS(SELECT 1 FROM meal_item WHERE foodId = :id) OR EXISTS(SELECT 1 FROM meal_item_ingredient WHERE ingredientId = :id)",
+    )
+    suspend fun isUsedInMeals(id: Long): Boolean
+    @Query("SELECT f.* FROM food f JOIN dish_ingredient d ON d.dishId = f.id WHERE d.ingredientId = :id ORDER BY f.name COLLATE NOCASE")
+    suspend fun getDishesUsing(id: Long): List<FoodEntity>
     @Query("UPDATE food SET parentId = :parentId WHERE id = :id") suspend fun setParent(id: Long, parentId: Long?)
     @Query("SELECT * FROM food WHERE seedKey IS NOT NULL") suspend fun getSeededFoods(): List<FoodEntity>
 

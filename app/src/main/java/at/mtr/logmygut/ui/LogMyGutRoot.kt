@@ -43,12 +43,19 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import at.mtr.logmygut.R
 import at.mtr.logmygut.data.TimelineEntry
+import at.mtr.logmygut.data.db.FoodEntity
+import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.ui.entry.BowelEditScreen
 import at.mtr.logmygut.ui.entry.MedicationEditScreen
 import at.mtr.logmygut.ui.entry.SymptomsEditScreen
 import at.mtr.logmygut.ui.history.DayScreen
 import at.mtr.logmygut.ui.history.HistoryScreen
+import at.mtr.logmygut.ui.library.DishDetailScreen
+import at.mtr.logmygut.ui.library.IngredientDetailScreen
+import at.mtr.logmygut.ui.library.LibraryScreen
 import at.mtr.logmygut.ui.meal.MealEditScreen
+import at.mtr.logmygut.ui.settings.NotificationPermissionOnFirstStart
+import at.mtr.logmygut.ui.settings.SettingsScreen
 import at.mtr.logmygut.ui.today.TodayScreen
 import java.time.Instant
 import java.time.LocalDate
@@ -69,6 +76,9 @@ private const val TransitionMillis = 250
 @Serializable data class MedicationEditRoute(val id: Long = 0)
 /** A day from the Verlauf calendar, as [LocalDate.toEpochDay]. */
 @Serializable data class DayRoute(val epochDay: Long)
+@Serializable object LibraryRoute
+@Serializable data class IngredientDetailRoute(val id: Long = 0)
+@Serializable data class DishDetailRoute(val id: Long = 0)
 
 private enum class Tab(val route: Any, @StringRes val label: Int, val icon: ImageVector) {
     TODAY(TodayRoute, R.string.tab_today, Icons.Outlined.Today),
@@ -80,6 +90,7 @@ private enum class Tab(val route: Any, @StringRes val label: Int, val icon: Imag
 /** App shell: bottom navigation with the four tabs (SPEC section 2); editors open full screen. */
 @Composable
 fun LogMyGutRoot() {
+    NotificationPermissionOnFirstStart()
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val snackbarHost = remember { SnackbarHostState() }
@@ -147,11 +158,40 @@ fun LogMyGutRoot() {
                 DayScreen(LocalDate.ofEpochDay(route.epochDay), onBack = navController::popBackStack, onOpen = { entry -> navController.openEntry(entry) })
             }
             composable<AnalysisRoute> { PlaceholderScreen(R.string.tab_analysis) }
-            composable<SettingsRoute> { PlaceholderScreen(R.string.tab_settings) }
+            composable<SettingsRoute> { SettingsScreen(onOpenLibrary = { navController.navigate(LibraryRoute) }) }
+            composable<LibraryRoute> {
+                LibraryScreen(
+                    onBack = navController::popBackStack,
+                    onOpen = { food -> navController.openFood(food) },
+                    onNew = { kind -> navController.navigate(if (kind == FoodKind.DISH) DishDetailRoute() else IngredientDetailRoute()) },
+                )
+            }
+            composable<IngredientDetailRoute> {
+                val route = it.toRoute<IngredientDetailRoute>()
+                IngredientDetailScreen(
+                    route.id.takeIf { id -> id != 0L },
+                    onDone = navController::popBackStack,
+                    onOpenFood = { food -> navController.openFood(food) },
+                    onOpenCopy = { copyId -> navController.replaceWith(IngredientDetailRoute(copyId)) },
+                )
+            }
+            composable<DishDetailRoute> {
+                val route = it.toRoute<DishDetailRoute>()
+                DishDetailScreen(
+                    route.id.takeIf { id -> id != 0L },
+                    onDone = navController::popBackStack,
+                    onOpenCopy = { copyId -> navController.replaceWith(DishDetailRoute(copyId)) },
+                )
+            }
 
             composable<MealEditRoute> {
                 val route = it.toRoute<MealEditRoute>()
-                MealEditScreen(route.mealId.takeIf { id -> id != 0L }, onDone = navController::popBackStack, onDeleted = onDeleted)
+                MealEditScreen(
+                    route.mealId.takeIf { id -> id != 0L },
+                    onDone = navController::popBackStack,
+                    onDeleted = onDeleted,
+                    onOpenFood = { food -> navController.openFood(food) },
+                )
             }
             composable<BowelEditRoute> {
                 val route = it.toRoute<BowelEditRoute>()
@@ -171,6 +211,15 @@ fun LogMyGutRoot() {
             }
         }
     }
+}
+
+private fun NavHostController.openFood(food: FoodEntity) =
+    navigate(if (food.kind == FoodKind.DISH) DishDetailRoute(food.id) else IngredientDetailRoute(food.id))
+
+/** Shows [route] in place of the current screen, e.g. a duplicate instead of its original. */
+private fun NavHostController.replaceWith(route: Any) {
+    popBackStack()
+    navigate(route)
 }
 
 private fun NavHostController.openEntry(entry: TimelineEntry) = when (entry) {

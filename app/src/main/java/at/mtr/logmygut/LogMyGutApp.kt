@@ -1,6 +1,7 @@
 package at.mtr.logmygut
 
 import android.app.Application
+import at.mtr.logmygut.reminder.Reminder
 
 /**
  * Process-wide entry point. Holds the [AppContainer] (manual dependency injection):
@@ -14,5 +15,7 @@ class LogMyGutApp : Application() {
         super.onCreate()
         container = AppContainer(this)
         container.importSeedInBackground()
+        Reminder.createChannel(this)
+        container.keepReminderScheduled()
     }
 }
