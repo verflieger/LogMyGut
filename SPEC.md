@@ -48,9 +48,9 @@ Every timeline entry can be tapped to edit or deleted (with an undo snackbar).
   **Rule: you log what you ate (usually the dish); the app analyzes the ingredients.**
 - Search uses autocomplete over the names and aliases of both ingredients and dishes (case- and
   umlaut-insensitive, prefix and substring). Dishes and ingredients get different icons.
-  Recently used entries are ranked first.
+  Ranking: exact name/alias match, then name prefix, then alias prefix, then substring; within each, recently used first.
 - An unknown name can be created inline:
-  - as an **ingredient**: tags are suggested from `keyword_rules.de.json` and shown pre-selected;
+  - as an **ingredient**: tags are suggested from `app/src/main/assets/keyword_rules.de.json` and shown pre-selected;
     the user confirms or edits them;
   - as a **dish**: the user picks its ingredients from the same search; missing ingredients can be
     created inline.
@@ -107,7 +107,7 @@ Two kinds of entries:
 
 Seed data and editing:
 
-- Seeded on first launch from `seed/foods.de.json` (copied into `app/src/main/assets/`):
+- Seeded from `app/src/main/assets/foods.de.json`. On every app start, entries whose seed key is not yet in the database are added (cheap when nothing is missing):
   about 220 ingredients and about 40 dishes, with German and Austrian aliases, `unit`, `unitLabel`, and for
   ingredients `tags`, optional `doseTags` and `note`. Dishes list their `ingredients` by name.
 - Users can edit any ingredient (tags, dose thresholds, unit, aliases) or dish (ingredient list), create new ones,
@@ -210,7 +210,8 @@ and an info page explains each tag (what it is, typical foods, which test a doct
 
 ```
 Food(id, kind: INGREDIENT|DISH, name, aliases: List<String>, unit: COUNT|SIZE, unitLabel?, note?,
-     builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?)
+     builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?,
+     searchText, lastUsedAt: Instant?)                  -- searchText = normalized "name|alias|…"; lastUsedAt for ranking
                                                         -- seedKey = the seed entry's original name (never changes)
 FoodTag(foodId, tag, minSize: M|L?, minCount: Int?)     -- PK (foodId, tag); both null = always applies
 DishIngredient(dishId, ingredientId)                    -- the saved recipe

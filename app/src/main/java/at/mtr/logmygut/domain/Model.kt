@@ -1,0 +1,37 @@
+package at.mtr.logmygut.domain
+
+/**
+ * Core enums shared by the database, seed import and analysis.
+ * Each has a stable [key] that is what gets persisted, so enum constants can be renamed safely.
+ */
+
+enum class Tag(val key: String) {
+    LACTOSE("lactose"),
+    FRUCTOSE("fructose"),
+    POLYOLS("polyols"),
+    FRUCTANS("fructans"),
+    GOS("gos"),
+    GLUTEN("gluten"),
+    HISTAMINE("histamine"),
+    FAT("fat"),
+    CAFFEINE("caffeine"),
+    ALCOHOL("alcohol"),
+    SPICY("spicy"),
+    CARBONATED("carbonated");
+
+    companion object {
+        private val byKey = entries.associateBy { it.key }
+        fun fromKey(key: String): Tag = byKey[key] ?: throw IllegalArgumentException("Unknown tag '$key'")
+    }
+}
+
+enum class FoodKind { INGREDIENT, DISH }
+
+enum class FoodUnit { COUNT, SIZE }
+
+/** Ordered: S < M < L. */
+enum class PortionSize { S, M, L }
+
+enum class SymptomType { BLOATING, PAIN, GAS, NAUSEA, FATIGUE, HEADACHE }
+
+enum class MedEffect { ANTIDIARRHEAL, ENZYME, ANTIBIOTIC, PAINKILLER, OTHER }

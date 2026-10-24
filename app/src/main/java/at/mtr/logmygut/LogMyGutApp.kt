@@ -13,5 +13,6 @@ class LogMyGutApp : Application() {
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
+        container.importSeedInBackground()
     }
 }

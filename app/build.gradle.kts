@@ -29,6 +29,18 @@ android {
     buildFeatures {
         compose = true
     }
+
+    testOptions {
+        // Robolectric needs merged resources and assets (seed files) on the unit-test classpath.
+        unitTests.isIncludeAndroidResources = true
+        unitTests.all {
+            // Robolectric touches FileDescriptor internals, which newer JDKs lock down.
+            it.jvmArgs(
+                "--add-opens=java.base/java.io=ALL-UNNAMED",
+                "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+            )
+        }
+    }
 }
 
 ksp {
@@ -57,4 +69,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
