@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -13,16 +15,29 @@ android {
         applicationId = "at.mtr.logmygut"
         minSdk = 34
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.1.0"
+        // Raise versionCode for every APK given to others: Android only installs higher versions as updates.
+        versionCode = 4
+        versionName = "0.4.0"
+    }
+
+    // The release key lives outside the repository (SPEC.md, section 1: "Release builds").
+    // Without it the release APK stays unsigned and can't be installed, so it never ships with a wrong key.
+    val releaseKey = File(System.getProperty("user.home"), ".config/logmygut/keystore.properties")
+    if (releaseKey.exists()) {
+        val props = Properties().apply { releaseKey.inputStream().use(::load) }
+        signingConfigs.create("release") {
+            storeFile = File(props.getProperty("storeFile"))
+            storePassword = props.getProperty("storePassword")
+            keyAlias = props.getProperty("keyAlias")
+            keyPassword = props.getProperty("keyPassword")
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
-            // Personal sideload build: sign release with the debug key.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.findByName("release")
         }
     }
 

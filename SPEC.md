@@ -16,13 +16,22 @@ Single user (the author), sideloaded. Repo, code and identifiers are in English;
 | Min / target SDK | 34 (Android 14) / latest stable |
 | Package id | `at.mtr.logmygut` |
 | App name | LogMyGut |
-| Distribution | Sideload via Android Studio + USB debugging. No Play Store. |
+| Distribution | Sideload: debug builds via Android Studio / adb, release APKs handed out directly. No Play Store. |
 | Network | **None.** No `INTERNET` permission in the manifest. No analytics, crash reporting or cloud backup (`android:allowBackup="false"`). |
 | App lock | None (relies on the device lock screen) |
 | Localization | All UI text in `res/values/strings.xml`, in **Austrian German** (Semmel, Topfen, Erdäpfel …). Standard German food names are search aliases. Dates and times are formatted with locale `de-AT` (e.g. "Jänner"). English can be added later. |
 
 Permissions: `POST_NOTIFICATIONS` (reminder), `SCHEDULE_EXACT_ALARM` is **not** used.
 The daily reminder uses an inexact alarm or WorkManager, which is acceptable for this purpose.
+
+**Release builds** (APKs given to others):
+- **Signing:** `assembleRelease` signs with the key in `~/.config/logmygut/` (`release.jks` plus
+  `keystore.properties` with its password). Neither is in git. Back the folder up: every update must be
+  signed with this same key, otherwise Android refuses it and the user would have to uninstall, losing
+  their data.
+- **Without that folder,** the release APK stays unsigned and can't be installed.
+- **Versions:** raise `versionCode` (and `versionName`) in `app/build.gradle.kts` for every APK handed out.
+- **The developer's own phone** runs the debug build (debug key), so it isn't switched to the release key.
 
 ## 2. Navigation
 
