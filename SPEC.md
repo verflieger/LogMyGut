@@ -2,7 +2,7 @@
 
 A private, fully offline Android app for logging food, bowel movements and digestive
 symptoms. It surfaces *hints* about which food triggers correlate with symptoms.
-Single user (the author), sideloaded. Repo, code and identifiers are in English; the UI is in German.
+Single user (the author), sideloaded. Repo, code and identifiers are in English; the UI is in Austrian German.
 
 > LogMyGut is a self-observation tool, not a diagnostic device. All analysis
 > results are presented as hints to discuss with a doctor.
@@ -19,7 +19,7 @@ Single user (the author), sideloaded. Repo, code and identifiers are in English;
 | Distribution | Sideload via Android Studio + USB debugging. No Play Store. |
 | Network | **None.** No `INTERNET` permission in the manifest. No analytics, crash reporting or cloud backup (`android:allowBackup="false"`). |
 | App lock | None (relies on the device lock screen) |
-| Localization | All UI text in `res/values/strings.xml` (German). English can be added later. |
+| Localization | All UI text in `res/values/strings.xml`, in **Austrian German** (Semmel, Topfen, Erdäpfel …). Standard German food names are search aliases. Dates and times are formatted with locale `de-AT` (e.g. "Jänner"). English can be added later. |
 
 Permissions: `POST_NOTIFICATIONS` (reminder), `SCHEDULE_EXACT_ALARM` is **not** used.
 The daily reminder uses an inexact alarm or WorkManager, which is acceptable for this purpose.
@@ -108,10 +108,12 @@ Two kinds of entries:
 Seed data and editing:
 
 - Seeded from `app/src/main/assets/foods.de.json`. On every app start, entries whose seed key is not yet in the database are added (cheap when nothing is missing):
-  about 220 ingredients and about 40 dishes, with German and Austrian aliases, `unit`, `unitLabel`, and for
+  about 220 ingredients and about 40 dishes, with Austrian names and standard German aliases, `unit`, `unitLabel`, and for
   ingredients `tags`, optional `doseTags` and `note`. Dishes list their `ingredients` by name.
 - Users can edit any ingredient (tags, dose thresholds, unit, aliases) or dish (ingredient list), create new ones,
   and hide built-in ones. User edits are never overwritten by a later seed version. A seed update only adds new entries.
+- **Seed keys are permanent.** A seed entry's `name` is its key. Never rename an entry in the seed file once real data
+  exists, or the importer adds a duplicate. Change display names in the app instead, or add a migration that rewrites `seedKey`.
 
 How meals and tags relate over time:
 

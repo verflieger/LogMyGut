@@ -3,9 +3,9 @@
   "comment": "Suggests tags for user-created foods. Matching: case-insensitive substring of the food name. All matching rules are unioned. Suggestions are pre-selected but must be confirmed by the user.",
   "rules": [
     {"keywords": ["zwiebel", "knoblauch", "lauch", "porree", "schalotte"], "tags": ["fructans"]},
-    {"keywords": ["weizen", "roggen", "gerste", "brot", "semmel", "brötchen", "weckerl", "nudel", "pasta", "spaghetti", "teig", "paniert", "kuchen", "torte", "strudel", "knödel", "keks", "pizza"], "tags": ["fructans", "gluten"]},
+    {"keywords": ["weizen", "roggen", "gerste", "brot", "semmel", "brötchen", "weckerl", "nudel", "pasta", "spaghetti", "teig", "paniert", "kuchen", "torte", "strudel", "knödel", "keks", "pizza", "kipferl", "nockerl", "germ", "palatschinke", "schmarrn", "strudel", "krapfen", "brezel"], "tags": ["fructans", "gluten"]},
     {"keywords": ["dinkel", "grünkern"], "tags": ["gluten"]},
-    {"keywords": ["milch", "sahne", "obers", "rahm", "quark", "topfen", "joghurt", "frischkäse", "pudding"], "tags": ["lactose"]},
+    {"keywords": ["milch", "sahne", "obers", "rahm", "quark", "topfen", "joghurt", "frischkäse", "pudding", "palatschinke", "schmarrn"], "tags": ["lactose"]},
     {"keywords": ["laktosefrei"], "tags": [], "removes": ["lactose"]},
     {"keywords": ["glutenfrei"], "tags": [], "removes": ["gluten", "fructans"]},
     {"keywords": ["bohne", "linse", "kichererbse", "erbse", "hummus", "falafel", "soja"], "tags": ["gos"]},
@@ -13,11 +13,11 @@
     {"keywords": ["mango", "honig", "agave", "saft", "fructose", "fruktose"], "tags": ["fructose"]},
     {"keywords": ["zuckerfrei", "sorbit", "xylit", "maltit", "mannit", "erythrit", "pilz", "champignon", "schwammerl", "blumenkohl", "karfiol"], "tags": ["polyols"]},
     {"keywords": ["salami", "rohschinken", "geräuchert", "räucher", "thunfisch", "sauerkraut", "rotwein", "parmesan", "bergkäse", "gereift", "tomate", "paradeis", "spinat"], "tags": ["histamine"]},
-    {"keywords": ["frittiert", "pommes", "chips", "paniert", "speck", "mayo", "sahne", "obers", "wurst", "fett", "gebacken"], "tags": ["fat"]},
+    {"keywords": ["frittiert", "pommes", "chips", "paniert", "speck", "mayo", "sahne", "obers", "wurst", "würstel", "faschiert", "leberkäs", "fett", "gebacken"], "tags": ["fat"]},
     {"keywords": ["kaffee", "espresso", "cappuccino", "latte", "melange", "tee", "cola", "energy", "mate"], "tags": ["caffeine"]},
     {"keywords": ["kräutertee", "kamille", "pfefferminz", "rooibos", "früchtetee"], "tags": [], "removes": ["caffeine"]},
     {"keywords": ["bier", "wein", "sekt", "prosecco", "schnaps", "likör", "spritz", "cocktail"], "tags": ["alcohol"]},
-    {"keywords": ["chili", "scharf", "curry", "pfefferoni", "peperoni", "jalapeño", "sriracha", "wasabi"], "tags": ["spicy"]},
-    {"keywords": ["kohlensäure", "sprudel", "soda", "limo", "cola", "spritz", "sekt", "bier"], "tags": ["carbonated"]}
+    {"keywords": ["chili", "scharf", "curry", "pfefferoni", "peperoni", "jalapeño", "sriracha", "wasabi", "kren"], "tags": ["spicy"]},
+    {"keywords": ["kohlensäure", "sprudel", "soda", "limo", "kracherl", "cola", "spritz", "sekt", "bier"], "tags": ["carbonated"]}
   ]
 }

@@ -19,6 +19,7 @@ class TagSuggesterTest {
         assertEquals(setOf(Tag.FRUCTANS, Tag.GLUTEN), suggester.suggest("Zwiebelbrot"))
         assertTrue(Tag.GOS in suggester.suggest("Rote Linsensuppe"))
         assertTrue(Tag.SPICY in suggester.suggest("Scharfes Gemüsecurry"))
+        assertEquals(setOf(Tag.FRUCTANS, Tag.GLUTEN, Tag.LACTOSE), suggester.suggest("Topfenpalatschinken"))
     }
 
     @Test fun removesWinOverAdds() {

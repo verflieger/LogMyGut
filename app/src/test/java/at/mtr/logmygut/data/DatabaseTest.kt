@@ -74,11 +74,14 @@ class DatabaseTest {
         )
     }
 
-    @Test fun searchIsUmlautInsensitiveAndFindsAustrianAliases() = runTest {
+    @Test fun searchIsUmlautInsensitiveAndFindsGermanAliases() = runTest {
         SeedImporter(db).import(seed)
         assertTrue(foods.search("kase").any { it.name == "Käsespätzle" })
-        assertEquals("Brötchen", foods.search("semmel").first().name)
-        assertEquals("Kartoffeln", foods.search("erdäpfel").first().name)
+        assertEquals("Semmel", foods.search("semmel").first().name)
+        // Standard German names stay findable as aliases.
+        assertEquals("Semmel", foods.search("brötchen").first().name)
+        assertEquals("Erdäpfel", foods.search("kartoffeln").first().name)
+        assertEquals("Topfen", foods.search("quark").first().name)
         assertEquals(emptyList<FoodEntity>(), foods.search("   "))
     }
 
