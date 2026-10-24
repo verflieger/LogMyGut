@@ -38,9 +38,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import at.mtr.logmygut.R
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.TimelineEntry
+import at.mtr.logmygut.data.db.DailyCheckInEntity
 import at.mtr.logmygut.domain.Amount
 import at.mtr.logmygut.domain.mealLabelFor
+import at.mtr.logmygut.ui.common.CheckInCard
 import at.mtr.logmygut.ui.common.DayHeaderFormat
+import at.mtr.logmygut.ui.common.Loaded
 import at.mtr.logmygut.ui.common.TimeFormat
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.bristolGroup
@@ -50,12 +53,20 @@ import at.mtr.logmygut.ui.common.short
 import java.time.LocalDate
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
-class TodayViewModel(journal: JournalRepository) : ViewModel() {
+class TodayViewModel(private val journal: JournalRepository) : ViewModel() {
     val date: LocalDate = LocalDate.now()
     val timeline: StateFlow<List<TimelineEntry>?> = journal.observeDay(date)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+    val checkIn: StateFlow<Loaded<DailyCheckInEntity?>?> = journal.observeCheckIn(date).map { Loaded(it) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    fun saveCheckIn(stress: Int, sleep: Int) {
+        viewModelScope.launch { journal.saveCheckIn(DailyCheckInEntity(date, stress, sleep)) }
+    }
 }
 
 @Composable
@@ -69,6 +80,7 @@ fun TodayScreen(
     val container = appContainer()
     val vm = viewModel { TodayViewModel(container.journalRepository) }
     val timeline by vm.timeline.collectAsStateWithLifecycle()
+    val checkIn by vm.checkIn.collectAsStateWithLifecycle()
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -80,6 +92,10 @@ fun TodayScreen(
             Spacer(Modifier.height(8.dp))
             QuickActions(onAddMeal, onAddBowel, onAddSymptoms, onAddMedication)
             Spacer(Modifier.height(8.dp))
+        }
+        // Only while today's check-in is missing (SPEC 2); afterwards it's edited from the day view.
+        if (checkIn.let { it != null && it.value == null }) {
+            item(key = "checkin") { CheckInCard(null, vm::saveCheckIn) }
         }
         val entries = timeline
         if (entries != null && entries.isEmpty()) {
@@ -163,7 +179,8 @@ fun TimelineRow(entry: TimelineEntry, onClick: () -> Unit) {
     }
 }
 
-private fun TimelineEntry.key(): String = when (this) {
+/** Stable LazyColumn key; also used by the history day view. */
+fun TimelineEntry.key(): String = when (this) {
     is TimelineEntry.Meal -> "meal-$mealId"
     is TimelineEntry.BowelMovement -> "bowel-${entry.id}"
     is TimelineEntry.Symptoms -> "symptoms-${timestamp.toEpochMilli()}"

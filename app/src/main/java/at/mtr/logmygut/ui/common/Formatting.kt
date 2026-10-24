@@ -13,6 +13,7 @@ import kotlin.math.roundToInt
 val AppLocale: Locale = Locale.forLanguageTag("de-AT")
 
 val DayHeaderFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, d. MMMM", AppLocale)
+val LongDayFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, d. MMMM yyyy", AppLocale)
 val ShortDateTimeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("EE, d. MMM yyyy · HH:mm", AppLocale)
 val TimeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm", AppLocale)
 

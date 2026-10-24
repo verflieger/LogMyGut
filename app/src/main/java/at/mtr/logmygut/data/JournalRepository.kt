@@ -1,6 +1,7 @@
 package at.mtr.logmygut.data
 
 import at.mtr.logmygut.data.db.BowelMovementEntity
+import at.mtr.logmygut.data.db.DailyCheckInEntity
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.db.MealEntity
 import at.mtr.logmygut.data.db.MealItemEntity
@@ -8,11 +9,16 @@ import at.mtr.logmygut.data.db.MealWithItems
 import at.mtr.logmygut.data.db.MedicationIntakeEntity
 import at.mtr.logmygut.data.db.SymptomEntryEntity
 import at.mtr.logmygut.domain.MedEffect
+import at.mtr.logmygut.domain.dayScore
 import java.time.Instant
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.ZoneId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+
+/** One calendar day: [score] per SPEC 6.2, null when the day only has meals or medication. */
+data class DaySummary(val score: Int?)
 
 /** A dish item's actual ingredients for one meal, keyed by the item's position in the meal. */
 typealias DishIngredientsByItemIndex = Map<Int, List<Long>>
@@ -31,6 +37,33 @@ class JournalRepository(db: LogMyGutDatabase) {
             dao.observeMedication(from, to),
             ::buildTimeline,
         )
+    }
+
+    /** Per-day summary of [month] for the calendar; days without any entry are absent. */
+    fun observeMonth(month: YearMonth, zone: ZoneId = ZoneId.systemDefault()): Flow<Map<LocalDate, DaySummary>> {
+        val from = month.atDay(1).atStartOfDay(zone).toInstant()
+        val to = month.plusMonths(1).atDay(1).atStartOfDay(zone).toInstant()
+        return combine(
+            dao.observeSymptomSeverities(from, to),
+            dao.observeBristolTypes(from, to),
+            dao.observeOtherEntryTimes(from, to),
+        ) { severities, bristol, others ->
+            val date = { t: Instant -> t.atZone(zone).toLocalDate() }
+            val severityByDay = severities.groupBy({ date(it.timestamp) }, { it.value })
+            val bristolByDay = bristol.groupBy({ date(it.timestamp) }, { it.value })
+            (severityByDay.keys + bristolByDay.keys + others.map(date)).associateWith { day ->
+                DaySummary(dayScore(severityByDay[day].orEmpty(), bristolByDay[day].orEmpty()))
+            }
+        }
+    }
+
+    // Daily check-in
+
+    fun observeCheckIn(date: LocalDate): Flow<DailyCheckInEntity?> = dao.observeCheckIn(date)
+
+    suspend fun saveCheckIn(entry: DailyCheckInEntity) {
+        require(entry.stress in 1..5 && entry.sleep in 1..5) { "Stress and sleep are rated 1..5" }
+        dao.upsertCheckIn(entry)
     }
 
     // Meals

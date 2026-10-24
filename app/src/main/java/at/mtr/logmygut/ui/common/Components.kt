@@ -215,3 +215,6 @@ fun <T : Any> SegmentedChoice(options: List<T>, selected: T?, label: @Composable
         }
     }
 }
+
+/** Wraps a loaded value so a StateFlow can tell "loaded, but empty" from "still loading" (null). */
+data class Loaded<T>(val value: T)

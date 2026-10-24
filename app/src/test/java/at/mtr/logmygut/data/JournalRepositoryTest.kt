@@ -1,6 +1,7 @@
 package at.mtr.logmygut.data
 
 import at.mtr.logmygut.data.db.BowelMovementEntity
+import at.mtr.logmygut.data.db.DailyCheckInEntity
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.db.MealEntity
 import at.mtr.logmygut.data.db.MealItemEntity
@@ -10,8 +11,10 @@ import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.MedEffect
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.SymptomType
+import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.ZoneId
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -137,4 +140,30 @@ class JournalRepositoryTest {
         assertEquals(recipe.take(1), foods.getDishIngredientIds(currywurst.id))
         assertTrue(foods.getFood(currywurst.id)!!.userModified)
     }
+
+    @Test fun monthSummaryScoresDaysAndMarksLoggedOnes() = runTest {
+        val semmel = food("semmel")
+        // 24th: a meal only. 25th: Bristol 6 plus mild pain. 1 Nov: outside October.
+        journal.saveMeal(MealEntity(timestamp = at(12), zoneId = zone.id), listOf(MealItemEntity(mealId = 0, foodId = semmel.id, count = 1)), emptyMap())
+        val nextDay = at(9).plus(Duration.ofDays(1))
+        journal.saveBowelMovement(BowelMovementEntity(timestamp = nextDay, zoneId = zone.id, bristol = 6))
+        journal.saveSymptoms(null, listOf(SymptomEntryEntity(timestamp = nextDay, zoneId = zone.id, type = SymptomType.PAIN, severity = 2)))
+        journal.saveBowelMovement(BowelMovementEntity(timestamp = at(9).plus(Duration.ofDays(8)), zoneId = zone.id, bristol = 4))
+
+        val month = journal.observeMonth(YearMonth.of(2026, 10), zone).first()
+
+        assertEquals(mapOf(day to DaySummary(null), day.plusDays(1) to DaySummary(7)), month)
+    }
+
+    @Test fun checkInIsSavedPerDayAndReplaced() = runTest {
+        assertEquals(null, journal.observeCheckIn(day).first())
+        journal.saveCheckIn(DailyCheckInEntity(day, stress = 4, sleep = 2))
+        journal.saveCheckIn(DailyCheckInEntity(day, stress = 3, sleep = 2))
+
+        assertEquals(DailyCheckInEntity(day, stress = 3, sleep = 2), journal.observeCheckIn(day).first())
+        assertEquals(null, journal.observeCheckIn(day.plusDays(1)).first())
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun checkInRejectsOutOfRange() = runTest { journal.saveCheckIn(DailyCheckInEntity(day, stress = 0, sleep = 3)) }
 }

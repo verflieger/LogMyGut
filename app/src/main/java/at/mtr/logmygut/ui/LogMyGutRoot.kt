@@ -46,9 +46,12 @@ import at.mtr.logmygut.data.TimelineEntry
 import at.mtr.logmygut.ui.entry.BowelEditScreen
 import at.mtr.logmygut.ui.entry.MedicationEditScreen
 import at.mtr.logmygut.ui.entry.SymptomsEditScreen
+import at.mtr.logmygut.ui.history.DayScreen
+import at.mtr.logmygut.ui.history.HistoryScreen
 import at.mtr.logmygut.ui.meal.MealEditScreen
 import at.mtr.logmygut.ui.today.TodayScreen
 import java.time.Instant
+import java.time.LocalDate
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
@@ -64,6 +67,8 @@ private const val TransitionMillis = 250
 @Serializable data class BowelEditRoute(val id: Long = 0)
 @Serializable data class SymptomsEditRoute(val timestampMillis: Long = 0)
 @Serializable data class MedicationEditRoute(val id: Long = 0)
+/** A day from the Verlauf calendar, as [LocalDate.toEpochDay]. */
+@Serializable data class DayRoute(val epochDay: Long)
 
 private enum class Tab(val route: Any, @StringRes val label: Int, val icon: ImageVector) {
     TODAY(TodayRoute, R.string.tab_today, Icons.Outlined.Today),
@@ -136,7 +141,11 @@ fun LogMyGutRoot() {
                     onOpen = { navController.openEntry(it) },
                 )
             }
-            composable<HistoryRoute> { PlaceholderScreen(R.string.tab_history) }
+            composable<HistoryRoute> { HistoryScreen(onOpenDay = { navController.navigate(DayRoute(it.toEpochDay())) }) }
+            composable<DayRoute> {
+                val route = it.toRoute<DayRoute>()
+                DayScreen(LocalDate.ofEpochDay(route.epochDay), onBack = navController::popBackStack, onOpen = { entry -> navController.openEntry(entry) })
+            }
             composable<AnalysisRoute> { PlaceholderScreen(R.string.tab_analysis) }
             composable<SettingsRoute> { PlaceholderScreen(R.string.tab_settings) }
 

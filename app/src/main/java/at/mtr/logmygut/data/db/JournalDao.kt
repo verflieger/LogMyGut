@@ -109,4 +109,17 @@ interface JournalDao {
     // Daily check-in
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun upsertCheckIn(entry: DailyCheckInEntity)
     @Query("SELECT * FROM daily_check_in WHERE date = :date") fun observeCheckIn(date: LocalDate): Flow<DailyCheckInEntity?>
+
+    // Calendar (SPEC 2, 6.2): just what the day score and the "has entries" marker need.
+    @Query("SELECT timestamp, severity AS value FROM symptom_entry WHERE timestamp >= :from AND timestamp < :to")
+    fun observeSymptomSeverities(from: Instant, to: Instant): Flow<List<TimedValue>>
+    @Query("SELECT timestamp, bristol AS value FROM bowel_movement WHERE timestamp >= :from AND timestamp < :to")
+    fun observeBristolTypes(from: Instant, to: Instant): Flow<List<TimedValue>>
+    @Query(
+        "SELECT timestamp FROM meal WHERE timestamp >= :from AND timestamp < :to " +
+            "UNION ALL SELECT timestamp FROM medication_intake WHERE timestamp >= :from AND timestamp < :to",
+    )
+    fun observeOtherEntryTimes(from: Instant, to: Instant): Flow<List<Instant>>
 }
+
+data class TimedValue(val timestamp: Instant, val value: Int)

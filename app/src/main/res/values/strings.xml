@@ -135,4 +135,24 @@
     <string name="tag_alcohol">Alkohol</string>
     <string name="tag_spicy">Scharf</string>
     <string name="tag_carbonated">Kohlensäure</string>
+
+    <!-- Verlauf (SPEC 2, 6.2) -->
+    <string name="history_prev_month">Voriger Monat</string>
+    <string name="history_next_month">Nächster Monat</string>
+    <string name="history_legend_title">Schlimmster Wert des Tages</string>
+    <string name="history_legend_logged">nur Einträge</string>
+    <string name="history_hint">Tippe auf einen Tag für seine Einträge und den Check-in.</string>
+    <string name="history_day_score">%1$s, Wert %2$d</string>
+    <string name="history_day_logged">%1$s, nur Einträge</string>
+    <string name="history_day_empty">%1$s, keine Einträge</string>
+    <string name="day_empty">An diesem Tag ist nichts eingetragen.</string>
+
+    <!-- Tages-Check-in (SPEC 3.6) -->
+    <string name="checkin_title">Tages-Check-in</string>
+    <string name="checkin_stress">Stress</string>
+    <string name="checkin_stress_hint">1 = kaum, 5 = sehr viel</string>
+    <string name="checkin_sleep">Schlafqualität</string>
+    <string name="checkin_sleep_hint">1 = sehr schlecht, 5 = sehr gut</string>
+    <string name="checkin_summary">Stress %1$d · Schlaf %2$d</string>
+    <string name="action_edit">Ändern</string>
 </resources>

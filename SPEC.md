@@ -30,7 +30,9 @@ Bottom navigation with four tabs:
 
 1. **Heute**: quick-add buttons (Essen, Stuhlgang, Beschwerden, Medikament) above today's timeline.
    Shows a "Tages-Check-in" card if today's check-in is missing.
-2. **Verlauf**: month calendar (days coloured by a "bad day" score, see 6.2). Tapping a day opens its timeline.
+2. **Verlauf**: month calendar (days coloured by a "bad day" score, see 6.2). Tapping a day opens its day view:
+   that day's check-in (editable) and timeline. Days with only meals or medication have no score and show a dot.
+   Weeks start on Monday; future days and months can't be opened. Day boundaries use the phone's current time zone.
 3. **Analyse**: trends and trigger analysis (section 6).
 4. **Einstellungen**: reminder, analysis parameters, **Lebensmittel & Gerichte** (section 4.1), backup, info pages.
 
@@ -290,7 +292,8 @@ with amounts, symptoms show severity bars, and bowel movements show the Bristol 
   1–2 (Verstopfung), 3–5 (normal) and 6–7 (Durchfall).
 - Daily maximum severity per symptom (line chart, selectable symptom, 7/30/90-day range).
 - Bowel movements per day.
-- **Calendar heatmap**: a day's score = the highest symptom severity that day, with a Bristol 6–7 counting as 7.
+- **Calendar heatmap**: a day's score = the highest symptom severity that day, with a Bristol 6–7 counting as 7
+  and any other bowel movement as 0. Colour bands follow the severity anchors: 0, 1–3, 4–6, 7–10.
 
 ### 6.3 Trigger → symptom analysis
 For each tag *T* and each outcome *S*, where *S* ∈ {each SymptomType at severity ≥ threshold,
