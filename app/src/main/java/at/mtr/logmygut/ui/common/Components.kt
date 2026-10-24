@@ -182,13 +182,21 @@ fun AmountSelector(amount: Amount, unitLabel: String?, portionGrams: Double?, on
                 Icon(Icons.Outlined.Add, contentDescription = null)
             }
         }
-        is Amount.Size -> SingleChoiceSegmentedButtonRow(modifier) {
+        // Full width, no check icon: the fill marks the selection, and "M · 150 g" needs the room.
+        is Amount.Size -> SingleChoiceSegmentedButtonRow(modifier.fillMaxWidth()) {
             PortionSize.entries.forEachIndexed { index, size ->
                 SegmentedButton(
                     selected = amount.size == size,
                     onClick = { onChange(Amount.Size(size)) },
                     shape = SegmentedButtonDefaults.itemShape(index, PortionSize.entries.size),
-                ) { Text(size.name + (portionGrams?.let { " · " + gramsLabel(Amount.Size(size).grams(it)) } ?: "")) }
+                    icon = {},
+                ) {
+                    Text(
+                        size.name + (portionGrams?.let { " · " + gramsLabel(Amount.Size(size).grams(it)) } ?: ""),
+                        maxLines = 1,
+                        softWrap = false,
+                    )
+                }
             }
         }
     }

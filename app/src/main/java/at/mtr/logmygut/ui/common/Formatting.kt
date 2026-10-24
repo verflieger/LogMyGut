@@ -37,8 +37,8 @@ fun countLabel(n: Int, unitLabel: String?): String {
     return "$n ${if (n == 1) label else plurals[label] ?: label}"
 }
 
-/** "120 g", rounded to whole grams; amounts below 1 g show as "< 1 g". */
-fun gramsLabel(grams: Double): String = if (grams < 1) "< 1 g" else "${grams.roundToInt()} g"
+/** "120 g" with a non-breaking space, rounded to whole grams; amounts below 1 g show as "< 1 g". */
+fun gramsLabel(grams: Double): String = if (grams < 1) "<\u00A01\u00A0g" else "${grams.roundToInt()}\u00A0g"
 
 /** Short amount for timelines: "2 Stück" or "L". */
 fun Amount.short(unitLabel: String?): String = when (this) {
