@@ -47,6 +47,10 @@ ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
 
+// Migration tests read the exported Room schemas as assets. Robolectric only sees the merged debug
+// assets (not test assets), so they go into debug builds; release builds don't contain them.
+android.sourceSets.getByName("debug").assets.directories.add("$projectDir/schemas")
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,6 +64,7 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.material.icons.extended)
     debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.ui.test.manifest)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
@@ -72,4 +77,9 @@ dependencies {
     testImplementation(libs.robolectric)
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.room.testing)
+    testImplementation(platform(libs.compose.bom))
+    testImplementation(libs.compose.ui.test.junit4)
+    // Compose test pulls an Espresso too old for current Android; pin a newer one.
+    testImplementation(libs.espresso.core)
 }

@@ -34,7 +34,7 @@ interface FoodDao {
     @Query(
         """
         SELECT * FROM food
-        WHERE hidden = 0 AND searchText LIKE '%' || :query || '%'
+        WHERE hidden = 0 AND searchText LIKE '%' || :query || '%' AND (:kind IS NULL OR kind = :kind)
         ORDER BY
             CASE
                 WHEN '|' || searchText || '|' LIKE '%|' || :query || '|%' THEN 0
@@ -47,7 +47,18 @@ interface FoodDao {
         LIMIT :limit
         """,
     )
-    suspend fun search(query: String, limit: Int = 30): List<FoodEntity>
+    suspend fun search(query: String, kind: FoodKind? = null, limit: Int = 30): List<FoodEntity>
+
+    @Query("SELECT * FROM food WHERE id IN (:ids)") suspend fun getFoods(ids: Collection<Long>): List<FoodEntity>
+    @Query("UPDATE food SET userModified = 1 WHERE id = :id AND builtIn = 1") suspend fun markUserModified(id: Long)
+
+    /** Replaces a dish's saved recipe. */
+    @Transaction
+    suspend fun setDishIngredients(dishId: Long, ingredientIds: List<Long>) {
+        deleteDishIngredients(dishId)
+        insertDishIngredients(ingredientIds.distinct().map { DishIngredientEntity(dishId, it) })
+        markUserModified(dishId)
+    }
 
     /** Inserts a food with its tags (ingredient) or recipe (dish) atomically. */
     @Transaction

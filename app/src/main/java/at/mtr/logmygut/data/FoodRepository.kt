@@ -16,13 +16,26 @@ import at.mtr.logmygut.domain.normalizeForSearch
 class FoodRepository(db: LogMyGutDatabase, private val tagSuggester: TagSuggester) {
     private val dao = db.foodDao()
 
-    suspend fun search(query: String, limit: Int = 30): List<FoodEntity> {
+    /** [kind] null searches ingredients and dishes. */
+    suspend fun search(query: String, kind: FoodKind? = null, limit: Int = 30): List<FoodEntity> {
         val normalized = normalizeForSearch(query)
         // Escaping isn't needed for LIKE wildcards here: '%' and '_' in a food search are harmless.
-        return if (normalized.isEmpty()) emptyList() else dao.search(normalized, limit)
+        return if (normalized.isEmpty()) emptyList() else dao.search(normalized, kind, limit)
     }
 
     suspend fun getFood(id: Long): FoodEntity? = dao.getFood(id)
+
+    /** Foods by id, in the order of [ids]; unknown ids are skipped. */
+    suspend fun getFoods(ids: List<Long>): List<FoodEntity> {
+        val byId = dao.getFoods(ids).associateBy { it.id }
+        return ids.mapNotNull { byId[it] }
+    }
+
+    /** Permanently changes a dish's recipe (applies to future meals only). */
+    suspend fun setDishIngredients(dishId: Long, ingredientIds: List<Long>) {
+        require(ingredientIds.isNotEmpty()) { "A dish needs at least one ingredient" }
+        dao.setDishIngredients(dishId, ingredientIds)
+    }
 
     suspend fun getIngredientTags(foodId: Long): List<IngredientTag> = dao.getTags(foodId).map { it.toDomain() }
 

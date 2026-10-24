@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.MedEffect
+import at.mtr.logmygut.domain.PainChange
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.domain.Tag
@@ -109,8 +110,10 @@ data class BowelMovementEntity(
     /** Bristol Stool Form Scale, 1..7. */
     val bristol: Int,
     val urgent: Boolean = false,
-    /** Pain/cramps better afterwards; null = not applicable. */
-    val reliefAfter: Boolean? = null,
+    /** Abdominal pain/cramps before the bowel movement. */
+    val painBefore: Boolean = false,
+    /** How the pain changed afterwards; set exactly when [painBefore] is true. */
+    val painAfter: PainChange? = null,
     val note: String? = null,
 )
 

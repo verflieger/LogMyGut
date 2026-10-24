@@ -19,7 +19,7 @@ import androidx.room.TypeConverters
         MedicationIntakeEntity::class,
         DailyCheckInEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -29,6 +29,8 @@ abstract class LogMyGutDatabase : RoomDatabase() {
 
     companion object {
         fun create(context: Context): LogMyGutDatabase =
-            Room.databaseBuilder(context, LogMyGutDatabase::class.java, "logmygut.db").build()
+            Room.databaseBuilder(context, LogMyGutDatabase::class.java, "logmygut.db")
+                .addMigrations(*ALL_MIGRATIONS)
+                .build()
     }
 }

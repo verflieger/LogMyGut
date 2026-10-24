@@ -62,13 +62,14 @@ Every timeline entry can be tapped to edit or deleted (with an undo snackbar).
   also writes the change into the saved dish, so it applies from now on. Past meals are not touched.
 - Meal flag: **auswärts gegessen** (restaurant/canteen; boolean).
 - Display label derived from time, not stored: 05:00–10:29 Frühstück · 10:30–14:29 Mittagessen ·
-  14:30–16:59 Snack · 17:00–21:29 Abendessen · otherwise Snack.
+  14:30–16:59 Jause · 17:00–21:29 Abendessen · otherwise Jause.
 
 ### 3.3 Bowel movement ("Stuhlgang")
 - **Bristol type 1–7** (required), chosen from a visual picker with short German descriptions.
   The illustrations are drawn for this app (not copied from the copyrighted original chart).
 - **Dringlich** (urgency): yes/no.
-- **Beschwerden danach besser** (pain/cramps relieved afterwards): yes/no/not applicable.
+- **Bauchschmerzen/Krämpfe vorher** (pain before): switch. Only when on: **Danach** besser / gleich / schlimmer (required).
+  Both relief and worsening count as "pain related to defecation" (Rome IV).
 
 ### 3.4 Symptoms ("Beschwerden")
 One screen with a 0–10 slider per symptom. A slider the user doesn't touch is not saved.
@@ -221,7 +222,8 @@ Meal(id, timestamp: Instant, zoneId, eatenOut: Boolean, note?)
 MealItem(id, mealId, foodId, count: Int?, size: S|M|L?) -- foodId = ingredient or dish
 MealItemIngredient(mealItemId, ingredientId)            -- only for dish items: actual ingredients
                                                         -- of this meal (copied from recipe, then tweaked)
-BowelMovement(id, timestamp, zoneId, bristol: 1..7, urgent: Boolean, reliefAfter: Boolean?, note?)
+BowelMovement(id, timestamp, zoneId, bristol: 1..7, urgent: Boolean, painBefore: Boolean,
+              painAfter: BETTER|SAME|WORSE?, note?)   -- painAfter set exactly when painBefore
 SymptomEntry(id, timestamp, zoneId, type: SymptomType, severity: 0..10, note?)
 MedicationIntake(id, timestamp, zoneId, name, effect: MedEffect?, note?)
 DailyCheckIn(date: LocalDate PK, stress: 1..5, sleep: 1..5)
@@ -286,7 +288,7 @@ The info page also notes: **don't cut out gluten before a celiac test.**
 - Explanation of each symptom and how to rate 0–10 (anchors: 0 none, 1–3 mild, 4–6 moderate, 7–10 severe).
 - Trigger tags: what they are, typical foods, related tests.
 - Note on IBS (Rome IV): recurring abdominal pain related to defecation and/or a change in stool frequency or form.
-  This is why the app records "Beschwerden danach besser".
+  This is why the app records pain before a bowel movement and how it changed afterwards.
 - Disclaimer.
 
 ## 9. Out of scope for v1
@@ -308,7 +310,7 @@ Each milestone ends with a building app, passing tests and a review by the autho
 1. **Data layer**: entities, DAOs, repository, seed import, tag suggestion, unit tests.
 2. **Logging**: Heute screen, Essen / Stuhlgang / Beschwerden / Medikament flows, edit/delete.
 3. **History**: Verlauf calendar, day timeline, daily check-in.
-4. **Reminder**: daily notification, settings screen basics.
+4. **Reminder & library**: daily notification, settings screen basics, "Lebensmittel & Gerichte" library screen (4.1).
 5. **Analysis**: trends, heatmap, trigger engine and its UI.
 6. **Backup**: JSON export/import.
 7. **Info pages and polish**: Bristol illustrations, explanations, disclaimer, app icon.

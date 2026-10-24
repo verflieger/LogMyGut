@@ -3,6 +3,7 @@ package at.mtr.logmygut
 import android.content.Context
 import android.util.Log
 import at.mtr.logmygut.data.FoodRepository
+import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
@@ -22,6 +23,8 @@ class AppContainer(private val context: Context) {
     private val tagSuggester: TagSuggester by lazy { TagSuggester.fromJson(readAsset("keyword_rules.de.json")) }
 
     val foodRepository: FoodRepository by lazy { FoodRepository(database, tagSuggester) }
+
+    val journalRepository: JournalRepository by lazy { JournalRepository(database) }
 
     /** Adds any built-in foods missing from the database. Cheap when there is nothing to add. */
     fun importSeedInBackground() {

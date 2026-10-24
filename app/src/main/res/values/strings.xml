@@ -2,10 +2,137 @@
 <resources>
     <string name="app_name">LogMyGut</string>
 
+    <!-- Navigation -->
     <string name="tab_today">Heute</string>
     <string name="tab_history">Verlauf</string>
     <string name="tab_analysis">Analyse</string>
     <string name="tab_settings">Einstellungen</string>
-
     <string name="placeholder_coming_soon">Kommt in einem späteren Meilenstein.</string>
+
+    <!-- Common -->
+    <string name="action_save">Speichern</string>
+    <string name="action_cancel">Abbrechen</string>
+    <string name="action_delete">Löschen</string>
+    <string name="action_back">Zurück</string>
+    <string name="action_undo">Rückgängig</string>
+    <string name="action_remove">Entfernen</string>
+    <string name="action_done">Fertig</string>
+    <string name="action_next">Weiter</string>
+    <string name="field_time">Zeitpunkt</string>
+    <string name="field_note">Notiz (optional)</string>
+    <string name="error_future_time">Der Zeitpunkt liegt in der Zukunft.</string>
+    <string name="deleted_entry">Eintrag gelöscht</string>
+
+    <!-- Today -->
+    <string name="quick_meal">Essen</string>
+    <string name="quick_bowel">Stuhlgang</string>
+    <string name="quick_symptoms">Beschwerden</string>
+    <string name="quick_medication">Medikament</string>
+    <string name="today_empty">Noch nichts eingetragen.\nTipp oben auf einen der Knöpfe.</string>
+    <string name="timeline_eaten_out">auswärts</string>
+    <string name="timeline_bristol">Stuhlgang · Typ %1$d</string>
+    <string name="timeline_urgent">dringlich</string>
+    <string name="timeline_pain">Krämpfe vorher, danach %1$s</string>
+
+    <!-- Meal labels (derived from time) -->
+    <string name="meal_label_breakfast">Frühstück</string>
+    <string name="meal_label_lunch">Mittagessen</string>
+    <string name="meal_label_snack">Jause</string>
+    <string name="meal_label_dinner">Abendessen</string>
+
+    <!-- Meal editor -->
+    <string name="meal_title_new">Essen eintragen</string>
+    <string name="meal_title_edit">Essen bearbeiten</string>
+    <string name="meal_search_hint">Lebensmittel oder Gericht suchen …</string>
+    <string name="meal_create_new">„%1$s“ neu anlegen</string>
+    <string name="meal_no_items">Noch nichts ausgewählt.</string>
+    <string name="meal_eaten_out">Auswärts gegessen</string>
+    <string name="meal_eaten_out_hint">Restaurant, Kantine, bei Freunden</string>
+    <string name="meal_adjust_ingredients">Zutaten anpassen</string>
+    <string name="meal_triggers">Auslöser: %1$s</string>
+    <string name="meal_no_triggers">Keine bekannten Auslöser</string>
+    <string name="kind_dish">Gericht</string>
+    <string name="kind_ingredient">Zutat</string>
+
+    <!-- Ingredient adjust / picker -->
+    <string name="adjust_title">Zutaten: %1$s</string>
+    <string name="adjust_save_to_dish">Auch im Gericht dauerhaft speichern</string>
+    <string name="adjust_save_to_dish_hint">Gilt ab jetzt für neue Einträge. Frühere Mahlzeiten bleiben unverändert.</string>
+    <string name="picker_search_hint">Zutat suchen …</string>
+    <string name="picker_need_one">Mindestens eine Zutat ist nötig.</string>
+
+    <!-- New food -->
+    <string name="new_food_title">Neu anlegen</string>
+    <string name="new_food_name">Name</string>
+    <string name="new_food_unit">Menge angeben als</string>
+    <string name="unit_size">Größe S / M / L</string>
+    <string name="unit_count">Anzahl</string>
+    <string name="new_food_unit_label">Einheit (z. B. Stück, Scheibe, Glas)</string>
+    <string name="new_food_tags">Auslöser</string>
+    <string name="new_food_tags_hint">Vorschläge anhand des Namens. Bitte prüfen.</string>
+    <string name="new_food_ingredients">Zutaten</string>
+    <string name="unit_label_default">Stück</string>
+
+    <!-- Bowel movement -->
+    <string name="bowel_title_new">Stuhlgang eintragen</string>
+    <string name="bowel_title_edit">Stuhlgang bearbeiten</string>
+    <string name="bowel_bristol">Stuhlform (Bristol-Skala)</string>
+    <string name="bowel_urgent">Dringlich (Stuhldrang)</string>
+    <string name="bowel_pain_before">Bauchschmerzen/Krämpfe vorher</string>
+    <string name="bowel_pain_after">Danach:</string>
+    <string name="pain_better">besser</string>
+    <string name="pain_same">gleich</string>
+    <string name="pain_worse">schlimmer</string>
+    <string name="bristol_group_constipation">Verstopfung</string>
+    <string name="bristol_group_normal">normal</string>
+    <string name="bristol_group_diarrhea">Durchfall</string>
+    <string name="bristol_1">Einzelne, feste Kügelchen, schwer auszuscheiden</string>
+    <string name="bristol_2">Wurstförmig, aber klumpig</string>
+    <string name="bristol_3">Wurstförmig mit Rissen an der Oberfläche</string>
+    <string name="bristol_4">Wurstförmig, glatt und weich</string>
+    <string name="bristol_5">Weiche Klümpchen mit glatten Rändern</string>
+    <string name="bristol_6">Breiige Stücke mit ausgefransten Rändern</string>
+    <string name="bristol_7">Wässrig, ohne feste Bestandteile</string>
+
+    <!-- Symptoms -->
+    <string name="symptoms_title_new">Beschwerden eintragen</string>
+    <string name="symptoms_title_edit">Beschwerden bearbeiten</string>
+    <string name="symptoms_hint">Nur was du antippst, wird gespeichert. 0 = keine, 1–3 leicht, 4–6 mittel, 7–10 stark.</string>
+    <string name="symptoms_not_set">nicht erfasst</string>
+    <string name="symptoms_need_one">Bitte mindestens eine Beschwerde einstellen.</string>
+    <string name="symptom_bloating">Blähbauch / Völlegefühl</string>
+    <string name="symptom_pain">Bauchschmerzen / Krämpfe</string>
+    <string name="symptom_gas">Blähungen (Winde)</string>
+    <string name="symptom_nausea">Übelkeit</string>
+    <string name="symptom_fatigue">Müdigkeit</string>
+    <string name="symptom_headache">Kopfschmerzen</string>
+    <string name="severity_none">keine</string>
+    <string name="severity_mild">leicht</string>
+    <string name="severity_moderate">mittel</string>
+    <string name="severity_severe">stark</string>
+
+    <!-- Medication -->
+    <string name="med_title_new">Medikament eintragen</string>
+    <string name="med_title_edit">Medikament bearbeiten</string>
+    <string name="med_name">Name</string>
+    <string name="med_effect">Wirkung (optional)</string>
+    <string name="med_effect_antidiarrheal">stopfend</string>
+    <string name="med_effect_enzyme">Enzym</string>
+    <string name="med_effect_antibiotic">Antibiotikum</string>
+    <string name="med_effect_painkiller">Schmerzmittel</string>
+    <string name="med_effect_other">Sonstiges</string>
+
+    <!-- Trigger tags -->
+    <string name="tag_lactose">Laktose</string>
+    <string name="tag_fructose">Fruktose</string>
+    <string name="tag_polyols">Polyole</string>
+    <string name="tag_fructans">Fruktane</string>
+    <string name="tag_gos">GOS</string>
+    <string name="tag_gluten">Gluten</string>
+    <string name="tag_histamine">Histamin</string>
+    <string name="tag_fat">Fettreich</string>
+    <string name="tag_caffeine">Koffein</string>
+    <string name="tag_alcohol">Alkohol</string>
+    <string name="tag_spicy">Scharf</string>
+    <string name="tag_carbonated">Kohlensäure</string>
 </resources>

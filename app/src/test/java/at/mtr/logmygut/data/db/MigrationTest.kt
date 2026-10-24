@@ -1,0 +1,46 @@
+package at.mtr.logmygut.data.db
+
+import androidx.room.testing.MigrationTestHelper
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertEquals
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+
+/** Runs migrations against the exported schemas in app/schemas, and checks the data survives. */
+@RunWith(RobolectricTestRunner::class)
+class MigrationTest {
+    @get:Rule val helper = MigrationTestHelper(InstrumentationRegistry.getInstrumentation(), LogMyGutDatabase::class.java)
+
+    @Test fun migrate1To2MapsReliefToPainChange() {
+        helper.createDatabase(DB, 1).use { db ->
+            db.execSQL("INSERT INTO bowel_movement (id, timestamp, zoneId, bristol, urgent, reliefAfter, note) VALUES (1, 1000, 'Europe/Vienna', 6, 1, 1, 'a')")
+            db.execSQL("INSERT INTO bowel_movement (id, timestamp, zoneId, bristol, urgent, reliefAfter, note) VALUES (2, 2000, 'Europe/Vienna', 4, 0, 0, NULL)")
+            db.execSQL("INSERT INTO bowel_movement (id, timestamp, zoneId, bristol, urgent, reliefAfter, note) VALUES (3, 3000, 'Europe/Vienna', 3, 0, NULL, NULL)")
+        }
+
+        // Validates the resulting schema against 2.json as well.
+        val db = helper.runMigrationsAndValidate(DB, 2, true, MIGRATION_1_2)
+
+        val rows = db.query("SELECT id, bristol, urgent, painBefore, painAfter, note FROM bowel_movement ORDER BY id").use { c ->
+            buildList {
+                while (c.moveToNext()) {
+                    add(listOf(c.getLong(0), c.getLong(1), c.getLong(2), c.getLong(3), c.getString(4), c.getString(5)))
+                }
+            }
+        }
+        assertEquals(
+            listOf(
+                listOf(1L, 6L, 1L, 1L, "BETTER", "a"),
+                listOf(2L, 4L, 0L, 1L, "SAME", null),
+                listOf(3L, 3L, 0L, 0L, null, null),
+            ),
+            rows,
+        )
+    }
+
+    private companion object {
+        const val DB = "migration-test"
+    }
+}

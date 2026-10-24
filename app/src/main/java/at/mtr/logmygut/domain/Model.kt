@@ -35,3 +35,6 @@ enum class PortionSize { S, M, L }
 enum class SymptomType { BLOATING, PAIN, GAS, NAUSEA, FATIGUE, HEADACHE }
 
 enum class MedEffect { ANTIDIARRHEAL, ENZYME, ANTIBIOTIC, PAINKILLER, OTHER }
+
+/** How abdominal pain changed after a bowel movement (Rome IV: pain related to defecation). */
+enum class PainChange { BETTER, SAME, WORSE }

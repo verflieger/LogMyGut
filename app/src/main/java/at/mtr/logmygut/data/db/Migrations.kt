@@ -1,0 +1,34 @@
+package at.mtr.logmygut.data.db
+
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+
+/**
+ * v1 → v2: bowel movements record pain before + how it changed afterwards instead of a single
+ * "relief" flag. Old values map as: relief yes → BETTER, relief no → SAME, not applicable → no pain.
+ * SQLite can't change columns in place, so the table is rebuilt (Room's recommended pattern).
+ */
+val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL(
+            "CREATE TABLE `bowel_movement_new` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timestamp` INTEGER NOT NULL, " +
+                "`zoneId` TEXT NOT NULL, `bristol` INTEGER NOT NULL, `urgent` INTEGER NOT NULL, `painBefore` INTEGER NOT NULL, " +
+                "`painAfter` TEXT, `note` TEXT)",
+        )
+        db.execSQL(
+            """
+            INSERT INTO bowel_movement_new (id, timestamp, zoneId, bristol, urgent, painBefore, painAfter, note)
+            SELECT id, timestamp, zoneId, bristol, urgent,
+                   CASE WHEN reliefAfter IS NULL THEN 0 ELSE 1 END,
+                   CASE reliefAfter WHEN 1 THEN 'BETTER' WHEN 0 THEN 'SAME' ELSE NULL END,
+                   note
+            FROM bowel_movement
+            """,
+        )
+        db.execSQL("DROP TABLE bowel_movement")
+        db.execSQL("ALTER TABLE bowel_movement_new RENAME TO bowel_movement")
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_bowel_movement_timestamp` ON `bowel_movement` (`timestamp`)")
+    }
+}
+
+val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2)
