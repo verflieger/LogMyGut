@@ -37,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import at.mtr.logmygut.R
+import at.mtr.logmygut.data.FoodHit
 import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.ui.common.AmountSelector
@@ -74,7 +75,7 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
                 )
             }
             if (vm.query.isNotBlank()) {
-                items(vm.results, key = { "result-${it.id}" }) { food -> SearchResultRow(food) { vm.addFood(food) } }
+                items(vm.results, key = { "result-${it.food.id}" }) { hit -> SearchResultRow(hit) { vm.addFood(hit.food) } }
                 item {
                     ListItem(
                         modifier = Modifier.clickable { creatingName = vm.query },
@@ -145,14 +146,13 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
 }
 
 @Composable
-private fun SearchResultRow(food: FoodEntity, onClick: () -> Unit) {
+private fun SearchResultRow(hit: FoodHit, onClick: () -> Unit) {
+    val kind = stringResource(if (hit.food.kind == FoodKind.DISH) R.string.kind_dish else R.string.kind_ingredient)
     ListItem(
         modifier = Modifier.clickable(onClick = onClick),
-        leadingContent = { Icon(food.kindIcon(), contentDescription = null) },
-        headlineContent = { Text(food.name) },
-        supportingContent = {
-            Text(stringResource(if (food.kind == FoodKind.DISH) R.string.kind_dish else R.string.kind_ingredient))
-        },
+        leadingContent = { Icon(hit.food.kindIcon(), contentDescription = null) },
+        headlineContent = { Text(hit.food.name) },
+        supportingContent = { Text(hitContext(hit, kind)) },
     )
 }
 

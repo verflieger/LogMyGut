@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import at.mtr.logmygut.R
+import at.mtr.logmygut.data.FoodHit
 import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
@@ -47,7 +48,7 @@ import kotlinx.coroutines.delay
 fun AdjustIngredientsDialog(
     dishName: String,
     initial: List<FoodEntity>,
-    search: suspend (String) -> List<FoodEntity>,
+    search: suspend (String) -> List<FoodHit>,
     onConfirm: (ingredients: List<FoodEntity>, saveToDish: Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
@@ -83,7 +84,7 @@ fun AdjustIngredientsDialog(
 fun NewFoodDialog(
     initialName: String,
     suggestTags: (String) -> Set<Tag>,
-    search: suspend (String) -> List<FoodEntity>,
+    search: suspend (String) -> List<FoodHit>,
     onCreate: (NewFood) -> Unit,
     onDismiss: () -> Unit,
 ) {
@@ -181,18 +182,22 @@ fun NewFoodDialog(
     )
 }
 
+/** "„Tomate“ · Essig · Zutat": why a search result matched and where it belongs; [kind] null omits the kind. */
+internal fun hitContext(hit: FoodHit, kind: String?): String =
+    listOfNotNull(hit.matchedAlias?.let { "„$it“" }, hit.parentName, kind).joinToString(" · ")
+
 /** Current ingredients with ✕, plus a search to add more. Used inside dialogs, so no lazy lists. */
 @Composable
 private fun IngredientListEditor(
     selected: List<FoodEntity>,
     onChange: (List<FoodEntity>) -> Unit,
-    search: suspend (String) -> List<FoodEntity>,
+    search: suspend (String) -> List<FoodHit>,
 ) {
     var query by remember { mutableStateOf("") }
-    var results by remember { mutableStateOf<List<FoodEntity>>(emptyList()) }
+    var results by remember { mutableStateOf<List<FoodHit>>(emptyList()) }
     LaunchedEffect(query) {
         delay(150)
-        results = search(query).filterNot { r -> selected.any { it.id == r.id } }
+        results = search(query).filterNot { r -> selected.any { it.id == r.food.id } }
     }
 
     Column {
@@ -218,10 +223,11 @@ private fun IngredientListEditor(
         results.forEach { result ->
             ListItem(
                 modifier = Modifier.clickable {
-                    onChange(selected + result)
+                    onChange(selected + result.food)
                     query = ""
                 },
-                headlineContent = { Text(result.name) },
+                headlineContent = { Text(result.food.name) },
+                supportingContent = hitContext(result, kind = null).ifEmpty { null }?.let { { Text(it) } },
                 leadingContent = { Icon(Icons.Outlined.Add, contentDescription = null) },
             )
         }

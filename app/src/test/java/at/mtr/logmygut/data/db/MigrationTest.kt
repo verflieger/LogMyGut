@@ -40,6 +40,24 @@ class MigrationTest {
         )
     }
 
+    @Test fun migrate2To3KeepsFoodsAndTags() {
+        helper.createDatabase(DB, 2).use { db ->
+            db.execSQL(
+                "INSERT INTO food (id, kind, name, aliases, unit, builtIn, userModified, hidden, seedKey, searchText) " +
+                    "VALUES (1, 'INGREDIENT', 'Balsamico', '[]', 'SIZE', 1, 0, 0, 'Balsamico', 'balsamico')",
+            )
+            db.execSQL("INSERT INTO food_tag (foodId, tag, minSize) VALUES (1, 'fructose', 'L')")
+        }
+
+        val db = helper.runMigrationsAndValidate(DB, 3, true, MIGRATION_2_3)
+
+        db.query("SELECT parentId FROM food WHERE id = 1").use { c -> c.moveToFirst(); assertEquals(true, c.isNull(0)) }
+        db.query("SELECT tag, minSize, removed FROM food_tag").use { c ->
+            c.moveToFirst()
+            assertEquals(listOf("fructose", "L", 0L), listOf(c.getString(0), c.getString(1), c.getLong(2)))
+        }
+    }
+
     private companion object {
         const val DB = "migration-test"
     }

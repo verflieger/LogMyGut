@@ -1,0 +1,479 @@
+# Source of app/src/main/assets/foods.de.json. Format: see build_seed.py.
+# g = grams of a normal (M) portion, or of one piece for count units.
+# Hand-curated tags follow Monash FODMAP (fructans, GOS, and where Monash measured differently than BLS),
+# histamine follows the commonly published histamine-intolerance lists; all marked tags=.
+
+# ---------- Brot & Gebäck ----------
+Brot | count:Scheibe | g=45 | bls=B251000 | aliases=Brotscheibe | tags=fructans, gluten
+  Weißbrot | count:Scheibe | g=40 | bls=B311000 | aliases=Weizenbrot, Baguette
+  Mischbrot | count:Scheibe | g=45 | bls=B251000 | aliases=Hausbrot, Weizenmischbrot, Bauernbrot
+  Roggenbrot | count:Scheibe | g=45 | bls=B271000 | aliases=Roggenmischbrot, Schwarzbrot
+  Vollkornbrot | count:Scheibe | g=50 | bls=B121000 | aliases=Roggenvollkornbrot, Pumpernickel
+  Dinkelbrot | count:Scheibe | g=45 | bls=B710500 | aliases=Dinkelvollkornbrot
+  Dinkel-Sauerteigbrot | count:Scheibe | g=45 | bls=B710500 | no=fructans | note=Lange Teigführung baut Fructane weitgehend ab.
+  Glutenfreies Brot | count:Scheibe | g=45 | bls=B8A9000 | no=fructans, gluten
+  Toastbrot | count:Scheibe | g=25 | bls=B314000 | aliases=Toast, Buttertoast
+  Knäckebrot | count:Scheibe | g=10 | bls=B6A2100 | aliases=Knäcke
+  Fladenbrot | count:Stück | g=120 | aliases=Pita, Naan, Pide
+  Weizentortilla | count:Stück | g=60 | bls=B783012 | aliases=Tortilla (Weizen), Wrap-Teig
+Gebäck | count:Stück | g=55 | bls=B511000 | aliases=Gebäck allgemein | tags=fructans, gluten
+  Semmel | count:Stück | g=55 | bls=B511000 | aliases=Brötchen, Weckerl, Kaisersemmel, Schrippe, Weizenbrötchen
+  Vollkornsemmel | count:Stück | g=60 | bls=B406000 | aliases=Vollkornbrötchen, Vollkornweckerl
+  Kornspitz | count:Stück | g=70 | bls=B406000 | aliases=Körndlweckerl, Mehrkornweckerl
+  Brezel | count:Stück | g=80 | bls=B723100 | aliases=Laugenbrezel, Breze, Laugenstangerl, Laugengebäck
+  Croissant | count:Stück | g=60 | bls=D771600 | aliases=Butterkipferl, Kipferl
+  Mohnflesserl | count:Stück | g=60 | bls=B511000 | aliases=Mohnzopf, Salzstangerl (Gebäck)
+  Glutenfreie Semmel | count:Stück | g=60 | bls=B8A2000 | aliases=Glutenfreies Brötchen | no=fructans, gluten
+Reiswaffel | count:Stück | g=8 | bls=C532700 | aliases=Reiscracker
+Salzstangerl | size | g=30 | bls=D064000 | aliases=Salzstangen, Salzbrezel, Soletti | tags=fructans, gluten
+Semmelknödel | count:Stück | g=100 | bls=E606000 | aliases=Knödel, Serviettenknödel | tags=fructans, gluten
+Waffel | count:Stück | g=30 | bls=D621200 | aliases=Waffelkekse, Manner-Schnitten | tags=fructans, gluten
+
+# ---------- Getreide, Beilagen ----------
+Haferflocken | size | g=50 | bls=C133000 | aliases=Haferbrei, Overnight Oats | tags=fructans:L, gos:L | note=Oft mit Gluten verunreinigt (relevant bei Zöliakie).
+Müsli | size | g=60 | bls=C512600 | aliases=Bircher Müsli | tags=fructans, gluten | note=Typisch mit Weizenflocken und Trockenobst.
+Granola | size | g=50 | bls=C514300 | aliases=Knuspermüsli, Crunchy | tags=fructans, gluten
+Cornflakes | size | g=40 | bls=C515000 | aliases=Maisflocken
+Reis | size | g=150 | bls=C352032 | aliases=Basmatireis, Jasminreis, Risottoreis
+  Vollkornreis | size | g=150 | bls=C351032 | aliases=Naturreis
+Nudeln | size | g=200 | bls=E401032 | aliases=Pasta, Spaghetti, Penne, Fusilli | tags=fructans, gluten
+  Vollkornnudeln | size | g=200 | bls=E500032 | aliases=Vollkornpasta
+  Eiernudeln | size | g=200 | bls=E432032 | aliases=Eierteigwaren, Bandnudeln, Fleckerl
+  Glutenfreie Nudeln | size | g=200 | bls=E612032 | aliases=Maisnudeln | no=fructans, gluten
+  Reisnudeln | size | g=200 | bls=C559032 | aliases=Glasnudeln | no=fructans, gluten
+  Tortellini | size | g=200 | bls=E609232 | aliases=Ravioli, Gefüllte Nudeln
+  Gnocchi | size | g=200 | bls=K270000 | aliases=Erdäpfelnockerl
+Spätzle | size | g=200 | bls=X711512 | aliases=Nockerl, Knöpfle | tags=fructans, gluten
+Couscous | size | g=150 | bls=C119232 | tags=fructans, gluten
+Bulgur | size | g=150 | bls=C119132 | tags=fructans, gluten
+Grieß | size | g=150 | bls=X951113 | aliases=Grießbrei, Weizengrieß | tags=fructans, gluten
+Quinoa | size | g=150 | bls=C118122
+Hirse | size | g=150 | bls=C332000 | aliases=Hirsebrei
+Buchweizen | size | g=150 | bls=C322000 | aliases=Heidenmehl
+Polenta | size | g=200 | bls=C526000 | aliases=Maisgrieß, Sterz
+Weizenmehl | size | g=50 | bls=C213100 | aliases=Mehl, Dinkelmehl | tags=fructans, gluten
+Semmelbrösel | size | g=20 | bls=B821000 | aliases=Paniermehl, Panade, Brösel | tags=fructans, gluten
+Erdäpfel | size | g=200 | bls=K110132 | aliases=Kartoffeln, Salzerdäpfel, Petersilerdäpfel
+  Pommes frites | size | g=150 | bls=K130492 | aliases=Pommes, Fritten
+  Bratkartoffeln | size | g=200 | bls=X651063 | aliases=Geröstete, Röstkartoffeln
+  Rösti | size | g=150 | bls=K391200 | aliases=Erdäpfelpuffer, Kartoffelpuffer, Reiberdatschi
+Chips | size | g=50 | bls=K280100 | aliases=Kartoffelchips, Pringles
+Süßkartoffel | size | g=150 | bls=K420100 | aliases=Batate
+
+# ---------- Milch & Milchprodukte ----------
+Kuhmilch | count:Glas | g=250 | bls=M111300 | aliases=Milch, Vollmilch, Frischmilch
+  Laktosefreie Milch | count:Glas | g=250 | bls=M114300 | aliases=Laktosefrei Milch, Milch laktosefrei
+  Buttermilch | count:Glas | g=250 | bls=M150000
+  Kefir | count:Glas | g=250 | bls=M130300 | aliases=Ayran, Joghurtdrink
+  Ziegenmilch | count:Glas | g=250 | bls=M021000 | aliases=Schafmilch
+Pflanzendrink | count:Glas | g=250 | aliases=Pflanzenmilch, Milchersatz
+  Hafermilch | count:Glas | g=250 | bls=C660000 | aliases=Haferdrink | tags=fructans:2
+  Sojamilch | count:Glas | g=250 | bls=H841100 | aliases=Sojadrink | tags=gos | note=Aus Sojaprotein hergestellt ist sie FODMAP-arm.
+  Mandelmilch | count:Glas | g=250 | bls=H800000 | aliases=Mandeldrink
+  Reisdrink | count:Glas | g=250 | bls=C650000 | aliases=Reismilch
+Joghurt | size | g=150 | bls=M141300 | aliases=Naturjoghurt, Jogurt
+  Laktosefreier Joghurt | size | g=150 | bls=M1E3300 | aliases=Joghurt laktosefrei
+  Fruchtjoghurt | size | g=150 | bls=M241300 | aliases=Erdbeerjoghurt, Joghurt mit Früchten
+  Griechisches Joghurt | size | g=150 | bls=M141500 | aliases=Griechischer Joghurt, Sahnejoghurt
+  Skyr | size | g=150 | bls=M710100
+Topfen | size | g=125 | bls=M713100 | aliases=Quark, Magertopfen
+  Kräutertopfen | size | g=60 | bls=Y771510 | aliases=Kräuterquark, Liptauer
+Schlagobers | size | g=30 | bls=M173800 | aliases=Sahne, Schlagsahne, Obers, Rahm
+  Kaffeeobers | size | g=10 | bls=M171500 | aliases=Kaffeesahne, Kondensmilch
+Sauerrahm | size | g=30 | bls=M176800 | aliases=Saure Sahne, Schmand
+Crème fraîche | size | g=30 | bls=M172900 | aliases=Creme fraiche
+Butter | size | g=10 | bls=Q611000 | aliases=Teebutter, Süßrahmbutter
+  Butterschmalz | size | g=10 | bls=Q683000 | aliases=Ghee
+Margarine | size | g=10 | bls=Q400000 | aliases=Pflanzenmargarine, Rama
+
+# ---------- Käse ----------
+Käse | size | g=30 | bls=M400600 | aliases=Käsescheibe
+  Hartkäse | size | g=30 | key=Gereifter Hartkäse | bls=M300600 | aliases=Gereifter Hartkäse, Alter Käse | tags=histamine
+    Parmesan | size | g=15 | bls=M306400 | aliases=Parmigiano, Grana Padano, Pecorino
+    Bergkäse | size | g=30 | bls=M302600 | aliases=Almkäse, Gruyère, Comté
+    Emmentaler | size | g=30 | bls=M304600 | aliases=Schweizer Käse
+    Alter Gouda | size | g=30 | bls=M402600 | aliases=Gouda gereift
+  Schnittkäse | size | g=30 | bls=M400600 | aliases=Scheibenkäse
+    Junger Gouda | count:Scheibe | g=20 | bls=M402600 | aliases=Gouda, Gouda jung
+    Edamer | count:Scheibe | g=20 | bls=M401600
+    Tilsiter | count:Scheibe | g=20 | bls=M403700 | tags=histamine
+    Butterkäse | count:Scheibe | g=20 | bls=M501600 | aliases=Mondseer, Moosbacher, Bel Paese
+    Raclettekäse | size | g=60 | bls=M307700 | aliases=Raclette | tags=histamine
+  Weichkäse | size | g=40 | bls=M602600 | tags=histamine
+    Camembert | size | g=40 | bls=M602600
+    Brie | size | g=40 | bls=M601800
+    Gorgonzola | size | g=30 | bls=M5B1600 | aliases=Blauschimmelkäse, Roquefort, Dolce Latte
+    Limburger | size | g=30 | bls=M603500 | aliases=Romadur, Rotschmierkäse
+  Frischkäse | size | g=30 | bls=M710800 | aliases=Philadelphia, Streichkäse
+    Hüttenkäse | size | g=100 | bls=M711100 | aliases=Cottage Cheese, Körniger Frischkäse
+    Ricotta | size | g=50 | bls=M741600
+    Mascarpone | size | g=30 | bls=M7A6800
+    Ziegenfrischkäse | size | g=30 | bls=M7A1600 | aliases=Ziegenkäse
+  Mozzarella | size | g=60 | bls=M032100 | aliases=Burrata, Büffelmozzarella
+  Feta | size | g=50 | bls=M012200 | aliases=Schafkäse, Hirtenkäse, Schafskäse
+  Halloumi | size | g=60 | bls=M524500 | aliases=Grillkäse
+  Schmelzkäse | size | g=30 | bls=M810600 | aliases=Streichkäse (Schmelzkäse), Käsesauce
+  Graukäse | size | g=40 | bls=M730100 | aliases=Steirerkas, Sauermilchkäse, Quargel, Harzer | tags=histamine
+
+# ---------- Süßes mit Milch ----------
+Milcheis | count:Kugel | g=60 | bls=S241000 | aliases=Eis, Eiscreme, Speiseeis, Vanilleeis
+Sorbet | count:Kugel | g=60 | bls=S220000 | aliases=Fruchteis, Wassereis
+Pudding | size | g=125 | bls=Y862143 | aliases=Vanillepudding, Schokopudding, Grießkoch
+Milchreis | size | g=200 | bls=X810413
+Kakao | count:Tasse | g=250 | aliases=Trinkschokolade, Heiße Schokolade, Kakaomilch | tags=lactose
+
+# ---------- Eier, Fleisch, Wurst ----------
+Ei | count:Stück | g=60 | bls=E111100 | aliases=Eier, Gekochtes Ei, Rührei, Spiegelei, Eierspeis
+Hendl | size | g=150 | bls=V4A6100 | aliases=Hähnchen, Huhn, Hühnerbrust, Hühnerfleisch, Backhendlfleisch
+Pute | size | g=150 | bls=V486100 | aliases=Truthahn, Putenbrust
+Rindfleisch | size | g=150 | bls=U284100 | aliases=Steak, Rind, Beiried, Rostbraten
+Schweinefleisch | size | g=150 | bls=U687000 | aliases=Schwein, Schnitzelfleisch, Karree
+Lammfleisch | size | g=150 | aliases=Lamm
+Wild | size | g=150 | bls=V242100 | aliases=Hirsch, Reh, Wildschwein | tags=histamine
+Faschiertes | size | g=125 | bls=U050100 | aliases=Hackfleisch, Gemischtes Faschiertes, Fleischlaibchen
+Speck | size | g=30 | bls=W415000 | aliases=Bacon, Frühstücksspeck, Bauchspeck | tags=histamine
+Geselchtes | size | g=100 | bls=W510000 | aliases=Selchfleisch, Kassler, Kasseler | tags=histamine
+Kochschinken | count:Scheibe | g=20 | bls=W424000 | aliases=Schinken, Beinschinken, Putenschinken
+Rohschinken | count:Scheibe | g=15 | bls=W441000 | aliases=Prosciutto, Serrano, Parmaschinken, Schinkenspeck | tags=histamine
+Wurst | size | g=50 | aliases=Würste, Wurstwaren
+  Extrawurst | count:Scheibe | g=15 | key=Wurstaufschnitt | bls=W231100 | aliases=Wurstaufschnitt, Lyoner, Fleischwurst, Pariser, Knackwurst
+  Salami | count:Scheibe | g=10 | bls=W149300 | aliases=Pfefferoniwurst, Chorizo, Kabanossi | tags=histamine
+  Leberwurst | size | g=30 | bls=W880100 | aliases=Leberstreichwurst, Leberaufstrich
+  Leberkäs | count:Scheibe | g=100 | bls=W256100 | aliases=Leberkäse, Fleischkäse
+  Bratwurst | count:Stück | g=120 | bls=W221100 | aliases=Grillwurst, Rostbratwurst
+  Würstel | count:Stück | g=50 | bls=W211200 | aliases=Würstchen, Frankfurter, Wiener, Wienerle, Sacherwürstel
+  Käsekrainer | count:Stück | g=120 | bls=W255300 | aliases=Krainer, Burenwurst, Debreziner
+  Blutwurst | count:Stück | g=100 | bls=W343000 | aliases=Blunzn, Blunze
+  Mettwurst | size | g=30 | bls=W331000 | aliases=Teewurst, Streichwurst | tags=histamine
+Dönerfleisch | size | g=120 | bls=Y384112 | aliases=Kebabfleisch, Gyrosfleisch
+
+# ---------- Fisch ----------
+Fisch | size | g=150 | key=Fisch (frisch) | bls=T207100 | aliases=Fisch (frisch), Fischfilet, Seelachs
+  Lachs | size | g=150 | bls=T410100 | aliases=Lachsfilet
+  Forelle | size | g=150 | aliases=Saibling
+  Kabeljau | size | g=150 | bls=T207100 | aliases=Dorsch, Pangasius, Alaska-Seelachs
+  Zander | size | g=150 | bls=T603100 | aliases=Hecht, Barsch
+  Karpfen | size | g=150 | bls=T501100
+Thunfisch (Dose) | size | g=80 | bls=T121902 | aliases=Thunfisch | tags=histamine
+Räucherlachs | size | g=50 | bls=T410600 | aliases=Räucherfisch, Geräucherte Forelle | tags=histamine
+Hering | size | g=80 | bls=T811100 | aliases=Matjes, Rollmops, Bismarckhering | tags=histamine
+Sardinen | size | g=80 | bls=T105100 | aliases=Sardellen, Anchovis, Makrele | tags=histamine
+Garnelen | size | g=100 | bls=T753100 | aliases=Shrimps, Scampi, Meeresfrüchte, Calamari, Muscheln
+Fischstäbchen | size | g=120 | bls=T930100 | aliases=Fischfrikadelle | tags=fructans, gluten
+Backfisch | size | g=150 | aliases=Fish and Chips, Gebackener Fisch | tags=fat, gluten, fructans
+
+# ---------- Tofu & Hülsenfrüchte ----------
+Tofu (fest) | size | g=100 | bls=H861000 | aliases=Tofu, Räuchertofu
+Seidentofu | size | g=100 | bls=H861100 | tags=gos
+Tempeh | size | g=100
+Hülsenfrüchte | size | g=150 | aliases=Leguminosen | tags=gos
+  Erbsen | size | g=80 | bls=G760100 | aliases=Grüne Erbsen, Tiefkühlerbsen | tags=fructans
+  Kidneybohnen | size | g=150 | bls=H742100 | aliases=Bohnen, Rote Bohnen, Baked Beans
+  Weiße Bohnen | size | g=150 | bls=X571453 | aliases=Cannellini, Borlotti, Käferbohnen
+  Kichererbsen | size | g=100 | bls=H720902
+  Linsen | size | g=150 | bls=H730132 | aliases=Rote Linsen, Berglinsen
+  Edamame | size | g=100 | bls=G750100 | aliases=Sojabohnen | tags=gos:L
+  Falafel | count:Stück | g=25 | bls=Y9A1050 | tags=fructans
+  Hummus | size | g=50 | bls=H960000 | aliases=Kichererbsenmus | tags=fructans
+
+# ---------- Obst ----------
+Kernobst | count:Stück | g=150 | bls=F110100 | aliases=Kernobst allgemein
+  Apfel | count:Stück | g=150 | bls=F110100 | aliases=Äpfel
+  Birne | count:Stück | g=170 | bls=F130100 | aliases=Birnen
+  Quitte | count:Stück | g=150 | bls=F140100
+Steinobst | size | g=150 | aliases=Steinobst allgemein | tags=polyols
+  Kirschen | size | g=100 | bls=F211100 | aliases=Herzkirschen, Weichseln, Sauerkirschen
+  Zwetschke | count:Stück | g=30 | bls=F220100 | aliases=Pflaume, Zwetschge, Zwetschken, Mirabelle
+  Pfirsich | count:Stück | g=130 | bls=F203100 | aliases=Pfirsiche
+  Nektarine | count:Stück | g=130 | bls=F202100
+  Marille | count:Stück | g=40 | bls=F201100 | aliases=Aprikose, Marillen
+  Mango | count:Stück | g=200 | bls=F516100 | no=polyols
+Beeren | size | g=125 | aliases=Beerenobst, Beerenmischung
+  Erdbeeren | size | g=150 | bls=F301100 | aliases=Erdbeere
+  Himbeeren | size | g=125 | bls=F302100 | aliases=Himbeere | tags=fructans:L
+  Heidelbeeren | size | g=125 | bls=F304100 | aliases=Blaubeeren, Schwarzbeeren | no=fructose | note=BLS weist Fructoseüberschuss aus; Monash misst Heidelbeeren als verträglich.
+  Brombeeren | size | g=125 | bls=F303100 | aliases=Brombeere
+  Ribisel | size | g=100 | bls=F321100 | aliases=Johannisbeeren, Schwarze Ribisel
+  Preiselbeeren | size | g=30 | bls=F401100 | aliases=Cranberrys (frisch)
+  Weintrauben | size | g=125 | bls=F310100 | aliases=Trauben, Weinbeeren
+Zitrusfrüchte | count:Stück | g=150 | aliases=Zitrusobst
+  Orange | count:Stück | g=150 | bls=F603100 | aliases=Orangen, Blutorange
+  Mandarine | count:Stück | g=60 | bls=F606100 | aliases=Clementine, Mandarinen
+  Grapefruit | count:Stück | g=250 | bls=F604100 | aliases=Pomelo | tags=fructans
+  Zitrone | count:Stück | g=60 | bls=F601100 | aliases=Limette, Zitronensaft
+Banane | count:Stück | g=120 | bls=F503100 | aliases=Bananen | tags=fructans | note=Reife Bananen enthalten Fructane, unreife (grünliche) kaum.
+Kiwi | count:Stück | g=70 | bls=F514100
+Ananas | size | g=150 | bls=F501100
+Wassermelone | size | g=200 | bls=F535100 | tags=fructans
+Honigmelone | size | g=200 | bls=F533100 | aliases=Zuckermelone, Cantaloupe | tags=fructans:L
+Feige | count:Stück | g=50 | bls=F505100 | aliases=Feigen | tags=fructans
+Granatapfel | size | g=80 | bls=F506100 | aliases=Granatapfelkerne
+Papaya | size | g=150 | bls=F517100
+Maracuja | count:Stück | g=20 | bls=F508100 | aliases=Passionsfrucht
+Litschi | size | g=100 | bls=F515100 | aliases=Lychee
+Kaki | count:Stück | g=200 | bls=F507100 | aliases=Sharonfrucht, Persimone
+Rhabarber | size | g=100 | bls=F081100
+Avocado | size | g=50 | bls=F502100 | tags=polyols:M | note=Ca. 1/8 Avocado gilt als verträglich.
+Kokosnuss | size | g=30 | aliases=Kokosraspel, Kokosflocken | tags=polyols:L
+Trockenobst | size | g=30 | aliases=Dörrobst, Studentenfutter (Obst)
+  Datteln | count:Stück | g=8 | bls=F504400 | aliases=Dattel | tags=fructans
+  Rosinen | size | g=30 | bls=F840100 | aliases=Sultaninen, Weinbeeren getrocknet | tags=fructans
+  Dörrzwetschken | count:Stück | g=10 | bls=F220400 | aliases=Trockenpflaumen, Dörrpflaumen
+  Dörrmarillen | count:Stück | g=8 | bls=F201400 | aliases=Getrocknete Aprikosen | tags=fructans
+  Getrocknete Feigen | count:Stück | g=20 | bls=F505400 | aliases=Feigen getrocknet | tags=fructans
+  Cranberrys | size | g=30 | bls=F414400 | aliases=Getrocknete Cranberries
+Apfelmus | size | g=100 | bls=Y864112 | aliases=Apfelkompott, Kompott
+
+# ---------- Gemüse ----------
+Zwiebelgewächse | size | g=50 | aliases=Lauchgewächse | tags=fructans
+  Zwiebel | size | g=50 | bls=G480100 | aliases=Zwiebeln, Rote Zwiebel, Gemüsezwiebel, Röstzwiebel
+  Knoblauch | size | g=4 | bls=G490100 | aliases=Knoblauchzehe, Knofel
+  Lauch | size | g=80 | bls=G470100 | aliases=Porree, Lauchstange | no=fructose
+  Frühlingszwiebel | size | g=20 | bls=G482100 | aliases=Jungzwiebel, Lauchzwiebel | note=Nur der grüne Teil ist FODMAP-arm.
+  Schalotte | size | g=20 | bls=G485100 | aliases=Schalotten
+  Schnittlauch | size | g=5 | bls=G081100 | no=fructans | note=FODMAP-arm, auch in größeren Mengen.
+Kohl | size | g=100 | aliases=Kohlgemüse, Kraut
+  Weißkraut | size | g=100 | bls=G342100 | aliases=Weißkohl, Weißkohlsalat | tags=polyols:L
+  Rotkraut | size | g=100 | bls=G341100 | aliases=Rotkohl, Blaukraut
+  Wirsing | size | g=100 | bls=G343100 | aliases=Kohl (Wirsing), Welschkraut | tags=fructans:L
+  Kohlsprossen | size | g=100 | bls=G332100 | aliases=Rosenkohl | tags=fructans
+  Karfiol | size | g=150 | bls=G311100 | aliases=Blumenkohl
+  Brokkoli | size | g=150 | bls=G312100 | aliases=Broccoli | tags=polyols:L | note=Röschen sind gut verträglich, Stiele enthalten mehr Fructose.
+  Kohlrabi | size | g=100 | bls=G331100
+  Chinakohl | size | g=100 | bls=G321100 | aliases=Pak Choi, Pak Choy
+  Grünkohl | size | g=100 | bls=G322100 | aliases=Kale
+  Sauerkraut | size | g=100 | bls=G345902 | tags=histamine
+Schwammerl | size | g=100 | bls=K701100 | aliases=Pilze, Pilz
+  Champignons | size | g=100 | bls=K701100 | aliases=Champignon, Egerling
+  Eierschwammerl | size | g=100 | bls=K713100 | aliases=Pfifferlinge
+  Steinpilze | size | g=100 | bls=K718100 | aliases=Herrenpilz
+  Shiitake | size | g=100
+  Austernpilze | size | g=100 | bls=K740100 | aliases=Austernseitling, Kräuterseitling
+Fisolen | size | g=100 | bls=X5A8000 | aliases=Grüne Bohnen, Brechbohnen, Prinzessbohnen | tags=polyols:L | no=fructose
+Mais | size | g=80 | bls=G570100 | aliases=Zuckermais, Kukuruz, Maiskolben | tags=polyols:L
+Paprika | size | g=100 | bls=G543100 | aliases=Paprikaschote, Spitzpaprika
+Pfefferoni | size | g=20 | bls=G553100 | aliases=Peperoni (mild), Pfefferoni eingelegt
+Chili | size | g=5 | bls=G554100 | aliases=Chilischote, Peperoni, Jalapeño | tags=spicy
+Gurke | size | g=100 | bls=G520100 | aliases=Gurkerl, Salatgurke, Gurkensalat
+Essiggurkerl | count:Stück | g=30 | bls=G520802 | aliases=Essiggurken, Gewürzgurken, Salzgurken | tags=histamine
+Paradeiser | count:Stück | g=100 | bls=G561100 | aliases=Tomate, Tomaten, Cocktailparadeiser, Kirschtomaten | tags=histamine
+  Getrocknete Paradeiser | size | g=10 | bls=G560400 | aliases=Getrocknete Tomaten
+Karotte | size | g=100 | bls=G620100 | aliases=Möhre, Karotten, Gelbe Rübe, Möhren
+Zucchini | size | g=150 | bls=G582100 | aliases=Zucchetti | tags=fructans:L
+Melanzani | size | g=150 | bls=G510100 | aliases=Aubergine | tags=histamine
+Spinat | size | g=150 | bls=G211100 | aliases=Blattspinat, Cremespinat | tags=histamine
+Mangold | size | g=150 | bls=G230100
+Kürbis | size | g=150 | bls=G581000 | aliases=Hokkaido, Butternut | tags=polyols:L
+Rote Rüben | size | g=100 | bls=G613100 | aliases=Rote Bete, Rote Beete, Rohnen | tags=gos, fructans
+Sellerie | size | g=100 | bls=G660100 | aliases=Knollensellerie, Zeller
+  Stangensellerie | size | g=50 | bls=G220100 | aliases=Staudensellerie, Bleichsellerie | tags=polyols | note=Monash misst deutlich mehr Mannit als BLS.
+Fenchel | size | g=100 | bls=G430100 | aliases=Gemüsefenchel | tags=fructans:L
+Wurzelgemüse | size | g=100 | aliases=Suppengrün, Wurzelwerk
+  Pastinake | size | g=100 | bls=G640100 | aliases=Pastinaken
+  Petersilienwurzel | size | g=50 | bls=G670100 | aliases=Petersilwurzen, Wurzelpetersilie
+  Topinambur | size | g=100 | aliases=Erdartischocke | tags=fructans
+  Rettich | size | g=100 | bls=G680100 | aliases=Radi
+  Radieschen | size | g=50 | bls=G691100
+Spargel | size | g=150 | bls=G450100 | aliases=Grüner Spargel, Weißer Spargel | tags=fructans
+Artischocke | size | g=100 | bls=G410100 | aliases=Artischockenherzen | tags=fructans
+Blattsalat | size | g=50 | bls=G105100 | aliases=Salat, Grüner Salat
+  Häuptelsalat | size | g=50 | bls=G105100 | aliases=Kopfsalat, Butterhäuptel
+  Eisbergsalat | size | g=50 | bls=G103100 | aliases=Eissalat
+  Vogerlsalat | size | g=50 | bls=G104100 | aliases=Feldsalat, Rapunzel
+  Rucola | size | g=30 | bls=G130100 | aliases=Rauke
+  Endivie | size | g=50 | bls=G102100 | aliases=Frisée, Escariol
+  Radicchio | size | g=50 | bls=G106100 | aliases=Chicorée, Treviso
+Sprossen | size | g=50 | bls=H650100 | aliases=Mungbohnensprossen, Sojasprossen, Keimlinge
+Bambussprossen | size | g=50 | bls=H610100
+Okra | size | g=100 | bls=G530100
+Oliven | size | g=30 | bls=H510802 | aliases=Grüne Oliven, Schwarze Oliven
+Kapern | size | g=5 | bls=G012902
+Ingwer | size | g=5 | bls=R211200 | aliases=Ingwerwurzel
+Kräuter | size | g=5 | bls=G061000 | aliases=Petersilie, Basilikum, Dille, Kresse, Koriander, Minze
+
+# ---------- Nüsse & Samen ----------
+Nüsse | size | g=30 | aliases=Nussmischung, Studentenfutter
+  Cashewkerne | size | g=30 | bls=H170100 | aliases=Cashews | tags=gos, fructans
+  Pistazien | size | g=30 | bls=H250600 | tags=gos, fructans
+  Mandeln | size | g=30 | bls=H210100 | aliases=Mandelmus | tags=gos:L | note=Bis ca. 10 Stück gilt als verträglich.
+  Haselnüsse | size | g=30 | bls=H130100 | aliases=Haselnuss | tags=gos:L
+  Walnüsse | size | g=30 | bls=H120100 | aliases=Walnuss, Pekannüsse
+  Erdnüsse | size | g=30 | bls=H110600 | aliases=Erdnuss, Erdnussflips
+  Macadamia | size | g=30 | bls=H190600 | aliases=Macadamianüsse
+  Paranüsse | size | g=30 | bls=H180100
+  Pinienkerne | size | g=15 | bls=H320100
+Erdnussbutter | size | g=20 | bls=H880200 | aliases=Erdnussmus, Erdnusscreme
+Samen | size | g=15 | aliases=Kerne, Saaten
+  Leinsamen | size | g=15 | bls=H410100 | aliases=Leinsaat
+  Chiasamen | size | g=15 | bls=H480100 | aliases=Chia
+  Kürbiskerne | size | g=15 | bls=H310100 | aliases=Sonnenblumenkerne
+  Sesam | size | g=10 | bls=H420100 | aliases=Tahin, Sesampaste
+
+# ---------- Süßes & Gebäck ----------
+Schokolade | size | g=25 | bls=S530000 | aliases=Schoko
+  Vollmilchschokolade | size | g=25 | bls=S539900 | aliases=Milchschokolade
+  Zartbitterschokolade | size | g=25 | bls=S570000 | aliases=Bitterschokolade, Dunkle Schokolade
+  Weiße Schokolade | size | g=25 | bls=S580000
+Nuss-Nougat-Creme | size | g=20 | bls=S145000 | aliases=Nutella, Haselnusscreme
+Rührkuchen | count:Stück | g=70 | aliases=Kuchen, Marmorkuchen, Gugelhupf, Biskuit | tags=fructans, gluten, fat:2
+Sahnetorte | count:Stück | g=120 | aliases=Torte, Obers-Torte, Cremeschnitte, Punschkrapfen | tags=fructans, gluten, fat, lactose
+Topfenkuchen | count:Stück | g=120 | bls=D480200 | aliases=Käsekuchen, Topfentorte, Cheesecake | tags=fructans, gluten
+Apfelstrudel | count:Stück | g=150 | bls=D483400 | aliases=Strudel | tags=fructans, gluten
+Topfenstrudel | count:Stück | g=150 | bls=D540400 | aliases=Milchrahmstrudel | tags=fructans, gluten
+Sachertorte | count:Stück | g=100 | bls=D083000 | aliases=Schokotorte | tags=fructans, gluten
+Germknödel | count:Stück | g=150 | aliases=Dampfnudel, Hefeknödel, Buchteln | tags=fructans, gluten, lactose, fat, polyols
+Krapfen | count:Stück | g=70 | bls=D741600 | aliases=Berliner, Donut, Faschingskrapfen | tags=fructans, gluten
+Kekse | size | g=30 | bls=D630400 | aliases=Plätzchen, Kekserl, Butterkekse, Weihnachtskekse | tags=fructans, gluten
+Lebkuchen | count:Stück | g=30 | bls=D650600 | aliases=Lebkuchenherz | tags=fructans, gluten
+Müsliriegel | count:Stück | g=25 | bls=S830000 | aliases=Getreideriegel | tags=fructans, gluten
+Proteinriegel | count:Stück | g=50 | tags=polyols | note=Enthalten oft Zuckeralkohole (Maltit, Sorbit). Zutatenliste prüfen.
+Gummibärchen | size | g=30 | bls=S361000 | aliases=Fruchtgummi, Gummibären
+Zuckerfreier Kaugummi | count:Stück | g=2 | aliases=Kaugummi | tags=polyols
+Zuckerfreie Bonbons | count:Stück | g=3 | aliases=Zuckerfreie Süßigkeiten | tags=polyols
+Popcorn | size | g=30 | bls=C533000
+
+# ---------- Zucker & Süßungsmittel ----------
+Zucker | size | g=10 | bls=S111000 | aliases=Kristallzucker, Staubzucker, Rohrzucker
+Honig | size | g=20 | bls=S120000 | aliases=Waldhonig, Blütenhonig
+Agavendicksaft | size | g=20 | aliases=Agavensirup | tags=fructose
+Ahornsirup | size | g=20 | bls=S151100
+Marmelade | size | g=20 | bls=S132000 | aliases=Konfitüre, Gelee
+Xylit | size | g=5 | aliases=Birkenzucker | tags=polyols
+Sorbit | size | g=5 | bls=S162000 | aliases=Sorbitol, Zuckeraustauschstoff
+Erythrit | size | g=5 | aliases=Erythritol | note=Wird kaum vergoren und gilt als gut verträglich.
+
+# ---------- Getränke ----------
+Kaffee | count:Tasse | g=200 | bls=N410100 | aliases=Filterkaffee, Verlängerter, Americano, Großer Brauner | tags=caffeine
+Espresso | count:Tasse | g=30 | bls=N411100 | aliases=Kleiner Brauner, Kleiner Schwarzer, Mokka | tags=caffeine
+Tee | count:Tasse | g=250 | aliases=Teegetränk
+  Schwarzer Tee | count:Tasse | g=250 | bls=N630000 | aliases=Schwarztee, Earl Grey | tags=caffeine
+  Grüner Tee | count:Tasse | g=250 | bls=N610100 | aliases=Grüntee, Matcha, Mate | tags=caffeine
+  Chai | count:Tasse | g=250 | aliases=Chai Latte | tags=caffeine, fructans
+  Kamillentee | count:Tasse | g=250 | tags=fructans
+  Fencheltee | count:Tasse | g=250 | aliases=Fenchel-Anis-Kümmel-Tee | tags=fructans
+  Pfefferminztee | count:Tasse | g=250 | bls=N721000 | aliases=Minztee, Kräutertee
+  Früchtetee | count:Tasse | g=250 | bls=N710000 | aliases=Hagebuttentee, Rooibos
+Cola | count:Glas | g=330 | bls=N330000 | aliases=Coca-Cola, Pepsi | tags=caffeine, carbonated
+Cola Zero | count:Glas | g=330 | aliases=Cola light | tags=caffeine, carbonated
+Limonade | count:Glas | g=330 | bls=N314000 | aliases=Limo, Fanta, Sprite, Kracherl, Tonic | tags=carbonated
+  Almdudler | count:Glas | g=330 | bls=N314000 | aliases=Kräuterlimonade
+  Eistee | count:Glas | g=330 | bls=N019000 | aliases=Ice Tea | no=carbonated
+Mineralwasser mit Kohlensäure | count:Glas | g=250 | aliases=Sprudel, Soda, Prickelnd, Sodawasser | tags=carbonated
+Energydrink | count:Dose | g=250 | aliases=Red Bull | tags=caffeine, carbonated
+Fruchtsaft | count:Glas | g=250 | bls=F016600 | aliases=Saft, Multivitaminsaft, Mehrfruchtsaft
+  Apfelsaft | count:Glas | g=250 | bls=F110600 | aliases=Apfelschorle, Apfelsaft gespritzt
+  Orangensaft | count:Glas | g=250 | bls=F603600 | aliases=O-Saft
+  Smoothie | count:Glas | g=250 | bls=F032600 | aliases=Fruchtsmoothie
+Kombucha | count:Glas | g=250 | tags=carbonated, histamine
+Bier | count:Glas | g=330 | bls=P163000 | aliases=Pils, Helles, Märzen, Krügerl, Seidl | tags=gluten, carbonated, histamine
+  Weißbier | count:Glas | g=500 | bls=P150000 | aliases=Weizenbier, Hefeweizen
+  Radler | count:Glas | g=330 | bls=P192000 | aliases=Alsterwasser
+  Alkoholfreies Bier | count:Glas | g=330 | aliases=Bier alkoholfrei | no=alcohol
+Wein | count:Glas | g=125 | bls=P210000 | aliases=Achterl, Viertel
+  Weißwein | count:Glas | g=125 | bls=P210000 | aliases=Grüner Veltliner, Riesling
+  Rotwein | count:Glas | g=125 | bls=P253000 | aliases=Zweigelt, Blaufränkisch | tags=histamine
+  Rosé | count:Glas | g=125 | bls=P210000 | aliases=Roséwein
+  Spritzer | count:Glas | g=250 | bls=P210000 | aliases=Gespritzter, Weißer Spritzer, Sommerspritzer | tags=carbonated | note=Halb Wein, halb Soda.
+  Sekt | count:Glas | g=100 | bls=P210000 | aliases=Prosecco, Champagner, Aperol Spritz, Hugo | tags=carbonated, histamine
+Most | count:Glas | g=250 | bls=P353100 | aliases=Apfelmost, Cider, Birnenmost
+Spirituosen | count:Glas | g=20 | bls=P712000 | aliases=Schnaps, Vodka, Gin, Whisky, Obstler, Stamperl
+  Rum | count:Glas | g=20 | bls=P741000 | tags=fructose
+  Likör | count:Glas | g=20 | aliases=Eierlikör, Jägermeister, Amaretto
+
+# ---------- Saucen, Würzen, Fette ----------
+Ketchup | size | g=15 | bls=R141100 | aliases=Tomatenketchup, Curryketchup | tags=fructans:L | note=1 EL gilt als verträglich.
+Mayonnaise | size | g=20 | bls=Q991000 | aliases=Mayo
+  Remoulade | size | g=20 | bls=Q999000 | aliases=Sauce Tartare
+Senf | size | g=10 | bls=R132000 | aliases=Estragonsenf, Kremser Senf, Dijonsenf
+Kren | size | g=10 | bls=G630100 | aliases=Meerrettich, Apfelkren | tags=spicy
+Sojasauce | size | g=15 | bls=R143000 | aliases=Sojasoße, Tamari | tags=gluten, histamine
+Pesto | size | g=30 | aliases=Pesto Genovese, Basilikumpesto | tags=fructans, fat:L
+Paradeissauce | size | g=100 | aliases=Tomatensauce, Tomatensoße, Passata, Sugo | tags=fructans, histamine
+Bratensaft | size | g=60 | aliases=Bratensoße, Bratensauce, Gravy, Natursaft | tags=fructans, fat
+Sauce Hollandaise | size | g=40 | bls=U990400 | aliases=Hollandaise, Sauce Béarnaise
+Chilisauce | size | g=15 | aliases=Sriracha, Tabasco, Scharfe Soße, Sweet Chili | tags=spicy, fructans
+Currypulver | size | g=3 | aliases=Curry, Currypaste | tags=spicy
+Paprikapulver | size | g=3 | aliases=Edelsüß, Rosenpaprika
+Pfeffer | size | g=1 | aliases=Schwarzer Pfeffer, Cayennepfeffer | tags=spicy
+Essig | size | g=10 | bls=R121000 | aliases=Essig allgemein | tags=histamine
+  Weinessig | size | g=10 | bls=R121000 | aliases=Rotweinessig, Weißweinessig
+  Balsamico | size | g=10 | bls=R125000 | aliases=Balsamicoessig, Aceto balsamico, Balsamicocreme
+  Apfelessig | size | g=10 | bls=R123100 | aliases=Apfelweinessig, Mostessig
+  Branntweinessig | size | g=10 | bls=R122000 | aliases=Tafelessig, Haushaltsessig, Essigessenz | no=histamine
+Brühe | size | g=250 | bls=X416243 | aliases=Gemüsebrühe, Suppenwürfel, Bouillon, Rindsuppe | tags=fructans | note=Fertigbrühen enthalten meist Zwiebel- und Knoblauchpulver.
+Inulin | size | g=5 | aliases=Chicorée-Faser, Ballaststoffpulver, Oligofructose | tags=fructans
+Kokosmilch | size | g=100 | bls=H154000 | aliases=Kokosnussmilch
+Speiseöl | size | g=10 | bls=Q180000 | aliases=Öl
+  Olivenöl | size | g=10 | bls=Q120000
+  Rapsöl | size | g=10 | bls=Q180000
+  Sonnenblumenöl | size | g=10 | bls=Q320000
+  Kürbiskernöl | size | g=10 | bls=Q180000 | aliases=Steirisches Kernöl, Kernöl
+  Kokosöl | size | g=10 | bls=Q550000 | aliases=Kokosfett
+Frittierfett | size | g=20 | aliases=Frittieröl | tags=fat
+Schmalz | size | g=10 | bls=Q860000 | aliases=Schweineschmalz, Grammelschmalz
+
+# ---------- Fertiges & Imbiss ----------
+Chicken Nuggets | size | g=150 | aliases=Nuggets, Chicken Wings | tags=fat, gluten, fructans
+Frühlingsrolle | count:Stück | g=70 | aliases=Spring Roll | tags=fat, gluten, fructans
+Tortillachips | size | g=50 | bls=C546000 | aliases=Maischips, Nachos (Chips)
+Tzatziki | size | g=50 | aliases=Knoblauchsauce, Joghurtsauce | tags=lactose, fructans
+
+== Gerichte
+Pizza | size | aliases=Pizza Margherita | = Weizenmehl, Paradeissauce, Mozzarella, Speiseöl
+Lasagne | size | = Nudeln, Faschiertes, Paradeissauce, Kuhmilch, Butter, Weizenmehl, Hartkäse
+Spaghetti Bolognese | size | aliases=Bolognese | = Nudeln, Faschiertes, Paradeissauce, Zwiebel, Knoblauch, Karotte
+Spaghetti Carbonara | size | aliases=Carbonara | = Nudeln, Speck, Ei, Parmesan, Schlagobers
+Käsespätzle | size | aliases=Kässpätzle | = Spätzle, Bergkäse, Zwiebel, Butter
+Wiener Schnitzel | size | aliases=Schnitzel, Paniertes Schnitzel | = Schweinefleisch, Semmelbrösel, Weizenmehl, Ei, Frittierfett
+Gulasch | size | aliases=Rindsgulasch, Saftgulasch | = Rindfleisch, Zwiebel, Paprikapulver, Brühe, Speiseöl
+Tafelspitz | size | aliases=Gekochtes Rindfleisch | = Rindfleisch, Brühe, Karotte, Stangensellerie, Lauch, Kren
+Frittatensuppe | size | aliases=Grießnockerlsuppe, Leberknödelsuppe | = Brühe, Weizenmehl, Ei, Kuhmilch
+Hühnersuppe | size | aliases=Nudelsuppe, Rindsuppe mit Nudeln | = Hendl, Brühe, Nudeln, Karotte, Stangensellerie, Lauch
+Erdäpfelsuppe | size | aliases=Kartoffelsuppe, Cremesuppe | = Erdäpfel, Lauch, Zwiebel, Karotte, Brühe, Schlagobers
+Paradeissuppe | size | aliases=Tomatensuppe | = Paradeiser, Paradeissauce, Zwiebel, Brühe, Schlagobers
+Linseneintopf | size | aliases=Linsensuppe, Dal | = Linsen, Karotte, Zwiebel, Erdäpfel, Brühe
+Erbsensuppe | size | aliases=Erbseneintopf | = Erbsen, Zwiebel, Erdäpfel, Brühe, Speck
+Bohneneintopf | size | aliases=Bohnensuppe | = Kidneybohnen, Zwiebel, Erdäpfel, Brühe, Speck
+Chili con Carne | size | = Faschiertes, Kidneybohnen, Paradeissauce, Zwiebel, Knoblauch, Chili, Mais
+Erdäpfelsalat | size | aliases=Kartoffelsalat | = Erdäpfel, Zwiebel, Mayonnaise, Essiggurkerl, Brühe
+Gemischter Salat | size | = Blattsalat, Paradeiser, Gurke, Balsamico, Speiseöl
+Currywurst | count:Stück | = Bratwurst, Ketchup, Currypulver
+Döner Kebab | count:Stück | aliases=Döner, Kebab, Dürüm | = Fladenbrot, Dönerfleisch, Blattsalat, Paradeiser, Zwiebel, Tzatziki
+Gyros | size | aliases=Souvlaki | = Schweinefleisch, Zwiebel, Tzatziki, Pommes frites
+Burger | count:Stück | aliases=Hamburger, Cheeseburger | = Semmel, Faschiertes, Junger Gouda, Ketchup, Zwiebel, Paradeiser, Blattsalat
+Hot Dog | count:Stück | = Semmel, Würstel, Ketchup, Senf, Zwiebel
+Wrap | count:Stück | aliases=Burrito | = Weizentortilla, Hendl, Blattsalat, Paradeiser, Sauerrahm
+Nachos mit Käse | size | aliases=Nachos | = Tortillachips, Schmelzkäse, Chili
+Sushi | count:Stück | aliases=Maki, Nigiri | = Reis, Fisch, Gurke, Sojasauce
+Ramen | size | aliases=Instantnudeln, Udon | = Nudeln, Brühe, Ei, Sojasauce, Frühlingszwiebel
+Asiatisches Wokgericht | size | aliases=Wok, Gebratene Nudeln, Gebratener Reis, Pad Thai | = Reis, Hendl, Paprika, Karotte, Zwiebel, Knoblauch, Sojasauce, Speiseöl
+Indisches Curry | size | aliases=Thai Curry, Tikka Masala, Korma | = Hendl, Zwiebel, Knoblauch, Currypulver, Kokosmilch, Reis
+Toast Hawaii | count:Stück | aliases=Schinken-Käse-Toast | = Toastbrot, Kochschinken, Ananas, Junger Gouda
+Belegte Semmel | count:Stück | aliases=Belegtes Brötchen, Sandwich, Wurstsemmel, Käsesemmel | = Semmel, Butter, Kochschinken, Junger Gouda
+Kaiserschmarrn | size | = Weizenmehl, Ei, Kuhmilch, Butter, Zucker, Rosinen
+Palatschinken | count:Stück | aliases=Pfannkuchen, Eierkuchen, Crêpes | = Weizenmehl, Ei, Kuhmilch
+Geröstete Erdäpfel | size | aliases=Geröstete Kartoffeln, Hash Browns | = Erdäpfel, Zwiebel, Speck, Speiseöl
+Schweinsbraten | size | aliases=Schweinebraten, Surbraten | = Schweinefleisch, Bratensaft
+Cappuccino | count:Tasse | aliases=Latte Macchiato, Melange, Milchkaffee, Flat White | = Espresso, Kuhmilch
+Erdäpfelpüree | size | aliases=Kartoffelpüree, Püree, Stampf | = Erdäpfel, Kuhmilch, Butter
+Leberkässemmel | count:Stück | aliases=Leberkäsesemmel, LKS | = Semmel, Leberkäs, Senf
+Kasnocken | size | aliases=Pinzgauer Kasnocken | = Spätzle, Graukäse, Zwiebel, Butter
+Grenadiermarsch | size | = Nudeln, Erdäpfel, Zwiebel, Speck, Speiseöl
+Krautfleckerl | size | = Eiernudeln, Weißkraut, Zwiebel, Zucker, Speiseöl
+Schinkenfleckerl | size | = Eiernudeln, Kochschinken, Ei, Sauerrahm
+Eiernockerl | size | = Spätzle, Ei, Butter, Schnittlauch
+Backhendl | size | aliases=Steirisches Backhendl | = Hendl, Semmelbrösel, Weizenmehl, Ei, Frittierfett
+Cordon bleu | size | = Schweinefleisch, Kochschinken, Emmentaler, Semmelbrösel, Weizenmehl, Ei, Frittierfett
+Faschierte Laibchen | size | aliases=Fleischlaibchen (Gericht), Fleischpflanzerl, Frikadellen | = Faschiertes, Semmel, Zwiebel, Ei, Speiseöl
+Zwiebelrostbraten | size | = Rindfleisch, Zwiebel, Weizenmehl, Bratensaft, Speiseöl
+Beuschel | size | = Rindfleisch, Zwiebel, Essig, Sauerrahm, Weizenmehl
+Krautsalat | size | = Weißkraut, Essig, Speiseöl, Speck
+Linsen mit Knödel | size | = Linsen, Semmelknödel, Speck, Zwiebel, Essig
+Spinat mit Spiegelei | size | aliases=Cremespinat mit Ei | = Spinat, Ei, Erdäpfel, Schlagobers, Knoblauch
+Gemüsecurry | size | aliases=Vegetarisches Curry | = Kichererbsen, Karfiol, Zwiebel, Knoblauch, Currypulver, Kokosmilch, Reis
+Risotto | size | aliases=Pilzrisotto | = Reis, Zwiebel, Champignons, Parmesan, Butter, Weißwein
+Müsli mit Joghurt | size | aliases=Joghurt mit Müsli | = Müsli, Joghurt, Banane
+Porridge | size | aliases=Haferbrei mit Obst | = Haferflocken, Kuhmilch, Banane, Honig
+Marillenknödel | count:Stück | aliases=Zwetschkenknödel, Topfenknödel | = Topfen, Weizenmehl, Marille, Semmelbrösel, Butter, Zucker
+Kaspressknödel | count:Stück | aliases=Kaspressknödelsuppe | = Semmel, Graukäse, Ei, Zwiebel, Speiseöl
+Steirischer Backhendlsalat | size | aliases=Backhendlsalat | = Hendl, Semmelbrösel, Ei, Blattsalat, Kürbiskernöl, Kürbiskerne

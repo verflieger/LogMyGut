@@ -108,13 +108,17 @@ Two kinds of entries:
 
 Seed data and editing:
 
-- Seeded from `app/src/main/assets/foods.de.json`. On every app start, entries whose seed key is not yet in the database are added (cheap when nothing is missing):
-  about 220 ingredients and about 40 dishes, with Austrian names and standard German aliases, `unit`, `unitLabel`, and for
-  ingredients `tags`, optional `doseTags` and `note`. Dishes list their `ingredients` by name.
-- Users can edit any ingredient (tags, dose thresholds, unit, aliases) or dish (ingredient list), create new ones,
-  and hide built-in ones. User edits are never overwritten by a later seed version. A seed update only adds new entries.
-- **Seed keys are permanent.** A seed entry's `name` is its key. Never rename an entry in the seed file once real data
-  exists, or the importer adds a duplicate. Change display names in the app instead, or add a migration that rewrites `seedKey`.
+- Seeded from `app/src/main/assets/foods.de.json`, which is **generated** from `tools/foods/foods.src.txt` by
+  `tools/foods/build_seed.py` (see 4.5). About 380 ingredients and 60 dishes, with Austrian names and standard German
+  aliases, `unit`, `unitLabel`, and for ingredients `tags`, optional `doseTags`, `parent`, `removeTags` and `note`.
+  Dishes list their `ingredients` by seed key.
+- On every app start the importer syncs the built-in foods with the seed (cheap when nothing changed):
+  missing entries are added; built-in entries the user hasn't changed get the seed's current name, aliases, note,
+  tags, parent or recipe. The unit of an existing food never changes, because logged meal items depend on it.
+- Users can edit any ingredient (tags, dose thresholds, unit, aliases, parent) or dish (ingredient list), create new ones,
+  and hide built-in ones. Editing sets `userModified`; such entries (and user-created ones) are never touched by the seed.
+- **Seed keys are permanent.** A seed entry's `key` (default: its `name`) identifies it across versions. To rename an
+  entry, change `name` and set `key` to the old name.
 
 How meals and tags relate over time:
 
@@ -209,14 +213,53 @@ A per-meal **added** ingredient gets the dish's effective size.
 Windows can be edited in settings. These defaults are approximate onset ranges from clinical literature,
 and an info page explains each tag (what it is, typical foods, which test a doctor can run).
 
+### 4.4 Food hierarchy
+
+Ingredients can have a **parent**: a more general food, e.g. Essig → Apfelessig, Balsamico, Branntweinessig, or
+Käse → Weichkäse → Camembert. At most 3 levels.
+
+- The parent is a normal ingredient and can be logged itself ("Essig" when the kind is unknown).
+- A child **inherits the parent's tags live**: changing a tag on Essig changes it for every vinegar that doesn't set
+  that tag itself.
+- A child's own tag entry replaces the inherited one (e.g. a different dose threshold). A child can also **remove**
+  an inherited tag (Branntweinessig removes histamine).
+- Search results show the parent ("Apfelessig · Essig") and, when the query matched an alias, that alias
+  ("Paradeiser" with „Tomate“).
+- The analysis stays tag-based. Later, per-food views may roll children up into their parent.
+
+### 4.5 Seed data sources
+
+- **Nutrient tags** (lactose, fructose, polyols, fat, alcohol) are computed from the **Bundeslebensmittelschlüssel
+  (BLS) 4.0** (Max Rubner-Institut 2025, DOI 10.25826/Data20251217-134202-0), free to use including for apps.
+  Only the needed rows are kept in `tools/foods/bls_subset.tsv`; the full file is not in the repository.
+- Each ingredient has a portion weight: grams of an M portion (S = ½, L = 2×) or of one piece. A tag applies from
+  the smallest amount whose content reaches the cutoff, which gives "always", "ab M", "ab L" or "ab 2 Stück":
+
+  | Tag | Cutoff per eaten amount | Basis |
+  |---|---|---|
+  | lactose | ≥ 1 g lactose | Monash cutoff (Varney et al. 2017) |
+  | fructose | ≥ 0.5 g fructose in excess of glucose | Monash uses 0.15 g; raised because composition tables aren't FODMAP measurements and small sugar differences are noise |
+  | polyols | ≥ 0.3 g sorbitol + mannitol + xylitol | Monash: 0.2 g per polyol |
+  | fat | ≥ 15 g fat | App heuristic (no accepted cutoff) |
+  | alcohol | ≥ 1 g alcohol | any alcoholic drink |
+
+  Count thresholds are computed up to 2 pieces only (2 pieces ≈ L, SPEC 4.2).
+- **Curated tags** (fructans, GOS, gluten, histamine, caffeine, spicy, carbonated) come from published Monash FODMAP
+  findings and histamine-intolerance lists. Where Monash measured a food differently than BLS suggests
+  (e.g. Heidelbeeren, Brokkoli, Stangensellerie), the curated tag wins; the build prints these conflicts.
+- The SIGHI histamine list is not used as data: it is copyrighted and members-only.
+- The BLS must be credited on the info pages (section 8).
+
 ## 5. Data model (Room)
 
 ```
 Food(id, kind: INGREDIENT|DISH, name, aliases: List<String>, unit: COUNT|SIZE, unitLabel?, note?,
      builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?,
-     searchText, lastUsedAt: Instant?)                  -- searchText = normalized "name|alias|…"; lastUsedAt for ranking
-                                                        -- seedKey = the seed entry's original name (never changes)
-FoodTag(foodId, tag, minSize: M|L?, minCount: Int?)     -- PK (foodId, tag); both null = always applies
+     searchText, lastUsedAt: Instant?, parentId?)       -- searchText = normalized "name|alias|…"; lastUsedAt for ranking
+                                                        -- seedKey = the seed entry's key (never changes)
+                                                        -- parentId: ingredients only, SPEC 4.4
+FoodTag(foodId, tag, minSize: M|L?, minCount: Int?,     -- PK (foodId, tag); both null = always applies
+        removed: Boolean)                               -- removed = cancels the tag inherited from the parent
 DishIngredient(dishId, ingredientId)                    -- the saved recipe
 Meal(id, timestamp: Instant, zoneId, eatenOut: Boolean, note?)
 MealItem(id, mealId, foodId, count: Int?, size: S|M|L?) -- foodId = ingredient or dish
@@ -290,6 +333,7 @@ The info page also notes: **don't cut out gluten before a celiac test.**
 - Note on IBS (Rome IV): recurring abdominal pain related to defecation and/or a change in stool frequency or form.
   This is why the app records pain before a bowel movement and how it changed afterwards.
 - Disclaimer.
+- Sources: credit the Bundeslebensmittelschlüssel 4.0 (Max Rubner-Institut) and Monash University FODMAP research.
 
 ## 9. Out of scope for v1
 Water/tea counter, photos, PDF doctor report, CSV export, menstrual cycle, barcode scanning,

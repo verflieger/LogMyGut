@@ -26,11 +26,13 @@ class AppContainer(private val context: Context) {
 
     val journalRepository: JournalRepository by lazy { JournalRepository(database) }
 
-    /** Adds any built-in foods missing from the database. Cheap when there is nothing to add. */
+    /** Syncs the built-in foods with the seed file (see [SeedImporter]). Cheap when nothing changed. */
     fun importSeedInBackground() {
         appScope.launch(Dispatchers.IO) {
-            val inserted = SeedImporter(database).import(SeedFile.parse(readAsset("foods.de.json")))
-            if (inserted > 0) Log.i("LogMyGut", "Seed import: added $inserted foods")
+            val result = SeedImporter(database).import(SeedFile.parse(readAsset("foods.de.json")))
+            if (result.inserted + result.updated > 0) {
+                Log.i("LogMyGut", "Seed import: added ${result.inserted}, updated ${result.updated} foods")
+            }
         }
     }
 

@@ -8,6 +8,9 @@ import at.mtr.logmygut.data.seed.toEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
+import at.mtr.logmygut.domain.MaxFoodDepth
+import at.mtr.logmygut.domain.inheritTags
+import at.mtr.logmygut.domain.matchedAlias
 import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.domain.Threshold
 import at.mtr.logmygut.domain.normalizeForSearch
@@ -37,11 +40,39 @@ class FoodRepository(db: LogMyGutDatabase, private val tagSuggester: TagSuggeste
         dao.setDishIngredients(dishId, ingredientIds)
     }
 
-    suspend fun getIngredientTags(foodId: Long): List<IngredientTag> = dao.getTags(foodId).map { it.toDomain() }
+    /** Search results with the context the picker shows: matched alias and parent food. */
+    suspend fun searchHits(query: String, kind: FoodKind? = null, limit: Int = 30): List<FoodHit> {
+        val foods = search(query, kind, limit)
+        val parentNames = dao.getFoods(foods.mapNotNull { it.parentId }.distinct()).associate { it.id to it.name }
+        val normalized = normalizeForSearch(query)
+        return foods.map { FoodHit(it, matchedAlias(it.name, it.aliases, normalized), it.parentId?.let(parentNames::get)) }
+    }
 
-    /** Tags for many ingredients at once, keyed by food id (foods without tags are absent). */
-    suspend fun getIngredientTags(foodIds: Collection<Long>): Map<Long, List<IngredientTag>> =
-        dao.getTagsFor(foodIds).groupBy({ it.foodId }, { it.toDomain() })
+    /** An ingredient's resolved tags, including those inherited from its parents. */
+    suspend fun getIngredientTags(foodId: Long): List<IngredientTag> = getIngredientTags(listOf(foodId))[foodId].orEmpty()
+
+    /**
+     * Resolved tags for many ingredients at once, keyed by food id (foods without tags are absent).
+     * Inheritance follows SPEC 4.4; depth is capped at [MaxFoodDepth] so a bad parent link can't loop.
+     */
+    suspend fun getIngredientTags(foodIds: Collection<Long>): Map<Long, List<IngredientTag>> {
+        val parentOf = mutableMapOf<Long, Long?>()
+        var pending: Collection<Long> = foodIds.toSet()
+        while (pending.isNotEmpty()) {
+            val rows = dao.getParentIds(pending)
+            rows.forEach { parentOf[it.id] = it.parentId }
+            pending = rows.mapNotNull { it.parentId }.filterNot { it in parentOf }.toSet()
+        }
+        val rowsByFood = dao.getTagsFor(parentOf.keys).groupBy { it.foodId }
+
+        val resolved = mutableMapOf<Long, List<IngredientTag>>()
+        fun resolve(id: Long, depth: Int): List<IngredientTag> = resolved[id] ?: run {
+            val parent = parentOf[id]?.takeIf { depth < MaxFoodDepth - 1 }?.let { resolve(it, depth + 1) }.orEmpty()
+            val (removed, own) = rowsByFood[id].orEmpty().partition { it.removed }
+            inheritTags(parent, own.map { it.toDomain() }, removed.map { it.tag }).also { resolved[id] = it }
+        }
+        return foodIds.associateWith { resolve(it, 0) }.filterValues { it.isNotEmpty() }
+    }
 
     suspend fun getDishIngredientIds(dishId: Long): List<Long> = dao.getDishIngredientIds(dishId)
 
@@ -90,6 +121,9 @@ class FoodRepository(db: LogMyGutDatabase, private val tagSuggester: TagSuggeste
         )
     }
 }
+
+/** A search result: [matchedAlias] is set when the query matched an alias rather than the name. */
+data class FoodHit(val food: FoodEntity, val matchedAlias: String?, val parentName: String?)
 
 internal fun FoodTagEntity.toDomain() = IngredientTag(
     tag = tag,

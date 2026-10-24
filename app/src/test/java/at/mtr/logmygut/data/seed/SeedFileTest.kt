@@ -1,6 +1,7 @@
 package at.mtr.logmygut.data.seed
 
 import at.mtr.logmygut.domain.FoodUnit
+import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.Threshold
@@ -14,19 +15,23 @@ class SeedFileTest {
     private val seed = SeedFile.parse(File("src/main/assets/foods.de.json").readText())
 
     @Test fun shippedSeedIsValid() {
-        assertTrue("expected ~220 ingredients, got ${seed.ingredients.size}", seed.ingredients.size >= 200)
-        assertTrue("expected ~40 dishes, got ${seed.dishes.size}", seed.dishes.size >= 30)
+        assertTrue("expected ~380 ingredients, got ${seed.ingredients.size}", seed.ingredients.size >= 350)
+        assertTrue("expected ~60 dishes, got ${seed.dishes.size}", seed.dishes.size >= 50)
     }
 
     @Test fun doseTagsAreParsed() {
         val ketchup = seed.ingredients.single { it.name == "Ketchup" }
-        assertEquals(
-            setOf(Tag.FRUCTOSE to Threshold.MinSize(PortionSize.L), Tag.FRUCTANS to Threshold.MinSize(PortionSize.L)),
-            ketchup.tags.map { it.tag to it.threshold }.toSet(),
-        )
+        assertEquals(listOf(Tag.FRUCTANS to Threshold.MinSize(PortionSize.L)), ketchup.tags.map { it.tag to it.threshold })
         val oatMilk = seed.ingredients.single { it.name == "Hafermilch" }
         assertEquals(FoodUnit.COUNT, oatMilk.unit)
-        assertEquals(Threshold.MinCount(2), oatMilk.tags.single().threshold)
+        assertEquals(IngredientTag(Tag.FRUCTANS, Threshold.MinCount(2)), oatMilk.tags.single { it.tag == Tag.FRUCTANS })
+        assertEquals("Pflanzendrink", oatMilk.parent)
+    }
+
+    @Test fun renamedFoodsKeepTheirSeedKey() {
+        val hardCheese = seed.ingredients.single { it.name == "Hartkäse" }
+        assertEquals("Gereifter Hartkäse", hardCheese.key)
+        assertEquals("Gereifter Hartkäse", seed.ingredients.single { it.name == "Parmesan" }.parent)
     }
 
     @Test fun rejectsUnknownDishIngredient() {
@@ -45,6 +50,47 @@ class SeedFileTest {
     @Test fun rejectsDuplicateAliases() {
         assertThrows(IllegalArgumentException::class.java) { SeedFile.parse(file(dishAliases = """["apfel"]""")) }
     }
+
+    @Test fun parsesHierarchy() {
+        val parsed = SeedFile.parse(hierarchy("""{"name": "Apfelessig", "parent": "Essig", "unit": "size", "tags": [], "removeTags": ["histamine"]}"""))
+        val child = parsed.ingredients.single { it.name == "Apfelessig" }
+        assertEquals("Essig", child.parent)
+        assertEquals(listOf(Tag.HISTAMINE), child.removedTags)
+    }
+
+    @Test fun rejectsUnknownParent() {
+        val e = assertThrows(IllegalArgumentException::class.java) {
+            SeedFile.parse(hierarchy("""{"name": "Apfelessig", "parent": "Gibtsnicht", "unit": "size", "tags": []}"""))
+        }
+        assertTrue(e.message!!.contains("Gibtsnicht"))
+    }
+
+    @Test fun rejectsTooDeepHierarchyAndCycles() {
+        val tooDeep = """
+            {"name": "A", "parent": "Essig", "unit": "size", "tags": []},
+            {"name": "B", "parent": "A", "unit": "size", "tags": []},
+            {"name": "C", "parent": "B", "unit": "size", "tags": []}
+        """
+        assertThrows(IllegalArgumentException::class.java) { SeedFile.parse(hierarchy(tooDeep)) }
+        val cycle = """
+            {"name": "A", "parent": "B", "unit": "size", "tags": []},
+            {"name": "B", "parent": "A", "unit": "size", "tags": []}
+        """
+        assertThrows(IllegalArgumentException::class.java) { SeedFile.parse(hierarchy(cycle)) }
+    }
+
+    @Test fun rejectsRemoveTagsWithoutParent() {
+        assertThrows(IllegalArgumentException::class.java) {
+            SeedFile.parse(hierarchy("""{"name": "Apfelessig", "unit": "size", "tags": [], "removeTags": ["histamine"]}"""))
+        }
+    }
+
+    /** Essig (histamine) as root, plus [more] ingredient objects. */
+    private fun hierarchy(more: String) = """
+        {"version": 1, "tags": [],
+         "ingredients": [{"name": "Essig", "unit": "size", "tags": ["histamine"]}, $more],
+         "dishes": []}
+    """.trimIndent()
 
     private fun file(
         tags: String = """["fructose"]""",

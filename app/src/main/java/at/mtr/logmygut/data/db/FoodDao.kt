@@ -22,6 +22,10 @@ interface FoodDao {
     @Query("SELECT * FROM food_tag WHERE foodId IN (:foodIds)") suspend fun getTagsFor(foodIds: Collection<Long>): List<FoodTagEntity>
     @Query("SELECT ingredientId FROM dish_ingredient WHERE dishId = :dishId") suspend fun getDishIngredientIds(dishId: Long): List<Long>
 
+    @Query("SELECT id, parentId FROM food WHERE id IN (:ids)") suspend fun getParentIds(ids: Collection<Long>): List<FoodParent>
+    @Query("UPDATE food SET parentId = :parentId WHERE id = :id") suspend fun setParent(id: Long, parentId: Long?)
+    @Query("SELECT * FROM food WHERE seedKey IS NOT NULL") suspend fun getSeededFoods(): List<FoodEntity>
+
     @Query("SELECT seedKey FROM food WHERE seedKey IS NOT NULL") suspend fun getSeedKeys(): List<String>
     @Query("SELECT id, seedKey FROM food WHERE seedKey IS NOT NULL") suspend fun getSeedKeyIds(): List<SeedKeyId>
     @Query("SELECT COUNT(*) FROM food WHERE kind = :kind") suspend fun count(kind: FoodKind): Int
@@ -60,6 +64,20 @@ interface FoodDao {
         markUserModified(dishId)
     }
 
+    /** Replaces a food's own tag rows (no userModified change; used by the seed update). */
+    @Transaction
+    suspend fun replaceTags(foodId: Long, tags: List<FoodTagEntity>) {
+        deleteTags(foodId)
+        if (tags.isNotEmpty()) insertTags(tags.map { it.copy(foodId = foodId) })
+    }
+
+    /** Replaces a dish's recipe without marking it as user-modified (used by the seed update). */
+    @Transaction
+    suspend fun replaceDishIngredients(dishId: Long, ingredientIds: List<Long>) {
+        deleteDishIngredients(dishId)
+        insertDishIngredients(ingredientIds.distinct().map { DishIngredientEntity(dishId, it) })
+    }
+
     /** Inserts a food with its tags (ingredient) or recipe (dish) atomically. */
     @Transaction
     suspend fun insertFoodWithDetails(food: FoodEntity, tags: List<FoodTagEntity>, ingredientIds: List<Long>): Long {
@@ -71,3 +89,5 @@ interface FoodDao {
 }
 
 data class SeedKeyId(val id: Long, val seedKey: String)
+
+data class FoodParent(val id: Long, val parentId: Long?)

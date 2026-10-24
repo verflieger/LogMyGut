@@ -1,0 +1,312 @@
+code	name	FAT	ALC	GLUS	FRUS	LACS	SORTL	MANTL	XYLTL	FIBLMW
+B121000	Roggenvollkornbrot	1.81	<LOD	1.1	1.37	<LOD	<LOQ	<LOD	<LOD	-
+B251000	Weizenmischbrot	1.515	0	0.18	0.42	0	0	0	0	-
+B271000	Roggenmischbrot	0.97	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	-
+B311000	Weizenbrot/Weißbrot	2.97	<LOD	0.33	0.58	<LOD	<LOQ	<LOD	<LOD	-
+B314000	Weizentoastbrot/Buttertoastbrot	3.59	<LOD	<LOD	0.8	<LOD	<LOD	<LOD	<LOD	-
+B406000	Vollkornbrötchen mit Ölsamen	5.54	0	0.2	0	0	0	0	0	-
+B511000	Weizenbrötchen	1.81	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	-
+B6A2100	Roggenvollkornknäckebrot	1.39	0	0.0424	0.0433	0	0	0	0	-
+B710500	Dinkelbrot	2.39	0	0.064	0.042	0	0	0	0	-
+B723100	Laugengebäck (Hagelsalz entfernt)	4.145	0	0.2	0.1	0	0	0	0	-
+B783012	Weizentortilla	7.85	<LOD	<LOD	<LOD	<LOD	0.009	0	0	-
+B821000	Paniermehl/Semmelbrösel/Semmelmehl	3.97	0	0.44	0.77	0	0.012	0	0	-
+B8A2000	Brötchen glutenfrei	4.2	0	2.1	0.1	0	0	0	0	-
+B8A9000	Vollkornbrot glutenfrei	6	0	0.5	0.5	0	0	0	0	-
+C118122	Quinoa tricolore, gekocht	1.67	0	0.06111	0.00993	0	0	0	0	0.05
+C119132	Bulgur (Hartweizen) gekocht	0.9	0	0.01106	0.0059	0	0	0	0	0.7
+C119232	Couscous (Hartweizen) gekocht	0.68	0	0.01164	0.00621	0	0	0	0	0.609
+C133000	Hafer Flocken	6.65	0	<LOD or <LOQ	<LOD or <LOQ	0	0	0	-	-
+C213100	Weizen Mehl, Type 812	1.38	0	0.02466	0.01383	0	0	0	TR	1.24
+C322000	Buchweizen roh	3.13	0	0.03902	0.02002	0	0	0	TR	0.14
+C332000	Hirse roh	3.13	0	0.06193	0.00802	0	0	0	TR	0.33
+C351032	Reis unpoliert, gekocht	0.917	0	0.04	0.01	0	0	0	-	-
+C352032	Reis poliert, gekocht	0.35	0	0.04	0.01	0	0	0	-	-
+C512600	Müslimischung Bircher Art (mit Trockenfrüchten und Nüssen) ungesüßt	11	0	4.7	5.3	0	0.158	0	0	-
+C514300	Knuspermüslimischung, klassisch, gesüßt, angereichert mit Vitaminen und Mineralstoffen	15.95	0	0.1	0.1	0.253	0	0	0	-
+C515000	Cornflakes gesüßt	1.75	0	0.16	0.4	<LOD	<LOQ	<LOD	<LOD	-
+C526000	Polenta (Maisgrieß mit Wasser, Fett und Salz) gekocht	6	0	0.02	0.018	0	0	0	0	-
+C532700	Reiswaffeln ungesalzen	2.42	0	<LOD	<LOD	0	0	0	TR	-
+C533000	Popcorn ungesüßt	4.4	0	0.07	0.07	0	0	0	0	-
+C546000	Tortillachips (Nachos)	21.2	<LOD	<LOD	<LOD	<LOD	0	0	0	-
+C559032	Reisnudeln gekocht	0.15	0	0.03	0	0	0	0	-	-
+C650000	Reisdrink ungesüßt	1.04	0	2.88	<LOD	0	<LOD	<LOD	<LOD	0
+C660000	Haferdrink ungesüßt	1.01	0	2.547	0.112	0	-	-	-	-
+D064000	Salzbrezeln/Salzstangen (Laugendauergebäck)	4.3	<LOD	0.16	0.14	<LOD	0.014	<LOD	0.012	-
+D083000	Sachertortenboden	23.11	0	0.15	0.00249	0.1	0	0	0	-
+D480200	Käsekuchen/Quarkkuchen (Mürbeteig)	12.1	0	0.062	0.014	1.97	0	0	0	-
+D483400	Apfelstrudel (Mürbeteig)	16.1	0.002	1.7	2.7	0.14	0.39	0	0	-
+D540400	Quarkstrudel (Strudelteig)	12.6	0	1.7	1.9	2.04	0.053	0	0	-
+D621200	Waffelkekse	13.02	0	0.046	0.0117	0.062	0	0	0	-
+D630400	Butterkekse/Butterplätzchen (Mürbeteig)	16.12	0	0.92	0.61	0.46	0.016	<LOD	0.014	-
+D650600	Lebkuchen schokoliert	11.5	0	10.33	7.82	1.98	0.05	<LOD	0.042	-
+D741600	Donut (Hefeteig) frittiert	14.8	0	0.038	0.00741	0.84	0	0	0	-
+D771600	Croissant (Hefeblätterteig/Plunderteig)	23.57	0	0.2	0	1.06	0	0	0	-
+E111100	Hühnerei roh	9	0	0.34	0	0	0	0	0	0
+E401032	Teigwaren eifrei, gekocht	0.702	0	0.042	0.083	0	-	-	-	0.327
+E432032	Eierteigwaren gekocht	0.91	0	0.075	0.075	0	-	-	-	-
+E500032	Vollkornteigwaren eifrei, gekocht	1.11	0	0.1	0.1	0	-	-	-	0.8
+E606000	Semmelknödel roh	4.99	0	0.14	0.05	1.25	0	0	0	-
+E609232	Eierteigwaren Tortellini (Fleischfüllung) getrocknet, gekocht	2.76	0	0	0	0	0	0	0	-
+E612032	Teigwaren eifrei, glutenfrei, gekocht	0.965	0	0.05	0.03	0	0	0	-	-
+F016600	Mehrfruchtsaft angereichert mit Vitaminen und Mineralstoffen	0.1	0.024	4.12	5.6	0	0.91	0	-	-
+F032600	Smoothie purpur (Früchte)	0.3	0.04	3.8	4.6	0	0.4	0	0.002	-
+F081100	Rhabarber roh	0.14	0	0.406	0.388	0	-	-	-	-
+F110100	Apfel roh	0.5	0.019	1.127	5.21	<LOD or <LOQ	0.6	<LOD	-	-
+F110600	Apfelsaft	<LOD or <LOQ	0.031	2.215	6.235	<LOD or <LOQ	1	-	-	-
+F130100	Birne roh	0.29	0.019	2.69	5.93	<LOD or <LOQ	3.08	<LOD	-	-
+F140100	Quitte roh	0.5	0	1.127	5.21	0	0.6	0	-	-
+F201100	Aprikose roh	0.13	-	1.94	0.935	0	0.8	-	-	-
+F201400	Aprikose getrocknet	0.23	<LOD	23.64	7.54	0	4.6	<LOD	0.322	-
+F202100	Nektarine roh	0.2	-	1.7	1.3	0	1.01	<LOD	-	-
+F203100	Pfirsich roh	0.11	-	2.29	2.36	0	0.86	0.17	-	-
+F211100	Süßkirsche roh	0.31	-	7.14	5.75	0	1.67	-	-	-
+F220100	Pflaume roh	0.17	-	3.53	2.19	0	2.61	-	-	-
+F220400	Pflaume getrocknet	<LOD	<LOD	25.55	11.7	0	6.57	<LOD	0.388	-
+F301100	Erdbeere roh	0.4	0	2.5	2.69	<LOD or <LOQ	0.032	0	0.028	-
+F302100	Himbeere roh	0.3	0	2.6	2.5	0	<LOD	<LOD	0.003	-
+F303100	Brombeere roh	0.2	0	3	2.4	0	4.76	<LOD	0.003	-
+F304100	Heidelbeere roh	0.6	0	3.9	5.79	<LOD or <LOQ	<LOD	<LOD	0.002	-
+F310100	Weintraube roh	0.28	-	5.18	6.48	0	0.1	-	-	-
+F321100	Johannisbeere rot, roh	0.2	0	1.8	2.35	0	0	0	0.003	-
+F401100	Preiselbeere roh	0.53	0	3.03	2.928	0	0	0	0.002	-
+F414400	Cranberries getrocknet, gezuckert	0.34	<LOD	28.7	33	<LOD	1.15	<LOD	<LOD	-
+F501100	Ananas roh	0.1	0.02	2.6	2.4	0	<LOD	<LOD	-	-
+F502100	Avocado roh	12.5	<LOD	1.37	<LOD	<LOD	<LOD	<LOD	<LOD	-
+F503100	Banane roh	0.4	0.15	4.26	3.46	<LOD or <LOQ	<LOD	<LOD	-	-
+F504400	Dattel getrocknet	0.36	<LOD	27.92	33.27	0	0.375	<LOD	<LOD	-
+F505100	Feige roh	0.5	-	5.2	4.1	0	-	-	-	-
+F505400	Feige getrocknet	1.28	<LOD	27.45	27.4	0	0.038	<LOD	<LOD	-
+F506100	Granatapfel roh	0.6	-	7.2	7.9	0	-	-	-	-
+F507100	Kaki roh	0.3	-	7.245	5.755	0	-	-	-	-
+F508100	Maracuja/Passionsfrucht, roh	0.2	-	3.64	2.81	0	-	-	-	-
+F514100	Kiwi roh	0.5	-	4.8	4.4	0	<LOD	<LOD	-	-
+F515100	Litschi roh	0.3	-	5.99	3.3	0	0.53	<LOD	-	-
+F516100	Mango roh	0.45	-	1	3	0	<LOD	<LOD	-	-
+F517100	Papaya roh	0.09	-	4.8	4.7	0	-	-	-	-
+F533100	Honigmelone roh	0.1	0	1.92	2	<LOD or <LOQ	<LOD	<LOD	-	-
+F535100	Wassermelone roh	0.4	0	1.2	2.56	0	<LOD	0.24	-	-
+F601100	Zitrone roh	0.4	0.021	1.4	1.35	0	0	0	-	-
+F603100	Orange roh	0.2	0.021	2.37	2.28	<LOD or <LOQ	<LOD	<LOD	-	-
+F603600	Orangensaft	<LOD or <LOQ	0.021	2.255	2.375	<LOD or <LOQ	-	-	-	-
+F604100	Grapefruit roh	0.15	0.021	2.1	1.7	0	<LOD	<LOD	-	-
+F606100	Mandarine roh	0.3	0.021	1.7	1.3	0	0	0	-	-
+F840100	Rosine/Sultanine (Weinbeere getrocknet)	1	0	28.2	32.1	0	0.892	0	0	-
+G012902	Kapern gesäuert, abgetropft	0.42	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	-
+G061000	Basilikum roh	0.64	0	0.02	0.02	0	-	-	-	-
+G081100	Schnittlauch roh	0.74	0	0.88	0.48	0	<LOD	<LOD	-	-
+G102100	Endivie/Escariol, roh	0.2	0	0.45	0.23	0	-	-	-	-
+G103100	Eisbergsalat roh	0.2	0	0.67	0.91	0	-	-	-	-
+G104100	Feldsalat/Rapunzel, roh	0.36	0	0.391	0.228	0	-	-	-	-
+G105100	Kopfsalat roh	0.22	0	0.82	0.8	0	-	-	-	-
+G106100	Radicchio roh	0.25	0	0.77	0.64	0	<LOD	<LOD	-	-
+G130100	Rucola roh	0.4	0	<LOD or <LOQ	<LOD or <LOQ	<LOD or <LOQ	-	-	-	-
+G211100	Spinat roh	0.3	0	0.14	0.22	<LOD or <LOQ	<LOD	<LOD	-	-
+G220100	Bleichsellerie roh	0.1	0	1	0.4	0	-	0.11	-	-
+G230100	Mangold roh	0.28	0	0.21	0.27	0	0	0	-	-
+G311100	Blumenkohl roh	0.28	0	0.85	0.97	<LOD or <LOQ	<LOD	2.96	0.026	-
+G312100	Broccoli roh	0.5967	0	0.55	0.62	<LOD or <LOQ	0.4	<LOD	-	-
+G321100	Chinakohl roh	0.2	0	0.676	0.526	0	0.14	0	-	-
+G322100	Grünkohl roh	0.67	0	0.9338	1.1592	0	0.19	0	-	-
+G331100	Kohlrabi roh	0.16	0	1.385	1.233	0	0.14	0	-	-
+G332100	Rosenkohl roh	0.34	0	0.41	0.06	0	0.19	<LOD	-	-
+G341100	Rotkohl roh	0.18	0	1.58	1.32	0	-	-	-	-
+G342100	Weißkohl roh	0.19	0	2.33	1.87	<LOD or <LOQ	0.14	<LOD	-	-
+G343100	Wirsing roh	0.32	0	1.8	0.97	0	0.13	<LOD	-	-
+G345902	Sauerkraut Konserve, abgetropft	0.41	0.32	1.62	0.27	<LOD	<LOD	0.123	<LOD	-
+G410100	Artischocke roh	0.12	0	2.19	0.18	0	<LOD	<LOD	-	-
+G430100	Gemüsefenchel roh	0.2	0	2.25	0.67	0	0.14	0.32	-	-
+G450100	Spargel roh	0.156	0	1.65	1.89	0	<LOD	0.09	-	-
+G470100	Porree/Lauch, roh	0.25	0	1.6	2	0	-	-	-	-
+G480100	Speisezwiebel roh	0.15	0	2.7	1.81	<LOD or <LOQ	<LOD	<LOD	-	-
+G482100	Frühlingszwiebel/Lauchzwiebel, roh	0.19	0	1.2	1.4	0	-	-	-	-
+G485100	Schalotte roh	0.1	0	0.8	0.9	0	0	0	-	-
+G490100	Knoblauch roh	0.42	0	1.14	0.66	0	<LOD	<LOD	-	24.2
+G510100	Aubergine roh	0.18	0	1.64	0.84	0	0.11	-	-	-
+G520100	Gurke roh	0.2	0	1.07	0.89	<LOD or <LOQ	<LOD	<LOD	-	-
+G520802	Gurke gesäuert (Gewürzgurke) abgetropft	<LOD	<LOQ	1.64	1.45	<LOD	<LOD	0.028	<LOD	-
+G530100	Okra roh	0.2	0	1.47	0.88	0	<LOD	<LOD	-	-
+G543100	Gemüsepaprika rot, roh	0.2	0	3.33	2.72	<LOD or <LOQ	<LOD	<LOD	-	-
+G553100	Pfefferschote grün, roh	0.2	0	4	2.37	0	0.37	0	-	-
+G554100	Pfefferschote rot, roh	0.44	0	3.33	2.72	0	0	0	-	-
+G560400	Tomate getrocknet	1.412	0	19.25	22.2	0	0	0	-	-
+G561100	Tomate roh	0.11	0	1.5	1.73	<LOD or <LOQ	<LOD	<LOD	-	-
+G570100	Zuckermais roh	1.23	0	0.79	0.18	0	0.45	<LOD	-	-
+G581000	Kürbis Hokkaido (C. maxima) roh	0.2	0	1.37	1.4	0	-	-	0.008	-
+G582100	Zucchini roh	0.287	0	1	1	0	<LOD	<LOD	-	-
+G613100	Rote Rübe/Rote Bete, roh	0.1	0	0.4	0.14	0	<LOD	<LOD	-	-
+G620100	Karotte/Möhre, roh	0.4	0	0.77	0.75	<LOD or <LOQ	<LOD	<LOD	-	-
+G630100	Meerrettich roh	0.3	0	1.4	0.13	0	-	-	-	-
+G640100	Pastinake roh	0.43	0	0.245	0.256	0	-	-	-	-
+G660100	Knollensellerie roh	0.33	0	0.3	0.1	0	0.22	0	-	-
+G670100	Wurzelpetersilie roh	0.47	0	0.56	0.66	0	-	0.82	-	-
+G680100	Rettich roh	0.15	0	1.218	0.621	0	0.14	0	-	-
+G691100	Radieschen roh	0.14	0	1.294	0.717	0	0.14	0	-	-
+G750100	Sojabohne unreif (Edamame) roh	6.8	0	0.1	0.3	0	-	-	-	-
+G760100	Erbse grün, roh	0.48	0	0.088	0.065	0	-	-	-	-
+H110600	Erdnuss geröstet	49.7	0	0	0	0	-	-	-	-
+H120100	Walnuss	70.6	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	-
+H130100	Haselnuss	63.3	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	-
+H154000	Kokosmilch/Kokosnussmilch	21.9	0	0	0	0	0	0	0	-
+H170100	Cashewkern	47.1	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	-
+H180100	Paranuss	68.1	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	-
+H190600	Macadamianuss geröstet ohne Fett	76.1	0	0.07	0.07	0	0	0	0	-
+H210100	Mandel süß	46.6	0	0.199	0.1129	0	0	0	0	-
+H250600	Pistazie geröstet ohne Fett	49.3	0	0.12	0.44	<LOD	0.022	<LOD	<LOD	-
+H310100	Kürbiskern	46.34	0	0.12	0.1	0	-	-	-	-
+H320100	Pinienkern	61.9	0	0.1	0.1	0	0	0	0	0.7
+H410100	Leinsamen	36.5	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	1.105
+H420100	Sesam	50.4	0	-	-	0	-	-	-	-
+H480100	Chia-Samen	32.79	0	0.03649	0.02581	0	0	0	0	1.96
+H510802	Oliven grün, gesäuert, abgetropft	13.55	-	-	-	-	-	-	-	-
+H610100	Bambussprossen roh	0.3	0	0.35	0.41	0	-	-	-	-
+H650100	Mungbohnensprossen/Mungbohnenkeimlinge, roh	0.3	0	0.1	0.2	0	-	-	-	-
+H720902	Kichererbse reif, Konserve, abgetropft	2.7	0	0.47	0.1	0	0	0	0	0
+H730132	Linse reif, gekocht	0.7	0	<LOQ	<LOQ	0	-	-	-	-
+H742100	Kidneybohne reif	0.83	0	0.2	0.1	0	-	-	-	-
+H800000	Mandeldrink ungesüßt	2.159	0	0.003	0.002	0	-	-	-	-
+H841100	Sojadrink ungesüßt	1.297	<LOD	0.015	0.008	<LOD	-	-	-	-
+H861000	Tofu	5.63	<LOD	<LOD	<LOD	<LOD	-	-	-	-
+H861100	Seidentofu	2.9	0	0	<LOD or <LOQ	0	-	-	-	-
+H880200	Erdnussbutter/Erdnusscreme	47.78	0	0.86	<LOD	0	<LOD	<LOD	<LOD	-
+H960000	Hummus/Kichererbsenmus	28.5	0	0.3	0.1	0	0	0	0	-
+K110132	Kartoffel geschält, gekocht	0.1	0	0.23	0.205	<LOD or <LOQ	-	-	-	-
+K130492	Pommes frites tiefgefroren, frittiert	9.04	0	<LOD	0.06	0	TR	TR	TR	-
+K270000	Gnocchi roh	0.61	0	0.122	0.107	0	0	0	0	-
+K280100	Kartoffelchips/Stapelchips, diverse Sorten	34.3	<LOD	0.85	<LOD	0.16	<LOD	<LOD	<LOD	-
+K391200	Kartoffelrösti tiefgefroren	8.557	0	1.3	0.57	0	0	0	0	-
+K420100	Batate/Süßkartoffel, roh	0.6	0	1.07	0.15	0	<LOD	0.27	-	-
+K701100	Champignon roh	0.274	0	0.2	0.02	0	0.11	2.63	-	-
+K713100	Pfifferling roh	0.271	0	0.091	0.07	0	-	0.39	-	-
+K718100	Steinpilz roh	0.4	0	0.27	0.26	0	0.11	2.63	-	-
+K740100	Austernpilz roh	0.22	0	1.11	0	0	-	0.16	-	-
+M012200	Feta mind. 45 % Fett i. Tr.	24.09	<LOD	<LOD	<LOD	0	0	0	0	0
+M021000	Ziegenmilch mind. 3 % Fett	3.92	0	0	0	4.2	0	0	0	0
+M032100	Mozzarella mind. 45 % Fett i. Tr.	20.99	<LOD	<LOD	<LOD	<LOD	0	0	0	0
+M111300	Vollmilch frisch, 3,5 % Fett, pasteurisiert	3.49	<LOD	<LOD	<LOD	3.89	<LOD	<LOD	<LOD	0
+M114300	Vollmilch 3,5 % Fett, laktosefrei, pasteurisiert	3.49	0	2.05	0	0.05	0	0	0	0
+M130300	Kefir mind. 3,5 % Fett	3.5	0.0012	0	0	3.34	0	0	0	0
+M141300	Joghurt mild, mind. 3,5 % Fett	3.46	<LOD	<LOD	<LOD	3.34	<LOD	<LOD	<LOD	0
+M141500	Sahnejoghurt mind. 10 % Fett	10	0	0	0	3.7	0	0	0	0
+M150000	Buttermilch	0.56	<LOD	<LOD	<LOD	4.73	<LOD	<LOD	<LOD	0
+M171500	Kaffeesahne mind. 10 % Fett	10.5	0	0	0	4.05	0	0	0	0
+M172900	Sauerrahm/Creme fraiche, 40 % Fett	42	0	0	0	2	0	0	0	0
+M173800	Schlagsahne mind. 30 % Fett	31.7	0	0	0	3.27	0	0	0	0
+M176800	Sauerrahm/Creme fraiche, 30 % Fett	27.03	<LOD	<LOD	<LOD	2.55	0	0	0	0
+M1E3300	Joghurt mind. 3,5 % Fett, laktosefrei	3.46	0	1.76	0	0.05	0	0	0	0
+M241300	Joghurt mild, max. 3,8 % Fett, mit Fruchtzubereitung, gesüßt	2.96	<LOD	1.14	1	3.17	0.044	<LOD	0.036	-
+M300600	Hartkäse mind. 45 % Fett i. Tr.	29.15	0	0	0	0	0	0	0	0
+M302600	Bergkäse mind. 45 % Fett i. Tr.	30.805	0	0	0	0	0	0	0	0
+M304600	Emmentaler mind. 45 % Fett i. Tr.	29.15	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	0
+M306400	Parmesan mind. 30 % Fett i. Tr.	27.43	0	0	0	0.056	0	0	0	0
+M307700	Raclettekäse mind. 45 % Fett i. Tr.	27.5	0	<LOD or <LOQ	0	<LOD or <LOQ	0	0	0	0
+M400600	Schnittkäse mind. 45 % Fett i. Tr.	26.04	0	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	0
+M401600	Edamer mind. 45 % Fett i. Tr.	28.3	0	0	0	0	0	0	0	0
+M402600	Gouda 48 % Fett i. Tr.	31.58	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	0
+M403700	Tilsiter mind. 50 % Fett i. Tr.	29.6	0	0	0	0	0	0	0	0
+M501600	Butterkäse mind. 45 % Fett i. Tr.	23.5	0	0	0	0.003	0.01	0	0	0
+M524500	Halloumi Grillkäse	25.06	0	0	0	0	0.01	0	0	0
+M5B1600	Gorgonzola mind. 48 % Fett i. Tr.	28.06	<LOD	<LOD	<LOD	<LOD	0	0	0	0
+M601800	Brie mind. 60 % Fett i. Tr.	29.7	0	<LOD	<LOD	<LOD	0.01	<LOD	<LOD	0
+M602600	Camembert mind. 45 % Fett i. Tr.	19.82	0	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	0
+M603500	Limburger mind. 40 % Fett i. Tr.	18.22	0	<LOD	<LOD	<LOD	0.01	<LOD	<LOQ	0
+M710100	Skyr, Frischkäse < 10 % Fett i. Tr.	0.84	0	<LOD	<LOD	3.14	<LOD	<LOD	<LOD	-
+M710800	Frischkäsezubereitung Natur, mind. 60 % Fett i. Tr.	23.25	0	<LOD	<LOD	3.69	<LOD	<LOD	<LOD	0
+M711100	Körniger Frischkäse < 10 % Fett i. Tr.	1.2	0	0	0	3	0	0	0	0
+M713100	Speisequark Magerstufe, Magerquark < 10 % Fett i. Tr.	0.18	<LOD	<LOD	<LOD	3.34	<LOD	<LOD	<LOD	0
+M730100	Sauermilchkäse < 10 % Fett i. Tr.	0.473	0	0	0	0	0	0	0	0
+M741600	Ricotta, Molkeneiweißkäse, mind. 45 % Fett i. Tr.	12.3	<LOD	<LOD	<LOD	3.43	0	0	0	0
+M7A1600	Frischkäse aus Ziegenmilch, Natur, mind. 45 % Fett i. Tr.	16.42	0	<LOD	<LOD	1.74	<LOD	<LOD	<LOD	0
+M7A6800	Mascarpone mind. 80 % Fett i. Tr.	40.33	<LOD	<LOD	<LOD	3.38	0	0	0	0
+M810600	Schmelzkäsezubereitung 45 - 52 % Fett i. Tr.	23.7	<LOD	<LOD	<LOD	5.18	<LOD	<LOD	<LOD	0
+N019000	Eistee mit Zitronen-/Pfirsichgeschmack, gesüßt	<LOD	<LOD	1.3	1.28	<LOD	<LOD	<LOD	<LOD	0
+N314000	Limonade chininhaltig	0	0.038	3.18	3.22	0	0	TR	TR	0
+N330000	Colagetränk koffeinhaltig	0	0.002	2.81	3.04	0	TR	TR	TR	0
+N410100	Kaffee (Getränk)	0	0	0	0	0	0	0	0	-
+N411100	Espresso (Getränk)	0	0	<LOD or <LOQ	<LOD or <LOQ	0	0	0	0	-
+N610100	Grüntee (Getränk)	0	0	<LOD or <LOQ	<LOD or <LOQ	0	TR	TR	TR	0
+N630000	Schwarztee (Getränk)	0	0	<LOD or <LOQ	<LOD or <LOQ	0	TR	TR	TR	0
+N710000	Früchtetee (Getränk)	0	0	0	0	0	TR	TR	TR	0
+N721000	Pfefferminztee (Getränk)	0	0	0	0	0	0	0	0	0
+P150000	Weizenbier kristallklar	TR	4.0548	<LOD	0.012	0	0.002	TR	TR	0
+P163000	Pilsner Bier	<LOD or <LOQ	3.8796	0.053	0.025	0	TR	TR	TR	0
+P192000	Radler (Pilsner Bier mit Zitronenlimonade)	0	1.941	0.426	0.388	0	0	0	0	-
+P210000	Weißwein trocken	<LOD or <LOQ	8.68	0.18	0.14	0	<LOQ	<LOD	<LOD	0
+P253000	Rotwein halbtrocken	TR	10.79	0.8	0.94	0	0.028	<LOD	<LOD	0
+P353100	Apfelwein	0	3.8	1.1	0.8	0	-	-	-	0
+P712000	Wodka	0	32.1	-	-	0	-	-	-	0
+P741000	Rum 37,5/40 % vol	0	30.6	-	-	0	-	-	-	0
+Q120000	Olivenöl	99.9	0	0	0	0	0	0	0	0
+Q180000	Rapsöl/Rüböl	100	0	0	0	0	0	0	0	0
+Q320000	Sonnenblumenöl	100	0	0	0	0	0	0	0	0
+Q400000	Pflanzenmargarine Vollfett, angereichert mit Vitaminen	79.6	0	TR	TR	0.163578	TR	TR	TR	0
+Q550000	Kokosöl	100	0	TR	TR	0	0	0	0	0
+Q611000	Butter mild gesäuert	82.2	0	0	0	0.571	0	0	0	0
+Q683000	Butterschmalz	99.5	0	0	0	0	0	0	0	0
+Q860000	Schweinefett/Schweineschmalz	100	0	0	0	0	0	0	0	0
+Q991000	Mayonnaise (Fertigprodukt)	81.2	0	0.3	0.4	0	0.004	0	0	-
+Q999000	Remoulade (Fertigprodukt)	60.004	0.01	0.11	0.09	0	0	0.002	0	-
+R121000	Weinessig	0	0.103	<LOD or <LOQ	<LOD or <LOQ	0	-	-	-	0
+R122000	Branntweinessig	0	0.084	0	0	0	-	-	-	0
+R123100	Apfelessig	0	0.097	0.017	0.13	0	-	-	-	0
+R125000	Balsamicoessig	<LOD	0.086	9.54	10.5	<LOD	-	-	-	0
+R132000	Senf mittelscharf	6.96	<LOD	1.08	0.57	-	<LOD	<LOD	<LOD	-
+R141100	Tomatenketchup	0.1	<LOD	4.51	5.59	<LOD	<LOD	<LOD	<LOD	-
+R143000	Sojasauce/Sojasoße	0.88	1.02	0.84	0.2	-	0.023	<LOD	0.019	-
+R211200	Ingwer/Ingwerwurzel, roh	0.75	0	0.45	0.08	0	<LOD	<LOD	-	-
+S111000	Zucker weiß (Raffinadezucker/Weißzucker)	0	0	<LOD or <LOQ	<LOD or <LOQ	0	-	-	-	0
+S120000	Honig	0	0.004	29.723	38.267	0	-	-	-	0
+S132000	Konfitüre extra	0.2	0.2	1.3	1.5	0	0.016	0	0.014	-
+S145000	Nuss-Nougat-Creme	30.55	<LOD	<LOD	<LOD	4.19	<LOQ	<LOD	<LOD	-
+S151100	Ahornsirup	0.06	0	0.65	0.34	0	-	-	-	-
+S162000	Sorbit Pulver (E 420)	0	0	-	-	0	98	0.5	-	0
+S220000	Fruchteis	0.149	0	5.4	0.804	0	0.01	0	0.009	-
+S241000	Vanilleeis	10.16	0	5.22	1.56	3.05	<LOD	<LOD	<LOD	-
+S361000	Fruchtgummi (Gummibonbon)	0.3	0	9.2	4.35	0.0333	0.01	0	0.009	-
+S530000	Milchschokolade	31.34	0	<LOD	<LOD	9.633	TR	TR	TR	-
+S539900	Vollmilchschokolade	35.13	0	<LOD	<LOD	9.626	TR	TR	TR	-
+S570000	Bitterschokolade	41.33	0	<LOD	<LOD	<LOD	TR	TR	TR	-
+S580000	Schokolade weiß	33.44	0	<LOD	<LOD	13.583	TR	TR	TR	-
+S830000	Müsli-Riegel	15.4	0	0.61	0.4	0.002	0.002	0	0	-
+T105100	Sardine roh	8.15	0	0	0	0	0	0	0	0
+T121902	Thunfisch im eigenen Saft, Konserve, abgetropft	0.41	<LOD	0	0	0	0	0	0	0
+T207100	Köhler/Seelachs, roh	2.39	<LOD	0	0	0	0	0	0	0
+T410100	Lachs roh	11.2	<LOD	0	0	0	0	0	0	0
+T410600	Lachs geräuchert (Räucherlachs)	9.2	<LOD	0.16	<LOD	<LOD	<LOD	<LOD	<LOD	0
+T501100	Karpfen roh	5.18	0	0	0	0	0	0	0	0
+T603100	Zander roh	0.66	0	0	0	0	0	0	0	0
+T753100	Garnele/Granat/Krabbe, roh	1.44	0	0	0	0	0	0	0	0
+T811100	Matjesfilet (Heringsfilet) nordische Art	12.6	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	0
+T930100	Fischstäbchen (Alaska-Seelachs) paniert, tiefgefroren	8.21	0	0.08	0.14	0	0.002	0	0	-
+U050100	Rind/Schwein, Hackfleisch gemischt, roh	17.83	0	0	0	0	0	0	0	-
+U284100	Rind Hüfte, roh	2.35	0	0	0	0	0	0	0	0
+U687000	Schwein Oberschale (ohne Deckel) roh	2.51	0	0	0	0	0	0	0	0
+U990400	Sauce Hollandaise, Konserve	7.24	0	0.021	0	0.035	0	0	0	-
+V242100	Wildkaninchen Fleisch, roh	2.32	0	0	0	0	0	0	0	0
+V486100	Pute Brust, ohne Haut, roh	0.99	0	0	0	0	0	0	0	0
+V4A6100	Hähnchen Brust, ohne Haut, roh	2.42	0	0	0	0	0	0	0	0
+W149300	Salami (Schwein)	30.9	<LOD	0	0	0	0	0	0	0
+W211200	Wiener Würstchen	26.15	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	<LOD	0
+W221100	Bratwurst-Grundbrät	24.1	0	0	0	0	0	0	0	-
+W231100	Lyoner/Lyoner Wurst	25.5	<LOD	0.24	<LOD	<LOD	<LOQ	<LOD	<LOD	0
+W255300	Käsekrainer/Käsewürstchen	14.17	0	0	0	0	0	0	0	-
+W256100	Leberkäse	27.4	0	0	0	0	0	0	0	-
+W331000	Mettwurst gekocht	27.42	<LOD	0.14	<LOD	<LOD	<LOQ	<LOD	<LOD	0
+W343000	Blutwurst-Grundmasse	7.73	0	0.1	0.07	0	0	0	0	-
+W415000	Schwein Frühstücksspeck, Rohpökelware, geräuchert	26.22	0	0	0	0	0	0	0	-
+W424000	Schwein Kochschinken, Kochpökelware	3.7	0	0.74	0	0	0	0	0	0
+W441000	Parmaschinken	21.8	<LOD	0.13	0	0	0	0	0	0
+W510000	Kasseler, Rohpökelware, geräuchert	2.17	<LOD	0	0	0	0	0	0	0
+W880100	Leberwurst Konserve	33.15	0	1.228	0.096	0	0.008	0.01	0	0
+X416243	Gemüsebrühe	0.1	0	0.13	0.03	0	-	-	-	0
+X571453	Weiße Bohnen gekocht, in Tomatensauce (aus Tomaten Konserve)	2.1	0	0.33	0.33	0	0	0	0	-
+X5A8000	Grüne Bohnen gekocht	0.232	0	0.91	1.17	0	0.16	0.11	0	-
+X651063	Bratkartoffeln aus rohen Kartoffeln, mit Zwiebeln	12.697	0	0.628	0.503	0	0	0	0	-
+X711512	Eier-Frischteigwaren Spätzle, selbstgemacht, roh	3.93	0	0.112	0.00737	0	0	0	0	-
+X810413	Milchreis gesüßt, mit Milch 3,5 % Fett und Rosinen, aufgezogen, gebacken	4.3	0	1.3	1.4	3.42	0.039	0	0	-
+X951113	Grießbrei einfach, gesüßt	3.39	0	0.00209	0.00101	3.69	0	0	0	-
+Y384112	Gyros (Schweinefleisch) gebraten	14.48	0	0.25	0.17	0	0	0	0	-
+Y771510	Kräuterquark (aus Magerquark)	2.7	0	0.005	0.003	3.3	0	0	0	-
+Y862143	Vanilleflammeri/Vanillepudding, mit Eigelb	5.26	0	0.013	0	4.03	0	0	0	-
+Y864112	Apfelmus ungesüßt	0.436	0.005	0.983	4.544	0	0.5	0	0	-
+Y9A1050	Falafel (Kichererbsenbällchen) frittiert	8	0	0.31	0.25	0	0	0	0	-

@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import at.mtr.logmygut.data.FoodHit
 import at.mtr.logmygut.data.FoodRepository
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.db.FoodEntity
@@ -61,7 +62,7 @@ class MealEditViewModel(
 
     var query by mutableStateOf("")
         private set
-    var results by mutableStateOf<List<FoodEntity>>(emptyList())
+    var results by mutableStateOf<List<FoodHit>>(emptyList())
         private set
 
     val isEdit get() = mealId != null
@@ -96,11 +97,11 @@ class MealEditViewModel(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(150) // debounce typing
-            results = foods.search(value, limit = 12)
+            results = foods.searchHits(value, limit = 12)
         }
     }
 
-    suspend fun searchIngredients(text: String): List<FoodEntity> = foods.search(text, FoodKind.INGREDIENT, limit = 8)
+    suspend fun searchIngredients(text: String): List<FoodHit> = foods.searchHits(text, FoodKind.INGREDIENT, limit = 8)
 
     fun suggestTags(name: String): Set<Tag> = foods.suggestTags(name)
 

@@ -42,3 +42,17 @@ data class IngredientTag(val tag: Tag, val threshold: Threshold? = null)
  */
 fun effectiveTags(tags: Collection<IngredientTag>, amount: Amount): Set<Tag> =
     tags.filter { it.threshold?.isReachedBy(amount) ?: true }.mapTo(mutableSetOf()) { it.tag }
+
+/** Maximum depth of the food hierarchy (SPEC 4.4): a food, its parent and grandparent. */
+const val MaxFoodDepth = 3
+
+/**
+ * Tags of a food in the hierarchy (SPEC 4.4): the parent's resolved tags, with the food's own
+ * entries replacing inherited ones of the same tag, and [removed] tags dropped.
+ */
+fun inheritTags(parent: List<IngredientTag>, own: List<IngredientTag>, removed: Collection<Tag>): List<IngredientTag> {
+    val byTag = parent.associateByTo(linkedMapOf()) { it.tag }
+    removed.forEach { byTag.remove(it) }
+    own.forEach { byTag[it.tag] = it }
+    return byTag.values.toList()
+}

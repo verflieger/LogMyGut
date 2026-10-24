@@ -19,7 +19,7 @@ import androidx.room.TypeConverters
         MedicationIntakeEntity::class,
         DailyCheckInEntity::class,
     ],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)

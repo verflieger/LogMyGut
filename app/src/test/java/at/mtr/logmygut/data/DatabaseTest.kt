@@ -8,6 +8,7 @@ import at.mtr.logmygut.data.db.MealEntity
 import at.mtr.logmygut.data.db.MealItemEntity
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
+import at.mtr.logmygut.data.seed.toEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
@@ -45,8 +46,8 @@ class DatabaseTest {
 
     @Test fun seedImportInsertsEverythingOnce() = runTest {
         val importer = SeedImporter(db)
-        assertEquals(seed.ingredients.size + seed.dishes.size, importer.import(seed))
-        assertEquals(0, importer.import(seed))
+        assertEquals(SeedImporter.Result(seed.ingredients.size + seed.dishes.size, 0), importer.import(seed))
+        assertEquals(SeedImporter.Result(0, 0), importer.import(seed))
         assertEquals(seed.ingredients.size, db.foodDao().count(FoodKind.INGREDIENT))
         assertEquals(seed.dishes.size, db.foodDao().count(FoodKind.DISH))
     }
@@ -68,10 +69,7 @@ class DatabaseTest {
         assertEquals(setOf("Bratwurst", "Ketchup", "Currypulver"), ingredientNames)
 
         val ketchup = foods.search("ketchup").first { it.kind == FoodKind.INGREDIENT }
-        assertEquals(
-            setOf(IngredientTag(Tag.FRUCTOSE, Threshold.MinSize(PortionSize.L)), IngredientTag(Tag.FRUCTANS, Threshold.MinSize(PortionSize.L))),
-            foods.getIngredientTags(ketchup.id).toSet(),
-        )
+        assertEquals(listOf(IngredientTag(Tag.FRUCTANS, Threshold.MinSize(PortionSize.L))), foods.getIngredientTags(ketchup.id))
     }
 
     @Test fun searchIsUmlautInsensitiveAndFindsGermanAliases() = runTest {
@@ -125,6 +123,67 @@ class DatabaseTest {
         journal.saveMeal(meal().copy(id = id), listOf(MealItemEntity(mealId = id, foodId = bread, count = 3)), emptyMap())
         assertEquals(listOf(3), journal.getMealItems(listOf(id)).map { it.count })
     }
+
+    @Test fun childInheritsOverridesAndRemovesParentTags() = runTest {
+        SeedImporter(db).import(SeedFile.parse(vinegarSeed))
+        suspend fun tags(name: String) = foods.getIngredientTags(foods.search(name).first { it.name == name }.id).toSet()
+
+        assertEquals(setOf(IngredientTag(Tag.HISTAMINE)), tags("Essig"))
+        assertEquals(setOf(IngredientTag(Tag.HISTAMINE), IngredientTag(Tag.FRUCTOSE, Threshold.MinSize(PortionSize.L))), tags("Balsamico"))
+        assertEquals(emptySet<IngredientTag>(), tags("Branntweinessig"))
+        // Grandchild: inherits through Balsamico, overrides the fructose threshold.
+        assertEquals(setOf(IngredientTag(Tag.HISTAMINE), IngredientTag(Tag.FRUCTOSE)), tags("Balsamicocreme"))
+    }
+
+    @Test fun parentTagChangeReachesChildren() = runTest {
+        SeedImporter(db).import(SeedFile.parse(vinegarSeed))
+        val essig = foods.search("essig").first { it.name == "Essig" }
+        db.foodDao().replaceTags(essig.id, listOf(IngredientTag(Tag.SPICY).toEntity()))
+
+        val balsamico = foods.search("balsamico").first { it.name == "Balsamico" }
+        assertEquals(setOf(Tag.SPICY, Tag.FRUCTOSE), foods.getIngredientTags(balsamico.id).map { it.tag }.toSet())
+    }
+
+    @Test fun seedUpdateSyncsUnmodifiedBuiltInsOnly() = runTest {
+        val importer = SeedImporter(db)
+        importer.import(SeedFile.parse(vinegarSeed))
+        val brandy = foods.search("branntweinessig").single()
+        db.foodDao().updateFood(brandy.copy(name = "Mein Essig", userModified = true))
+
+        // New version: Balsamico gets an alias and loses its parent; Branntweinessig would get one too.
+        val v2 = vinegarSeed
+            .replace(""""parent": "Essig", "aliases": ["Aceto balsamico"]""", """"aliases": ["Aceto"]""")
+            .replace(""""name": "Branntweinessig",""", """"name": "Branntweinessig", "aliases": ["Tafelessig"],""")
+        val result = importer.import(SeedFile.parse(v2))
+
+        assertEquals(SeedImporter.Result(inserted = 0, updated = 1), result)
+        val balsamico = foods.search("aceto").single()
+        assertEquals(null, balsamico.parentId)
+        assertEquals(setOf(Tag.FRUCTOSE), foods.getIngredientTags(balsamico.id).map { it.tag }.toSet())
+        // Balsamicocreme no longer inherits histamine via Essig.
+        val creme = foods.search("balsamicocreme").single()
+        assertEquals(setOf(Tag.FRUCTOSE), foods.getIngredientTags(creme.id).map { it.tag }.toSet())
+        assertEquals("Mein Essig", foods.getFood(brandy.id)!!.name)
+        assertEquals(emptyList<String>(), foods.getFood(brandy.id)!!.aliases)
+    }
+
+    @Test fun searchHitsExplainAliasMatchesAndParents() = runTest {
+        SeedImporter(db).import(SeedFile.parse(vinegarSeed))
+        val hit = foods.searchHits("aceto").single()
+        assertEquals("Balsamico", hit.food.name)
+        assertEquals("Aceto balsamico", hit.matchedAlias)
+        assertEquals("Essig", hit.parentName)
+        assertEquals(null, foods.searchHits("balsam").first { it.food.name == "Balsamico" }.matchedAlias)
+    }
+
+    private val vinegarSeed = """
+        {"version": 1, "tags": [], "dishes": [], "ingredients": [
+          {"name": "Essig", "unit": "size", "tags": ["histamine"]},
+          {"name": "Balsamico", "parent": "Essig", "aliases": ["Aceto balsamico"], "unit": "size", "tags": [], "doseTags": {"fructose": "L"}},
+          {"name": "Balsamicocreme", "parent": "Balsamico", "unit": "size", "tags": ["fructose"]},
+          {"name": "Branntweinessig", "parent": "Essig", "unit": "size", "tags": [], "removeTags": ["histamine"]}
+        ]}
+    """.trimIndent()
 
     private fun meal() = MealEntity(timestamp = Instant.parse("2026-10-24T10:30:00Z"), zoneId = "Europe/Vienna")
 }

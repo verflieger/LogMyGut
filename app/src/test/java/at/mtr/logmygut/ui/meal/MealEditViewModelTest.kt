@@ -51,12 +51,12 @@ class MealEditViewModelTest {
 
         val item = vm.items.single()
         assertEquals(Amount.Count(1), item.amount)
-        // Ketchup's fructose only counts from L, i.e. 2+ pieces of a count dish.
-        assertFalse(Tag.FRUCTOSE in item.effectiveTags)
+        // Ketchup's fructans only count from L, i.e. 2+ pieces of a count dish.
+        assertFalse(Tag.FRUCTANS in item.effectiveTags)
         assertTrue(Tag.FAT in item.effectiveTags)
 
         vm.setAmount(item.key, Amount.Count(2))
-        assertTrue(Tag.FRUCTOSE in vm.items.single().effectiveTags)
+        assertTrue(Tag.FRUCTANS in vm.items.single().effectiveTags)
     }
 
     @Test fun adjustingIngredientsChangesTriggersAndIsSaved() = runTest {

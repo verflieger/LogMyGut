@@ -2,6 +2,7 @@ package at.mtr.logmygut.data.seed
 
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
+import at.mtr.logmygut.domain.MaxFoodDepth
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.Threshold
@@ -21,17 +22,21 @@ private data class SeedFileJson(
 @Serializable
 private data class IngredientJson(
     val name: String,
+    val key: String? = null,
     val aliases: List<String> = emptyList(),
     val unit: String,
     val unitLabel: String? = null,
     val tags: List<String>,
     val doseTags: Map<String, JsonPrimitive> = emptyMap(),
     val note: String? = null,
+    val parent: String? = null,
+    val removeTags: List<String> = emptyList(),
 )
 
 @Serializable
 private data class DishJson(
     val name: String,
+    val key: String? = null,
     val aliases: List<String> = emptyList(),
     val unit: String,
     val unitLabel: String? = null,
@@ -43,8 +48,15 @@ data class SeedIngredient(
     val aliases: List<String>,
     val unit: FoodUnit,
     val unitLabel: String?,
+    /** Own tags; inherited ones from [parent] are not repeated here. */
     val tags: List<IngredientTag>,
     val note: String?,
+    /** Seed key of the parent ingredient (SPEC 4.4), or null. */
+    val parent: String? = null,
+    /** Inherited tags this ingredient does not have. */
+    val removedTags: List<Tag> = emptyList(),
+    /** Permanent seed key; the original name, kept when the food is renamed. */
+    val key: String = name,
 )
 
 data class SeedDish(
@@ -52,11 +64,12 @@ data class SeedDish(
     val aliases: List<String>,
     val unit: FoodUnit,
     val unitLabel: String?,
-    /** Names of [SeedIngredient]s (their seed keys). */
+    /** Seed keys of [SeedIngredient]s. */
     val ingredients: List<String>,
+    val key: String = name,
 )
 
-/** Parsed and validated `foods.de.json`. Names are the stable seed keys. */
+/** Parsed and validated `foods.de.json`. Seed keys (original names) identify entries across versions. */
 data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val dishes: List<SeedDish>) {
 
     companion object {
@@ -68,9 +81,12 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
             val ingredients = raw.ingredients.map(::toIngredient)
             val dishes = raw.dishes.map(::toDish)
 
-            val ingredientNames = ingredients.mapTo(mutableSetOf()) { it.name }
+            val ingredientKeys = ingredients.mapTo(mutableSetOf()) { it.key }
+            val allKeys = ingredients.map { it.key } + dishes.map { it.key }
+            require(allKeys.size == allKeys.toSet().size) { "Duplicate seed keys: ${allKeys.groupingBy { it }.eachCount().filterValues { it > 1 }.keys}" }
+            validateHierarchy(ingredients)
             for (dish in dishes) {
-                val missing = dish.ingredients.filterNot { it in ingredientNames }
+                val missing = dish.ingredients.filterNot { it in ingredientKeys }
                 require(missing.isEmpty()) { "Dish '${dish.name}' references unknown ingredients $missing" }
             }
             val allNames = (ingredients.map { listOf(it.name) + it.aliases } + dishes.map { listOf(it.name) + it.aliases })
@@ -99,12 +115,29 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
             }
             val tagKeys = (always + dosed).map { it.tag }
             require(tagKeys.size == tagKeys.toSet().size) { "'${j.name}': tag listed twice" }
-            return SeedIngredient(j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note)
+            val removed = j.removeTags.map { Tag.fromKey(it) }
+            require(removed.none { it in tagKeys }) { "'${j.name}': tag both set and removed" }
+            return SeedIngredient(j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note, j.parent, removed, j.key ?: j.name)
+        }
+
+        private fun validateHierarchy(ingredients: List<SeedIngredient>) {
+            val byKey = ingredients.associateBy { it.key }
+            for (ingredient in ingredients) {
+                var current = ingredient
+                var depth = 1
+                while (true) {
+                    val parentName = current.parent ?: break
+                    current = byKey[parentName] ?: throw IllegalArgumentException("'${ingredient.name}': unknown parent '$parentName'")
+                    depth++
+                    require(depth <= MaxFoodDepth) { "'${ingredient.name}': hierarchy deeper than $MaxFoodDepth (or a cycle)" }
+                }
+                require(ingredient.removedTags.isEmpty() || ingredient.parent != null) { "'${ingredient.name}': removeTags without parent" }
+            }
         }
 
         private fun toDish(j: DishJson): SeedDish {
             require(j.ingredients.isNotEmpty()) { "Dish '${j.name}' has no ingredients" }
-            return SeedDish(j.name, j.aliases, parseUnit(j.name, j.unit, j.unitLabel), j.unitLabel, j.ingredients)
+            return SeedDish(j.name, j.aliases, parseUnit(j.name, j.unit, j.unitLabel), j.unitLabel, j.ingredients, j.key ?: j.name)
         }
 
         private fun parseUnit(name: String, unit: String, unitLabel: String?): FoodUnit {

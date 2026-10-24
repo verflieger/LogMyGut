@@ -1,5 +1,6 @@
 package at.mtr.logmygut.data.db
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -18,7 +19,7 @@ import java.time.LocalDate
 
 @Entity(
     tableName = "food",
-    indices = [Index(value = ["seedKey"], unique = true), Index("kind")],
+    indices = [Index(value = ["seedKey"], unique = true), Index("kind"), Index("parentId")],
 )
 data class FoodEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
@@ -37,9 +38,14 @@ data class FoodEntity(
     val searchText: String,
     /** Last time this food was logged in a meal; drives "recently used" ranking. */
     val lastUsedAt: Instant? = null,
+    /** Ingredients only: the more general food this one inherits tags from (SPEC 4.4), e.g. Essig for Apfelessig. */
+    val parentId: Long? = null,
 )
 
-/** A tag on an ingredient. Both thresholds null = always applies. */
+/**
+ * A tag on an ingredient. Both thresholds null = always applies.
+ * [removed] cancels the same tag inherited from the parent food instead (thresholds unused then).
+ */
 @Entity(
     tableName = "food_tag",
     primaryKeys = ["foodId", "tag"],
@@ -50,6 +56,7 @@ data class FoodTagEntity(
     val tag: Tag,
     val minSize: PortionSize? = null,
     val minCount: Int? = null,
+    @ColumnInfo(defaultValue = "0") val removed: Boolean = false,
 )
 
 /** The saved recipe of a dish. */

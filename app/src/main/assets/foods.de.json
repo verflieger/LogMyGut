@@ -1,269 +1,5476 @@
 {
-  "version": 3,
-  "tags": ["lactose", "fructose", "polyols", "fructans", "gos", "gluten", "histamine", "fat", "caffeine", "alcohol", "spicy", "carbonated"],
-  "ingredients": [
-    {"name": "Weißbrot", "unit": "count", "unitLabel": "Scheibe", "tags": ["fructans", "gluten"]},
-    {"name": "Mischbrot", "unit": "count", "unitLabel": "Scheibe", "tags": ["fructans", "gluten"]},
-    {"name": "Roggenbrot", "unit": "count", "unitLabel": "Scheibe", "tags": ["fructans", "gluten"]},
-    {"name": "Vollkornbrot", "unit": "count", "unitLabel": "Scheibe", "tags": ["fructans", "gluten"]},
-    {"name": "Dinkel-Sauerteigbrot", "unit": "count", "unitLabel": "Scheibe", "tags": ["gluten"], "note": "Lange Teigführung baut Fructane weitgehend ab."},
-    {"name": "Glutenfreies Brot", "unit": "count", "unitLabel": "Scheibe", "tags": []},
-    {"name": "Toastbrot", "unit": "count", "unitLabel": "Scheibe", "tags": ["fructans", "gluten"]},
-    {"name": "Semmel", "aliases": ["Brötchen", "Weckerl", "Schrippe"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten"]},
-    {"name": "Vollkornsemmel", "aliases": ["Vollkornbrötchen", "Vollkornweckerl"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten"]},
-    {"name": "Brezel", "aliases": ["Laugenbrezel", "Breze"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten"]},
-    {"name": "Croissant", "aliases": ["Kipferl"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "fat"]},
-    {"name": "Knäckebrot", "unit": "count", "unitLabel": "Scheibe", "tags": ["fructans", "gluten"]},
-    {"name": "Reiswaffel", "unit": "count", "unitLabel": "Stück", "tags": []},
-    {"name": "Salzstangerl", "aliases": ["Salzstangen"], "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Haferflocken", "unit": "size", "doseTags": {"fructans": "L", "gos": "L"}, "note": "Oft mit Gluten verunreinigt (relevant bei Zöliakie).", "tags": []},
-    {"name": "Müsli", "unit": "size", "tags": ["fructans", "gluten", "fructose"], "note": "Typisch mit Weizenflocken und Trockenobst."},
-    {"name": "Cornflakes", "unit": "size", "tags": []},
-    {"name": "Granola", "aliases": ["Knuspermüsli"], "unit": "size", "tags": ["fructans", "gluten", "fat", "fructose"]},
-    {"name": "Reis", "unit": "size", "tags": []},
-    {"name": "Nudeln", "aliases": ["Pasta", "Spaghetti", "Penne"], "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Vollkornnudeln", "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Glutenfreie Nudeln", "unit": "size", "tags": []},
-    {"name": "Couscous", "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Bulgur", "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Quinoa", "unit": "size", "tags": []},
-    {"name": "Polenta", "unit": "size", "tags": []},
-    {"name": "Erdäpfel", "aliases": ["Kartoffeln"], "unit": "size", "tags": []},
-    {"name": "Pommes frites", "aliases": ["Pommes"], "unit": "size", "tags": ["fat"]},
-    {"name": "Chips", "aliases": ["Kartoffelchips"], "unit": "size", "tags": ["fat"]},
-    {"name": "Spätzle", "aliases": ["Nockerl"], "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Semmelknödel", "aliases": ["Knödel"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "lactose"]},
-    {"name": "Waffel", "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "lactose", "fat"]},
-    {"name": "Kuhmilch", "aliases": ["Milch", "Vollmilch"], "unit": "count", "unitLabel": "Glas", "tags": ["lactose"]},
-    {"name": "Laktosefreie Milch", "unit": "count", "unitLabel": "Glas", "tags": []},
-    {"name": "Hafermilch", "aliases": ["Haferdrink"], "unit": "count", "unitLabel": "Glas", "doseTags": {"fructans": 2}, "tags": []},
-    {"name": "Sojamilch", "aliases": ["Sojadrink"], "unit": "count", "unitLabel": "Glas", "tags": ["gos"], "note": "Aus Sojaprotein hergestellt ist sie FODMAP-arm."},
-    {"name": "Mandelmilch", "aliases": ["Mandeldrink"], "unit": "count", "unitLabel": "Glas", "tags": []},
-    {"name": "Joghurt", "unit": "size", "tags": ["lactose"]},
-    {"name": "Laktosefreier Joghurt", "unit": "size", "tags": []},
-    {"name": "Topfen", "aliases": ["Quark"], "unit": "size", "tags": ["lactose"]},
-    {"name": "Schlagobers", "aliases": ["Sahne", "Schlagsahne", "Obers", "Rahm"], "unit": "size", "tags": ["lactose", "fat"]},
-    {"name": "Sauerrahm", "aliases": ["Saure Sahne", "Schmand"], "unit": "size", "tags": ["lactose", "fat"]},
-    {"name": "Crème fraîche", "unit": "size", "tags": ["lactose", "fat"]},
-    {"name": "Butter", "unit": "size", "tags": ["fat"]},
-    {"name": "Frischkäse", "unit": "size", "tags": ["lactose"]},
-    {"name": "Hüttenkäse", "aliases": ["Cottage Cheese"], "unit": "size", "tags": ["lactose"]},
-    {"name": "Ricotta", "unit": "size", "tags": ["lactose"]},
-    {"name": "Mascarpone", "unit": "size", "tags": ["lactose", "fat"]},
-    {"name": "Mozzarella", "unit": "size", "tags": []},
-    {"name": "Feta", "aliases": ["Schafskäse"], "unit": "size", "tags": []},
-    {"name": "Junger Gouda", "aliases": ["Gouda", "Edamer", "Schnittkäse"], "unit": "count", "unitLabel": "Scheibe", "tags": []},
-    {"name": "Gereifter Hartkäse", "aliases": ["Parmesan", "Bergkäse", "Emmentaler", "Alter Gouda"], "unit": "size", "tags": ["histamine"]},
-    {"name": "Camembert", "aliases": ["Brie", "Weichkäse"], "unit": "size", "tags": ["histamine", "fat"]},
-    {"name": "Schmelzkäse", "unit": "size", "tags": ["lactose"]},
-    {"name": "Milcheis", "aliases": ["Eis", "Eiscreme", "Speiseeis"], "unit": "count", "unitLabel": "Kugel", "tags": ["lactose", "fat"]},
-    {"name": "Sorbet", "unit": "count", "unitLabel": "Kugel", "tags": []},
-    {"name": "Pudding", "unit": "size", "tags": ["lactose"]},
-    {"name": "Milchreis", "unit": "size", "tags": ["lactose"]},
-    {"name": "Kakao", "aliases": ["Trinkschokolade", "Heiße Schokolade"], "unit": "count", "unitLabel": "Tasse", "tags": ["lactose"]},
-    {"name": "Ei", "aliases": ["Eier", "Gekochtes Ei", "Rührei", "Spiegelei"], "unit": "count", "unitLabel": "Stück", "tags": []},
-    {"name": "Hendl", "aliases": ["Hähnchen", "Huhn", "Hühnerbrust", "Pute"], "unit": "size", "tags": []},
-    {"name": "Rindfleisch", "aliases": ["Steak", "Rind"], "unit": "size", "tags": []},
-    {"name": "Schweinefleisch", "aliases": ["Schwein"], "unit": "size", "tags": []},
-    {"name": "Faschiertes", "aliases": ["Hackfleisch"], "unit": "size", "tags": ["fat"]},
-    {"name": "Speck", "aliases": ["Bacon", "Frühstücksspeck"], "unit": "size", "tags": ["fat", "histamine"]},
-    {"name": "Kochschinken", "aliases": ["Schinken", "Beinschinken"], "unit": "count", "unitLabel": "Scheibe", "tags": []},
-    {"name": "Rohschinken", "aliases": ["Prosciutto", "Serrano", "Parmaschinken"], "unit": "count", "unitLabel": "Scheibe", "tags": ["histamine"]},
-    {"name": "Salami", "unit": "count", "unitLabel": "Scheibe", "tags": ["histamine", "fat"]},
-    {"name": "Leberwurst", "aliases": ["Leberstreichwurst"], "unit": "size", "tags": ["fat"]},
-    {"name": "Wurstaufschnitt", "aliases": ["Extrawurst", "Lyoner", "Fleischwurst"], "unit": "count", "unitLabel": "Scheibe", "tags": ["fat"]},
-    {"name": "Leberkäs", "aliases": ["Leberkäse", "Fleischkäse"], "unit": "count", "unitLabel": "Scheibe", "tags": ["fat"]},
-    {"name": "Bratwurst", "aliases": ["Grillwurst"], "unit": "count", "unitLabel": "Stück", "tags": ["fat"]},
-    {"name": "Würstel", "aliases": ["Würstchen", "Frankfurter", "Wiener", "Wienerle", "Käsekrainer"], "unit": "count", "unitLabel": "Stück", "tags": ["fat"]},
-    {"name": "Fisch (frisch)", "aliases": ["Lachs", "Forelle", "Kabeljau", "Seelachs"], "unit": "size", "tags": []},
-    {"name": "Thunfisch (Dose)", "aliases": ["Thunfisch"], "unit": "size", "tags": ["histamine"]},
-    {"name": "Räucherlachs", "aliases": ["Räucherfisch", "Geräucherte Forelle"], "unit": "size", "tags": ["histamine"]},
-    {"name": "Hering", "aliases": ["Matjes", "Rollmops", "Sardinen", "Makrele"], "unit": "size", "tags": ["histamine"]},
-    {"name": "Garnelen", "aliases": ["Shrimps", "Scampi", "Meeresfrüchte"], "unit": "size", "tags": []},
-    {"name": "Tofu (fest)", "aliases": ["Tofu"], "unit": "size", "tags": []},
-    {"name": "Seidentofu", "unit": "size", "tags": ["gos"]},
-    {"name": "Tempeh", "unit": "size", "tags": []},
-    {"name": "Apfel", "unit": "count", "unitLabel": "Stück", "tags": ["fructose", "polyols"]},
-    {"name": "Birne", "unit": "count", "unitLabel": "Stück", "tags": ["fructose", "polyols"]},
-    {"name": "Banane", "unit": "count", "unitLabel": "Stück", "tags": ["fructans"], "note": "Reife Bananen enthalten Fructane, unreife (grünliche) kaum."},
-    {"name": "Orange", "unit": "count", "unitLabel": "Stück", "tags": []},
-    {"name": "Mandarine", "aliases": ["Clementine"], "unit": "count", "unitLabel": "Stück", "tags": []},
-    {"name": "Grapefruit", "unit": "count", "unitLabel": "Stück", "tags": ["fructans"]},
-    {"name": "Kiwi", "unit": "count", "unitLabel": "Stück", "tags": []},
-    {"name": "Erdbeeren", "unit": "size", "tags": []},
-    {"name": "Himbeeren", "unit": "size", "doseTags": {"fructans": "L"}, "tags": []},
-    {"name": "Heidelbeeren", "aliases": ["Blaubeeren"], "unit": "size", "tags": []},
-    {"name": "Brombeeren", "unit": "size", "tags": ["polyols"]},
-    {"name": "Weintrauben", "aliases": ["Trauben"], "unit": "size", "doseTags": {"fructose": "L"}, "tags": []},
-    {"name": "Kirschen", "unit": "size", "tags": ["fructose", "polyols"]},
-    {"name": "Zwetschke", "aliases": ["Pflaume", "Zwetschge"], "unit": "count", "unitLabel": "Stück", "tags": ["polyols"]},
-    {"name": "Pfirsich", "unit": "count", "unitLabel": "Stück", "tags": ["polyols"]},
-    {"name": "Nektarine", "unit": "count", "unitLabel": "Stück", "tags": ["polyols"]},
-    {"name": "Marille", "aliases": ["Aprikose"], "unit": "count", "unitLabel": "Stück", "tags": ["polyols"]},
-    {"name": "Mango", "unit": "count", "unitLabel": "Stück", "tags": ["fructose"]},
-    {"name": "Ananas", "unit": "size", "tags": []},
-    {"name": "Wassermelone", "unit": "size", "tags": ["fructose", "polyols", "fructans"]},
-    {"name": "Honigmelone", "aliases": ["Zuckermelone"], "unit": "size", "doseTags": {"fructans": "L"}, "tags": []},
-    {"name": "Feige", "unit": "count", "unitLabel": "Stück", "tags": ["fructose", "fructans"]},
-    {"name": "Datteln", "unit": "count", "unitLabel": "Stück", "tags": ["fructans"]},
-    {"name": "Rosinen", "aliases": ["Sultaninen"], "unit": "size", "tags": ["fructans"]},
-    {"name": "Dörrzwetschken", "aliases": ["Trockenpflaumen", "Dörrpflaumen"], "unit": "count", "unitLabel": "Stück", "tags": ["polyols", "fructose"]},
-    {"name": "Dörrmarillen", "aliases": ["Getrocknete Aprikosen"], "unit": "count", "unitLabel": "Stück", "tags": ["polyols", "fructans"]},
-    {"name": "Apfelmus", "unit": "size", "tags": ["fructose", "polyols"]},
-    {"name": "Avocado", "unit": "size", "doseTags": {"polyols": "M"}, "note": "Ca. 1/8 Avocado gilt als verträglich.", "tags": []},
-    {"name": "Zwiebel", "unit": "size", "tags": ["fructans"]},
-    {"name": "Knoblauch", "unit": "size", "tags": ["fructans"]},
-    {"name": "Lauch", "aliases": ["Porree"], "unit": "size", "tags": ["fructans"]},
-    {"name": "Frühlingszwiebel", "aliases": ["Jungzwiebel"], "unit": "size", "tags": ["fructans"], "note": "Nur der grüne Teil ist FODMAP-arm."},
-    {"name": "Schalotte", "unit": "size", "tags": ["fructans"]},
-    {"name": "Spargel", "unit": "size", "tags": ["fructans", "fructose"]},
-    {"name": "Artischocke", "unit": "size", "tags": ["fructans"]},
-    {"name": "Karfiol", "aliases": ["Blumenkohl"], "unit": "size", "tags": ["polyols"]},
-    {"name": "Brokkoli", "unit": "size", "doseTags": {"fructose": "L"}, "note": "Vor allem die Stiele enthalten Fructose.", "tags": []},
-    {"name": "Kohlsprossen", "aliases": ["Rosenkohl"], "unit": "size", "tags": ["fructans"]},
-    {"name": "Weißkraut", "aliases": ["Weißkohl", "Kraut", "Rotkohl", "Rotkraut", "Blaukraut"], "unit": "size", "doseTags": {"polyols": "L"}, "tags": []},
-    {"name": "Kohl", "aliases": ["Wirsing"], "unit": "size", "tags": ["fructans"]},
-    {"name": "Sauerkraut", "unit": "size", "tags": ["histamine"]},
-    {"name": "Grünkohl", "unit": "size", "tags": []},
-    {"name": "Champignons", "aliases": ["Pilze", "Schwammerl"], "unit": "size", "tags": ["polyols"]},
-    {"name": "Erbsen", "aliases": ["Grüne Erbsen"], "unit": "size", "tags": ["gos", "fructans"]},
-    {"name": "Fisolen", "aliases": ["Grüne Bohnen", "Brechbohnen"], "unit": "size", "doseTags": {"polyols": "L"}, "tags": []},
-    {"name": "Kidneybohnen", "aliases": ["Bohnen", "Weiße Bohnen", "Baked Beans"], "unit": "size", "tags": ["gos"]},
-    {"name": "Kichererbsen", "unit": "size", "tags": ["gos"]},
-    {"name": "Linsen", "unit": "size", "tags": ["gos"]},
-    {"name": "Edamame", "unit": "size", "doseTags": {"gos": "L"}, "tags": []},
-    {"name": "Mais", "aliases": ["Zuckermais", "Kukuruz", "Maiskolben"], "unit": "size", "doseTags": {"polyols": "L"}, "tags": []},
-    {"name": "Paprika", "unit": "size", "tags": []},
-    {"name": "Gurke", "aliases": ["Gurkerl", "Salatgurke"], "unit": "size", "tags": []},
-    {"name": "Essiggurkerl", "aliases": ["Essiggurken", "Gewürzgurken"], "unit": "count", "unitLabel": "Stück", "tags": ["histamine"]},
-    {"name": "Paradeiser", "aliases": ["Tomate", "Tomaten"], "unit": "count", "unitLabel": "Stück", "tags": ["histamine"]},
-    {"name": "Karotte", "aliases": ["Möhre", "Karotten", "Gelbe Rübe"], "unit": "size", "tags": []},
-    {"name": "Zucchini", "unit": "size", "doseTags": {"fructans": "L"}, "tags": []},
-    {"name": "Melanzani", "aliases": ["Aubergine"], "unit": "size", "tags": ["histamine"]},
-    {"name": "Spinat", "unit": "size", "tags": ["histamine"]},
-    {"name": "Kürbis", "aliases": ["Hokkaido", "Butternut"], "unit": "size", "doseTags": {"polyols": "L"}, "tags": []},
-    {"name": "Süßkartoffel", "unit": "size", "doseTags": {"polyols": "L"}, "tags": []},
-    {"name": "Rote Rüben", "aliases": ["Rote Bete", "Rote Beete"], "unit": "size", "tags": ["gos", "fructans"]},
-    {"name": "Stangensellerie", "aliases": ["Staudensellerie", "Sellerie", "Knollensellerie"], "unit": "size", "tags": ["polyols"]},
-    {"name": "Fenchel", "unit": "size", "doseTags": {"fructans": "L"}, "tags": []},
-    {"name": "Blattsalat", "aliases": ["Salat", "Kopfsalat", "Eisbergsalat", "Rucola", "Feldsalat", "Vogerlsalat"], "unit": "size", "tags": []},
-    {"name": "Radieschen", "unit": "size", "tags": []},
-    {"name": "Chili", "aliases": ["Chilischote", "Peperoni", "Pfefferoni", "Jalapeño"], "unit": "size", "tags": ["spicy"]},
-    {"name": "Cashewkerne", "aliases": ["Cashews"], "unit": "size", "tags": ["gos", "fructans"]},
-    {"name": "Pistazien", "unit": "size", "tags": ["gos", "fructans"]},
-    {"name": "Mandeln", "unit": "size", "doseTags": {"gos": "L"}, "note": "Bis ca. 10 Stück gilt als verträglich.", "tags": []},
-    {"name": "Haselnüsse", "unit": "size", "doseTags": {"gos": "L"}, "tags": []},
-    {"name": "Walnüsse", "unit": "size", "tags": []},
-    {"name": "Erdnüsse", "unit": "size", "tags": []},
-    {"name": "Erdnussbutter", "unit": "size", "tags": ["fat"]},
-    {"name": "Samen", "aliases": ["Leinsamen", "Chiasamen", "Sonnenblumenkerne", "Kürbiskerne"], "unit": "size", "tags": []},
-    {"name": "Vollmilchschokolade", "aliases": ["Schokolade", "Milchschokolade"], "unit": "size", "tags": ["lactose", "fat"]},
-    {"name": "Zartbitterschokolade", "aliases": ["Bitterschokolade"], "unit": "size", "tags": ["fat"]},
-    {"name": "Nuss-Nougat-Creme", "aliases": ["Nutella"], "unit": "size", "tags": ["lactose", "fat"]},
-    {"name": "Rührkuchen", "aliases": ["Kuchen", "Marmorkuchen", "Gugelhupf"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "fat", "lactose"]},
-    {"name": "Sahnetorte", "aliases": ["Torte", "Obers-Torte", "Käsesahnetorte"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "fat", "lactose"]},
-    {"name": "Topfenkuchen", "aliases": ["Käsekuchen"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "lactose"]},
-    {"name": "Apfelstrudel", "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "fat", "fructose", "polyols"]},
-    {"name": "Sachertorte", "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "fat"]},
-    {"name": "Germknödel", "aliases": ["Dampfnudel", "Hefeknödel"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "lactose", "fat", "polyols"]},
-    {"name": "Krapfen", "aliases": ["Berliner", "Donut", "Faschingskrapfen"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten", "fat"]},
-    {"name": "Kekse", "aliases": ["Plätzchen", "Kekserl", "Butterkekse"], "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Müsliriegel", "aliases": ["Getreideriegel"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten"]},
-    {"name": "Proteinriegel", "unit": "count", "unitLabel": "Stück", "tags": ["polyols"], "note": "Enthalten oft Zuckeralkohole (Maltit, Sorbit). Zutatenliste prüfen."},
-    {"name": "Gummibärchen", "aliases": ["Fruchtgummi"], "unit": "size", "tags": []},
-    {"name": "Zuckerfreier Kaugummi", "aliases": ["Kaugummi"], "unit": "count", "unitLabel": "Stück", "tags": ["polyols"]},
-    {"name": "Zuckerfreie Bonbons", "aliases": ["Zuckerfreie Süßigkeiten"], "unit": "count", "unitLabel": "Stück", "tags": ["polyols"]},
-    {"name": "Honig", "unit": "size", "tags": ["fructose"]},
-    {"name": "Agavendicksaft", "aliases": ["Agavensirup"], "unit": "size", "tags": ["fructose"]},
-    {"name": "Marmelade", "aliases": ["Konfitüre"], "unit": "size", "tags": []},
-    {"name": "Popcorn", "unit": "size", "tags": []},
-    {"name": "Kaffee", "aliases": ["Filterkaffee", "Verlängerter", "Americano"], "unit": "count", "unitLabel": "Tasse", "tags": ["caffeine"]},
-    {"name": "Espresso", "aliases": ["Kleiner Brauner", "Kleiner Schwarzer"], "unit": "count", "unitLabel": "Tasse", "tags": ["caffeine"]},
-    {"name": "Schwarzer Tee", "aliases": ["Grüner Tee", "Mate", "Chai"], "unit": "count", "unitLabel": "Tasse", "tags": ["caffeine"]},
-    {"name": "Kamillentee", "unit": "count", "unitLabel": "Tasse", "tags": ["fructans"]},
-    {"name": "Cola", "aliases": ["Coca-Cola", "Pepsi"], "unit": "count", "unitLabel": "Glas", "tags": ["caffeine", "carbonated", "fructose"]},
-    {"name": "Cola Zero", "aliases": ["Cola light"], "unit": "count", "unitLabel": "Glas", "tags": ["caffeine", "carbonated"]},
-    {"name": "Limonade", "aliases": ["Limo", "Fanta", "Sprite", "Kracherl"], "unit": "count", "unitLabel": "Glas", "tags": ["carbonated", "fructose"]},
-    {"name": "Mineralwasser mit Kohlensäure", "aliases": ["Sprudel", "Soda", "Prickelnd"], "unit": "count", "unitLabel": "Glas", "tags": ["carbonated"]},
-    {"name": "Energydrink", "aliases": ["Red Bull"], "unit": "count", "unitLabel": "Dose", "tags": ["caffeine", "carbonated"]},
-    {"name": "Apfelsaft", "aliases": ["Apfelschorle", "Apfelsaft gespritzt"], "unit": "count", "unitLabel": "Glas", "tags": ["fructose", "polyols"]},
-    {"name": "Orangensaft", "unit": "count", "unitLabel": "Glas", "doseTags": {"fructose": 2}, "tags": []},
-    {"name": "Smoothie", "aliases": ["Fruchtsaft"], "unit": "count", "unitLabel": "Glas", "tags": ["fructose", "polyols"]},
-    {"name": "Kombucha", "unit": "count", "unitLabel": "Glas", "tags": ["carbonated", "histamine"]},
-    {"name": "Bier", "aliases": ["Pils", "Helles", "Märzen", "Weißbier", "Weizenbier", "Radler"], "unit": "count", "unitLabel": "Glas", "tags": ["alcohol", "gluten", "carbonated", "histamine"]},
-    {"name": "Rotwein", "unit": "count", "unitLabel": "Glas", "tags": ["alcohol", "histamine"]},
-    {"name": "Weißwein", "aliases": ["Wein", "Rosé", "Spritzer", "Gespritzter"], "unit": "count", "unitLabel": "Glas", "tags": ["alcohol"]},
-    {"name": "Sekt", "aliases": ["Prosecco", "Champagner", "Aperol Spritz"], "unit": "count", "unitLabel": "Glas", "tags": ["alcohol", "carbonated", "histamine"]},
-    {"name": "Spirituosen", "aliases": ["Schnaps", "Vodka", "Gin", "Whisky", "Obstler"], "unit": "count", "unitLabel": "Glas", "tags": ["alcohol"]},
-    {"name": "Rum", "unit": "count", "unitLabel": "Glas", "tags": ["alcohol", "fructose"]},
-    {"name": "Ketchup", "unit": "size", "doseTags": {"fructose": "L", "fructans": "L"}, "note": "1 EL gilt als verträglich.", "tags": []},
-    {"name": "Mayonnaise", "aliases": ["Mayo", "Remoulade"], "unit": "size", "tags": ["fat"]},
-    {"name": "Senf", "aliases": ["Estragonsenf"], "unit": "size", "tags": []},
-    {"name": "Sojasauce", "unit": "size", "tags": ["gluten", "histamine"]},
-    {"name": "Pesto", "unit": "size", "tags": ["fructans", "fat"]},
-    {"name": "Paradeissauce", "aliases": ["Tomatensauce", "Tomatensoße", "Passata"], "unit": "size", "tags": ["fructans", "histamine"]},
-    {"name": "Bratensaft", "aliases": ["Bratensoße", "Bratensauce", "Gravy"], "unit": "size", "tags": ["fructans", "fat"]},
-    {"name": "Chilisauce", "aliases": ["Sriracha", "Tabasco", "Scharfe Soße"], "unit": "size", "tags": ["spicy", "fructans"]},
-    {"name": "Currypulver", "aliases": ["Curry"], "unit": "size", "tags": ["spicy"]},
-    {"name": "Balsamico", "aliases": ["Essig", "Rotweinessig"], "unit": "size", "tags": ["histamine"]},
-    {"name": "Brühe", "aliases": ["Gemüsebrühe", "Suppenwürfel", "Bouillon"], "unit": "size", "tags": ["fructans"]},
-    {"name": "Inulin", "aliases": ["Chicorée-Faser", "Ballaststoffpulver"], "unit": "size", "tags": ["fructans"]},
-    {"name": "Chicken Nuggets", "aliases": ["Nuggets", "Chicken Wings"], "unit": "size", "tags": ["fat", "gluten", "fructans"]},
-    {"name": "Backfisch", "aliases": ["Fish and Chips", "Fischstäbchen"], "unit": "size", "tags": ["fat", "gluten", "fructans"]},
-    {"name": "Falafel", "unit": "count", "unitLabel": "Stück", "tags": ["gos", "fructans", "fat"]},
-    {"name": "Hummus", "unit": "size", "tags": ["gos", "fructans"]},
-    {"name": "Frühlingsrolle", "unit": "count", "unitLabel": "Stück", "tags": ["fat", "gluten", "fructans"]},
-    {"name": "Weizenmehl", "aliases": ["Mehl"], "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Semmelbrösel", "aliases": ["Paniermehl", "Panade"], "unit": "size", "tags": ["fructans", "gluten"]},
-    {"name": "Speiseöl", "aliases": ["Öl", "Olivenöl", "Rapsöl"], "unit": "size", "tags": ["fat"]},
-    {"name": "Frittierfett", "unit": "size", "tags": ["fat"]},
-    {"name": "Zucker", "unit": "size", "tags": []},
-    {"name": "Paprikapulver", "unit": "size", "tags": []},
-    {"name": "Fladenbrot", "aliases": ["Pita", "Naan"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten"]},
-    {"name": "Weizentortilla", "aliases": ["Tortilla (Weizen)"], "unit": "count", "unitLabel": "Stück", "tags": ["fructans", "gluten"]},
-    {"name": "Tortillachips", "aliases": ["Maischips"], "unit": "size", "tags": ["fat"]},
-    {"name": "Dönerfleisch", "aliases": ["Kebabfleisch"], "unit": "size", "tags": ["fat"]},
-    {"name": "Tzatziki", "aliases": ["Knoblauchsauce", "Joghurtsauce"], "unit": "size", "tags": ["lactose", "fructans"]},
-    {"name": "Kokosmilch", "unit": "size", "tags": ["fat"]},
-    {"name": "Kren", "aliases": ["Meerrettich", "Apfelkren"], "unit": "size", "tags": ["spicy"]}
-  ],
-  "dishes": [
-    {"name": "Pizza", "aliases": ["Pizza Margherita"], "unit": "size", "ingredients": ["Weizenmehl", "Paradeissauce", "Mozzarella", "Speiseöl"]},
-    {"name": "Lasagne", "unit": "size", "ingredients": ["Nudeln", "Faschiertes", "Paradeissauce", "Kuhmilch", "Butter", "Weizenmehl", "Gereifter Hartkäse"]},
-    {"name": "Spaghetti Bolognese", "aliases": ["Bolognese"], "unit": "size", "ingredients": ["Nudeln", "Faschiertes", "Paradeissauce", "Zwiebel", "Knoblauch", "Karotte"]},
-    {"name": "Spaghetti Carbonara", "aliases": ["Carbonara"], "unit": "size", "ingredients": ["Nudeln", "Speck", "Ei", "Gereifter Hartkäse", "Schlagobers"]},
-    {"name": "Käsespätzle", "aliases": ["Kasnocken", "Kässpätzle"], "unit": "size", "ingredients": ["Spätzle", "Gereifter Hartkäse", "Zwiebel", "Butter"]},
-    {"name": "Wiener Schnitzel", "aliases": ["Schnitzel", "Paniertes Schnitzel", "Backhendl"], "unit": "size", "ingredients": ["Schweinefleisch", "Semmelbrösel", "Weizenmehl", "Ei", "Frittierfett"]},
-    {"name": "Gulasch", "aliases": ["Rindsgulasch", "Saftgulasch"], "unit": "size", "ingredients": ["Rindfleisch", "Zwiebel", "Paprikapulver", "Brühe", "Speiseöl"]},
-    {"name": "Tafelspitz", "aliases": ["Gekochtes Rindfleisch"], "unit": "size", "ingredients": ["Rindfleisch", "Brühe", "Karotte", "Stangensellerie", "Lauch", "Kren"]},
-    {"name": "Frittatensuppe", "aliases": ["Grießnockerlsuppe", "Leberknödelsuppe"], "unit": "size", "ingredients": ["Brühe", "Weizenmehl", "Ei", "Kuhmilch"]},
-    {"name": "Hühnersuppe", "aliases": ["Nudelsuppe", "Rindsuppe"], "unit": "size", "ingredients": ["Hendl", "Brühe", "Nudeln", "Karotte", "Stangensellerie", "Lauch"]},
-    {"name": "Erdäpfelsuppe", "aliases": ["Kartoffelsuppe", "Cremesuppe"], "unit": "size", "ingredients": ["Erdäpfel", "Lauch", "Zwiebel", "Karotte", "Brühe", "Schlagobers"]},
-    {"name": "Paradeissuppe", "aliases": ["Tomatensuppe"], "unit": "size", "ingredients": ["Paradeiser", "Paradeissauce", "Zwiebel", "Brühe", "Schlagobers"]},
-    {"name": "Linseneintopf", "aliases": ["Linsensuppe", "Dal"], "unit": "size", "ingredients": ["Linsen", "Karotte", "Zwiebel", "Erdäpfel", "Brühe"]},
-    {"name": "Erbsensuppe", "aliases": ["Erbseneintopf"], "unit": "size", "ingredients": ["Erbsen", "Zwiebel", "Erdäpfel", "Brühe", "Speck"]},
-    {"name": "Bohneneintopf", "aliases": ["Bohnensuppe"], "unit": "size", "ingredients": ["Kidneybohnen", "Zwiebel", "Erdäpfel", "Brühe", "Speck"]},
-    {"name": "Chili con Carne", "unit": "size", "ingredients": ["Faschiertes", "Kidneybohnen", "Paradeissauce", "Zwiebel", "Knoblauch", "Chili", "Mais"]},
-    {"name": "Erdäpfelsalat", "aliases": ["Kartoffelsalat"], "unit": "size", "ingredients": ["Erdäpfel", "Zwiebel", "Mayonnaise", "Essiggurkerl", "Brühe"]},
-    {"name": "Gemischter Salat", "unit": "size", "ingredients": ["Blattsalat", "Paradeiser", "Gurke", "Balsamico", "Speiseöl"]},
-    {"name": "Currywurst", "unit": "count", "unitLabel": "Stück", "ingredients": ["Bratwurst", "Ketchup", "Currypulver"]},
-    {"name": "Döner Kebab", "aliases": ["Döner", "Kebab", "Dürüm"], "unit": "count", "unitLabel": "Stück", "ingredients": ["Fladenbrot", "Dönerfleisch", "Blattsalat", "Paradeiser", "Zwiebel", "Tzatziki"]},
-    {"name": "Gyros", "aliases": ["Souvlaki"], "unit": "size", "ingredients": ["Schweinefleisch", "Zwiebel", "Tzatziki", "Pommes frites"]},
-    {"name": "Burger", "aliases": ["Hamburger", "Cheeseburger"], "unit": "count", "unitLabel": "Stück", "ingredients": ["Semmel", "Faschiertes", "Junger Gouda", "Ketchup", "Zwiebel", "Paradeiser", "Blattsalat"]},
-    {"name": "Hot Dog", "unit": "count", "unitLabel": "Stück", "ingredients": ["Semmel", "Würstel", "Ketchup", "Senf", "Zwiebel"]},
-    {"name": "Wrap", "aliases": ["Burrito"], "unit": "count", "unitLabel": "Stück", "ingredients": ["Weizentortilla", "Hendl", "Blattsalat", "Paradeiser", "Sauerrahm"]},
-    {"name": "Nachos mit Käse", "aliases": ["Nachos"], "unit": "size", "ingredients": ["Tortillachips", "Schmelzkäse", "Chili"]},
-    {"name": "Sushi", "aliases": ["Maki", "Nigiri"], "unit": "count", "unitLabel": "Stück", "ingredients": ["Reis", "Fisch (frisch)", "Gurke", "Sojasauce"]},
-    {"name": "Ramen", "aliases": ["Instantnudeln", "Udon"], "unit": "size", "ingredients": ["Nudeln", "Brühe", "Ei", "Sojasauce", "Frühlingszwiebel"]},
-    {"name": "Asiatisches Wokgericht", "aliases": ["Wok", "Gebratene Nudeln", "Gebratener Reis", "Pad Thai"], "unit": "size", "ingredients": ["Reis", "Hendl", "Paprika", "Karotte", "Zwiebel", "Knoblauch", "Sojasauce", "Speiseöl"]},
-    {"name": "Indisches Curry", "aliases": ["Thai Curry", "Tikka Masala", "Korma"], "unit": "size", "ingredients": ["Hendl", "Zwiebel", "Knoblauch", "Currypulver", "Kokosmilch", "Reis"]},
-    {"name": "Toast Hawaii", "aliases": ["Schinken-Käse-Toast"], "unit": "count", "unitLabel": "Stück", "ingredients": ["Toastbrot", "Kochschinken", "Ananas", "Junger Gouda"]},
-    {"name": "Belegte Semmel", "aliases": ["Belegtes Brötchen", "Sandwich", "Wurstsemmel", "Käsesemmel"], "unit": "count", "unitLabel": "Stück", "ingredients": ["Semmel", "Butter", "Kochschinken", "Junger Gouda"]},
-    {"name": "Kaiserschmarrn", "unit": "size", "ingredients": ["Weizenmehl", "Ei", "Kuhmilch", "Butter", "Zucker", "Rosinen"]},
-    {"name": "Palatschinken", "aliases": ["Pfannkuchen", "Eierkuchen"], "unit": "count", "unitLabel": "Stück", "ingredients": ["Weizenmehl", "Ei", "Kuhmilch"]},
-    {"name": "Geröstete Erdäpfel", "aliases": ["Bratkartoffeln", "Röstkartoffeln"], "unit": "size", "ingredients": ["Erdäpfel", "Zwiebel", "Speck", "Speiseöl"]},
-    {"name": "Erdäpfelpüree", "aliases": ["Kartoffelpüree"], "unit": "size", "ingredients": ["Erdäpfel", "Kuhmilch", "Butter"]},
-    {"name": "Schweinsbraten", "aliases": ["Schweinebraten"], "unit": "size", "ingredients": ["Schweinefleisch", "Bratensaft"]},
-    {"name": "Cappuccino", "aliases": ["Latte Macchiato", "Melange", "Milchkaffee", "Flat White"], "unit": "count", "unitLabel": "Tasse", "ingredients": ["Espresso", "Kuhmilch"]}
-  ]
+ "version": 4,
+ "tags": [
+  "lactose",
+  "fructose",
+  "polyols",
+  "fructans",
+  "gos",
+  "gluten",
+  "histamine",
+  "fat",
+  "caffeine",
+  "alcohol",
+  "spicy",
+  "carbonated"
+ ],
+ "ingredients": [
+  {
+   "name": "Brot",
+   "aliases": [
+    "Brotscheibe"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 B251000"
+  },
+  {
+   "name": "Weißbrot",
+   "parent": "Brot",
+   "aliases": [
+    "Weizenbrot",
+    "Baguette"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 B311000"
+  },
+  {
+   "name": "Mischbrot",
+   "parent": "Brot",
+   "aliases": [
+    "Hausbrot",
+    "Weizenmischbrot",
+    "Bauernbrot"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 B251000"
+  },
+  {
+   "name": "Roggenbrot",
+   "parent": "Brot",
+   "aliases": [
+    "Roggenmischbrot",
+    "Schwarzbrot"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 B271000"
+  },
+  {
+   "name": "Vollkornbrot",
+   "parent": "Brot",
+   "aliases": [
+    "Roggenvollkornbrot",
+    "Pumpernickel"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 B121000"
+  },
+  {
+   "name": "Dinkelbrot",
+   "parent": "Brot",
+   "aliases": [
+    "Dinkelvollkornbrot"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 B710500"
+  },
+  {
+   "name": "Dinkel-Sauerteigbrot",
+   "parent": "Brot",
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "removeTags": [
+    "fructans"
+   ],
+   "note": "Lange Teigführung baut Fructane weitgehend ab.",
+   "source": "BLS 4.0 B710500"
+  },
+  {
+   "name": "Glutenfreies Brot",
+   "parent": "Brot",
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "removeTags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 B8A9000"
+  },
+  {
+   "name": "Toastbrot",
+   "parent": "Brot",
+   "aliases": [
+    "Toast",
+    "Buttertoast"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 B314000"
+  },
+  {
+   "name": "Knäckebrot",
+   "parent": "Brot",
+   "aliases": [
+    "Knäcke"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 B6A2100"
+  },
+  {
+   "name": "Fladenbrot",
+   "parent": "Brot",
+   "aliases": [
+    "Pita",
+    "Naan",
+    "Pide"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": []
+  },
+  {
+   "name": "Weizentortilla",
+   "parent": "Brot",
+   "aliases": [
+    "Tortilla (Weizen)",
+    "Wrap-Teig"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 B783012"
+  },
+  {
+   "name": "Gebäck",
+   "aliases": [
+    "Gebäck allgemein"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 B511000"
+  },
+  {
+   "name": "Semmel",
+   "parent": "Gebäck",
+   "aliases": [
+    "Brötchen",
+    "Weckerl",
+    "Kaisersemmel",
+    "Schrippe",
+    "Weizenbrötchen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 B511000"
+  },
+  {
+   "name": "Vollkornsemmel",
+   "parent": "Gebäck",
+   "aliases": [
+    "Vollkornbrötchen",
+    "Vollkornweckerl"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 B406000"
+  },
+  {
+   "name": "Kornspitz",
+   "parent": "Gebäck",
+   "aliases": [
+    "Körndlweckerl",
+    "Mehrkornweckerl"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 B406000"
+  },
+  {
+   "name": "Brezel",
+   "parent": "Gebäck",
+   "aliases": [
+    "Laugenbrezel",
+    "Breze",
+    "Laugenstangerl",
+    "Laugengebäck"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 B723100"
+  },
+  {
+   "name": "Croissant",
+   "parent": "Gebäck",
+   "aliases": [
+    "Butterkipferl",
+    "Kipferl"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "doseTags": {
+    "lactose": 2,
+    "fat": 2
+   },
+   "source": "BLS 4.0 D771600"
+  },
+  {
+   "name": "Mohnflesserl",
+   "parent": "Gebäck",
+   "aliases": [
+    "Mohnzopf",
+    "Salzstangerl (Gebäck)"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 B511000"
+  },
+  {
+   "name": "Glutenfreie Semmel",
+   "parent": "Gebäck",
+   "aliases": [
+    "Glutenfreies Brötchen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "removeTags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 B8A2000"
+  },
+  {
+   "name": "Reiswaffel",
+   "aliases": [
+    "Reiscracker"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 C532700"
+  },
+  {
+   "name": "Salzstangerl",
+   "aliases": [
+    "Salzstangen",
+    "Salzbrezel",
+    "Soletti"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 D064000"
+  },
+  {
+   "name": "Semmelknödel",
+   "aliases": [
+    "Knödel",
+    "Serviettenknödel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "lactose",
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 E606000"
+  },
+  {
+   "name": "Waffel",
+   "aliases": [
+    "Waffelkekse",
+    "Manner-Schnitten"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 D621200"
+  },
+  {
+   "name": "Haferflocken",
+   "aliases": [
+    "Haferbrei",
+    "Overnight Oats"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructans": "L",
+    "gos": "L"
+   },
+   "note": "Oft mit Gluten verunreinigt (relevant bei Zöliakie).",
+   "source": "BLS 4.0 C133000"
+  },
+  {
+   "name": "Müsli",
+   "aliases": [
+    "Bircher Müsli"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "fructose": "L"
+   },
+   "note": "Typisch mit Weizenflocken und Trockenobst.",
+   "source": "BLS 4.0 C512600"
+  },
+  {
+   "name": "Granola",
+   "aliases": [
+    "Knuspermüsli",
+    "Crunchy"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 C514300"
+  },
+  {
+   "name": "Cornflakes",
+   "aliases": [
+    "Maisflocken"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 C515000"
+  },
+  {
+   "name": "Reis",
+   "aliases": [
+    "Basmatireis",
+    "Jasminreis",
+    "Risottoreis"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 C352032"
+  },
+  {
+   "name": "Vollkornreis",
+   "parent": "Reis",
+   "aliases": [
+    "Naturreis"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 C351032"
+  },
+  {
+   "name": "Nudeln",
+   "aliases": [
+    "Pasta",
+    "Spaghetti",
+    "Penne",
+    "Fusilli"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 E401032"
+  },
+  {
+   "name": "Vollkornnudeln",
+   "parent": "Nudeln",
+   "aliases": [
+    "Vollkornpasta"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 E500032"
+  },
+  {
+   "name": "Eiernudeln",
+   "parent": "Nudeln",
+   "aliases": [
+    "Eierteigwaren",
+    "Bandnudeln",
+    "Fleckerl"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 E432032"
+  },
+  {
+   "name": "Glutenfreie Nudeln",
+   "parent": "Nudeln",
+   "aliases": [
+    "Maisnudeln"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 E612032"
+  },
+  {
+   "name": "Reisnudeln",
+   "parent": "Nudeln",
+   "aliases": [
+    "Glasnudeln"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 C559032"
+  },
+  {
+   "name": "Tortellini",
+   "parent": "Nudeln",
+   "aliases": [
+    "Ravioli",
+    "Gefüllte Nudeln"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 E609232"
+  },
+  {
+   "name": "Gnocchi",
+   "parent": "Nudeln",
+   "aliases": [
+    "Erdäpfelnockerl"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 K270000"
+  },
+  {
+   "name": "Spätzle",
+   "aliases": [
+    "Nockerl",
+    "Knöpfle"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 X711512"
+  },
+  {
+   "name": "Couscous",
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 C119232"
+  },
+  {
+   "name": "Bulgur",
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 C119132"
+  },
+  {
+   "name": "Grieß",
+   "aliases": [
+    "Grießbrei",
+    "Weizengrieß"
+   ],
+   "unit": "size",
+   "tags": [
+    "lactose",
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 X951113"
+  },
+  {
+   "name": "Quinoa",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 C118122"
+  },
+  {
+   "name": "Hirse",
+   "aliases": [
+    "Hirsebrei"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 C332000"
+  },
+  {
+   "name": "Buchweizen",
+   "aliases": [
+    "Heidenmehl"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 C322000"
+  },
+  {
+   "name": "Polenta",
+   "aliases": [
+    "Maisgrieß",
+    "Sterz"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 C526000"
+  },
+  {
+   "name": "Weizenmehl",
+   "aliases": [
+    "Mehl",
+    "Dinkelmehl"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 C213100"
+  },
+  {
+   "name": "Semmelbrösel",
+   "aliases": [
+    "Paniermehl",
+    "Panade",
+    "Brösel"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 B821000"
+  },
+  {
+   "name": "Erdäpfel",
+   "aliases": [
+    "Kartoffeln",
+    "Salzerdäpfel",
+    "Petersilerdäpfel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 K110132"
+  },
+  {
+   "name": "Pommes frites",
+   "parent": "Erdäpfel",
+   "aliases": [
+    "Pommes",
+    "Fritten"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 K130492"
+  },
+  {
+   "name": "Bratkartoffeln",
+   "parent": "Erdäpfel",
+   "aliases": [
+    "Geröstete",
+    "Röstkartoffeln"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 X651063"
+  },
+  {
+   "name": "Rösti",
+   "parent": "Erdäpfel",
+   "aliases": [
+    "Erdäpfelpuffer",
+    "Kartoffelpuffer",
+    "Reiberdatschi"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 K391200"
+  },
+  {
+   "name": "Chips",
+   "aliases": [
+    "Kartoffelchips",
+    "Pringles"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 K280100"
+  },
+  {
+   "name": "Süßkartoffel",
+   "aliases": [
+    "Batate"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "source": "BLS 4.0 K420100"
+  },
+  {
+   "name": "Kuhmilch",
+   "aliases": [
+    "Milch",
+    "Vollmilch",
+    "Frischmilch"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "lactose"
+   ],
+   "doseTags": {
+    "fat": 2
+   },
+   "source": "BLS 4.0 M111300"
+  },
+  {
+   "name": "Laktosefreie Milch",
+   "parent": "Kuhmilch",
+   "aliases": [
+    "Laktosefrei Milch",
+    "Milch laktosefrei"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "removeTags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 M114300"
+  },
+  {
+   "name": "Buttermilch",
+   "parent": "Kuhmilch",
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M150000"
+  },
+  {
+   "name": "Kefir",
+   "parent": "Kuhmilch",
+   "aliases": [
+    "Ayran",
+    "Joghurtdrink"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 M130300"
+  },
+  {
+   "name": "Ziegenmilch",
+   "parent": "Kuhmilch",
+   "aliases": [
+    "Schafmilch"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 M021000"
+  },
+  {
+   "name": "Pflanzendrink",
+   "aliases": [
+    "Pflanzenmilch",
+    "Milchersatz"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": []
+  },
+  {
+   "name": "Hafermilch",
+   "parent": "Pflanzendrink",
+   "aliases": [
+    "Haferdrink"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "doseTags": {
+    "fructans": 2
+   },
+   "source": "BLS 4.0 C660000"
+  },
+  {
+   "name": "Sojamilch",
+   "parent": "Pflanzendrink",
+   "aliases": [
+    "Sojadrink"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "gos"
+   ],
+   "note": "Aus Sojaprotein hergestellt ist sie FODMAP-arm.",
+   "source": "BLS 4.0 H841100"
+  },
+  {
+   "name": "Mandelmilch",
+   "parent": "Pflanzendrink",
+   "aliases": [
+    "Mandeldrink"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 H800000"
+  },
+  {
+   "name": "Reisdrink",
+   "parent": "Pflanzendrink",
+   "aliases": [
+    "Reismilch"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 C650000"
+  },
+  {
+   "name": "Joghurt",
+   "aliases": [
+    "Naturjoghurt",
+    "Jogurt"
+   ],
+   "unit": "size",
+   "tags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 M141300"
+  },
+  {
+   "name": "Laktosefreier Joghurt",
+   "parent": "Joghurt",
+   "aliases": [
+    "Joghurt laktosefrei"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 M1E3300"
+  },
+  {
+   "name": "Fruchtjoghurt",
+   "parent": "Joghurt",
+   "aliases": [
+    "Erdbeerjoghurt",
+    "Joghurt mit Früchten"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M241300"
+  },
+  {
+   "name": "Griechisches Joghurt",
+   "parent": "Joghurt",
+   "aliases": [
+    "Griechischer Joghurt",
+    "Sahnejoghurt"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 M141500"
+  },
+  {
+   "name": "Skyr",
+   "parent": "Joghurt",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M710100"
+  },
+  {
+   "name": "Topfen",
+   "aliases": [
+    "Quark",
+    "Magertopfen"
+   ],
+   "unit": "size",
+   "tags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 M713100"
+  },
+  {
+   "name": "Kräutertopfen",
+   "parent": "Topfen",
+   "aliases": [
+    "Kräuterquark",
+    "Liptauer"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "M"
+   },
+   "source": "BLS 4.0 Y771510"
+  },
+  {
+   "name": "Schlagobers",
+   "aliases": [
+    "Sahne",
+    "Schlagsahne",
+    "Obers",
+    "Rahm"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "L",
+    "fat": "L"
+   },
+   "source": "BLS 4.0 M173800"
+  },
+  {
+   "name": "Kaffeeobers",
+   "parent": "Schlagobers",
+   "aliases": [
+    "Kaffeesahne",
+    "Kondensmilch"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "lactose",
+    "fat"
+   ],
+   "source": "BLS 4.0 M171500"
+  },
+  {
+   "name": "Sauerrahm",
+   "aliases": [
+    "Saure Sahne",
+    "Schmand"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "L",
+    "fat": "L"
+   },
+   "source": "BLS 4.0 M176800"
+  },
+  {
+   "name": "Crème fraîche",
+   "aliases": [
+    "Creme fraiche"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "L",
+    "fat": "L"
+   },
+   "source": "BLS 4.0 M172900"
+  },
+  {
+   "name": "Butter",
+   "aliases": [
+    "Teebutter",
+    "Süßrahmbutter"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 Q611000"
+  },
+  {
+   "name": "Butterschmalz",
+   "parent": "Butter",
+   "aliases": [
+    "Ghee"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 Q683000"
+  },
+  {
+   "name": "Margarine",
+   "aliases": [
+    "Pflanzenmargarine",
+    "Rama"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 Q400000"
+  },
+  {
+   "name": "Käse",
+   "aliases": [
+    "Käsescheibe"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 M400600"
+  },
+  {
+   "name": "Hartkäse",
+   "key": "Gereifter Hartkäse",
+   "parent": "Käse",
+   "aliases": [
+    "Gereifter Hartkäse",
+    "Alter Käse"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 M300600"
+  },
+  {
+   "name": "Parmesan",
+   "parent": "Gereifter Hartkäse",
+   "aliases": [
+    "Parmigiano",
+    "Grana Padano",
+    "Pecorino"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M306400"
+  },
+  {
+   "name": "Bergkäse",
+   "parent": "Gereifter Hartkäse",
+   "aliases": [
+    "Almkäse",
+    "Gruyère",
+    "Comté"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M302600"
+  },
+  {
+   "name": "Emmentaler",
+   "parent": "Gereifter Hartkäse",
+   "aliases": [
+    "Schweizer Käse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M304600"
+  },
+  {
+   "name": "Alter Gouda",
+   "parent": "Gereifter Hartkäse",
+   "aliases": [
+    "Gouda gereift"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M402600"
+  },
+  {
+   "name": "Schnittkäse",
+   "parent": "Käse",
+   "aliases": [
+    "Scheibenkäse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M400600"
+  },
+  {
+   "name": "Junger Gouda",
+   "parent": "Schnittkäse",
+   "aliases": [
+    "Gouda",
+    "Gouda jung"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M402600"
+  },
+  {
+   "name": "Edamer",
+   "parent": "Schnittkäse",
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M401600"
+  },
+  {
+   "name": "Tilsiter",
+   "parent": "Schnittkäse",
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [
+    "histamine"
+   ],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M403700"
+  },
+  {
+   "name": "Butterkäse",
+   "parent": "Schnittkäse",
+   "aliases": [
+    "Mondseer",
+    "Moosbacher",
+    "Bel Paese"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M501600"
+  },
+  {
+   "name": "Raclettekäse",
+   "parent": "Schnittkäse",
+   "aliases": [
+    "Raclette"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 M307700"
+  },
+  {
+   "name": "Weichkäse",
+   "parent": "Käse",
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 M602600"
+  },
+  {
+   "name": "Camembert",
+   "parent": "Weichkäse",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M602600"
+  },
+  {
+   "name": "Brie",
+   "parent": "Weichkäse",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M601800"
+  },
+  {
+   "name": "Gorgonzola",
+   "parent": "Weichkäse",
+   "aliases": [
+    "Blauschimmelkäse",
+    "Roquefort",
+    "Dolce Latte"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M5B1600"
+  },
+  {
+   "name": "Limburger",
+   "parent": "Weichkäse",
+   "aliases": [
+    "Romadur",
+    "Rotschmierkäse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M603500"
+  },
+  {
+   "name": "Frischkäse",
+   "parent": "Käse",
+   "aliases": [
+    "Philadelphia",
+    "Streichkäse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "M"
+   },
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M710800"
+  },
+  {
+   "name": "Hüttenkäse",
+   "parent": "Frischkäse",
+   "aliases": [
+    "Cottage Cheese",
+    "Körniger Frischkäse"
+   ],
+   "unit": "size",
+   "tags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 M711100"
+  },
+  {
+   "name": "Ricotta",
+   "parent": "Frischkäse",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M741600"
+  },
+  {
+   "name": "Mascarpone",
+   "parent": "Frischkäse",
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 M7A6800"
+  },
+  {
+   "name": "Ziegenfrischkäse",
+   "parent": "Frischkäse",
+   "aliases": [
+    "Ziegenkäse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "L"
+   },
+   "source": "BLS 4.0 M7A1600"
+  },
+  {
+   "name": "Mozzarella",
+   "parent": "Käse",
+   "aliases": [
+    "Burrata",
+    "Büffelmozzarella"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M032100"
+  },
+  {
+   "name": "Feta",
+   "parent": "Käse",
+   "aliases": [
+    "Schafkäse",
+    "Hirtenkäse",
+    "Schafskäse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 M012200"
+  },
+  {
+   "name": "Halloumi",
+   "parent": "Käse",
+   "aliases": [
+    "Grillkäse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 M524500"
+  },
+  {
+   "name": "Schmelzkäse",
+   "parent": "Käse",
+   "aliases": [
+    "Streichkäse (Schmelzkäse)",
+    "Käsesauce"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "M"
+   },
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M810600"
+  },
+  {
+   "name": "Graukäse",
+   "parent": "Käse",
+   "aliases": [
+    "Steirerkas",
+    "Sauermilchkäse",
+    "Quargel",
+    "Harzer"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "removeTags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 M730100"
+  },
+  {
+   "name": "Milcheis",
+   "aliases": [
+    "Eis",
+    "Eiscreme",
+    "Speiseeis",
+    "Vanilleeis"
+   ],
+   "unit": "count",
+   "unitLabel": "Kugel",
+   "tags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 S241000"
+  },
+  {
+   "name": "Sorbet",
+   "aliases": [
+    "Fruchteis",
+    "Wassereis"
+   ],
+   "unit": "count",
+   "unitLabel": "Kugel",
+   "tags": [],
+   "source": "BLS 4.0 S220000"
+  },
+  {
+   "name": "Pudding",
+   "aliases": [
+    "Vanillepudding",
+    "Schokopudding",
+    "Grießkoch"
+   ],
+   "unit": "size",
+   "tags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 Y862143"
+  },
+  {
+   "name": "Milchreis",
+   "unit": "size",
+   "tags": [
+    "lactose"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 X810413"
+  },
+  {
+   "name": "Kakao",
+   "aliases": [
+    "Trinkschokolade",
+    "Heiße Schokolade",
+    "Kakaomilch"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "lactose"
+   ]
+  },
+  {
+   "name": "Ei",
+   "aliases": [
+    "Eier",
+    "Gekochtes Ei",
+    "Rührei",
+    "Spiegelei",
+    "Eierspeis"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 E111100"
+  },
+  {
+   "name": "Hendl",
+   "aliases": [
+    "Hähnchen",
+    "Huhn",
+    "Hühnerbrust",
+    "Hühnerfleisch",
+    "Backhendlfleisch"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 V4A6100"
+  },
+  {
+   "name": "Pute",
+   "aliases": [
+    "Truthahn",
+    "Putenbrust"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 V486100"
+  },
+  {
+   "name": "Rindfleisch",
+   "aliases": [
+    "Steak",
+    "Rind",
+    "Beiried",
+    "Rostbraten"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 U284100"
+  },
+  {
+   "name": "Schweinefleisch",
+   "aliases": [
+    "Schwein",
+    "Schnitzelfleisch",
+    "Karree"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 U687000"
+  },
+  {
+   "name": "Lammfleisch",
+   "aliases": [
+    "Lamm"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Wild",
+   "aliases": [
+    "Hirsch",
+    "Reh",
+    "Wildschwein"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 V242100"
+  },
+  {
+   "name": "Faschiertes",
+   "aliases": [
+    "Hackfleisch",
+    "Gemischtes Faschiertes",
+    "Fleischlaibchen"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 U050100"
+  },
+  {
+   "name": "Speck",
+   "aliases": [
+    "Bacon",
+    "Frühstücksspeck",
+    "Bauchspeck"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 W415000"
+  },
+  {
+   "name": "Geselchtes",
+   "aliases": [
+    "Selchfleisch",
+    "Kassler",
+    "Kasseler"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 W510000"
+  },
+  {
+   "name": "Kochschinken",
+   "aliases": [
+    "Schinken",
+    "Beinschinken",
+    "Putenschinken"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 W424000"
+  },
+  {
+   "name": "Rohschinken",
+   "aliases": [
+    "Prosciutto",
+    "Serrano",
+    "Parmaschinken",
+    "Schinkenspeck"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 W441000"
+  },
+  {
+   "name": "Wurst",
+   "aliases": [
+    "Würste",
+    "Wurstwaren"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Extrawurst",
+   "key": "Wurstaufschnitt",
+   "parent": "Wurst",
+   "aliases": [
+    "Wurstaufschnitt",
+    "Lyoner",
+    "Fleischwurst",
+    "Pariser",
+    "Knackwurst"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [],
+   "source": "BLS 4.0 W231100"
+  },
+  {
+   "name": "Salami",
+   "parent": "Wurst",
+   "aliases": [
+    "Pfefferoniwurst",
+    "Chorizo",
+    "Kabanossi"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 W149300"
+  },
+  {
+   "name": "Leberwurst",
+   "parent": "Wurst",
+   "aliases": [
+    "Leberstreichwurst",
+    "Leberaufstrich"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 W880100"
+  },
+  {
+   "name": "Leberkäs",
+   "parent": "Wurst",
+   "aliases": [
+    "Leberkäse",
+    "Fleischkäse"
+   ],
+   "unit": "count",
+   "unitLabel": "Scheibe",
+   "tags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 W256100"
+  },
+  {
+   "name": "Bratwurst",
+   "parent": "Wurst",
+   "aliases": [
+    "Grillwurst",
+    "Rostbratwurst"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 W221100"
+  },
+  {
+   "name": "Würstel",
+   "parent": "Wurst",
+   "aliases": [
+    "Würstchen",
+    "Frankfurter",
+    "Wiener",
+    "Wienerle",
+    "Sacherwürstel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "doseTags": {
+    "fat": 2
+   },
+   "source": "BLS 4.0 W211200"
+  },
+  {
+   "name": "Käsekrainer",
+   "parent": "Wurst",
+   "aliases": [
+    "Krainer",
+    "Burenwurst",
+    "Debreziner"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fat"
+   ],
+   "source": "BLS 4.0 W255300"
+  },
+  {
+   "name": "Blutwurst",
+   "parent": "Wurst",
+   "aliases": [
+    "Blunzn",
+    "Blunze"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "doseTags": {
+    "fat": 2
+   },
+   "source": "BLS 4.0 W343000"
+  },
+  {
+   "name": "Mettwurst",
+   "parent": "Wurst",
+   "aliases": [
+    "Teewurst",
+    "Streichwurst"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 W331000"
+  },
+  {
+   "name": "Dönerfleisch",
+   "aliases": [
+    "Kebabfleisch",
+    "Gyrosfleisch"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 Y384112"
+  },
+  {
+   "name": "Fisch",
+   "key": "Fisch (frisch)",
+   "aliases": [
+    "Fisch (frisch)",
+    "Fischfilet",
+    "Seelachs"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 T207100"
+  },
+  {
+   "name": "Lachs",
+   "parent": "Fisch (frisch)",
+   "aliases": [
+    "Lachsfilet"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 T410100"
+  },
+  {
+   "name": "Forelle",
+   "parent": "Fisch (frisch)",
+   "aliases": [
+    "Saibling"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Kabeljau",
+   "parent": "Fisch (frisch)",
+   "aliases": [
+    "Dorsch",
+    "Pangasius",
+    "Alaska-Seelachs"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 T207100"
+  },
+  {
+   "name": "Zander",
+   "parent": "Fisch (frisch)",
+   "aliases": [
+    "Hecht",
+    "Barsch"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 T603100"
+  },
+  {
+   "name": "Karpfen",
+   "parent": "Fisch (frisch)",
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 T501100"
+  },
+  {
+   "name": "Thunfisch (Dose)",
+   "aliases": [
+    "Thunfisch"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 T121902"
+  },
+  {
+   "name": "Räucherlachs",
+   "aliases": [
+    "Räucherfisch",
+    "Geräucherte Forelle"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 T410600"
+  },
+  {
+   "name": "Hering",
+   "aliases": [
+    "Matjes",
+    "Rollmops",
+    "Bismarckhering"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 T811100"
+  },
+  {
+   "name": "Sardinen",
+   "aliases": [
+    "Sardellen",
+    "Anchovis",
+    "Makrele"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 T105100"
+  },
+  {
+   "name": "Garnelen",
+   "aliases": [
+    "Shrimps",
+    "Scampi",
+    "Meeresfrüchte",
+    "Calamari",
+    "Muscheln"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 T753100"
+  },
+  {
+   "name": "Fischstäbchen",
+   "aliases": [
+    "Fischfrikadelle"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 T930100"
+  },
+  {
+   "name": "Backfisch",
+   "aliases": [
+    "Fish and Chips",
+    "Gebackener Fisch"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten",
+    "fat"
+   ]
+  },
+  {
+   "name": "Tofu (fest)",
+   "aliases": [
+    "Tofu",
+    "Räuchertofu"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H861000"
+  },
+  {
+   "name": "Seidentofu",
+   "unit": "size",
+   "tags": [
+    "gos"
+   ],
+   "source": "BLS 4.0 H861100"
+  },
+  {
+   "name": "Tempeh",
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Hülsenfrüchte",
+   "aliases": [
+    "Leguminosen"
+   ],
+   "unit": "size",
+   "tags": [
+    "gos"
+   ]
+  },
+  {
+   "name": "Erbsen",
+   "parent": "Hülsenfrüchte",
+   "aliases": [
+    "Grüne Erbsen",
+    "Tiefkühlerbsen"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ],
+   "source": "BLS 4.0 G760100"
+  },
+  {
+   "name": "Kidneybohnen",
+   "parent": "Hülsenfrüchte",
+   "aliases": [
+    "Bohnen",
+    "Rote Bohnen",
+    "Baked Beans"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H742100"
+  },
+  {
+   "name": "Weiße Bohnen",
+   "parent": "Hülsenfrüchte",
+   "aliases": [
+    "Cannellini",
+    "Borlotti",
+    "Käferbohnen"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 X571453"
+  },
+  {
+   "name": "Kichererbsen",
+   "parent": "Hülsenfrüchte",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H720902"
+  },
+  {
+   "name": "Linsen",
+   "parent": "Hülsenfrüchte",
+   "aliases": [
+    "Rote Linsen",
+    "Berglinsen"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H730132"
+  },
+  {
+   "name": "Edamame",
+   "parent": "Hülsenfrüchte",
+   "aliases": [
+    "Sojabohnen"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "gos": "L"
+   },
+   "source": "BLS 4.0 G750100"
+  },
+  {
+   "name": "Falafel",
+   "parent": "Hülsenfrüchte",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans"
+   ],
+   "source": "BLS 4.0 Y9A1050"
+  },
+  {
+   "name": "Hummus",
+   "parent": "Hülsenfrüchte",
+   "aliases": [
+    "Kichererbsenmus"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 H960000"
+  },
+  {
+   "name": "Kernobst",
+   "aliases": [
+    "Kernobst allgemein"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructose",
+    "polyols"
+   ],
+   "source": "BLS 4.0 F110100"
+  },
+  {
+   "name": "Apfel",
+   "parent": "Kernobst",
+   "aliases": [
+    "Äpfel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F110100"
+  },
+  {
+   "name": "Birne",
+   "parent": "Kernobst",
+   "aliases": [
+    "Birnen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F130100"
+  },
+  {
+   "name": "Quitte",
+   "parent": "Kernobst",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F140100"
+  },
+  {
+   "name": "Steinobst",
+   "aliases": [
+    "Steinobst allgemein"
+   ],
+   "unit": "size",
+   "tags": [
+    "polyols"
+   ]
+  },
+  {
+   "name": "Kirschen",
+   "parent": "Steinobst",
+   "aliases": [
+    "Herzkirschen",
+    "Weichseln",
+    "Sauerkirschen"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 F211100"
+  },
+  {
+   "name": "Zwetschke",
+   "parent": "Steinobst",
+   "aliases": [
+    "Pflaume",
+    "Zwetschge",
+    "Zwetschken",
+    "Mirabelle"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F220100"
+  },
+  {
+   "name": "Pfirsich",
+   "parent": "Steinobst",
+   "aliases": [
+    "Pfirsiche"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F203100"
+  },
+  {
+   "name": "Nektarine",
+   "parent": "Steinobst",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F202100"
+  },
+  {
+   "name": "Marille",
+   "parent": "Steinobst",
+   "aliases": [
+    "Aprikose",
+    "Marillen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F201100"
+  },
+  {
+   "name": "Mango",
+   "parent": "Steinobst",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructose"
+   ],
+   "removeTags": [
+    "polyols"
+   ],
+   "source": "BLS 4.0 F516100"
+  },
+  {
+   "name": "Beeren",
+   "aliases": [
+    "Beerenobst",
+    "Beerenmischung"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Erdbeeren",
+   "parent": "Beeren",
+   "aliases": [
+    "Erdbeere"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructose": "L"
+   },
+   "source": "BLS 4.0 F301100"
+  },
+  {
+   "name": "Himbeeren",
+   "parent": "Beeren",
+   "aliases": [
+    "Himbeere"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructans": "L"
+   },
+   "source": "BLS 4.0 F302100"
+  },
+  {
+   "name": "Heidelbeeren",
+   "parent": "Beeren",
+   "aliases": [
+    "Blaubeeren",
+    "Schwarzbeeren"
+   ],
+   "unit": "size",
+   "tags": [],
+   "note": "BLS weist Fructoseüberschuss aus; Monash misst Heidelbeeren als verträglich.",
+   "source": "BLS 4.0 F304100"
+  },
+  {
+   "name": "Brombeeren",
+   "parent": "Beeren",
+   "aliases": [
+    "Brombeere"
+   ],
+   "unit": "size",
+   "tags": [
+    "polyols"
+   ],
+   "source": "BLS 4.0 F303100"
+  },
+  {
+   "name": "Ribisel",
+   "parent": "Beeren",
+   "aliases": [
+    "Johannisbeeren",
+    "Schwarze Ribisel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructose": "M"
+   },
+   "source": "BLS 4.0 F321100"
+  },
+  {
+   "name": "Preiselbeeren",
+   "parent": "Beeren",
+   "aliases": [
+    "Cranberrys (frisch)"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 F401100"
+  },
+  {
+   "name": "Weintrauben",
+   "parent": "Beeren",
+   "aliases": [
+    "Trauben",
+    "Weinbeeren"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructose"
+   ],
+   "source": "BLS 4.0 F310100"
+  },
+  {
+   "name": "Zitrusfrüchte",
+   "aliases": [
+    "Zitrusobst"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": []
+  },
+  {
+   "name": "Orange",
+   "parent": "Zitrusfrüchte",
+   "aliases": [
+    "Orangen",
+    "Blutorange"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F603100"
+  },
+  {
+   "name": "Mandarine",
+   "parent": "Zitrusfrüchte",
+   "aliases": [
+    "Clementine",
+    "Mandarinen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F606100"
+  },
+  {
+   "name": "Grapefruit",
+   "parent": "Zitrusfrüchte",
+   "aliases": [
+    "Pomelo"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans"
+   ],
+   "source": "BLS 4.0 F604100"
+  },
+  {
+   "name": "Zitrone",
+   "parent": "Zitrusfrüchte",
+   "aliases": [
+    "Limette",
+    "Zitronensaft"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F601100"
+  },
+  {
+   "name": "Banane",
+   "aliases": [
+    "Bananen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans"
+   ],
+   "note": "Reife Bananen enthalten Fructane, unreife (grünliche) kaum.",
+   "source": "BLS 4.0 F503100"
+  },
+  {
+   "name": "Kiwi",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F514100"
+  },
+  {
+   "name": "Ananas",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 F501100"
+  },
+  {
+   "name": "Wassermelone",
+   "unit": "size",
+   "tags": [
+    "fructose",
+    "fructans"
+   ],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "source": "BLS 4.0 F535100"
+  },
+  {
+   "name": "Honigmelone",
+   "aliases": [
+    "Zuckermelone",
+    "Cantaloupe"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructans": "L"
+   },
+   "source": "BLS 4.0 F533100"
+  },
+  {
+   "name": "Feige",
+   "aliases": [
+    "Feigen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans"
+   ],
+   "source": "BLS 4.0 F505100"
+  },
+  {
+   "name": "Granatapfel",
+   "aliases": [
+    "Granatapfelkerne"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructose": "M"
+   },
+   "source": "BLS 4.0 F506100"
+  },
+  {
+   "name": "Papaya",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 F517100"
+  },
+  {
+   "name": "Maracuja",
+   "aliases": [
+    "Passionsfrucht"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F508100"
+  },
+  {
+   "name": "Litschi",
+   "aliases": [
+    "Lychee"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "source": "BLS 4.0 F515100"
+  },
+  {
+   "name": "Kaki",
+   "aliases": [
+    "Sharonfrucht",
+    "Persimone"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [],
+   "source": "BLS 4.0 F507100"
+  },
+  {
+   "name": "Rhabarber",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 F081100"
+  },
+  {
+   "name": "Avocado",
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "note": "Ca. 1/8 Avocado gilt als verträglich.",
+   "source": "BLS 4.0 F502100"
+  },
+  {
+   "name": "Kokosnuss",
+   "aliases": [
+    "Kokosraspel",
+    "Kokosflocken"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   }
+  },
+  {
+   "name": "Trockenobst",
+   "aliases": [
+    "Dörrobst",
+    "Studentenfutter (Obst)"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Datteln",
+   "parent": "Trockenobst",
+   "aliases": [
+    "Dattel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans"
+   ],
+   "doseTags": {
+    "fructose": 2
+   },
+   "source": "BLS 4.0 F504400"
+  },
+  {
+   "name": "Rosinen",
+   "parent": "Trockenobst",
+   "aliases": [
+    "Sultaninen",
+    "Weinbeeren getrocknet"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructose",
+    "fructans"
+   ],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 F840100"
+  },
+  {
+   "name": "Dörrzwetschken",
+   "parent": "Trockenobst",
+   "aliases": [
+    "Trockenpflaumen",
+    "Dörrpflaumen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "polyols"
+   ],
+   "source": "BLS 4.0 F220400"
+  },
+  {
+   "name": "Dörrmarillen",
+   "parent": "Trockenobst",
+   "aliases": [
+    "Getrocknete Aprikosen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "polyols",
+    "fructans"
+   ],
+   "source": "BLS 4.0 F201400"
+  },
+  {
+   "name": "Getrocknete Feigen",
+   "parent": "Trockenobst",
+   "aliases": [
+    "Feigen getrocknet"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans"
+   ],
+   "source": "BLS 4.0 F505400"
+  },
+  {
+   "name": "Cranberrys",
+   "parent": "Trockenobst",
+   "aliases": [
+    "Getrocknete Cranberries"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructose"
+   ],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "source": "BLS 4.0 F414400"
+  },
+  {
+   "name": "Apfelmus",
+   "aliases": [
+    "Apfelkompott",
+    "Kompott"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructose"
+   ],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "source": "BLS 4.0 Y864112"
+  },
+  {
+   "name": "Zwiebelgewächse",
+   "aliases": [
+    "Lauchgewächse"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ]
+  },
+  {
+   "name": "Zwiebel",
+   "parent": "Zwiebelgewächse",
+   "aliases": [
+    "Zwiebeln",
+    "Rote Zwiebel",
+    "Gemüsezwiebel",
+    "Röstzwiebel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G480100"
+  },
+  {
+   "name": "Knoblauch",
+   "parent": "Zwiebelgewächse",
+   "aliases": [
+    "Knoblauchzehe",
+    "Knofel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G490100"
+  },
+  {
+   "name": "Lauch",
+   "parent": "Zwiebelgewächse",
+   "aliases": [
+    "Porree",
+    "Lauchstange"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G470100"
+  },
+  {
+   "name": "Frühlingszwiebel",
+   "parent": "Zwiebelgewächse",
+   "aliases": [
+    "Jungzwiebel",
+    "Lauchzwiebel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "note": "Nur der grüne Teil ist FODMAP-arm.",
+   "source": "BLS 4.0 G482100"
+  },
+  {
+   "name": "Schalotte",
+   "parent": "Zwiebelgewächse",
+   "aliases": [
+    "Schalotten"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G485100"
+  },
+  {
+   "name": "Schnittlauch",
+   "parent": "Zwiebelgewächse",
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "fructans"
+   ],
+   "note": "FODMAP-arm, auch in größeren Mengen.",
+   "source": "BLS 4.0 G081100"
+  },
+  {
+   "name": "Kohl",
+   "aliases": [
+    "Kohlgemüse",
+    "Kraut"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Weißkraut",
+   "parent": "Kohl",
+   "aliases": [
+    "Weißkohl",
+    "Weißkohlsalat"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 G342100"
+  },
+  {
+   "name": "Rotkraut",
+   "parent": "Kohl",
+   "aliases": [
+    "Rotkohl",
+    "Blaukraut"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G341100"
+  },
+  {
+   "name": "Wirsing",
+   "parent": "Kohl",
+   "aliases": [
+    "Kohl (Wirsing)",
+    "Welschkraut"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructans": "L"
+   },
+   "source": "BLS 4.0 G343100"
+  },
+  {
+   "name": "Kohlsprossen",
+   "parent": "Kohl",
+   "aliases": [
+    "Rosenkohl"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 G332100"
+  },
+  {
+   "name": "Karfiol",
+   "parent": "Kohl",
+   "aliases": [
+    "Blumenkohl"
+   ],
+   "unit": "size",
+   "tags": [
+    "polyols"
+   ],
+   "source": "BLS 4.0 G311100"
+  },
+  {
+   "name": "Brokkoli",
+   "parent": "Kohl",
+   "aliases": [
+    "Broccoli"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "note": "Röschen sind gut verträglich, Stiele enthalten mehr Fructose.",
+   "source": "BLS 4.0 G312100"
+  },
+  {
+   "name": "Kohlrabi",
+   "parent": "Kohl",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G331100"
+  },
+  {
+   "name": "Chinakohl",
+   "parent": "Kohl",
+   "aliases": [
+    "Pak Choi",
+    "Pak Choy"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G321100"
+  },
+  {
+   "name": "Grünkohl",
+   "parent": "Kohl",
+   "aliases": [
+    "Kale"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 G322100"
+  },
+  {
+   "name": "Sauerkraut",
+   "parent": "Kohl",
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 G345902"
+  },
+  {
+   "name": "Schwammerl",
+   "aliases": [
+    "Pilze",
+    "Pilz"
+   ],
+   "unit": "size",
+   "tags": [
+    "polyols"
+   ],
+   "source": "BLS 4.0 K701100"
+  },
+  {
+   "name": "Champignons",
+   "parent": "Schwammerl",
+   "aliases": [
+    "Champignon",
+    "Egerling"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 K701100"
+  },
+  {
+   "name": "Eierschwammerl",
+   "parent": "Schwammerl",
+   "aliases": [
+    "Pfifferlinge"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "source": "BLS 4.0 K713100"
+  },
+  {
+   "name": "Steinpilze",
+   "parent": "Schwammerl",
+   "aliases": [
+    "Herrenpilz"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 K718100"
+  },
+  {
+   "name": "Shiitake",
+   "parent": "Schwammerl",
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Austernpilze",
+   "parent": "Schwammerl",
+   "aliases": [
+    "Austernseitling",
+    "Kräuterseitling"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 K740100"
+  },
+  {
+   "name": "Fisolen",
+   "aliases": [
+    "Grüne Bohnen",
+    "Brechbohnen",
+    "Prinzessbohnen"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 X5A8000"
+  },
+  {
+   "name": "Mais",
+   "aliases": [
+    "Zuckermais",
+    "Kukuruz",
+    "Maiskolben"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 G570100"
+  },
+  {
+   "name": "Paprika",
+   "aliases": [
+    "Paprikaschote",
+    "Spitzpaprika"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G543100"
+  },
+  {
+   "name": "Pfefferoni",
+   "aliases": [
+    "Peperoni (mild)",
+    "Pfefferoni eingelegt"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G553100"
+  },
+  {
+   "name": "Chili",
+   "aliases": [
+    "Chilischote",
+    "Peperoni",
+    "Jalapeño"
+   ],
+   "unit": "size",
+   "tags": [
+    "spicy"
+   ],
+   "source": "BLS 4.0 G554100"
+  },
+  {
+   "name": "Gurke",
+   "aliases": [
+    "Gurkerl",
+    "Salatgurke",
+    "Gurkensalat"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G520100"
+  },
+  {
+   "name": "Essiggurkerl",
+   "aliases": [
+    "Essiggurken",
+    "Gewürzgurken",
+    "Salzgurken"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 G520802"
+  },
+  {
+   "name": "Paradeiser",
+   "aliases": [
+    "Tomate",
+    "Tomaten",
+    "Cocktailparadeiser",
+    "Kirschtomaten"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 G561100"
+  },
+  {
+   "name": "Getrocknete Paradeiser",
+   "parent": "Paradeiser",
+   "aliases": [
+    "Getrocknete Tomaten"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructose": "L"
+   },
+   "source": "BLS 4.0 G560400"
+  },
+  {
+   "name": "Karotte",
+   "aliases": [
+    "Möhre",
+    "Karotten",
+    "Gelbe Rübe",
+    "Möhren"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G620100"
+  },
+  {
+   "name": "Zucchini",
+   "aliases": [
+    "Zucchetti"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructans": "L"
+   },
+   "source": "BLS 4.0 G582100"
+  },
+  {
+   "name": "Melanzani",
+   "aliases": [
+    "Aubergine"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 G510100"
+  },
+  {
+   "name": "Spinat",
+   "aliases": [
+    "Blattspinat",
+    "Cremespinat"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 G211100"
+  },
+  {
+   "name": "Mangold",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G230100"
+  },
+  {
+   "name": "Kürbis",
+   "aliases": [
+    "Hokkaido",
+    "Butternut"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 G581000"
+  },
+  {
+   "name": "Rote Rüben",
+   "aliases": [
+    "Rote Bete",
+    "Rote Beete",
+    "Rohnen"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gos"
+   ],
+   "source": "BLS 4.0 G613100"
+  },
+  {
+   "name": "Sellerie",
+   "aliases": [
+    "Knollensellerie",
+    "Zeller"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "L"
+   },
+   "source": "BLS 4.0 G660100"
+  },
+  {
+   "name": "Stangensellerie",
+   "parent": "Sellerie",
+   "aliases": [
+    "Staudensellerie",
+    "Bleichsellerie"
+   ],
+   "unit": "size",
+   "tags": [
+    "polyols"
+   ],
+   "note": "Monash misst deutlich mehr Mannit als BLS.",
+   "source": "BLS 4.0 G220100"
+  },
+  {
+   "name": "Fenchel",
+   "aliases": [
+    "Gemüsefenchel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "M",
+    "fructans": "L"
+   },
+   "source": "BLS 4.0 G430100"
+  },
+  {
+   "name": "Wurzelgemüse",
+   "aliases": [
+    "Suppengrün",
+    "Wurzelwerk"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Pastinake",
+   "parent": "Wurzelgemüse",
+   "aliases": [
+    "Pastinaken"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G640100"
+  },
+  {
+   "name": "Petersilienwurzel",
+   "parent": "Wurzelgemüse",
+   "aliases": [
+    "Petersilwurzen",
+    "Wurzelpetersilie"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "polyols": "M"
+   },
+   "source": "BLS 4.0 G670100"
+  },
+  {
+   "name": "Topinambur",
+   "parent": "Wurzelgemüse",
+   "aliases": [
+    "Erdartischocke"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ]
+  },
+  {
+   "name": "Rettich",
+   "parent": "Wurzelgemüse",
+   "aliases": [
+    "Radi"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G680100"
+  },
+  {
+   "name": "Radieschen",
+   "parent": "Wurzelgemüse",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G691100"
+  },
+  {
+   "name": "Spargel",
+   "aliases": [
+    "Grüner Spargel",
+    "Weißer Spargel"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ],
+   "doseTags": {
+    "fructose": "L"
+   },
+   "source": "BLS 4.0 G450100"
+  },
+  {
+   "name": "Artischocke",
+   "aliases": [
+    "Artischockenherzen"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ],
+   "source": "BLS 4.0 G410100"
+  },
+  {
+   "name": "Blattsalat",
+   "aliases": [
+    "Salat",
+    "Grüner Salat"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G105100"
+  },
+  {
+   "name": "Häuptelsalat",
+   "parent": "Blattsalat",
+   "aliases": [
+    "Kopfsalat",
+    "Butterhäuptel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G105100"
+  },
+  {
+   "name": "Eisbergsalat",
+   "parent": "Blattsalat",
+   "aliases": [
+    "Eissalat"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G103100"
+  },
+  {
+   "name": "Vogerlsalat",
+   "parent": "Blattsalat",
+   "aliases": [
+    "Feldsalat",
+    "Rapunzel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G104100"
+  },
+  {
+   "name": "Rucola",
+   "parent": "Blattsalat",
+   "aliases": [
+    "Rauke"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G130100"
+  },
+  {
+   "name": "Endivie",
+   "parent": "Blattsalat",
+   "aliases": [
+    "Frisée",
+    "Escariol"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G102100"
+  },
+  {
+   "name": "Radicchio",
+   "parent": "Blattsalat",
+   "aliases": [
+    "Chicorée",
+    "Treviso"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G106100"
+  },
+  {
+   "name": "Sprossen",
+   "aliases": [
+    "Mungbohnensprossen",
+    "Sojasprossen",
+    "Keimlinge"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H650100"
+  },
+  {
+   "name": "Bambussprossen",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H610100"
+  },
+  {
+   "name": "Okra",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G530100"
+  },
+  {
+   "name": "Oliven",
+   "aliases": [
+    "Grüne Oliven",
+    "Schwarze Oliven"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H510802"
+  },
+  {
+   "name": "Kapern",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G012902"
+  },
+  {
+   "name": "Ingwer",
+   "aliases": [
+    "Ingwerwurzel"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 R211200"
+  },
+  {
+   "name": "Kräuter",
+   "aliases": [
+    "Petersilie",
+    "Basilikum",
+    "Dille",
+    "Kresse",
+    "Koriander",
+    "Minze"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 G061000"
+  },
+  {
+   "name": "Nüsse",
+   "aliases": [
+    "Nussmischung",
+    "Studentenfutter"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Cashewkerne",
+   "parent": "Nüsse",
+   "aliases": [
+    "Cashews"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gos"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 H170100"
+  },
+  {
+   "name": "Pistazien",
+   "parent": "Nüsse",
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gos"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 H250600"
+  },
+  {
+   "name": "Mandeln",
+   "parent": "Nüsse",
+   "aliases": [
+    "Mandelmus"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "gos": "L",
+    "fat": "L"
+   },
+   "note": "Bis ca. 10 Stück gilt als verträglich.",
+   "source": "BLS 4.0 H210100"
+  },
+  {
+   "name": "Haselnüsse",
+   "parent": "Nüsse",
+   "aliases": [
+    "Haselnuss"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "gos": "L",
+    "fat": "M"
+   },
+   "source": "BLS 4.0 H130100"
+  },
+  {
+   "name": "Walnüsse",
+   "parent": "Nüsse",
+   "aliases": [
+    "Walnuss",
+    "Pekannüsse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 H120100"
+  },
+  {
+   "name": "Erdnüsse",
+   "parent": "Nüsse",
+   "aliases": [
+    "Erdnuss",
+    "Erdnussflips"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 H110600"
+  },
+  {
+   "name": "Macadamia",
+   "parent": "Nüsse",
+   "aliases": [
+    "Macadamianüsse"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 H190600"
+  },
+  {
+   "name": "Paranüsse",
+   "parent": "Nüsse",
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 H180100"
+  },
+  {
+   "name": "Pinienkerne",
+   "parent": "Nüsse",
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 H320100"
+  },
+  {
+   "name": "Erdnussbutter",
+   "aliases": [
+    "Erdnussmus",
+    "Erdnusscreme"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 H880200"
+  },
+  {
+   "name": "Samen",
+   "aliases": [
+    "Kerne",
+    "Saaten"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Leinsamen",
+   "parent": "Samen",
+   "aliases": [
+    "Leinsaat"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H410100"
+  },
+  {
+   "name": "Chiasamen",
+   "parent": "Samen",
+   "aliases": [
+    "Chia"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H480100"
+  },
+  {
+   "name": "Kürbiskerne",
+   "parent": "Samen",
+   "aliases": [
+    "Sonnenblumenkerne"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H310100"
+  },
+  {
+   "name": "Sesam",
+   "parent": "Samen",
+   "aliases": [
+    "Tahin",
+    "Sesampaste"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 H420100"
+  },
+  {
+   "name": "Schokolade",
+   "aliases": [
+    "Schoko"
+   ],
+   "unit": "size",
+   "tags": [
+    "lactose"
+   ],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 S530000"
+  },
+  {
+   "name": "Vollmilchschokolade",
+   "parent": "Schokolade",
+   "aliases": [
+    "Milchschokolade"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 S539900"
+  },
+  {
+   "name": "Zartbitterschokolade",
+   "parent": "Schokolade",
+   "aliases": [
+    "Bitterschokolade",
+    "Dunkle Schokolade"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "lactose"
+   ],
+   "source": "BLS 4.0 S570000"
+  },
+  {
+   "name": "Weiße Schokolade",
+   "parent": "Schokolade",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 S580000"
+  },
+  {
+   "name": "Nuss-Nougat-Creme",
+   "aliases": [
+    "Nutella",
+    "Haselnusscreme"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "lactose": "L"
+   },
+   "source": "BLS 4.0 S145000"
+  },
+  {
+   "name": "Rührkuchen",
+   "aliases": [
+    "Kuchen",
+    "Marmorkuchen",
+    "Gugelhupf",
+    "Biskuit"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "fat": 2
+   }
+  },
+  {
+   "name": "Sahnetorte",
+   "aliases": [
+    "Torte",
+    "Obers-Torte",
+    "Cremeschnitte",
+    "Punschkrapfen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "lactose",
+    "fructans",
+    "gluten",
+    "fat"
+   ]
+  },
+  {
+   "name": "Topfenkuchen",
+   "aliases": [
+    "Käsekuchen",
+    "Topfentorte",
+    "Cheesecake"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "lactose",
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "fat": 2
+   },
+   "source": "BLS 4.0 D480200"
+  },
+  {
+   "name": "Apfelstrudel",
+   "aliases": [
+    "Strudel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructose",
+    "polyols",
+    "fructans",
+    "gluten",
+    "fat"
+   ],
+   "source": "BLS 4.0 D483400"
+  },
+  {
+   "name": "Topfenstrudel",
+   "aliases": [
+    "Milchrahmstrudel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "lactose",
+    "fructans",
+    "gluten",
+    "fat"
+   ],
+   "doseTags": {
+    "fructose": 2
+   },
+   "source": "BLS 4.0 D540400"
+  },
+  {
+   "name": "Sachertorte",
+   "aliases": [
+    "Schokotorte"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten",
+    "fat"
+   ],
+   "source": "BLS 4.0 D083000"
+  },
+  {
+   "name": "Germknödel",
+   "aliases": [
+    "Dampfnudel",
+    "Hefeknödel",
+    "Buchteln"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "lactose",
+    "polyols",
+    "fructans",
+    "gluten",
+    "fat"
+   ]
+  },
+  {
+   "name": "Krapfen",
+   "aliases": [
+    "Berliner",
+    "Donut",
+    "Faschingskrapfen"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "lactose": 2,
+    "fat": 2
+   },
+   "source": "BLS 4.0 D741600"
+  },
+  {
+   "name": "Kekse",
+   "aliases": [
+    "Plätzchen",
+    "Kekserl",
+    "Butterkekse",
+    "Weihnachtskekse"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 D630400"
+  },
+  {
+   "name": "Lebkuchen",
+   "aliases": [
+    "Lebkuchenherz"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "doseTags": {
+    "lactose": 2
+   },
+   "source": "BLS 4.0 D650600"
+  },
+  {
+   "name": "Müsliriegel",
+   "aliases": [
+    "Getreideriegel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten"
+   ],
+   "source": "BLS 4.0 S830000"
+  },
+  {
+   "name": "Proteinriegel",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "polyols"
+   ],
+   "note": "Enthalten oft Zuckeralkohole (Maltit, Sorbit). Zutatenliste prüfen."
+  },
+  {
+   "name": "Gummibärchen",
+   "aliases": [
+    "Fruchtgummi",
+    "Gummibären"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 S361000"
+  },
+  {
+   "name": "Zuckerfreier Kaugummi",
+   "aliases": [
+    "Kaugummi"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "polyols"
+   ]
+  },
+  {
+   "name": "Zuckerfreie Bonbons",
+   "aliases": [
+    "Zuckerfreie Süßigkeiten"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "polyols"
+   ]
+  },
+  {
+   "name": "Popcorn",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 C533000"
+  },
+  {
+   "name": "Zucker",
+   "aliases": [
+    "Kristallzucker",
+    "Staubzucker",
+    "Rohrzucker"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 S111000"
+  },
+  {
+   "name": "Honig",
+   "aliases": [
+    "Waldhonig",
+    "Blütenhonig"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructose"
+   ],
+   "source": "BLS 4.0 S120000"
+  },
+  {
+   "name": "Agavendicksaft",
+   "aliases": [
+    "Agavensirup"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructose"
+   ]
+  },
+  {
+   "name": "Ahornsirup",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 S151100"
+  },
+  {
+   "name": "Marmelade",
+   "aliases": [
+    "Konfitüre",
+    "Gelee"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 S132000"
+  },
+  {
+   "name": "Xylit",
+   "aliases": [
+    "Birkenzucker"
+   ],
+   "unit": "size",
+   "tags": [
+    "polyols"
+   ]
+  },
+  {
+   "name": "Sorbit",
+   "aliases": [
+    "Sorbitol",
+    "Zuckeraustauschstoff"
+   ],
+   "unit": "size",
+   "tags": [
+    "polyols"
+   ],
+   "source": "BLS 4.0 S162000"
+  },
+  {
+   "name": "Erythrit",
+   "aliases": [
+    "Erythritol"
+   ],
+   "unit": "size",
+   "tags": [],
+   "note": "Wird kaum vergoren und gilt als gut verträglich."
+  },
+  {
+   "name": "Kaffee",
+   "aliases": [
+    "Filterkaffee",
+    "Verlängerter",
+    "Americano",
+    "Großer Brauner"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "caffeine"
+   ],
+   "source": "BLS 4.0 N410100"
+  },
+  {
+   "name": "Espresso",
+   "aliases": [
+    "Kleiner Brauner",
+    "Kleiner Schwarzer",
+    "Mokka"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "caffeine"
+   ],
+   "source": "BLS 4.0 N411100"
+  },
+  {
+   "name": "Tee",
+   "aliases": [
+    "Teegetränk"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": []
+  },
+  {
+   "name": "Schwarzer Tee",
+   "parent": "Tee",
+   "aliases": [
+    "Schwarztee",
+    "Earl Grey"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "caffeine"
+   ],
+   "source": "BLS 4.0 N630000"
+  },
+  {
+   "name": "Grüner Tee",
+   "parent": "Tee",
+   "aliases": [
+    "Grüntee",
+    "Matcha",
+    "Mate"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "caffeine"
+   ],
+   "source": "BLS 4.0 N610100"
+  },
+  {
+   "name": "Chai",
+   "parent": "Tee",
+   "aliases": [
+    "Chai Latte"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "fructans",
+    "caffeine"
+   ]
+  },
+  {
+   "name": "Kamillentee",
+   "parent": "Tee",
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "fructans"
+   ]
+  },
+  {
+   "name": "Fencheltee",
+   "parent": "Tee",
+   "aliases": [
+    "Fenchel-Anis-Kümmel-Tee"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [
+    "fructans"
+   ]
+  },
+  {
+   "name": "Pfefferminztee",
+   "parent": "Tee",
+   "aliases": [
+    "Minztee",
+    "Kräutertee"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [],
+   "source": "BLS 4.0 N721000"
+  },
+  {
+   "name": "Früchtetee",
+   "parent": "Tee",
+   "aliases": [
+    "Hagebuttentee",
+    "Rooibos"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "tags": [],
+   "source": "BLS 4.0 N710000"
+  },
+  {
+   "name": "Cola",
+   "aliases": [
+    "Coca-Cola",
+    "Pepsi"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "fructose",
+    "caffeine",
+    "carbonated"
+   ],
+   "source": "BLS 4.0 N330000"
+  },
+  {
+   "name": "Cola Zero",
+   "aliases": [
+    "Cola light"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "caffeine",
+    "carbonated"
+   ]
+  },
+  {
+   "name": "Limonade",
+   "aliases": [
+    "Limo",
+    "Fanta",
+    "Sprite",
+    "Kracherl",
+    "Tonic"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "carbonated"
+   ],
+   "source": "BLS 4.0 N314000"
+  },
+  {
+   "name": "Almdudler",
+   "parent": "Limonade",
+   "aliases": [
+    "Kräuterlimonade"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 N314000"
+  },
+  {
+   "name": "Eistee",
+   "parent": "Limonade",
+   "aliases": [
+    "Ice Tea"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "removeTags": [
+    "carbonated"
+   ],
+   "source": "BLS 4.0 N019000"
+  },
+  {
+   "name": "Mineralwasser mit Kohlensäure",
+   "aliases": [
+    "Sprudel",
+    "Soda",
+    "Prickelnd",
+    "Sodawasser"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "carbonated"
+   ]
+  },
+  {
+   "name": "Energydrink",
+   "aliases": [
+    "Red Bull"
+   ],
+   "unit": "count",
+   "unitLabel": "Dose",
+   "tags": [
+    "caffeine",
+    "carbonated"
+   ]
+  },
+  {
+   "name": "Fruchtsaft",
+   "aliases": [
+    "Saft",
+    "Multivitaminsaft",
+    "Mehrfruchtsaft"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "fructose",
+    "polyols"
+   ],
+   "source": "BLS 4.0 F016600"
+  },
+  {
+   "name": "Apfelsaft",
+   "parent": "Fruchtsaft",
+   "aliases": [
+    "Apfelschorle",
+    "Apfelsaft gespritzt"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 F110600"
+  },
+  {
+   "name": "Orangensaft",
+   "parent": "Fruchtsaft",
+   "aliases": [
+    "O-Saft"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "doseTags": {
+    "fructose": 2
+   },
+   "removeTags": [
+    "polyols"
+   ],
+   "source": "BLS 4.0 F603600"
+  },
+  {
+   "name": "Smoothie",
+   "parent": "Fruchtsaft",
+   "aliases": [
+    "Fruchtsmoothie"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 F032600"
+  },
+  {
+   "name": "Kombucha",
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "histamine",
+    "carbonated"
+   ]
+  },
+  {
+   "name": "Bier",
+   "aliases": [
+    "Pils",
+    "Helles",
+    "Märzen",
+    "Krügerl",
+    "Seidl"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "gluten",
+    "histamine",
+    "alcohol",
+    "carbonated"
+   ],
+   "source": "BLS 4.0 P163000"
+  },
+  {
+   "name": "Weißbier",
+   "parent": "Bier",
+   "aliases": [
+    "Weizenbier",
+    "Hefeweizen"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 P150000"
+  },
+  {
+   "name": "Radler",
+   "parent": "Bier",
+   "aliases": [
+    "Alsterwasser"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 P192000"
+  },
+  {
+   "name": "Alkoholfreies Bier",
+   "parent": "Bier",
+   "aliases": [
+    "Bier alkoholfrei"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "removeTags": [
+    "alcohol"
+   ]
+  },
+  {
+   "name": "Wein",
+   "aliases": [
+    "Achterl",
+    "Viertel"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "alcohol"
+   ],
+   "source": "BLS 4.0 P210000"
+  },
+  {
+   "name": "Weißwein",
+   "parent": "Wein",
+   "aliases": [
+    "Grüner Veltliner",
+    "Riesling"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 P210000"
+  },
+  {
+   "name": "Rotwein",
+   "parent": "Wein",
+   "aliases": [
+    "Zweigelt",
+    "Blaufränkisch"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 P253000"
+  },
+  {
+   "name": "Rosé",
+   "parent": "Wein",
+   "aliases": [
+    "Roséwein"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "source": "BLS 4.0 P210000"
+  },
+  {
+   "name": "Spritzer",
+   "parent": "Wein",
+   "aliases": [
+    "Gespritzter",
+    "Weißer Spritzer",
+    "Sommerspritzer"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "carbonated"
+   ],
+   "note": "Halb Wein, halb Soda.",
+   "source": "BLS 4.0 P210000"
+  },
+  {
+   "name": "Sekt",
+   "parent": "Wein",
+   "aliases": [
+    "Prosecco",
+    "Champagner",
+    "Aperol Spritz",
+    "Hugo"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "histamine",
+    "carbonated"
+   ],
+   "source": "BLS 4.0 P210000"
+  },
+  {
+   "name": "Most",
+   "aliases": [
+    "Apfelmost",
+    "Cider",
+    "Birnenmost"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "alcohol"
+   ],
+   "source": "BLS 4.0 P353100"
+  },
+  {
+   "name": "Spirituosen",
+   "aliases": [
+    "Schnaps",
+    "Vodka",
+    "Gin",
+    "Whisky",
+    "Obstler",
+    "Stamperl"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "alcohol"
+   ],
+   "source": "BLS 4.0 P712000"
+  },
+  {
+   "name": "Rum",
+   "parent": "Spirituosen",
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [
+    "fructose"
+   ],
+   "source": "BLS 4.0 P741000"
+  },
+  {
+   "name": "Likör",
+   "parent": "Spirituosen",
+   "aliases": [
+    "Eierlikör",
+    "Jägermeister",
+    "Amaretto"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": []
+  },
+  {
+   "name": "Ketchup",
+   "aliases": [
+    "Tomatenketchup",
+    "Curryketchup"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fructans": "L"
+   },
+   "note": "1 EL gilt als verträglich.",
+   "source": "BLS 4.0 R141100"
+  },
+  {
+   "name": "Mayonnaise",
+   "aliases": [
+    "Mayo"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 Q991000"
+  },
+  {
+   "name": "Remoulade",
+   "parent": "Mayonnaise",
+   "aliases": [
+    "Sauce Tartare"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 Q999000"
+  },
+  {
+   "name": "Senf",
+   "aliases": [
+    "Estragonsenf",
+    "Kremser Senf",
+    "Dijonsenf"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 R132000"
+  },
+  {
+   "name": "Kren",
+   "aliases": [
+    "Meerrettich",
+    "Apfelkren"
+   ],
+   "unit": "size",
+   "tags": [
+    "spicy"
+   ],
+   "source": "BLS 4.0 G630100"
+  },
+  {
+   "name": "Sojasauce",
+   "aliases": [
+    "Sojasoße",
+    "Tamari"
+   ],
+   "unit": "size",
+   "tags": [
+    "gluten",
+    "histamine"
+   ],
+   "source": "BLS 4.0 R143000"
+  },
+  {
+   "name": "Pesto",
+   "aliases": [
+    "Pesto Genovese",
+    "Basilikumpesto"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ],
+   "doseTags": {
+    "fat": "L"
+   }
+  },
+  {
+   "name": "Paradeissauce",
+   "aliases": [
+    "Tomatensauce",
+    "Tomatensoße",
+    "Passata",
+    "Sugo"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "histamine"
+   ]
+  },
+  {
+   "name": "Bratensaft",
+   "aliases": [
+    "Bratensoße",
+    "Bratensauce",
+    "Gravy",
+    "Natursaft"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "fat"
+   ]
+  },
+  {
+   "name": "Sauce Hollandaise",
+   "aliases": [
+    "Hollandaise",
+    "Sauce Béarnaise"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 U990400"
+  },
+  {
+   "name": "Chilisauce",
+   "aliases": [
+    "Sriracha",
+    "Tabasco",
+    "Scharfe Soße",
+    "Sweet Chili"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "spicy"
+   ]
+  },
+  {
+   "name": "Currypulver",
+   "aliases": [
+    "Curry",
+    "Currypaste"
+   ],
+   "unit": "size",
+   "tags": [
+    "spicy"
+   ]
+  },
+  {
+   "name": "Paprikapulver",
+   "aliases": [
+    "Edelsüß",
+    "Rosenpaprika"
+   ],
+   "unit": "size",
+   "tags": []
+  },
+  {
+   "name": "Pfeffer",
+   "aliases": [
+    "Schwarzer Pfeffer",
+    "Cayennepfeffer"
+   ],
+   "unit": "size",
+   "tags": [
+    "spicy"
+   ]
+  },
+  {
+   "name": "Essig",
+   "aliases": [
+    "Essig allgemein"
+   ],
+   "unit": "size",
+   "tags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 R121000"
+  },
+  {
+   "name": "Weinessig",
+   "parent": "Essig",
+   "aliases": [
+    "Rotweinessig",
+    "Weißweinessig"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 R121000"
+  },
+  {
+   "name": "Balsamico",
+   "parent": "Essig",
+   "aliases": [
+    "Balsamicoessig",
+    "Aceto balsamico",
+    "Balsamicocreme"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 R125000"
+  },
+  {
+   "name": "Apfelessig",
+   "parent": "Essig",
+   "aliases": [
+    "Apfelweinessig",
+    "Mostessig"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 R123100"
+  },
+  {
+   "name": "Branntweinessig",
+   "parent": "Essig",
+   "aliases": [
+    "Tafelessig",
+    "Haushaltsessig",
+    "Essigessenz"
+   ],
+   "unit": "size",
+   "tags": [],
+   "removeTags": [
+    "histamine"
+   ],
+   "source": "BLS 4.0 R122000"
+  },
+  {
+   "name": "Brühe",
+   "aliases": [
+    "Gemüsebrühe",
+    "Suppenwürfel",
+    "Bouillon",
+    "Rindsuppe"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ],
+   "note": "Fertigbrühen enthalten meist Zwiebel- und Knoblauchpulver.",
+   "source": "BLS 4.0 X416243"
+  },
+  {
+   "name": "Inulin",
+   "aliases": [
+    "Chicorée-Faser",
+    "Ballaststoffpulver",
+    "Oligofructose"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans"
+   ]
+  },
+  {
+   "name": "Kokosmilch",
+   "aliases": [
+    "Kokosnussmilch"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "M"
+   },
+   "source": "BLS 4.0 H154000"
+  },
+  {
+   "name": "Speiseöl",
+   "aliases": [
+    "Öl"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 Q180000"
+  },
+  {
+   "name": "Olivenöl",
+   "parent": "Speiseöl",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 Q120000"
+  },
+  {
+   "name": "Rapsöl",
+   "parent": "Speiseöl",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 Q180000"
+  },
+  {
+   "name": "Sonnenblumenöl",
+   "parent": "Speiseöl",
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 Q320000"
+  },
+  {
+   "name": "Kürbiskernöl",
+   "parent": "Speiseöl",
+   "aliases": [
+    "Steirisches Kernöl",
+    "Kernöl"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 Q180000"
+  },
+  {
+   "name": "Kokosöl",
+   "parent": "Speiseöl",
+   "aliases": [
+    "Kokosfett"
+   ],
+   "unit": "size",
+   "tags": [],
+   "source": "BLS 4.0 Q550000"
+  },
+  {
+   "name": "Frittierfett",
+   "aliases": [
+    "Frittieröl"
+   ],
+   "unit": "size",
+   "tags": [
+    "fat"
+   ]
+  },
+  {
+   "name": "Schmalz",
+   "aliases": [
+    "Schweineschmalz",
+    "Grammelschmalz"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 Q860000"
+  },
+  {
+   "name": "Chicken Nuggets",
+   "aliases": [
+    "Nuggets",
+    "Chicken Wings"
+   ],
+   "unit": "size",
+   "tags": [
+    "fructans",
+    "gluten",
+    "fat"
+   ]
+  },
+  {
+   "name": "Frühlingsrolle",
+   "aliases": [
+    "Spring Roll"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "tags": [
+    "fructans",
+    "gluten",
+    "fat"
+   ]
+  },
+  {
+   "name": "Tortillachips",
+   "aliases": [
+    "Maischips",
+    "Nachos (Chips)"
+   ],
+   "unit": "size",
+   "tags": [],
+   "doseTags": {
+    "fat": "L"
+   },
+   "source": "BLS 4.0 C546000"
+  },
+  {
+   "name": "Tzatziki",
+   "aliases": [
+    "Knoblauchsauce",
+    "Joghurtsauce"
+   ],
+   "unit": "size",
+   "tags": [
+    "lactose",
+    "fructans"
+   ]
+  }
+ ],
+ "dishes": [
+  {
+   "name": "Pizza",
+   "aliases": [
+    "Pizza Margherita"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Weizenmehl",
+    "Paradeissauce",
+    "Mozzarella",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Lasagne",
+   "unit": "size",
+   "ingredients": [
+    "Nudeln",
+    "Faschiertes",
+    "Paradeissauce",
+    "Kuhmilch",
+    "Butter",
+    "Weizenmehl",
+    "Gereifter Hartkäse"
+   ]
+  },
+  {
+   "name": "Spaghetti Bolognese",
+   "aliases": [
+    "Bolognese"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Nudeln",
+    "Faschiertes",
+    "Paradeissauce",
+    "Zwiebel",
+    "Knoblauch",
+    "Karotte"
+   ]
+  },
+  {
+   "name": "Spaghetti Carbonara",
+   "aliases": [
+    "Carbonara"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Nudeln",
+    "Speck",
+    "Ei",
+    "Parmesan",
+    "Schlagobers"
+   ]
+  },
+  {
+   "name": "Käsespätzle",
+   "aliases": [
+    "Kässpätzle"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Spätzle",
+    "Bergkäse",
+    "Zwiebel",
+    "Butter"
+   ]
+  },
+  {
+   "name": "Wiener Schnitzel",
+   "aliases": [
+    "Schnitzel",
+    "Paniertes Schnitzel"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Schweinefleisch",
+    "Semmelbrösel",
+    "Weizenmehl",
+    "Ei",
+    "Frittierfett"
+   ]
+  },
+  {
+   "name": "Gulasch",
+   "aliases": [
+    "Rindsgulasch",
+    "Saftgulasch"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Rindfleisch",
+    "Zwiebel",
+    "Paprikapulver",
+    "Brühe",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Tafelspitz",
+   "aliases": [
+    "Gekochtes Rindfleisch"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Rindfleisch",
+    "Brühe",
+    "Karotte",
+    "Stangensellerie",
+    "Lauch",
+    "Kren"
+   ]
+  },
+  {
+   "name": "Frittatensuppe",
+   "aliases": [
+    "Grießnockerlsuppe",
+    "Leberknödelsuppe"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Brühe",
+    "Weizenmehl",
+    "Ei",
+    "Kuhmilch"
+   ]
+  },
+  {
+   "name": "Hühnersuppe",
+   "aliases": [
+    "Nudelsuppe",
+    "Rindsuppe mit Nudeln"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Hendl",
+    "Brühe",
+    "Nudeln",
+    "Karotte",
+    "Stangensellerie",
+    "Lauch"
+   ]
+  },
+  {
+   "name": "Erdäpfelsuppe",
+   "aliases": [
+    "Kartoffelsuppe",
+    "Cremesuppe"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Erdäpfel",
+    "Lauch",
+    "Zwiebel",
+    "Karotte",
+    "Brühe",
+    "Schlagobers"
+   ]
+  },
+  {
+   "name": "Paradeissuppe",
+   "aliases": [
+    "Tomatensuppe"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Paradeiser",
+    "Paradeissauce",
+    "Zwiebel",
+    "Brühe",
+    "Schlagobers"
+   ]
+  },
+  {
+   "name": "Linseneintopf",
+   "aliases": [
+    "Linsensuppe",
+    "Dal"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Linsen",
+    "Karotte",
+    "Zwiebel",
+    "Erdäpfel",
+    "Brühe"
+   ]
+  },
+  {
+   "name": "Erbsensuppe",
+   "aliases": [
+    "Erbseneintopf"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Erbsen",
+    "Zwiebel",
+    "Erdäpfel",
+    "Brühe",
+    "Speck"
+   ]
+  },
+  {
+   "name": "Bohneneintopf",
+   "aliases": [
+    "Bohnensuppe"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Kidneybohnen",
+    "Zwiebel",
+    "Erdäpfel",
+    "Brühe",
+    "Speck"
+   ]
+  },
+  {
+   "name": "Chili con Carne",
+   "unit": "size",
+   "ingredients": [
+    "Faschiertes",
+    "Kidneybohnen",
+    "Paradeissauce",
+    "Zwiebel",
+    "Knoblauch",
+    "Chili",
+    "Mais"
+   ]
+  },
+  {
+   "name": "Erdäpfelsalat",
+   "aliases": [
+    "Kartoffelsalat"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Erdäpfel",
+    "Zwiebel",
+    "Mayonnaise",
+    "Essiggurkerl",
+    "Brühe"
+   ]
+  },
+  {
+   "name": "Gemischter Salat",
+   "unit": "size",
+   "ingredients": [
+    "Blattsalat",
+    "Paradeiser",
+    "Gurke",
+    "Balsamico",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Currywurst",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Bratwurst",
+    "Ketchup",
+    "Currypulver"
+   ]
+  },
+  {
+   "name": "Döner Kebab",
+   "aliases": [
+    "Döner",
+    "Kebab",
+    "Dürüm"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Fladenbrot",
+    "Dönerfleisch",
+    "Blattsalat",
+    "Paradeiser",
+    "Zwiebel",
+    "Tzatziki"
+   ]
+  },
+  {
+   "name": "Gyros",
+   "aliases": [
+    "Souvlaki"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Schweinefleisch",
+    "Zwiebel",
+    "Tzatziki",
+    "Pommes frites"
+   ]
+  },
+  {
+   "name": "Burger",
+   "aliases": [
+    "Hamburger",
+    "Cheeseburger"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Semmel",
+    "Faschiertes",
+    "Junger Gouda",
+    "Ketchup",
+    "Zwiebel",
+    "Paradeiser",
+    "Blattsalat"
+   ]
+  },
+  {
+   "name": "Hot Dog",
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Semmel",
+    "Würstel",
+    "Ketchup",
+    "Senf",
+    "Zwiebel"
+   ]
+  },
+  {
+   "name": "Wrap",
+   "aliases": [
+    "Burrito"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Weizentortilla",
+    "Hendl",
+    "Blattsalat",
+    "Paradeiser",
+    "Sauerrahm"
+   ]
+  },
+  {
+   "name": "Nachos mit Käse",
+   "aliases": [
+    "Nachos"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Tortillachips",
+    "Schmelzkäse",
+    "Chili"
+   ]
+  },
+  {
+   "name": "Sushi",
+   "aliases": [
+    "Maki",
+    "Nigiri"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Reis",
+    "Fisch (frisch)",
+    "Gurke",
+    "Sojasauce"
+   ]
+  },
+  {
+   "name": "Ramen",
+   "aliases": [
+    "Instantnudeln",
+    "Udon"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Nudeln",
+    "Brühe",
+    "Ei",
+    "Sojasauce",
+    "Frühlingszwiebel"
+   ]
+  },
+  {
+   "name": "Asiatisches Wokgericht",
+   "aliases": [
+    "Wok",
+    "Gebratene Nudeln",
+    "Gebratener Reis",
+    "Pad Thai"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Reis",
+    "Hendl",
+    "Paprika",
+    "Karotte",
+    "Zwiebel",
+    "Knoblauch",
+    "Sojasauce",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Indisches Curry",
+   "aliases": [
+    "Thai Curry",
+    "Tikka Masala",
+    "Korma"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Hendl",
+    "Zwiebel",
+    "Knoblauch",
+    "Currypulver",
+    "Kokosmilch",
+    "Reis"
+   ]
+  },
+  {
+   "name": "Toast Hawaii",
+   "aliases": [
+    "Schinken-Käse-Toast"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Toastbrot",
+    "Kochschinken",
+    "Ananas",
+    "Junger Gouda"
+   ]
+  },
+  {
+   "name": "Belegte Semmel",
+   "aliases": [
+    "Belegtes Brötchen",
+    "Sandwich",
+    "Wurstsemmel",
+    "Käsesemmel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Semmel",
+    "Butter",
+    "Kochschinken",
+    "Junger Gouda"
+   ]
+  },
+  {
+   "name": "Kaiserschmarrn",
+   "unit": "size",
+   "ingredients": [
+    "Weizenmehl",
+    "Ei",
+    "Kuhmilch",
+    "Butter",
+    "Zucker",
+    "Rosinen"
+   ]
+  },
+  {
+   "name": "Palatschinken",
+   "aliases": [
+    "Pfannkuchen",
+    "Eierkuchen",
+    "Crêpes"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Weizenmehl",
+    "Ei",
+    "Kuhmilch"
+   ]
+  },
+  {
+   "name": "Geröstete Erdäpfel",
+   "aliases": [
+    "Geröstete Kartoffeln",
+    "Hash Browns"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Erdäpfel",
+    "Zwiebel",
+    "Speck",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Schweinsbraten",
+   "aliases": [
+    "Schweinebraten",
+    "Surbraten"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Schweinefleisch",
+    "Bratensaft"
+   ]
+  },
+  {
+   "name": "Cappuccino",
+   "aliases": [
+    "Latte Macchiato",
+    "Melange",
+    "Milchkaffee",
+    "Flat White"
+   ],
+   "unit": "count",
+   "unitLabel": "Tasse",
+   "ingredients": [
+    "Espresso",
+    "Kuhmilch"
+   ]
+  },
+  {
+   "name": "Erdäpfelpüree",
+   "aliases": [
+    "Kartoffelpüree",
+    "Püree",
+    "Stampf"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Erdäpfel",
+    "Kuhmilch",
+    "Butter"
+   ]
+  },
+  {
+   "name": "Leberkässemmel",
+   "aliases": [
+    "Leberkäsesemmel",
+    "LKS"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Semmel",
+    "Leberkäs",
+    "Senf"
+   ]
+  },
+  {
+   "name": "Kasnocken",
+   "aliases": [
+    "Pinzgauer Kasnocken"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Spätzle",
+    "Graukäse",
+    "Zwiebel",
+    "Butter"
+   ]
+  },
+  {
+   "name": "Grenadiermarsch",
+   "unit": "size",
+   "ingredients": [
+    "Nudeln",
+    "Erdäpfel",
+    "Zwiebel",
+    "Speck",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Krautfleckerl",
+   "unit": "size",
+   "ingredients": [
+    "Eiernudeln",
+    "Weißkraut",
+    "Zwiebel",
+    "Zucker",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Schinkenfleckerl",
+   "unit": "size",
+   "ingredients": [
+    "Eiernudeln",
+    "Kochschinken",
+    "Ei",
+    "Sauerrahm"
+   ]
+  },
+  {
+   "name": "Eiernockerl",
+   "unit": "size",
+   "ingredients": [
+    "Spätzle",
+    "Ei",
+    "Butter",
+    "Schnittlauch"
+   ]
+  },
+  {
+   "name": "Backhendl",
+   "aliases": [
+    "Steirisches Backhendl"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Hendl",
+    "Semmelbrösel",
+    "Weizenmehl",
+    "Ei",
+    "Frittierfett"
+   ]
+  },
+  {
+   "name": "Cordon bleu",
+   "unit": "size",
+   "ingredients": [
+    "Schweinefleisch",
+    "Kochschinken",
+    "Emmentaler",
+    "Semmelbrösel",
+    "Weizenmehl",
+    "Ei",
+    "Frittierfett"
+   ]
+  },
+  {
+   "name": "Faschierte Laibchen",
+   "aliases": [
+    "Fleischlaibchen (Gericht)",
+    "Fleischpflanzerl",
+    "Frikadellen"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Faschiertes",
+    "Semmel",
+    "Zwiebel",
+    "Ei",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Zwiebelrostbraten",
+   "unit": "size",
+   "ingredients": [
+    "Rindfleisch",
+    "Zwiebel",
+    "Weizenmehl",
+    "Bratensaft",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Beuschel",
+   "unit": "size",
+   "ingredients": [
+    "Rindfleisch",
+    "Zwiebel",
+    "Essig",
+    "Sauerrahm",
+    "Weizenmehl"
+   ]
+  },
+  {
+   "name": "Krautsalat",
+   "unit": "size",
+   "ingredients": [
+    "Weißkraut",
+    "Essig",
+    "Speiseöl",
+    "Speck"
+   ]
+  },
+  {
+   "name": "Linsen mit Knödel",
+   "unit": "size",
+   "ingredients": [
+    "Linsen",
+    "Semmelknödel",
+    "Speck",
+    "Zwiebel",
+    "Essig"
+   ]
+  },
+  {
+   "name": "Spinat mit Spiegelei",
+   "aliases": [
+    "Cremespinat mit Ei"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Spinat",
+    "Ei",
+    "Erdäpfel",
+    "Schlagobers",
+    "Knoblauch"
+   ]
+  },
+  {
+   "name": "Gemüsecurry",
+   "aliases": [
+    "Vegetarisches Curry"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Kichererbsen",
+    "Karfiol",
+    "Zwiebel",
+    "Knoblauch",
+    "Currypulver",
+    "Kokosmilch",
+    "Reis"
+   ]
+  },
+  {
+   "name": "Risotto",
+   "aliases": [
+    "Pilzrisotto"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Reis",
+    "Zwiebel",
+    "Champignons",
+    "Parmesan",
+    "Butter",
+    "Weißwein"
+   ]
+  },
+  {
+   "name": "Müsli mit Joghurt",
+   "aliases": [
+    "Joghurt mit Müsli"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Müsli",
+    "Joghurt",
+    "Banane"
+   ]
+  },
+  {
+   "name": "Porridge",
+   "aliases": [
+    "Haferbrei mit Obst"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Haferflocken",
+    "Kuhmilch",
+    "Banane",
+    "Honig"
+   ]
+  },
+  {
+   "name": "Marillenknödel",
+   "aliases": [
+    "Zwetschkenknödel",
+    "Topfenknödel"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Topfen",
+    "Weizenmehl",
+    "Marille",
+    "Semmelbrösel",
+    "Butter",
+    "Zucker"
+   ]
+  },
+  {
+   "name": "Kaspressknödel",
+   "aliases": [
+    "Kaspressknödelsuppe"
+   ],
+   "unit": "count",
+   "unitLabel": "Stück",
+   "ingredients": [
+    "Semmel",
+    "Graukäse",
+    "Ei",
+    "Zwiebel",
+    "Speiseöl"
+   ]
+  },
+  {
+   "name": "Steirischer Backhendlsalat",
+   "aliases": [
+    "Backhendlsalat"
+   ],
+   "unit": "size",
+   "ingredients": [
+    "Hendl",
+    "Semmelbrösel",
+    "Ei",
+    "Blattsalat",
+    "Kürbiskernöl",
+    "Kürbiskerne"
+   ]
+  }
+ ]
 }

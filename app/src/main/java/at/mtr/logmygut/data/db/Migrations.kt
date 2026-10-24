@@ -31,4 +31,13 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
     }
 }
 
-val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2)
+/** v2 → v3: food hierarchy (SPEC 4.4). Existing foods have no parent; existing tags are not removals. */
+val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE `food` ADD COLUMN `parentId` INTEGER")
+        db.execSQL("CREATE INDEX IF NOT EXISTS `index_food_parentId` ON `food` (`parentId`)")
+        db.execSQL("ALTER TABLE `food_tag` ADD COLUMN `removed` INTEGER NOT NULL DEFAULT 0")
+    }
+}
+
+val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3)
