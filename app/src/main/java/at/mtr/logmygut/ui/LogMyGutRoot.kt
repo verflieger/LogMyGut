@@ -123,6 +123,9 @@ fun LogMyGutRoot() {
             exitTransition = { fadeOut(tween(TransitionMillis)) },
             popEnterTransition = { fadeIn(tween(TransitionMillis)) },
             popExitTransition = { slideOutHorizontally(tween(TransitionMillis)) { it } + fadeOut(tween(TransitionMillis)) },
+            // The swipe-back gesture has its own defaults (shrink to 70 %); use the same slide as the back button.
+            predictivePopEnterTransition = { fadeIn(tween(TransitionMillis)) },
+            predictivePopExitTransition = { slideOutHorizontally(tween(TransitionMillis)) { it } },
         ) {
             composable<TodayRoute> {
                 TodayScreen(
