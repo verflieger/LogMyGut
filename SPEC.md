@@ -39,7 +39,7 @@ Wording rules for UI texts, info pages and any store listing:
 | Distribution | Sideload: debug builds via Android Studio / adb, release APKs handed out directly. No Play Store. |
 | Network | **None.** No `INTERNET` permission in the manifest. No analytics, crash reporting or cloud backup (`android:allowBackup="false"`). |
 | App lock | None (relies on the device lock screen) |
-| Localization | All UI text in `res/values/strings.xml`, in **Austrian German** (Semmel, Topfen, Erdäpfel …). Standard German food names are search aliases. Dates and times are formatted with locale `de-AT` (e.g. "Jänner"). English can be added later. |
+| Localization | All UI text in `res/values/strings.xml`, in **Austrian German** (Semmel, Topfen, Faschiertes …). Standard German food names are search aliases. Where the Austrian word is less common (Paradeiser, Erdäpfel), the food uses the standard name and keeps the Austrian one as an alias. Dates and times are formatted with locale `de-AT` (e.g. "Jänner"). English can be added later. |
 
 Permissions: `POST_NOTIFICATIONS` (reminder), `SCHEDULE_EXACT_ALARM` is **not** used.
 The daily reminder uses an inexact alarm or WorkManager, which is acceptable for this purpose.
@@ -272,7 +272,7 @@ Käse → Weichkäse → Camembert. At most 3 levels.
 - A child's own tag entry replaces the inherited one (e.g. a different dose threshold). A child can also **remove**
   an inherited tag (Branntweinessig removes histamine).
 - Search results show the parent ("Apfelessig · Essig") and, when the query matched an alias, that alias
-  ("Paradeiser" with „Tomate“).
+  ("Tomate" with „Paradeiser“).
 - The analysis stays tag-based. Later, per-food views may roll children up into their parent.
 
 ### 4.5 Seed data sources

@@ -12,7 +12,7 @@ fun normalizeForSearch(text: String): String {
 }
 
 /**
- * The alias that matched [normalizedQuery] when the name itself doesn't, e.g. "Tomate" for Paradeiser.
+ * The alias that matched [normalizedQuery] when the name itself doesn't, e.g. "Paradeiser" for Tomate.
  * Prefers exact, then prefix, then substring matches.
  */
 fun matchedAlias(name: String, aliases: List<String>, normalizedQuery: String): String? {

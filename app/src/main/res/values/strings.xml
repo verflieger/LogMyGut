@@ -192,7 +192,7 @@
     <string name="food_from_now_on">Änderungen gelten ab jetzt. Frühere Mahlzeiten behalten ihre Zutaten.</string>
     <string name="food_name">Name</string>
     <string name="food_aliases">Andere Namen</string>
-    <string name="food_aliases_hint">Mit Komma trennen, z. B. Tomate, Paradeiser</string>
+    <string name="food_aliases_hint">Mit Komma trennen, z. B. Tomaten, Paradeiser</string>
     <string name="food_unit">Menge</string>
     <string name="food_unit_locked">Schon eingetragen, daher bleibt die Einheit gleich.</string>
     <string name="food_grams_size">Gramm einer normalen Portion (M)</string>
@@ -248,7 +248,7 @@
     <string name="analysis_legend_no_score">kein Wert</string>
 
     <!-- Analysis: triggers (SPEC 6.3) -->
-    <string name="analysis_disclaimer">Hier siehst du nur, was in deinen Einträgen gemeinsam vorkommt, nicht was Beschwerden verursacht. In gemischten Mahlzeiten kommen Auslöser oft gemeinsam vor (Pizza = Weizen + Käse + Paradeiser), und Beschwerden haben oft auch andere Gründe wie Stress oder wenig Schlaf. Die App stellt keine Diagnose. Wenn du der Ursache nachgehen willst, nimm die Übersicht zu deiner Ärztin, deinem Arzt oder deiner Diätologin mit. Lass Gluten nicht weg, bevor auf Zöliakie getestet wurde.</string>
+    <string name="analysis_disclaimer">Hier siehst du nur, was in deinen Einträgen gemeinsam vorkommt, nicht was Beschwerden verursacht. In gemischten Mahlzeiten kommen Auslöser oft gemeinsam vor (Pizza = Weizen + Käse + Tomate), und Beschwerden haben oft auch andere Gründe wie Stress oder wenig Schlaf. Die App stellt keine Diagnose. Wenn du der Ursache nachgehen willst, nimm die Übersicht zu deiner Ärztin, deinem Arzt oder deiner Diätologin mit. Lass Gluten nicht weg, bevor auf Zöliakie getestet wurde.</string>
     <string name="analysis_hints_title">Auffällig in deinen Einträgen</string>
     <string name="analysis_no_hints">Noch nichts auffällig. Je mehr Mahlzeiten und Beschwerden du einträgst, desto mehr lässt sich vergleichen.</string>
     <string name="analysis_all_title">Alle Auslöser für …</string>

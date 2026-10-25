@@ -55,7 +55,7 @@
     <string name="info_tag_gluten_foods">Brot, Gebäck, Nudeln, Mehlspeisen, Panier, Bier.</string>
     <string name="info_tag_gluten_test">Bluttest auf Zöliakie-Antikörper (Gewebs-Transglutaminase-IgA mit Gesamt-IgA), eventuell eine Dünndarmbiopsie. Wichtig: vor dem Test nicht glutenfrei essen, sonst kann er falsch negativ ausfallen.</string>
     <string name="info_tag_histamine_what">Ein Botenstoff, der in gereiften und fermentierten Lebensmitteln entsteht. Eine Histaminunverträglichkeit ist wissenschaftlich umstritten und schwer nachzuweisen.</string>
-    <string name="info_tag_histamine_foods">Gereifter Käse, Salami, Rohschinken, Sauerkraut, Rotwein, Thunfisch aus der Dose, Paradeiser, Spinat.</string>
+    <string name="info_tag_histamine_foods">Gereifter Käse, Salami, Rohschinken, Sauerkraut, Rotwein, Thunfisch aus der Dose, Tomaten, Spinat.</string>
     <string name="info_tag_histamine_test">Kein verlässlicher Labortest; die Messung des Enzyms DAO im Blut ist wenig aussagekräftig. Eine angeleitete Auslassdiät mit gezieltem Wiedereinführen.</string>
     <string name="info_tag_fat_what">Fettes Essen bleibt länger im Magen und regt den Darm stärker an.</string>
     <string name="info_tag_fat_foods">Frittiertes, Schnitzel, Pommes, Schlagobers, Wurst, Mehlspeisen.</string>

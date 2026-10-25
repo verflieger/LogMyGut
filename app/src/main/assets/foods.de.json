@@ -640,10 +640,14 @@
    "source": "BLS 4.0 B821000"
   },
   {
-   "name": "Erdäpfel",
+   "name": "Kartoffeln",
+   "key": "Erdäpfel",
    "aliases": [
-    "Kartoffeln",
+    "Erdäpfel",
+    "Kartoffel",
+    "Salzkartoffeln",
     "Salzerdäpfel",
+    "Petersilkartoffeln",
     "Petersilerdäpfel"
    ],
    "unit": "size",
@@ -3110,10 +3114,12 @@
    "source": "BLS 4.0 G520802"
   },
   {
-   "name": "Paradeiser",
+   "name": "Tomate",
+   "key": "Paradeiser",
    "aliases": [
-    "Tomate",
+    "Paradeiser",
     "Tomaten",
+    "Cocktailtomaten",
     "Cocktailparadeiser",
     "Kirschtomaten"
    ],
@@ -3126,10 +3132,11 @@
    "source": "BLS 4.0 G561100"
   },
   {
-   "name": "Getrocknete Paradeiser",
+   "name": "Getrocknete Tomaten",
+   "key": "Getrocknete Paradeiser",
    "parent": "Paradeiser",
    "aliases": [
-    "Getrocknete Tomaten"
+    "Getrocknete Paradeiser"
    ],
    "unit": "size",
    "tags": [],
@@ -4777,9 +4784,10 @@
    "grams": 30.0
   },
   {
-   "name": "Paradeissauce",
+   "name": "Tomatensauce",
+   "key": "Paradeissauce",
    "aliases": [
-    "Tomatensauce",
+    "Paradeissauce",
     "Tomatensoße",
     "Passata",
     "Sugo"
@@ -5259,9 +5267,10 @@
    ]
   },
   {
-   "name": "Erdäpfelsuppe",
+   "name": "Kartoffelsuppe",
+   "key": "Erdäpfelsuppe",
    "aliases": [
-    "Kartoffelsuppe",
+    "Erdäpfelsuppe",
     "Cremesuppe"
    ],
    "unit": "size",
@@ -5275,9 +5284,10 @@
    ]
   },
   {
-   "name": "Paradeissuppe",
+   "name": "Tomatensuppe",
+   "key": "Paradeissuppe",
    "aliases": [
-    "Tomatensuppe"
+    "Paradeissuppe"
    ],
    "unit": "size",
    "ingredients": [
@@ -5345,9 +5355,10 @@
    ]
   },
   {
-   "name": "Erdäpfelsalat",
+   "name": "Kartoffelsalat",
+   "key": "Erdäpfelsalat",
    "aliases": [
-    "Kartoffelsalat"
+    "Erdäpfelsalat"
    ],
    "unit": "size",
    "ingredients": [
@@ -5593,9 +5604,10 @@
    ]
   },
   {
-   "name": "Geröstete Erdäpfel",
+   "name": "Geröstete Kartoffeln",
+   "key": "Geröstete Erdäpfel",
    "aliases": [
-    "Geröstete Kartoffeln",
+    "Geröstete Erdäpfel",
     "Hash Browns"
    ],
    "unit": "size",
@@ -5636,9 +5648,10 @@
    "drink": true
   },
   {
-   "name": "Erdäpfelpüree",
+   "name": "Kartoffelpüree",
+   "key": "Erdäpfelpüree",
    "aliases": [
-    "Kartoffelpüree",
+    "Erdäpfelpüree",
     "Püree",
     "Stampf"
    ],

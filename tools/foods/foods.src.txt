@@ -53,7 +53,7 @@ Buchweizen | size | g=150 | bls=C322000 | aliases=Heidenmehl
 Polenta | size | g=200 | bls=C526000 | aliases=Maisgrieß, Sterz
 Weizenmehl | size | g=50 | bls=C213100 | aliases=Mehl, Dinkelmehl | tags=fructans, gluten
 Semmelbrösel | size | g=20 | bls=B821000 | aliases=Paniermehl, Panade, Brösel | tags=fructans, gluten
-Erdäpfel | size | g=200 | bls=K110132 | aliases=Kartoffeln, Salzerdäpfel, Petersilerdäpfel
+Kartoffeln | size | g=200 | key=Erdäpfel | bls=K110132 | aliases=Erdäpfel, Kartoffel, Salzkartoffeln, Salzerdäpfel, Petersilkartoffeln, Petersilerdäpfel
   Pommes frites | size | g=150 | bls=X654042 | aliases=Pommes, Fritten
   Bratkartoffeln | size | g=200 | bls=X651063 | aliases=Geröstete, Röstkartoffeln
   Rösti | size | g=150 | bls=K391200 | aliases=Erdäpfelpuffer, Kartoffelpuffer, Reiberdatschi
@@ -256,8 +256,8 @@ Pfefferoni | size | g=20 | bls=G553100 | aliases=Peperoni (mild), Pfefferoni ein
 Chili | size | g=5 | bls=G554100 | aliases=Chilischote, Peperoni, Jalapeño | tags=spicy
 Gurke | size | g=100 | bls=G520100 | aliases=Gurkerl, Salatgurke, Gurkensalat
 Essiggurkerl | count:Stück | g=30 | bls=G520802 | aliases=Essiggurken, Gewürzgurken, Salzgurken | tags=histamine
-Paradeiser | count:Stück | g=100 | bls=G561100 | aliases=Tomate, Tomaten, Cocktailparadeiser, Kirschtomaten | tags=histamine
-  Getrocknete Paradeiser | size | g=10 | bls=G560400 | aliases=Getrocknete Tomaten
+Tomate | count:Stück | g=100 | key=Paradeiser | bls=G561100 | aliases=Paradeiser, Tomaten, Cocktailtomaten, Cocktailparadeiser, Kirschtomaten | tags=histamine
+  Getrocknete Tomaten | size | g=10 | key=Getrocknete Paradeiser | bls=G560400 | aliases=Getrocknete Paradeiser
 Karotte | size | g=100 | bls=G620100 | aliases=Möhre, Karotten, Gelbe Rübe, Möhren
 Zucchini | size | g=150 | bls=G582100 | aliases=Zucchetti | tags=fructans:L
 Melanzani | size | g=150 | bls=G510100 | aliases=Aubergine | tags=histamine
@@ -389,7 +389,7 @@ Senf | size | g=10 | bls=R132000 | aliases=Estragonsenf, Kremser Senf, Dijonsenf
 Kren | size | g=10 | bls=G630100 | aliases=Meerrettich, Apfelkren | tags=spicy
 Sojasauce | size | g=15 | bls=R143000 | aliases=Sojasoße, Tamari | tags=gluten, histamine
 Pesto | size | g=30 | aliases=Pesto Genovese, Basilikumpesto | tags=fructans, fat:L
-Paradeissauce | size | g=100 | aliases=Tomatensauce, Tomatensoße, Passata, Sugo | tags=fructans, histamine
+Tomatensauce | size | g=100 | key=Paradeissauce | aliases=Paradeissauce, Tomatensoße, Passata, Sugo | tags=fructans, histamine
 Bratensaft | size | g=60 | aliases=Bratensoße, Bratensauce, Gravy, Natursaft | tags=fructans, fat
 Sauce Hollandaise | size | g=40 | bls=U990400 | aliases=Hollandaise, Sauce Béarnaise
 Chilisauce | size | g=15 | aliases=Sriracha, Tabasco, Scharfe Soße, Sweet Chili | tags=spicy, fructans
@@ -420,9 +420,9 @@ Tortillachips | size | g=50 | bls=C546000 | aliases=Maischips, Nachos (Chips)
 Tzatziki | size | g=50 | aliases=Knoblauchsauce, Joghurtsauce | tags=lactose, fructans
 
 == Gerichte
-Pizza | size | aliases=Pizza Margherita | = Weizenmehl, Paradeissauce, Mozzarella, Speiseöl
-Lasagne | size | = Nudeln, Faschiertes, Paradeissauce, Kuhmilch, Butter, Weizenmehl, Hartkäse
-Spaghetti Bolognese | size | aliases=Bolognese | = Nudeln, Faschiertes, Paradeissauce, Zwiebel, Knoblauch, Karotte
+Pizza | size | aliases=Pizza Margherita | = Weizenmehl, Tomatensauce, Mozzarella, Speiseöl
+Lasagne | size | = Nudeln, Faschiertes, Tomatensauce, Kuhmilch, Butter, Weizenmehl, Hartkäse
+Spaghetti Bolognese | size | aliases=Bolognese | = Nudeln, Faschiertes, Tomatensauce, Zwiebel, Knoblauch, Karotte
 Spaghetti Carbonara | size | aliases=Carbonara | = Nudeln, Speck, Ei, Parmesan, Schlagobers
 Käsespätzle | size | aliases=Kässpätzle | = Spätzle, Bergkäse, Zwiebel, Butter
 Wiener Schnitzel | size | aliases=Schnitzel, Paniertes Schnitzel | = Schweinefleisch, Semmelbrösel, Weizenmehl, Ei, Frittierfett
@@ -430,20 +430,20 @@ Gulasch | size | aliases=Rindsgulasch, Saftgulasch | = Rindfleisch, Zwiebel, Pap
 Tafelspitz | size | aliases=Gekochtes Rindfleisch | = Rindfleisch, Brühe, Karotte, Stangensellerie, Lauch, Kren
 Frittatensuppe | size | aliases=Grießnockerlsuppe, Leberknödelsuppe | = Brühe, Weizenmehl, Ei, Kuhmilch
 Hühnersuppe | size | aliases=Nudelsuppe, Rindsuppe mit Nudeln | = Hendl, Brühe, Nudeln, Karotte, Stangensellerie, Lauch
-Erdäpfelsuppe | size | aliases=Kartoffelsuppe, Cremesuppe | = Erdäpfel, Lauch, Zwiebel, Karotte, Brühe, Schlagobers
-Paradeissuppe | size | aliases=Tomatensuppe | = Paradeiser, Paradeissauce, Zwiebel, Brühe, Schlagobers
-Linseneintopf | size | aliases=Linsensuppe, Dal | = Linsen, Karotte, Zwiebel, Erdäpfel, Brühe
-Erbsensuppe | size | aliases=Erbseneintopf | = Erbsen, Zwiebel, Erdäpfel, Brühe, Speck
-Bohneneintopf | size | aliases=Bohnensuppe | = Kidneybohnen, Zwiebel, Erdäpfel, Brühe, Speck
-Chili con Carne | size | = Faschiertes, Kidneybohnen, Paradeissauce, Zwiebel, Knoblauch, Chili, Mais
-Erdäpfelsalat | size | aliases=Kartoffelsalat | = Erdäpfel, Zwiebel, Mayonnaise, Essiggurkerl, Brühe
-Gemischter Salat | size | = Blattsalat, Paradeiser, Gurke, Balsamico, Speiseöl
+Kartoffelsuppe | size | key=Erdäpfelsuppe | aliases=Erdäpfelsuppe, Cremesuppe | = Kartoffeln, Lauch, Zwiebel, Karotte, Brühe, Schlagobers
+Tomatensuppe | size | key=Paradeissuppe | aliases=Paradeissuppe | = Tomate, Tomatensauce, Zwiebel, Brühe, Schlagobers
+Linseneintopf | size | aliases=Linsensuppe, Dal | = Linsen, Karotte, Zwiebel, Kartoffeln, Brühe
+Erbsensuppe | size | aliases=Erbseneintopf | = Erbsen, Zwiebel, Kartoffeln, Brühe, Speck
+Bohneneintopf | size | aliases=Bohnensuppe | = Kidneybohnen, Zwiebel, Kartoffeln, Brühe, Speck
+Chili con Carne | size | = Faschiertes, Kidneybohnen, Tomatensauce, Zwiebel, Knoblauch, Chili, Mais
+Kartoffelsalat | size | key=Erdäpfelsalat | aliases=Erdäpfelsalat | = Kartoffeln, Zwiebel, Mayonnaise, Essiggurkerl, Brühe
+Gemischter Salat | size | = Blattsalat, Tomate, Gurke, Balsamico, Speiseöl
 Currywurst | count:Stück | = Bratwurst, Ketchup, Currypulver
-Döner Kebab | count:Stück | aliases=Döner, Kebab, Dürüm | = Fladenbrot, Dönerfleisch, Blattsalat, Paradeiser, Zwiebel, Tzatziki
+Döner Kebab | count:Stück | aliases=Döner, Kebab, Dürüm | = Fladenbrot, Dönerfleisch, Blattsalat, Tomate, Zwiebel, Tzatziki
 Gyros | size | aliases=Souvlaki | = Schweinefleisch, Zwiebel, Tzatziki, Pommes frites
-Burger | count:Stück | aliases=Hamburger, Cheeseburger | = Semmel, Faschiertes, Junger Gouda, Ketchup, Zwiebel, Paradeiser, Blattsalat
+Burger | count:Stück | aliases=Hamburger, Cheeseburger | = Semmel, Faschiertes, Junger Gouda, Ketchup, Zwiebel, Tomate, Blattsalat
 Hot Dog | count:Stück | = Semmel, Würstel, Ketchup, Senf, Zwiebel
-Wrap | count:Stück | aliases=Burrito | = Weizentortilla, Hendl, Blattsalat, Paradeiser, Sauerrahm
+Wrap | count:Stück | aliases=Burrito | = Weizentortilla, Hendl, Blattsalat, Tomate, Sauerrahm
 Nachos mit Käse | size | aliases=Nachos | = Tortillachips, Schmelzkäse, Chili
 Sushi | count:Stück | aliases=Maki, Nigiri | = Reis, Fisch, Gurke, Sojasauce
 Ramen | size | aliases=Instantnudeln, Udon | = Nudeln, Brühe, Ei, Sojasauce, Frühlingszwiebel
@@ -453,13 +453,13 @@ Toast Hawaii | count:Stück | aliases=Schinken-Käse-Toast | = Toastbrot, Kochsc
 Belegte Semmel | count:Stück | aliases=Belegtes Brötchen, Sandwich, Wurstsemmel, Käsesemmel | = Semmel, Butter, Kochschinken, Junger Gouda
 Kaiserschmarrn | size | = Weizenmehl, Ei, Kuhmilch, Butter, Zucker, Rosinen
 Palatschinken | count:Stück | aliases=Pfannkuchen, Eierkuchen, Crêpes | = Weizenmehl, Ei, Kuhmilch
-Geröstete Erdäpfel | size | aliases=Geröstete Kartoffeln, Hash Browns | = Erdäpfel, Zwiebel, Speck, Speiseöl
+Geröstete Kartoffeln | size | key=Geröstete Erdäpfel | aliases=Geröstete Erdäpfel, Hash Browns | = Kartoffeln, Zwiebel, Speck, Speiseöl
 Schweinsbraten | size | aliases=Schweinebraten, Surbraten | = Schweinefleisch, Bratensaft
 Cappuccino | count:Tasse | g=200 | aliases=Latte Macchiato, Melange, Milchkaffee, Flat White | = Espresso, Kuhmilch
-Erdäpfelpüree | size | aliases=Kartoffelpüree, Püree, Stampf | = Erdäpfel, Kuhmilch, Butter
+Kartoffelpüree | size | key=Erdäpfelpüree | aliases=Erdäpfelpüree, Püree, Stampf | = Kartoffeln, Kuhmilch, Butter
 Leberkässemmel | count:Stück | aliases=Leberkäsesemmel, LKS | = Semmel, Leberkäs, Senf
 Kasnocken | size | aliases=Pinzgauer Kasnocken | = Spätzle, Graukäse, Zwiebel, Butter
-Grenadiermarsch | size | = Nudeln, Erdäpfel, Zwiebel, Speck, Speiseöl
+Grenadiermarsch | size | = Nudeln, Kartoffeln, Zwiebel, Speck, Speiseöl
 Krautfleckerl | size | = Eiernudeln, Weißkraut, Zwiebel, Zucker, Speiseöl
 Schinkenfleckerl | size | = Eiernudeln, Kochschinken, Ei, Sauerrahm
 Eiernockerl | size | = Spätzle, Ei, Butter, Schnittlauch
@@ -470,7 +470,7 @@ Zwiebelrostbraten | size | = Rindfleisch, Zwiebel, Weizenmehl, Bratensaft, Speis
 Beuschel | size | = Rindfleisch, Zwiebel, Essig, Sauerrahm, Weizenmehl
 Krautsalat | size | = Weißkraut, Essig, Speiseöl, Speck
 Linsen mit Knödel | size | = Linsen, Semmelknödel, Speck, Zwiebel, Essig
-Spinat mit Spiegelei | size | aliases=Cremespinat mit Ei | = Spinat, Ei, Erdäpfel, Schlagobers, Knoblauch
+Spinat mit Spiegelei | size | aliases=Cremespinat mit Ei | = Spinat, Ei, Kartoffeln, Schlagobers, Knoblauch
 Gemüsecurry | size | aliases=Vegetarisches Curry | = Kichererbsen, Karfiol, Zwiebel, Knoblauch, Currypulver, Kokosmilch, Reis
 Risotto | size | aliases=Pilzrisotto | = Reis, Zwiebel, Champignons, Parmesan, Butter, Weißwein
 Müsli mit Joghurt | size | aliases=Joghurt mit Müsli | = Müsli, Joghurt, Banane

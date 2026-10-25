@@ -84,9 +84,10 @@ class DatabaseTest {
         SeedImporter(db).import(seed)
         assertTrue(foods.search("kase").any { it.name == "Käsespätzle" })
         assertEquals("Semmel", foods.search("semmel").first().name)
-        // Standard German names stay findable as aliases.
+        // Other names stay findable as aliases: standard German, and Austrian where the name is standard German.
         assertEquals("Semmel", foods.search("brötchen").first().name)
-        assertEquals("Erdäpfel", foods.search("kartoffeln").first().name)
+        assertEquals("Kartoffeln", foods.search("erdäpfel").first().name)
+        assertEquals("Tomate", foods.search("paradeiser").first().name)
         assertEquals("Topfen", foods.search("quark").first().name)
         assertEquals(emptyList<FoodEntity>(), foods.search("   "))
     }
