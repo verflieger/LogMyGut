@@ -64,6 +64,17 @@ class AppContainer(private val context: Context) {
     }
 
     /**
+     * Brings the search column of all foods up to date, e.g. after an update changed the search normalisation.
+     * Cheap when nothing changed; called on start.
+     */
+    fun refreshSearchTextInBackground() {
+        appScope.launch(Dispatchers.IO) {
+            val refreshed = database.foodDao().refreshSearchText()
+            if (refreshed > 0) Log.i("LogMyGut", "Search text refreshed for $refreshed foods")
+        }
+    }
+
+    /**
      * Syncs the built-in foods with the seed file, named in the app's current language (see [SeedImporter]).
      * Cheap when nothing changed; called on start and when the language changes.
      */

@@ -44,7 +44,9 @@ interface BackupDao {
     @Query("DELETE FROM medication_intake") suspend fun deleteMedication()
     @Query("DELETE FROM daily_check_in") suspend fun deleteCheckIns()
 
-    @Insert suspend fun insertFoods(rows: List<FoodEntity>)
+    /** Raw insert that keeps [FoodEntity.searchText] as given; use [insertFoods]. */
+    @Insert suspend fun insertFoodRows(rows: List<FoodEntity>)
+    suspend fun insertFoods(rows: List<FoodEntity>) = insertFoodRows(rows.map { it.withSearchText() })
     @Insert suspend fun insertFoodTags(rows: List<FoodTagEntity>)
     @Insert suspend fun insertDishIngredients(rows: List<DishIngredientEntity>)
     @Insert suspend fun insertMeals(rows: List<MealEntity>)

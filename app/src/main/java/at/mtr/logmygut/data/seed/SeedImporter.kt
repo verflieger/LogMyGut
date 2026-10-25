@@ -7,7 +7,6 @@ import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.Threshold
-import at.mtr.logmygut.domain.normalizeForSearch
 
 /**
  * Brings the built-in foods in line with the seed file (SPEC 4), named in [language][import]. Safe to run on every
@@ -50,7 +49,6 @@ class SeedImporter(private val db: LogMyGutDatabase) {
                         drink = ingredient.drink,
                         builtIn = true,
                         seedKey = ingredient.key,
-                        searchText = searchTextFor(text.name, text.aliases),
                     ),
                     tags = tags,
                     ingredientIds = emptyList(),
@@ -61,7 +59,7 @@ class SeedImporter(private val db: LogMyGutDatabase) {
                 val synced = current.copy(
                     name = text.name, aliases = text.aliases, note = text.note,
                     portionGrams = ingredient.grams, drink = ingredient.drink,
-                ).withSearchText()
+                )
                 val tagsChanged = dao.getTags(current.id).map { it.copy(foodId = 0) }.toSet() != tags.toSet()
                 if (synced != current) dao.updateFood(synced)
                 if (tagsChanged) dao.replaceTags(current.id, tags)
@@ -100,14 +98,13 @@ class SeedImporter(private val db: LogMyGutDatabase) {
                         drink = dish.drink,
                         builtIn = true,
                         seedKey = dish.key,
-                        searchText = searchTextFor(text.name, text.aliases),
                     ),
                     tags = emptyList(),
                     ingredientIds = ingredientIds,
                 )
                 inserted++
             } else if (current.builtIn && !current.userModified) {
-                val synced = current.copy(name = text.name, aliases = text.aliases, portionGrams = dish.grams, drink = dish.drink).withSearchText()
+                val synced = current.copy(name = text.name, aliases = text.aliases, portionGrams = dish.grams, drink = dish.drink)
                 val recipeChanged = dao.getDishIngredientIds(current.id).toSet() != ingredientIds.toSet()
                 if (synced != current) dao.updateFood(synced)
                 if (recipeChanged) dao.replaceDishIngredients(current.id, ingredientIds)
@@ -129,7 +126,7 @@ class SeedImporter(private val db: LogMyGutDatabase) {
         val seedNames = listOf(food.name, food.key) + food.translations.values.map { it.name }
         if (current.name == target || seedNames.none { it.equals(current.name, ignoreCase = true) }) return false
         val aliases = (current.aliases.filterNot { it.equals(target, ignoreCase = true) } + current.name).distinctBy { it.lowercase() }
-        db.foodDao().updateFood(current.copy(name = target, aliases = aliases).withSearchText())
+        db.foodDao().updateFood(current.copy(name = target, aliases = aliases))
         return true
     }
 }
@@ -142,12 +139,6 @@ internal fun SeedFood.searchableText(language: String): SeedText {
         .distinctBy { it.lowercase() }
     return shown.copy(aliases = aliases)
 }
-
-private fun FoodEntity.withSearchText() = copy(searchText = searchTextFor(name, aliases))
-
-/** Search column content: normalized name and aliases, separated so matches don't span entries. */
-fun searchTextFor(name: String, aliases: List<String>): String =
-    (listOf(name) + aliases).joinToString("|") { normalizeForSearch(it) }
 
 internal fun IngredientTag.toEntity(foodId: Long = 0) = FoodTagEntity(
     foodId = foodId,

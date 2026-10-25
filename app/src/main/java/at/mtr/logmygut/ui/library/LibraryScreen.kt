@@ -37,6 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import at.mtr.logmygut.R
 import at.mtr.logmygut.data.FoodRepository
 import at.mtr.logmygut.data.db.FoodEntity
+import at.mtr.logmygut.data.db.matchesSearch
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.normalizeForSearch
 import at.mtr.logmygut.ui.common.appContainer
@@ -65,7 +66,7 @@ class LibraryViewModel(foods: FoodRepository) : ViewModel() {
         val namesById = list.associate { it.id to it.name }
         val normalized = normalizeForSearch(query)
         val rows = list
-            .filter { normalized.isEmpty() || normalized in it.searchText }
+            .filter { normalized.isEmpty() || it.matchesSearch(normalized) }
             .map { LibraryRow(it, it.parentId?.let(namesById::get)) }
         LibrarySections(
             own = rows.filter { !it.food.builtIn && !it.food.hidden },

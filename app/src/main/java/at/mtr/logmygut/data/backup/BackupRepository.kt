@@ -15,7 +15,6 @@ import at.mtr.logmygut.data.db.MealItemEntity
 import at.mtr.logmygut.data.db.MealItemIngredientEntity
 import at.mtr.logmygut.data.db.MedicationIntakeEntity
 import at.mtr.logmygut.data.db.SymptomEntryEntity
-import at.mtr.logmygut.data.seed.searchTextFor
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.isDrinkUnit
 import java.time.Instant
@@ -83,7 +82,7 @@ private fun BackupFile.toContent() = DatabaseContent(
         FoodEntity(
             id = it.id, kind = it.kind, name = it.name, aliases = it.aliases, unit = it.unit, unitLabel = it.unitLabel,
             note = it.note, builtIn = it.builtIn, userModified = it.userModified, hidden = it.hidden, seedKey = it.seedKey,
-            searchText = searchTextFor(it.name, it.aliases), lastUsedAt = it.lastUsedAt?.let(Instant::parse),
+            lastUsedAt = it.lastUsedAt?.let(Instant::parse),
             parentId = it.parentId, portionGrams = it.portionGrams,
             drink = if (version >= 2) it.drink else isDrinkUnit(it.unit, it.unitLabel),
         )

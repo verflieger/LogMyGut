@@ -6,12 +6,18 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import at.mtr.logmygut.domain.FoodKind
+import at.mtr.logmygut.domain.normalizeForSearch
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FoodDao {
-    @Insert suspend fun insertFood(food: FoodEntity): Long
-    @Update suspend fun updateFood(food: FoodEntity)
+    /** Raw insert that keeps [FoodEntity.searchText] as given; use [insertFood]. */
+    @Insert suspend fun insertFoodRow(food: FoodEntity): Long
+    /** Raw update that keeps [FoodEntity.searchText] as given; use [updateFood]. */
+    @Update suspend fun updateFoodRow(food: FoodEntity)
+    // Every food write goes through these two, so searchText always matches name and aliases.
+    suspend fun insertFood(food: FoodEntity): Long = insertFoodRow(food.withSearchText())
+    suspend fun updateFood(food: FoodEntity) = updateFoodRow(food.withSearchText())
     @Insert suspend fun insertTags(tags: List<FoodTagEntity>)
     @Insert suspend fun insertDishIngredients(rows: List<DishIngredientEntity>)
 
@@ -38,6 +44,7 @@ interface FoodDao {
     @Query("SELECT f.* FROM food f JOIN dish_ingredient d ON d.dishId = f.id WHERE d.ingredientId = :id ORDER BY f.name COLLATE NOCASE")
     suspend fun getDishesUsing(id: Long): List<FoodEntity>
     @Query("UPDATE food SET parentId = :parentId WHERE id = :id") suspend fun setParent(id: Long, parentId: Long?)
+    @Query("SELECT * FROM food") suspend fun getAllFoods(): List<FoodEntity>
     @Query("SELECT * FROM food WHERE seedKey IS NOT NULL") suspend fun getSeededFoods(): List<FoodEntity>
     @Query("SELECT * FROM food WHERE seedKey = :seedKey") suspend fun getBySeedKey(seedKey: String): FoodEntity?
 
@@ -93,6 +100,17 @@ interface FoodDao {
         insertDishIngredients(ingredientIds.distinct().map { DishIngredientEntity(dishId, it) })
     }
 
+    /**
+     * Recomputes searchText where it's out of date, e.g. after [normalizeForSearch] changed or for rows written
+     * before this was enforced. Returns the number of rows fixed.
+     */
+    @Transaction
+    suspend fun refreshSearchText(): Int {
+        val stale = getAllFoods().filter { it.searchText != searchTextFor(it.name, it.aliases) }
+        stale.forEach { updateFood(it) }
+        return stale.size
+    }
+
     /** Inserts a food with its tags (ingredient) or recipe (dish) atomically. */
     @Transaction
     suspend fun insertFoodWithDetails(food: FoodEntity, tags: List<FoodTagEntity>, ingredientIds: List<Long>): Long {
@@ -102,6 +120,15 @@ interface FoodDao {
         return id
     }
 }
+
+/** Search column content: normalized name and aliases, separated so matches don't span entries ("name|alias|…"). */
+fun searchTextFor(name: String, aliases: List<String>): String =
+    (listOf(name) + aliases).joinToString("|") { normalizeForSearch(it) }
+
+internal fun FoodEntity.withSearchText() = copy(searchText = searchTextFor(name, aliases))
+
+/** Whether the name or an alias contains [normalizedQuery] (from [normalizeForSearch]). */
+fun FoodEntity.matchesSearch(normalizedQuery: String): Boolean = normalizedQuery in searchText
 
 data class SeedKeyId(val id: Long, val seedKey: String)
 

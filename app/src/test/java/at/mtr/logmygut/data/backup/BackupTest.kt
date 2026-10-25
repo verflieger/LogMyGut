@@ -126,6 +126,16 @@ class BackupTest {
         assertEquals(5, targetSettings.analysis.first().symptomThreshold)
     }
 
+    @Test fun restoredFoodsAreSearchable() = runTest {
+        val exported = BackupRepository(seededDb(), settings("source")).export(now)
+        val targetDb = emptyDb()
+        val target = BackupRepository(targetDb, settings("target"))
+        target.restore(target.read(exported))
+
+        // The backup has no search column; the restore must build it.
+        assertTrue(FoodRepository(targetDb, TestDatabase.tagSuggester).search("apfel").any { it.seedKey == "Apfel" })
+    }
+
     @Test fun importReplacesExistingData() = runTest {
         val (sourceDb, sourceSettings) = fullSource()
         val exported = BackupRepository(sourceDb, sourceSettings).export(now)

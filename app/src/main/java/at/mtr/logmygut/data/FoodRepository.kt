@@ -5,7 +5,6 @@ import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.data.db.FoodTagEntity
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.seed.SeedImporter
-import at.mtr.logmygut.data.seed.searchTextFor
 import at.mtr.logmygut.data.seed.toEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
@@ -129,7 +128,7 @@ class FoodRepository(
                 dao.insertFoodWithDetails(
                     food = FoodEntity(
                         kind = FoodKind.INGREDIENT, name = name, aliases = aliases, unit = unit, unitLabel = unitLabel,
-                        note = draft.note, searchText = searchTextFor(name, aliases), parentId = draft.parentId,
+                        note = draft.note, parentId = draft.parentId,
                         portionGrams = draft.portionGrams, drink = draft.drink,
                     ),
                     tags = rows,
@@ -139,8 +138,7 @@ class FoodRepository(
                 dao.updateFood(
                     existing.copy(
                         name = name, aliases = aliases, unit = unit, unitLabel = unitLabel, note = draft.note,
-                        searchText = searchTextFor(name, aliases), parentId = draft.parentId,
-                        portionGrams = draft.portionGrams, drink = draft.drink, userModified = existing.builtIn,
+                        parentId = draft.parentId, portionGrams = draft.portionGrams, drink = draft.drink, userModified = existing.builtIn,
                     ),
                 )
                 dao.replaceTags(existing.id, rows)
@@ -166,7 +164,7 @@ class FoodRepository(
                     existing.copy(
                         name = name, aliases = aliases, unit = unit,
                         unitLabel = (draft.unitLabel?.let(::unitLabelKey) ?: existing.unitLabel).takeIf { unit == FoodUnit.COUNT },
-                        searchText = searchTextFor(name, aliases), userModified = existing.builtIn,
+                        userModified = existing.builtIn,
                         drink = draft.drink, portionGrams = draft.portionGrams.takeIf { draft.drink },
                     ),
                 )
@@ -186,7 +184,7 @@ class FoodRepository(
         dao.insertFoodWithDetails(
             food = food.copy(
                 id = 0, name = name, aliases = emptyList(), builtIn = false, userModified = false, hidden = false,
-                seedKey = null, searchText = searchTextFor(name, emptyList()), lastUsedAt = null,
+                seedKey = null, lastUsedAt = null,
             ),
             tags = dao.getTags(id),
             ingredientIds = dao.getDishIngredientIds(id),
@@ -248,7 +246,6 @@ class FoodRepository(
             unit = unit,
             unitLabel = unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT },
             note = note,
-            searchText = searchTextFor(name, aliases),
             drink = isDrinkUnit(unit, unitLabel),
         ),
         tags = tags.map { it.toEntity() },
@@ -272,7 +269,6 @@ class FoodRepository(
                 aliases = aliases,
                 unit = unit,
                 unitLabel = unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT },
-                searchText = searchTextFor(name, aliases),
                 drink = drink,
                 portionGrams = portionGrams.takeIf { drink },
             ),

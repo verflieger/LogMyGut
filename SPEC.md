@@ -318,7 +318,7 @@ Käse → Weichkäse → Camembert. At most 3 levels.
 ```
 Food(id, kind: INGREDIENT|DISH, name, aliases: List<String>, unit: COUNT|SIZE, unitLabel?, note?,
      builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?,
-     searchText, lastUsedAt: Instant?, parentId?,       -- searchText = normalized "name|alias|…"; lastUsedAt for ranking
+     searchText, lastUsedAt: Instant?, parentId?,       -- searchText = normalized "name|alias|…", set on every write and refreshed on start; lastUsedAt for ranking
      portionGrams: Double?, drink: Boolean)             -- grams of an M portion / one piece (ml for drinks); null if unknown
                                                         -- seedKey = the seed entry's key (never changes)
                                                         -- parentId: ingredients only, SPEC 4.4

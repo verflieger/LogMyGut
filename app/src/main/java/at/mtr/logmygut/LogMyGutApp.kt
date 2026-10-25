@@ -15,6 +15,7 @@ class LogMyGutApp : Application() {
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
+        container.refreshSearchTextInBackground()
         container.importSeedInBackground()
         Reminder.createChannel(this)
         container.keepReminderScheduled()

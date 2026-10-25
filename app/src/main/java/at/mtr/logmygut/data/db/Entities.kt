@@ -34,8 +34,8 @@ data class FoodEntity(
     val hidden: Boolean = false,
     /** The seed entry's original name; null for user-created foods. Never changes. */
     val seedKey: String? = null,
-    /** Normalized name + aliases, for search. Maintained by the repository. */
-    val searchText: String,
+    /** Normalized name + aliases, for search (see [searchTextFor]). Set by [FoodDao] on every write, never by callers. */
+    val searchText: String = "",
     /** Last time this food was logged in a meal; drives "recently used" ranking. */
     val lastUsedAt: Instant? = null,
     /** Ingredients only: the more general food this one inherits tags from (SPEC 4.4), e.g. Essig for Apfelessig. */

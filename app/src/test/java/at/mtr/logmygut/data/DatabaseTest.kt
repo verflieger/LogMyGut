@@ -63,6 +63,20 @@ class DatabaseTest {
         assertEquals("Mein Apfel", foods.getFood(apple.id)!!.name)
     }
 
+    @Test fun searchTextFollowsEveryWrite() = runTest {
+        SeedImporter(db).import(seed)
+        val apple = foods.search("apfel").first { it.seedKey == "Apfel" }
+        db.foodDao().updateFood(apple.copy(name = "Mein Apfel", aliases = listOf("Granny")))
+        assertTrue(foods.search("granny").any { it.id == apple.id })
+
+        // A row with an outdated search column (e.g. after normalizeForSearch changed) is fixed by the refresh.
+        db.foodDao().updateFoodRow(apple.copy(searchText = "veraltet"))
+        assertTrue(foods.search("apfel").none { it.id == apple.id })
+        assertEquals(1, db.foodDao().refreshSearchText())
+        assertTrue(foods.search("apfel").any { it.id == apple.id })
+        assertEquals(0, db.foodDao().refreshSearchText())
+    }
+
     @Test fun dishRecipeAndDoseTagsRoundTrip() = runTest {
         SeedImporter(db).import(seed)
         val currywurst = foods.search("currywurst").single()
