@@ -286,4 +286,22 @@
     <string name="analysis_settings_to">Bis</string>
     <string name="analysis_settings_reset">Auf Standard zurücksetzen</string>
     <string name="analysis_settings_reset_confirm">Stärke, Mindestanzahl und alle Zeitfenster auf die Vorgaben zurücksetzen?</string>
+
+    <!-- Backup (SPEC 7) -->
+    <string name="settings_backup_section">Datensicherung</string>
+    <string name="backup_export">Daten exportieren</string>
+    <string name="backup_last_export">Zuletzt gesichert: %1$s</string>
+    <string name="backup_never">Noch nie gesichert</string>
+    <string name="backup_overdue">Sichere deine Daten regelmäßig, am besten mindestens alle %1$d Tage. Die App macht selbst keine Sicherung.</string>
+    <string name="backup_exported">Sicherung gespeichert</string>
+    <string name="backup_import">Daten importieren</string>
+    <string name="backup_import_hint">Ersetzt alle Einträge, Lebensmittel und Einstellungen durch eine Sicherung</string>
+    <string name="backup_confirm_title">Sicherung einspielen?</string>
+    <string name="backup_confirm_text">Die Sicherung vom %1$s enthält %2$d Mahlzeiten, %3$d Stuhlgänge, %4$d Beschwerde-Einträge und %5$d Medikamente.\n\nAlle jetzigen Einträge, Lebensmittel-Änderungen und Einstellungen werden dadurch ersetzt. Das lässt sich nicht rückgängig machen.</string>
+    <string name="backup_confirm_action">Ersetzen</string>
+    <string name="backup_imported">Sicherung eingespielt.</string>
+    <string name="backup_error_not_a_backup">Diese Datei ist keine LogMyGut-Sicherung. Es wurde nichts geändert.</string>
+    <string name="backup_error_too_new">Diese Sicherung stammt aus einer neueren Version von LogMyGut. Aktualisiere die App und versuche es noch einmal. Es wurde nichts geändert.</string>
+    <string name="backup_error_invalid">Die Sicherung ist beschädigt oder unvollständig. Es wurde nichts geändert.</string>
+    <string name="backup_error_io">Die Datei konnte nicht gelesen oder geschrieben werden. Es wurde nichts geändert.</string>
 </resources>

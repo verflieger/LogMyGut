@@ -2,6 +2,7 @@ package at.mtr.logmygut.data
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -14,9 +15,12 @@ import at.mtr.logmygut.domain.DefaultSymptomThreshold
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.TagWindow
 import java.time.Duration
+import java.time.LocalDate
 import java.time.LocalTime
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.Serializable
 
 private val Context.settingsStore by preferencesDataStore("settings")
 
@@ -24,6 +28,19 @@ private val Context.settingsStore by preferencesDataStore("settings")
 data class ReminderSettings(val enabled: Boolean = true, val time: LocalTime = DefaultReminderTime)
 
 val DefaultReminderTime: LocalTime = LocalTime.of(21, 0)
+
+/**
+ * The user's choices that a backup carries (SPEC 7). Null means "not set, use the default".
+ * [windows] maps a tag key to "fromMinutes-toMinutes".
+ */
+@Serializable
+data class SettingsSnapshot(
+    val reminderEnabled: Boolean? = null,
+    val reminderMinuteOfDay: Int? = null,
+    val symptomThreshold: Int? = null,
+    val minExposures: Int? = null,
+    val windows: Map<String, String> = emptyMap(),
+)
 
 /** App settings in DataStore. */
 class SettingsRepository(private val store: DataStore<Preferences>) {
@@ -76,7 +93,36 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         }
     }
 
+    /** Date of the last backup export, for the reminder hint in the settings. */
+    val lastExport: Flow<LocalDate?> = store.data.map { prefs -> prefs[LastExport]?.let(LocalDate::parse) }
+
+    suspend fun setLastExport(date: LocalDate) { store.edit { it[LastExport] = date.toString() } }
+
+    suspend fun snapshot(): SettingsSnapshot {
+        val prefs = store.data.first()
+        return SettingsSnapshot(
+            reminderEnabled = prefs[ReminderEnabled],
+            reminderMinuteOfDay = prefs[ReminderMinuteOfDay],
+            symptomThreshold = prefs[SymptomThreshold],
+            minExposures = prefs[MinExposures],
+            windows = Tag.entries.mapNotNull { tag -> prefs[windowKey(tag)]?.let { tag.key to it } }.toMap(),
+        )
+    }
+
+    /** Replaces the backed-up settings in one edit; the rest (permission asked, last export) stays. */
+    suspend fun restore(snapshot: SettingsSnapshot) {
+        require(snapshot.isValid()) { "Invalid settings" }
+        store.edit { prefs ->
+            prefs.setOrRemove(ReminderEnabled, snapshot.reminderEnabled)
+            prefs.setOrRemove(ReminderMinuteOfDay, snapshot.reminderMinuteOfDay)
+            prefs.setOrRemove(SymptomThreshold, snapshot.symptomThreshold)
+            prefs.setOrRemove(MinExposures, snapshot.minExposures)
+            Tag.entries.forEach { tag -> prefs.setOrRemove(windowKey(tag), snapshot.windows[tag.key]) }
+        }
+    }
+
     companion object {
+        private val LastExport = stringPreferencesKey("last_export_date")
         private val ReminderEnabled = booleanPreferencesKey("reminder_enabled")
         private val ReminderMinuteOfDay = intPreferencesKey("reminder_minute_of_day")
         private val PermissionAsked = booleanPreferencesKey("notification_permission_asked")
@@ -89,6 +135,17 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         private fun parseWindow(text: String): TagWindow? {
             val (from, to) = text.split("-").takeIf { it.size == 2 }?.map { it.toLongOrNull() ?: return null } ?: return null
             return runCatching { TagWindow(Duration.ofMinutes(from), Duration.ofMinutes(to)) }.getOrNull()
+        }
+
+        /** Values the setters would accept; unknown tag keys are invalid too. */
+        fun SettingsSnapshot.isValid(): Boolean =
+            (reminderMinuteOfDay == null || reminderMinuteOfDay in 0 until 24 * 60) &&
+                (symptomThreshold == null || symptomThreshold in 1..10) &&
+                (minExposures == null || minExposures >= 1) &&
+                windows.all { (key, value) -> Tag.entries.any { it.key == key } && parseWindow(value) != null }
+
+        private fun <T> MutablePreferences.setOrRemove(key: Preferences.Key<T>, value: T?) {
+            if (value == null) remove(key) else set(key, value)
         }
 
         fun create(context: Context) = SettingsRepository(context.settingsStore)

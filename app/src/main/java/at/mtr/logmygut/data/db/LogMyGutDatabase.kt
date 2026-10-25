@@ -26,6 +26,7 @@ import androidx.room.TypeConverters
 abstract class LogMyGutDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
     abstract fun journalDao(): JournalDao
+    abstract fun backupDao(): BackupDao
 
     companion object {
         fun create(context: Context): LogMyGutDatabase =

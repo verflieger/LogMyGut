@@ -359,6 +359,16 @@ The info page also notes: **don't cut out gluten before a celiac test.**
 - **Import**: replaces all data after a confirmation dialog, with schema version check and validation.
   If anything fails, nothing changes (single transaction).
 - Settings show the date of the last export, with a hint if it is older than 30 days.
+- **File format** (`format: "logmygut-backup"`, `version: 1`): one JSON object with `exportedAt`, `appVersion`,
+  `settings` and one array per table, rows keeping their ids. Times are ISO-8601 instants, tags use their keys,
+  other enums their names. It has its own classes (`data/backup/BackupFile.kt`), so a database change doesn't change
+  the format by accident; a new format version must keep reading older ones.
+- **Settings in the backup:** reminder on/time, symptom threshold, minimum exposures and tag windows. Values not set
+  in the backup return to their defaults. The last-export date and the "permission asked" flag stay as they are.
+- **Checks before import:** format and version first (a file from a newer app is reported as such), then values
+  and references (ids, foods and their hierarchy, tags, ranges). A file that passes but still fails in the database
+  leaves the database unchanged. The error dialog names the problem in German, with a technical detail below.
+- The hint shows when there was never an export or the last one is more than 30 days old.
 
 ## 8. Info pages (German)
 - Bristol scale with illustrations and descriptions.

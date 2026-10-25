@@ -63,7 +63,7 @@ class SettingsViewModel(private val settings: SettingsRepository) : ViewModel() 
     fun setReminderTime(time: LocalTime) { viewModelScope.launch { settings.setReminderTime(time) } }
 }
 
-/** Einstellungen tab (SPEC 2): reminder, analysis parameters and the food library. Backup and info pages follow later. */
+/** Einstellungen tab (SPEC 2): reminder, food library, analysis parameters and backup. Info pages follow later. */
 @Composable
 fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit) {
     val container = appContainer()
@@ -89,6 +89,9 @@ fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit
             supportingContent = { Text(stringResource(R.string.settings_analysis_hint)) },
             trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
         )
+        HorizontalDivider(Modifier.padding(vertical = 8.dp))
+        SectionTitle(stringResource(R.string.settings_backup_section))
+        BackupSection()
     }
 }
 

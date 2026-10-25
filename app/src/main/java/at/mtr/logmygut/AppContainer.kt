@@ -7,6 +7,7 @@ import at.mtr.logmygut.data.AnalysisRepository
 import at.mtr.logmygut.data.FoodRepository
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.SettingsRepository
+import at.mtr.logmygut.data.backup.BackupRepository
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
@@ -36,6 +37,10 @@ class AppContainer(private val context: Context) {
     val analysisRepository: AnalysisRepository by lazy { AnalysisRepository(database, foodRepository) }
 
     val settings: SettingsRepository by lazy { SettingsRepository.create(context) }
+
+    val backupRepository: BackupRepository by lazy {
+        BackupRepository(database, settings, context.packageManager.getPackageInfo(context.packageName, 0).versionName)
+    }
 
     /**
      * Keeps the daily reminder scheduled for the life of the process. On start only a missing schedule is
