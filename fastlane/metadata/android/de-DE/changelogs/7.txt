@@ -1,0 +1,1 @@
+Neu: ein PDF-Bericht für den Arztbesuch über die letzten 14, 30 oder 90 Tage und eine CSV-Datei aller Einträge (Einstellungen → Export). Beide lassen sich speichern oder teilen.

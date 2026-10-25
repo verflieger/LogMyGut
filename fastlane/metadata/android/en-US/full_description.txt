@@ -1,0 +1,25 @@
+LogMyGut is a diary for food, drinks, bowel movements and symptoms. Everything stays on your phone: the app has no internet permission, no analytics, no ads and no cloud backup.
+
+<b>What you can log</b>
+<ul>
+<li>Meals and drinks, from a built-in list of almost 450 foods and dishes or your own. You log the dish; the app knows its ingredients.</li>
+<li>Bowel movements with the Bristol stool form scale, urgency and cramps.</li>
+<li>Symptoms such as bloating, abdominal pain, wind, nausea, tiredness and headache, each rated from 0 to 10.</li>
+<li>Medication, sleep and stress, and a daily reminder if you like.</li>
+<li>Forgotten entries for earlier days, from the calendar.</li>
+</ul>
+
+<b>What it shows</b>
+<ul>
+<li>A calendar and trends: stool form, symptoms and bowel movements per day.</li>
+<li>How often symptoms were logged after meals with certain triggers (lactose, fructose, polyols, fructans, GOS, gluten, histamine, high fat, caffeine, alcohol, spicy, carbonated), compared with meals without them.</li>
+<li>A PDF report for a chosen period and a CSV file of all entries, to take to your doctor or dietitian.</li>
+</ul>
+
+<b>Your data</b>
+All entries stay on this device. Backups are files you create yourself (Settings → Backup), and you can restore them on a new phone.
+
+<b>What LogMyGut is for</b>
+LogMyGut is not a medical device. It does not diagnose, does not detect diseases or intolerances and does not recommend treatment or diet changes. The overviews are meant for talking to a doctor or dietitian.
+
+The app is in English and German. The food list uses data from the German Nutrient Database (Bundeslebensmittelschlüssel, BLS) 4.0 by the Max Rubner-Institut, under CC BY 4.0.

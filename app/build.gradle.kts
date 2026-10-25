@@ -45,6 +45,12 @@ android {
         compose = true
     }
 
+    // The dependency list AGP embeds is encrypted with Google's key; F-Droid can't check it and flags it.
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
     // Lists the app's languages (English default, German) for Android's per-app language setting.
     androidResources {
         generateLocaleConfig = true

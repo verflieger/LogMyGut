@@ -1,0 +1,25 @@
+LogMyGut ist ein Tagebuch für Essen, Trinken, Stuhlgang und Beschwerden. Alles bleibt auf deinem Handy: Die App hat keinen Internetzugriff, keine Analyse-Tools, keine Werbung und keine Cloud-Sicherung.
+
+<b>Was du eintragen kannst</b>
+<ul>
+<li>Essen und Trinken, aus einer eingebauten Liste mit fast 450 Lebensmitteln und Gerichten oder eigenen. Du trägst das Gericht ein, die App kennt die Zutaten.</li>
+<li>Stuhlgang nach der Bristol-Stuhlformen-Skala, dazu Dringlichkeit und Krämpfe.</li>
+<li>Beschwerden wie Blähbauch, Bauchschmerzen, Blähungen, Übelkeit, Müdigkeit und Kopfschmerzen, jeweils von 0 bis 10.</li>
+<li>Medikamente, Schlaf und Stress, auf Wunsch mit täglicher Erinnerung.</li>
+<li>Vergessene Einträge für frühere Tage, direkt aus dem Kalender.</li>
+</ul>
+
+<b>Was die App zeigt</b>
+<ul>
+<li>Einen Kalender und Verläufe: Stuhlform, Beschwerden und Stuhlgänge pro Tag.</li>
+<li>Wie oft nach Mahlzeiten mit bestimmten Auslösern (Laktose, Fruktose, Polyole, Fruktane, GOS, Gluten, Histamin, fettreich, Koffein, Alkohol, scharf, Kohlensäure) Beschwerden eingetragen wurden, verglichen mit Mahlzeiten ohne sie.</li>
+<li>Einen PDF-Bericht für einen gewählten Zeitraum und eine CSV-Datei aller Einträge, für den Termin bei Ärztin, Arzt oder Diätologin.</li>
+</ul>
+
+<b>Deine Daten</b>
+Alle Einträge bleiben auf diesem Gerät. Sicherungen sind Dateien, die du selbst erstellst (Einstellungen → Datensicherung), und du kannst sie auf einem neuen Handy wieder einspielen.
+
+<b>Wofür LogMyGut gedacht ist</b>
+LogMyGut ist kein Medizinprodukt. Die App stellt keine Diagnosen, erkennt keine Krankheiten oder Unverträglichkeiten und empfiehlt keine Behandlung und keine Ernährungsumstellung. Die Übersichten sind für das Gespräch mit Ärztin, Arzt oder Diätologin gedacht.
+
+Die App ist auf Deutsch (österreichisch) und Englisch. Die Lebensmittelliste nutzt Daten aus dem Bundeslebensmittelschlüssel (BLS) 4.0 des Max Rubner-Instituts, unter CC BY 4.0.

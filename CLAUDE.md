@@ -77,7 +77,9 @@ python tools/icons/build_bristol.py                # from repo root; writes res/
   point to a test or diet, never say whether Rome IV criteria are met, and use no alarm styling on results.
 - **Releases**: raise `versionCode`/`versionName` in `app/build.gradle.kts` for every APK handed out. Release signing
   reads `~/.config/logmygut/keystore.properties` (not in git; without it the APK stays unsigned). APKs are copied to
-  `dist/` (git-ignored). The developer's phone runs the debug build.
+  `dist/` (git-ignored). The developer's phone runs the debug build. Store texts, screenshots and one changelog per
+  `versionCode` live in `fastlane/metadata/android/` (en-US, de-DE; F-Droid reads them); screenshots use made-up
+  sample data only.
 
 ## Device / emulator
 
