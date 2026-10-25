@@ -307,6 +307,12 @@ with amounts, symptoms show severity bars, and bowel movements show the Bristol 
 - Bowel movements per day.
 - **Calendar heatmap**: a day's score = the highest symptom severity that day, with a Bristol 6–7 counting as 7
   and any other bowel movement as 0. Colour bands follow the severity anchors: 0, 1–3, 4–6, 7–10.
+- The 7/30/90-day range applies to all three charts. Tapping a day shows its values above every chart.
+  The moving median for a day covers that day and the 6 before (including days before the range); the line
+  breaks where a whole week has no bowel movement.
+- The heatmap always shows the last 26 weeks (Monday on top); tapping a day opens its day view.
+- Antibiotic days (any `ANTIBIOTIC` intake that day) are shaded in the charts, dotted in the heatmap and get
+  a pill icon in the Verlauf calendar.
 
 ### 6.3 Trigger → symptom analysis
 For each tag *T* and each outcome *S*, where *S* ∈ {each SymptomType at severity ≥ threshold,
@@ -331,6 +337,15 @@ For each tag *T* and each outcome *S*, where *S* ∈ {each SymptomType at severi
      (neither exposure nor control).
    - `ANTIBIOTIC` intake is shown as a shaded period in trends and the calendar; no exclusion in v1.
 8. Sorted by hint strength, then ratio. Tapping a row lists the contributing meals.
+
+Details:
+- The analysis uses all logged data. Windows include both ends.
+- "mit Laktase" meals are neither exposures nor controls for `lactose`; they still count for other tags.
+- The ratio is shown as "nur mit diesem Auslöser" when control meals never had the outcome, and is left out when
+  there are no controls or neither group had the outcome (no hint then).
+- The screen shows a "Hinweise" list (all strong and weak hints across outcomes), then all tags for one
+  selected outcome. The analysis settings (threshold, minimum exposures, per-tag windows, reset) are reached
+  from Einstellungen and from the bottom of this screen.
 
 The screen always shows this disclaimer: tags co-occur in mixed meals (e.g. pizza = wheat + cheese
 + tomato), so a hint is not proof. A structured elimination diet supervised by a doctor or dietitian,

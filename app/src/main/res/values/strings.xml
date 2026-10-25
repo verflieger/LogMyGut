@@ -7,7 +7,6 @@
     <string name="tab_history">Verlauf</string>
     <string name="tab_analysis">Analyse</string>
     <string name="tab_settings">Einstellungen</string>
-    <string name="placeholder_coming_soon">Kommt in einem späteren Meilenstein.</string>
 
     <!-- Common -->
     <string name="action_save">Speichern</string>
@@ -18,6 +17,9 @@
     <string name="action_remove">Entfernen</string>
     <string name="action_done">Fertig</string>
     <string name="action_next">Weiter</string>
+    <string name="action_increase">Mehr</string>
+    <string name="action_decrease">Weniger</string>
+    <string name="antibiotic_day">Antibiotikum</string>
     <string name="field_time">Zeitpunkt</string>
     <string name="field_note">Notiz (optional)</string>
     <string name="error_future_time">Der Zeitpunkt liegt in der Zukunft.</string>
@@ -212,4 +214,76 @@
     <string name="dish_ingredients">Zutaten</string>
     <string name="dish_triggers">Auslöser (automatisch)</string>
     <string name="dish_no_triggers">keine</string>
+
+    <!-- Analysis: trends (SPEC 6.2) -->
+    <string name="analysis_tab_trends">Verlauf &amp; Trends</string>
+    <string name="analysis_tab_triggers">Auslöser</string>
+    <string name="analysis_range_days">%1$d Tage</string>
+    <string name="analysis_tap_hint">Tippe auf einen Tag für die Werte.</string>
+    <string name="analysis_bristol_title">Stuhlform (Bristol-Typ)</string>
+    <string name="analysis_bristol_readout">Typ %1$s</string>
+    <string name="analysis_median_readout">Median %1$s</string>
+    <string name="analysis_no_bowel">kein Stuhlgang eingetragen</string>
+    <string name="analysis_bristol_description">Bristol-Typ jedes Stuhlgangs der letzten %1$d Tage mit gleitendem Median über 7 Tage</string>
+    <string name="analysis_legend_bowel">Stuhlgang</string>
+    <string name="analysis_legend_median">Median (7 Tage)</string>
+    <string name="analysis_legend_normal">normal (3–5)</string>
+    <string name="analysis_symptom_title">Beschwerden (Höchstwert pro Tag)</string>
+    <string name="analysis_severity_readout">%1$d (%2$s)</string>
+    <string name="analysis_no_entry">kein Eintrag</string>
+    <string name="analysis_symptom_description">Höchste Stärke von %1$s pro Tag, letzte %2$d Tage</string>
+    <string name="analysis_count_title">Stuhlgänge pro Tag</string>
+    <plurals name="analysis_bowel_count">
+        <item quantity="one">%1$d Stuhlgang</item>
+        <item quantity="other">%1$d Stuhlgänge</item>
+    </plurals>
+    <string name="analysis_count_description">Anzahl der Stuhlgänge pro Tag, letzte %1$d Tage</string>
+    <string name="analysis_heatmap_title">Kalender</string>
+    <string name="analysis_heatmap_hint">Schlimmster Wert jedes Tages, letzte %1$d Wochen. Tippe auf einen Tag, um ihn zu öffnen.</string>
+    <string name="analysis_heatmap_description">Kalender der letzten %1$d Wochen, jeder Tag gefärbt nach seinem schlimmsten Wert</string>
+    <string name="analysis_legend_no_score">kein Wert</string>
+
+    <!-- Analysis: triggers (SPEC 6.3) -->
+    <string name="analysis_disclaimer">Das sind Hinweise, keine Beweise. In gemischten Mahlzeiten kommen Auslöser oft gemeinsam vor (Pizza = Weizen + Käse + Paradeiser). Bestätigen lässt sich ein Verdacht nur mit einer ärztlich oder diätologisch begleiteten Auslassdiät und Tests wie dem H₂-Atemtest oder einem Zöliakie-Bluttest. Lass Gluten nicht vor einem Zöliakie-Test weg.</string>
+    <string name="analysis_hints_title">Hinweise</string>
+    <string name="analysis_no_hints">Noch keine Hinweise. Je mehr Mahlzeiten und Beschwerden du einträgst, desto aussagekräftiger wird die Auswertung.</string>
+    <string name="analysis_all_title">Alle Auslöser für …</string>
+    <string name="outcome_diarrhea">Durchfall (Typ 6–7)</string>
+    <string name="symptom_short_bloating">Blähbauch</string>
+    <string name="symptom_short_pain">Bauchschmerzen</string>
+    <string name="symptom_short_gas">Blähungen</string>
+    <string name="hint_strong">deutlicher Hinweis</string>
+    <string name="hint_weak">schwacher Hinweis</string>
+    <string name="hint_none">kein Hinweis</string>
+    <string name="analysis_too_little_data">zu wenig Daten (n = %1$d)</string>
+    <string name="analysis_rate">%1$d von %2$d Mahlzeiten (%3$d %%)</string>
+    <string name="analysis_with">Mit: %1$s</string>
+    <string name="analysis_without">Ohne: %1$s</string>
+    <string name="analysis_with_lactase">Mit Laktase (nicht mitgezählt): %1$s</string>
+    <string name="analysis_ratio">%1$s-mal so oft</string>
+    <string name="analysis_ratio_only_with">nur mit diesem Auslöser</string>
+    <string name="analysis_window">Zeitfenster nach dem Essen: %1$s</string>
+    <string name="analysis_window_range">%1$s – %2$s</string>
+    <string name="analysis_params_summary">Beschwerden zählen ab Stärke %1$d, Hinweise ab %2$d Mahlzeiten.</string>
+    <string name="analysis_settings_link">Analyse-Einstellungen</string>
+    <string name="analysis_sheet_hint">Mahlzeiten mit %1$s, neueste zuerst. Tippe auf eine, um sie zu öffnen.</string>
+    <string name="analysis_sheet_empty">Noch keine Mahlzeit mit %1$s.</string>
+    <string name="analysis_sheet_lactase">Mit Laktase eingenommen</string>
+    <string name="analysis_sheet_followed">danach Beschwerden im Zeitfenster</string>
+
+    <!-- Analysis settings -->
+    <string name="settings_analysis_section">Analyse</string>
+    <string name="settings_analysis_hint">Ab welcher Stärke Beschwerden zählen, Zeitfenster der Auslöser</string>
+    <string name="analysis_settings_title">Analyse-Einstellungen</string>
+    <string name="analysis_settings_threshold">Beschwerden zählen ab Stärke</string>
+    <string name="analysis_settings_threshold_hint">Schwächere Einträge bleiben in der Auslöser-Analyse unberücksichtigt.</string>
+    <string name="analysis_settings_min_exposures">Mindestens Mahlzeiten</string>
+    <string name="analysis_settings_min_exposures_hint">So oft muss ein Auslöser gegessen worden sein, bevor ein Hinweis erscheint.</string>
+    <string name="analysis_settings_windows">Zeitfenster nach dem Essen</string>
+    <string name="analysis_settings_windows_hint">In dieser Zeit nach einer Mahlzeit zählen Beschwerden für den Auslöser. Die Vorgaben sind ungefähre Werte aus der Fachliteratur.</string>
+    <string name="analysis_settings_default">Vorgabe: %1$s</string>
+    <string name="analysis_settings_from">Ab</string>
+    <string name="analysis_settings_to">Bis</string>
+    <string name="analysis_settings_reset">Auf Standard zurücksetzen</string>
+    <string name="analysis_settings_reset_confirm">Stärke, Mindestanzahl und alle Zeitfenster auf die Vorgaben zurücksetzen?</string>
 </resources>

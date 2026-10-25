@@ -3,6 +3,7 @@ package at.mtr.logmygut
 import android.content.Context
 import android.util.Log
 import androidx.work.ExistingWorkPolicy
+import at.mtr.logmygut.data.AnalysisRepository
 import at.mtr.logmygut.data.FoodRepository
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.SettingsRepository
@@ -31,6 +32,8 @@ class AppContainer(private val context: Context) {
     }
 
     val journalRepository: JournalRepository by lazy { JournalRepository(database) }
+
+    val analysisRepository: AnalysisRepository by lazy { AnalysisRepository(database, foodRepository) }
 
     val settings: SettingsRepository by lazy { SettingsRepository.create(context) }
 

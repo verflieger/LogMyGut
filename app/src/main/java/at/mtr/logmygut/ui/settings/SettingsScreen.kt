@@ -63,9 +63,9 @@ class SettingsViewModel(private val settings: SettingsRepository) : ViewModel() 
     fun setReminderTime(time: LocalTime) { viewModelScope.launch { settings.setReminderTime(time) } }
 }
 
-/** Einstellungen tab (SPEC 2): reminder and the food library. Backup and info pages follow later. */
+/** Einstellungen tab (SPEC 2): reminder, analysis parameters and the food library. Backup and info pages follow later. */
 @Composable
-fun SettingsScreen(onOpenLibrary: () -> Unit) {
+fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit) {
     val container = appContainer()
     val vm = viewModel { SettingsViewModel(container.settings) }
     val reminder by vm.reminder.collectAsStateWithLifecycle()
@@ -79,6 +79,14 @@ fun SettingsScreen(onOpenLibrary: () -> Unit) {
             modifier = Modifier.clickable(onClick = onOpenLibrary),
             headlineContent = { Text(stringResource(R.string.library_title)) },
             supportingContent = { Text(stringResource(R.string.settings_library_hint)) },
+            trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
+        )
+        HorizontalDivider(Modifier.padding(vertical = 8.dp))
+        SectionTitle(stringResource(R.string.settings_analysis_section))
+        ListItem(
+            modifier = Modifier.clickable(onClick = onOpenAnalysisSettings),
+            headlineContent = { Text(stringResource(R.string.analysis_settings_title)) },
+            supportingContent = { Text(stringResource(R.string.settings_analysis_hint)) },
             trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
         )
     }

@@ -6,8 +6,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CalendarMonth
@@ -15,7 +13,6 @@ import androidx.compose.material.icons.outlined.Insights
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Today
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -28,11 +25,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -45,6 +40,7 @@ import at.mtr.logmygut.R
 import at.mtr.logmygut.data.TimelineEntry
 import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.domain.FoodKind
+import at.mtr.logmygut.ui.analysis.AnalysisScreen
 import at.mtr.logmygut.ui.entry.BowelEditScreen
 import at.mtr.logmygut.ui.entry.MedicationEditScreen
 import at.mtr.logmygut.ui.entry.SymptomsEditScreen
@@ -54,6 +50,7 @@ import at.mtr.logmygut.ui.library.DishDetailScreen
 import at.mtr.logmygut.ui.library.IngredientDetailScreen
 import at.mtr.logmygut.ui.library.LibraryScreen
 import at.mtr.logmygut.ui.meal.MealEditScreen
+import at.mtr.logmygut.ui.settings.AnalysisSettingsScreen
 import at.mtr.logmygut.ui.settings.NotificationPermissionOnFirstStart
 import at.mtr.logmygut.ui.settings.SettingsScreen
 import at.mtr.logmygut.ui.today.TodayScreen
@@ -77,6 +74,7 @@ private const val TransitionMillis = 250
 /** A day from the Verlauf calendar, as [LocalDate.toEpochDay]. */
 @Serializable data class DayRoute(val epochDay: Long)
 @Serializable object LibraryRoute
+@Serializable object AnalysisSettingsRoute
 @Serializable data class IngredientDetailRoute(val id: Long = 0)
 @Serializable data class DishDetailRoute(val id: Long = 0)
 
@@ -157,8 +155,20 @@ fun LogMyGutRoot() {
                 val route = it.toRoute<DayRoute>()
                 DayScreen(LocalDate.ofEpochDay(route.epochDay), onBack = navController::popBackStack, onOpen = { entry -> navController.openEntry(entry) })
             }
-            composable<AnalysisRoute> { PlaceholderScreen(R.string.tab_analysis) }
-            composable<SettingsRoute> { SettingsScreen(onOpenLibrary = { navController.navigate(LibraryRoute) }) }
+            composable<AnalysisRoute> {
+                AnalysisScreen(
+                    onOpenDay = { navController.navigate(DayRoute(it.toEpochDay())) },
+                    onOpenMeal = { navController.navigate(MealEditRoute(it)) },
+                    onOpenSettings = { navController.navigate(AnalysisSettingsRoute) },
+                )
+            }
+            composable<SettingsRoute> {
+                SettingsScreen(
+                    onOpenLibrary = { navController.navigate(LibraryRoute) },
+                    onOpenAnalysisSettings = { navController.navigate(AnalysisSettingsRoute) },
+                )
+            }
+            composable<AnalysisSettingsRoute> { AnalysisSettingsScreen(onBack = navController::popBackStack) }
             composable<LibraryRoute> {
                 LibraryScreen(
                     onBack = navController::popBackStack,
@@ -227,14 +237,4 @@ private fun NavHostController.openEntry(entry: TimelineEntry) = when (entry) {
     is TimelineEntry.BowelMovement -> navigate(BowelEditRoute(entry.entry.id))
     is TimelineEntry.Symptoms -> navigate(SymptomsEditRoute(entry.timestamp.toEpochMilli()))
     is TimelineEntry.Medication -> navigate(MedicationEditRoute(entry.id))
-}
-
-@Composable
-private fun PlaceholderScreen(@StringRes title: Int) {
-    Box(Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
-        Text(
-            text = stringResource(title) + "\n" + stringResource(R.string.placeholder_coming_soon),
-            style = MaterialTheme.typography.titleMedium,
-        )
-    }
 }

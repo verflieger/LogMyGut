@@ -4,7 +4,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.outlined.Medication
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -49,6 +49,7 @@ import at.mtr.logmygut.domain.ScoreBand
 import at.mtr.logmygut.ui.common.AppLocale
 import at.mtr.logmygut.ui.common.LongDayFormat
 import at.mtr.logmygut.ui.common.appContainer
+import at.mtr.logmygut.ui.common.bandColors
 import at.mtr.logmygut.ui.common.severityLabel
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -156,7 +157,7 @@ private fun DayCell(date: LocalDate, summary: DaySummary?, isToday: Boolean, isF
         score != null -> stringResource(R.string.history_day_score, label, score)
         summary != null -> stringResource(R.string.history_day_logged, label)
         else -> stringResource(R.string.history_day_empty, label)
-    }
+    } + if (summary?.antibiotic == true) ", " + stringResource(R.string.antibiotic_day) else ""
     val shape = RoundedCornerShape(8.dp)
     Box(
         Modifier
@@ -173,6 +174,9 @@ private fun DayCell(date: LocalDate, summary: DaySummary?, isToday: Boolean, isF
             // Logged, but nothing to score: a small dot instead of a colour.
             Box(Modifier.align(Alignment.BottomCenter).padding(bottom = 6.dp).size(4.dp).background(content, CircleShape))
         }
+        if (summary?.antibiotic == true) {
+            Icon(Icons.Outlined.Medication, null, Modifier.align(Alignment.TopEnd).padding(3.dp).size(12.dp), tint = content)
+        }
     }
 }
 
@@ -185,6 +189,10 @@ private fun Legend() {
                 LegendItem(bandColors(ScoreBand.of(sample)).first, "$range ${stringResource(severityLabel(sample))}")
             }
             LegendItem(MaterialTheme.colorScheme.surfaceVariant, stringResource(R.string.history_legend_logged))
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                Icon(Icons.Outlined.Medication, null, Modifier.size(14.dp))
+                Text(stringResource(R.string.antibiotic_day), style = MaterialTheme.typography.bodySmall)
+            }
         }
     }
 }
@@ -194,17 +202,5 @@ private fun LegendItem(color: Color, label: String) {
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
         Box(Modifier.size(14.dp).background(color, RoundedCornerShape(4.dp)))
         Text(label, style = MaterialTheme.typography.bodySmall)
-    }
-}
-
-/** Fixed semantic colours (background to content), independent of the wallpaper-based theme. */
-@Composable
-private fun bandColors(band: ScoreBand): Pair<Color, Color> {
-    val dark = isSystemInDarkTheme()
-    return when (band) {
-        ScoreBand.NONE -> if (dark) Color(0xFF1F4A35) to Color(0xFFCFEFDB) else Color(0xFFCFEFDB) to Color(0xFF0F3D26)
-        ScoreBand.MILD -> if (dark) Color(0xFF4A4417) to Color(0xFFF4E8A8) else Color(0xFFF4E8A8) to Color(0xFF453B00)
-        ScoreBand.MODERATE -> if (dark) Color(0xFF5C3511) to Color(0xFFFFD5B0) else Color(0xFFFFD5B0) to Color(0xFF552C00)
-        ScoreBand.SEVERE -> if (dark) Color(0xFF6B2020) to Color(0xFFFFD7D3) else Color(0xFFF3A9A3) to Color(0xFF5A0F0B)
     }
 }

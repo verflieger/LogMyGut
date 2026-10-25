@@ -120,6 +120,36 @@ interface JournalDao {
             "UNION ALL SELECT timestamp FROM medication_intake WHERE timestamp >= :from AND timestamp < :to",
     )
     fun observeOtherEntryTimes(from: Instant, to: Instant): Flow<List<Instant>>
+    /** Antibiotic intakes are shown as shaded days (SPEC 6.3 step 7). */
+    @Query("SELECT timestamp FROM medication_intake WHERE effect = 'ANTIBIOTIC' AND timestamp >= :from AND timestamp < :to")
+    fun observeAntibioticTimes(from: Instant, to: Instant): Flow<List<Instant>>
+
+    // Analysis (SPEC 6): all entries at once, read in one transaction so they fit together.
+    @Query("SELECT * FROM meal") suspend fun getAllMeals(): List<MealEntity>
+    @Query("SELECT * FROM meal_item") suspend fun getAllMealItems(): List<MealItemEntity>
+    @Query("SELECT * FROM meal_item_ingredient") suspend fun getAllMealItemIngredients(): List<MealItemIngredientEntity>
+    @Query("SELECT * FROM symptom_entry") suspend fun getAllSymptoms(): List<SymptomEntryEntity>
+    @Query("SELECT * FROM bowel_movement") suspend fun getAllBowelMovements(): List<BowelMovementEntity>
+    @Query("SELECT * FROM medication_intake") suspend fun getAllMedication(): List<MedicationIntakeEntity>
+
+    @Transaction
+    suspend fun getJournalSnapshot() = JournalSnapshot(
+        meals = getAllMeals(),
+        items = getAllMealItems(),
+        itemIngredients = getAllMealItemIngredients(),
+        symptoms = getAllSymptoms(),
+        bowelMovements = getAllBowelMovements(),
+        medication = getAllMedication(),
+    )
 }
+
+data class JournalSnapshot(
+    val meals: List<MealEntity>,
+    val items: List<MealItemEntity>,
+    val itemIngredients: List<MealItemIngredientEntity>,
+    val symptoms: List<SymptomEntryEntity>,
+    val bowelMovements: List<BowelMovementEntity>,
+    val medication: List<MedicationIntakeEntity>,
+)
 
 data class TimedValue(val timestamp: Instant, val value: Int)

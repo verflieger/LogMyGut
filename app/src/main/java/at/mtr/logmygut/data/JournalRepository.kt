@@ -17,8 +17,11 @@ import java.time.ZoneId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 
-/** One calendar day: [score] per SPEC 6.2, null when the day only has meals or medication. */
-data class DaySummary(val score: Int?)
+/**
+ * One calendar day: [score] per SPEC 6.2, null when the day only has meals or medication.
+ * [antibiotic]: an antibiotic was taken that day (SPEC 6.3 step 7).
+ */
+data class DaySummary(val score: Int?, val antibiotic: Boolean = false)
 
 /** A dish item's actual ingredients for one meal, keyed by the item's position in the meal. */
 typealias DishIngredientsByItemIndex = Map<Int, List<Long>>
@@ -47,12 +50,14 @@ class JournalRepository(db: LogMyGutDatabase) {
             dao.observeSymptomSeverities(from, to),
             dao.observeBristolTypes(from, to),
             dao.observeOtherEntryTimes(from, to),
-        ) { severities, bristol, others ->
+            dao.observeAntibioticTimes(from, to),
+        ) { severities, bristol, others, antibiotics ->
             val date = { t: Instant -> t.atZone(zone).toLocalDate() }
             val severityByDay = severities.groupBy({ date(it.timestamp) }, { it.value })
             val bristolByDay = bristol.groupBy({ date(it.timestamp) }, { it.value })
+            val antibioticDays = antibiotics.mapTo(mutableSetOf(), date)
             (severityByDay.keys + bristolByDay.keys + others.map(date)).associateWith { day ->
-                DaySummary(dayScore(severityByDay[day].orEmpty(), bristolByDay[day].orEmpty()))
+                DaySummary(dayScore(severityByDay[day].orEmpty(), bristolByDay[day].orEmpty()), day in antibioticDays)
             }
         }
     }
