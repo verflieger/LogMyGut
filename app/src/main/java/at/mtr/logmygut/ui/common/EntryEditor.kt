@@ -7,15 +7,21 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import at.mtr.logmygut.R
+import java.time.Duration
 import java.time.Instant
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
@@ -29,7 +35,26 @@ abstract class EntryEditViewModel(initialTime: Instant) : ViewModel() {
     /** Whether the entry's own fields are filled in; saving also needs a time that isn't in the future. */
     protected abstract val isComplete: Boolean
 
-    val isFuture get() = timestamp.isAfter(Instant.now())
+    /** Bumped when a future [timestamp] is reached, so [isFuture] is re-read without user input. */
+    private var timeReached by mutableIntStateOf(0)
+
+    init {
+        viewModelScope.launch {
+            snapshotFlow { timestamp }.collectLatest { time ->
+                val wait = Duration.between(Instant.now(), time).toMillis()
+                if (wait >= 0) {
+                    delay(wait + 1)
+                    timeReached++
+                }
+            }
+        }
+    }
+
+    val isFuture: Boolean
+        get() {
+            timeReached // observed, see above
+            return timestamp.isAfter(Instant.now())
+        }
     val canSave get() = isComplete && !isFuture
 
     abstract suspend fun save()
