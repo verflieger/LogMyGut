@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Info pages (SPEC 8). Kept apart from the UI strings because they are long texts. -->
+<resources>
+    <string name="settings_info_section">Info</string>
+    <string name="info_more">Mehr dazu</string>
+    <string name="analysis_triggers_info">Was bedeuten die Auslöser?</string>
+
+    <!-- Bristol scale -->
+    <string name="info_bristol_title">Bristol-Stuhlformen-Skala</string>
+    <string name="info_bristol_intro">Die Bristol-Skala teilt Stuhl nach seiner Form in sieben Typen ein. Die Form verrät, wie schnell der Darminhalt unterwegs war: Je länger er im Dickdarm bleibt, desto mehr Wasser wird ihm entzogen und desto fester wird er.</string>
+    <string name="info_bristol_groups">Typ 3 bis 5 gelten als normal, Typ 4 als ideal. Typ 1 und 2 sprechen für eine langsame Passage (Verstopfung), Typ 6 und 7 für eine schnelle (Durchfall). Die Form schwankt auch mit Essen, Trinkmenge, Bewegung und Stress, deshalb zählt der Verlauf über mehrere Tage mehr als ein einzelner Stuhlgang.</string>
+    <string name="info_bristol_credit">Nach Lewis und Heaton (1997). Die Zeichnungen wurden für diese App angefertigt.</string>
+
+    <!-- Symptoms -->
+    <string name="info_symptoms_title">Beschwerden bewerten</string>
+    <string name="info_symptoms_intro">Bewerte jede Beschwerde von 0 bis 10, und zwar den schlimmsten Moment seit deinem letzten Eintrag. Am aussagekräftigsten ist es, gleich dann einzutragen, wenn etwas auftritt. Einen Regler, den du nicht berührst, speichert die App nicht. Trag ruhig auch eine 0 ein, wenn du bewusst festhalten willst, dass etwas nicht da war.</string>
+    <string name="info_symptoms_scale_title">So ist die Skala gemeint</string>
+    <string name="info_symptoms_scale_0">0 – keine: nichts zu spüren.</string>
+    <string name="info_symptoms_scale_mild">1–3 – leicht: spürbar, aber der Alltag läuft normal weiter.</string>
+    <string name="info_symptoms_scale_moderate">4–6 – mittel: stört deutlich, du musst Rücksicht darauf nehmen.</string>
+    <string name="info_symptoms_scale_severe">7–10 – stark: bestimmt alles, du brauchst eine Pause oder musst dich hinlegen.</string>
+    <string name="info_symptoms_threshold">Die Auslöser-Analyse zählt eine Beschwerde ab Stärke 4. Das lässt sich in den Analyse-Einstellungen ändern.</string>
+    <string name="info_symptom_bloating">Der Bauch fühlt sich gespannt, aufgebläht oder zu voll an, auch wenn man von außen nichts sieht.</string>
+    <string name="info_symptom_pain">Schmerzen oder Krämpfe irgendwo im Bauch. Wenn sie direkt vor einem Stuhlgang auftreten, trag das zusätzlich beim Stuhlgang ein.</string>
+    <string name="info_symptom_gas">Abgehende Darmgase, häufiger oder unangenehmer als gewohnt.</string>
+    <string name="info_symptom_nausea">Von einem flauen Gefühl im Magen bis zum Brechreiz.</string>
+    <string name="info_symptom_fatigue">Ungewöhnliche Erschöpfung, zum Beispiel nach dem Essen.</string>
+    <string name="info_symptom_headache">Kopfschmerzen jeder Art. Bei manchen Menschen treten sie etwa nach Alkohol oder histaminreichem Essen auf.</string>
+
+    <!-- Trigger tags -->
+    <string name="info_triggers_title">Auslöser</string>
+    <string name="info_triggers_intro">Auslöser sind Eigenschaften von Lebensmitteln, die bei manchen Menschen Beschwerden machen. Jede Zutat trägt die Auslöser, die auf sie zutreffen; ein Gericht hat die Auslöser seiner Zutaten. Manche gelten erst ab einer gewissen Menge, etwa „ab L“.</string>
+    <string name="info_triggers_fodmap">Laktose, Fruktose, Polyole, Fruktane und GOS gehören zu den FODMAP: kurzkettigen Kohlenhydraten, die im Dünndarm schlecht aufgenommen und im Dickdarm von Bakterien vergoren werden. Dabei entstehen Gase, und Wasser wird in den Darm gezogen. Bei einem Reizdarm lösen sie häufig Blähbauch, Schmerzen und Durchfall aus.</string>
+    <string name="info_triggers_window">Zeitfenster nach dem Essen: %1$s</string>
+    <string name="info_triggers_foods">Typisch in: %1$s</string>
+    <string name="info_triggers_test">Abklärung: %1$s</string>
+    <string name="info_triggers_elimination">Ob ein Auslöser wirklich zu Beschwerden führt, zeigt am verlässlichsten eine Auslassdiät mit anschließender schrittweiser Wiedereinführung, begleitet von einer Diätologin, einem Diätologen oder einer Ärztin, einem Arzt. Lass nicht auf eigene Faust viele Lebensmittel dauerhaft weg.</string>
+
+    <string name="info_tag_lactose_what">Milchzucker. Fehlt das Enzym Laktase im Dünndarm, gelangt er in den Dickdarm und wird dort vergoren.</string>
+    <string name="info_tag_lactose_foods">Milch, Joghurt, Topfen, Schlagobers, Frischkäse, Eis. Lange gereifter Hartkäse enthält kaum Laktose.</string>
+    <string name="info_tag_lactose_test">H₂-Atemtest mit Laktose, eventuell ein Gentest.</string>
+    <string name="info_tag_fructose_what">Fruchtzucker. Er wird schlecht aufgenommen, wenn ein Lebensmittel mehr Fruktose als Glukose enthält (Fruktosemalabsorption).</string>
+    <string name="info_tag_fructose_foods">Äpfel, Birnen, Mango, Honig, Agavendicksaft, Fruchtsäfte.</string>
+    <string name="info_tag_fructose_test">H₂-Atemtest mit Fruktose. Vorher muss die seltene angeborene (hereditäre) Fruktoseintoleranz ausgeschlossen sein.</string>
+    <string name="info_tag_polyols_what">Zuckeralkohole wie Sorbit, Mannit und Xylit. Sie werden nur teilweise aufgenommen und ziehen Wasser in den Darm.</string>
+    <string name="info_tag_polyols_foods">Zwetschken, Marillen, Kirschen, Birnen, Pilze, Karfiol, zuckerfreie Kaugummis und Zuckerl.</string>
+    <string name="info_tag_polyols_test">Kein Standardtest; meist eine angeleitete Auslassdiät.</string>
+    <string name="info_tag_fructans_what">Ketten aus Fruchtzucker, die der Mensch nicht verdauen kann. Bei einem Reizdarm einer der häufigsten Auslöser.</string>
+    <string name="info_tag_fructans_foods">Weizen, Roggen, Zwiebel, Knoblauch, Lauch.</string>
+    <string name="info_tag_fructans_test">Kein Labortest; eine angeleitete FODMAP-Auslassdiät mit Wiedereinführung.</string>
+    <string name="info_tag_gos_what">Galakto-Oligosaccharide, Mehrfachzucker aus Hülsenfrüchten, die im Dickdarm vergoren werden.</string>
+    <string name="info_tag_gos_foods">Bohnen, Linsen, Kichererbsen, Sojabohnen.</string>
+    <string name="info_tag_gos_test">Kein Labortest; eine angeleitete FODMAP-Auslassdiät mit Wiedereinführung.</string>
+    <string name="info_tag_gluten_what">Klebereiweiß aus Weizen, Roggen, Gerste und Dinkel. Wichtig bei Zöliakie (einer Autoimmunerkrankung) und Weizenallergie. Bei einem Reizdarm stecken hinter Beschwerden nach Weizen oft eher die Fruktane.</string>
+    <string name="info_tag_gluten_foods">Brot, Gebäck, Nudeln, Mehlspeisen, Panier, Bier.</string>
+    <string name="info_tag_gluten_test">Bluttest auf Zöliakie-Antikörper (Gewebs-Transglutaminase-IgA mit Gesamt-IgA), eventuell eine Dünndarmbiopsie. Wichtig: vor dem Test nicht glutenfrei essen, sonst kann er falsch negativ ausfallen.</string>
+    <string name="info_tag_histamine_what">Ein Botenstoff, der in gereiften und fermentierten Lebensmitteln entsteht. Eine Histaminunverträglichkeit ist wissenschaftlich umstritten und schwer nachzuweisen.</string>
+    <string name="info_tag_histamine_foods">Gereifter Käse, Salami, Rohschinken, Sauerkraut, Rotwein, Thunfisch aus der Dose, Paradeiser, Spinat.</string>
+    <string name="info_tag_histamine_test">Kein verlässlicher Labortest; die Messung des Enzyms DAO im Blut ist wenig aussagekräftig. Eine angeleitete Auslassdiät mit gezieltem Wiedereinführen.</string>
+    <string name="info_tag_fat_what">Fettes Essen bleibt länger im Magen und regt den Darm stärker an.</string>
+    <string name="info_tag_fat_foods">Frittiertes, Schnitzel, Pommes, Schlagobers, Wurst, Mehlspeisen.</string>
+    <string name="info_tag_fat_test">Kein eigener Test. Bei fettigem, übelriechendem Stuhl die Bauchspeicheldrüse (Elastase im Stuhl) und die Galle abklären lassen.</string>
+    <string name="info_tag_caffeine_what">Regt die Darmbewegung an und kann so Durchfall begünstigen.</string>
+    <string name="info_tag_caffeine_foods">Kaffee, Schwarz- und Grüntee, Cola, Energydrinks.</string>
+    <string name="info_tag_caffeine_test">Ein Auslassversuch.</string>
+    <string name="info_tag_alcohol_what">Reizt die Schleimhaut und beschleunigt die Darmpassage.</string>
+    <string name="info_tag_alcohol_foods">Bier, Wein, Sekt, Spirituosen.</string>
+    <string name="info_tag_alcohol_test">Ein Auslassversuch.</string>
+    <string name="info_tag_spicy_what">Capsaicin aus Chili reizt Schmerzfühler im Darm und kann Krämpfe und Durchfall auslösen.</string>
+    <string name="info_tag_spicy_foods">Chili, Pfefferoni, scharfer Paprika, Currys.</string>
+    <string name="info_tag_spicy_test">Ein Auslassversuch.</string>
+    <string name="info_tag_carbonated_what">Das Gas dehnt Magen und Darm und kann Blähbauch und Aufstoßen verursachen.</string>
+    <string name="info_tag_carbonated_foods">Mineralwasser prickelnd, Limonaden, Bier, Sekt.</string>
+    <string name="info_tag_carbonated_test">Ein Auslassversuch.</string>
+
+    <!-- IBS / Rome IV -->
+    <string name="info_ibs_title">Reizdarm (Rom-IV-Kriterien)</string>
+    <string name="info_ibs_intro">Ärztinnen und Ärzte beschreiben einen Reizdarm nach den Rom-IV-Kriterien: wiederkehrende Bauchschmerzen, in den letzten drei Monaten im Schnitt an mindestens einem Tag pro Woche, mit mindestens zwei dieser Merkmale:</string>
+    <string name="info_ibs_criterion_defecation">Die Schmerzen hängen mit dem Stuhlgang zusammen.</string>
+    <string name="info_ibs_criterion_frequency">Sie gehen mit einer Änderung der Stuhlhäufigkeit einher.</string>
+    <string name="info_ibs_criterion_form">Sie gehen mit einer Änderung der Stuhlform einher.</string>
+    <string name="info_ibs_onset">Die Beschwerden haben mindestens sechs Monate vor der Diagnose begonnen.</string>
+    <string name="info_ibs_app">Deshalb fragt die App beim Stuhlgang, ob du vorher Bauchschmerzen oder Krämpfe hattest und ob sie danach besser, gleich oder schlimmer waren. Sowohl eine Besserung als auch eine Verschlechterung zählt als „Schmerz im Zusammenhang mit dem Stuhlgang“. Die Bristol-Typen zeigen die Stuhlform, die Trends die Häufigkeit.</string>
+    <string name="info_ibs_diagnosis">Die Diagnose stellt eine Ärztin oder ein Arzt, nachdem andere Ursachen wie Zöliakie oder eine chronisch-entzündliche Darmerkrankung ausgeschlossen sind. Deine Aufzeichnungen helfen beim Gespräch.</string>
+    <string name="info_ibs_warning_title">Bitte rasch ärztlich abklären lassen</string>
+    <string name="info_ibs_warning">Blut im Stuhl oder schwarzer Stuhl · ungewollter Gewichtsverlust · Fieber · Beschwerden, die dich nachts aufwecken · neue Beschwerden ab etwa 50 · Blutarmut · Darmkrebs, Zöliakie oder chronisch-entzündliche Darmerkrankungen in der Familie.</string>
+
+    <!-- About: disclaimer, privacy, sources -->
+    <string name="info_about_title">Hinweis, Datenschutz &amp; Quellen</string>
+    <string name="info_disclaimer_title">Wichtiger Hinweis</string>
+    <string name="info_disclaimer">LogMyGut ist ein Werkzeug zur Selbstbeobachtung, kein Medizinprodukt, und stellt keine Diagnosen. Alle Auswertungen sind Hinweise, die du mit deiner Ärztin oder deinem Arzt besprechen kannst. Ändere deine Ernährung oder Medikamente nicht allein aufgrund dieser App. Bei starken oder neuen Beschwerden hol dir ärztliche Hilfe.</string>
+    <string name="info_privacy_title">Deine Daten</string>
+    <string name="info_privacy">Alle Einträge bleiben auf diesem Gerät. Die App hat keinen Internetzugang, sendet nichts und macht keine Cloud-Sicherung. Darum bist du selbst für Sicherungen verantwortlich: Einstellungen → Datensicherung.</string>
+    <string name="info_sources_title">Quellen</string>
+    <string name="info_source_bls">Bundeslebensmittelschlüssel (BLS) 4.0, Max Rubner-Institut, 2025 (DOI 10.25826/Data20251217-134202-0). Daraus sind die Auslöser Laktose, Fruktose, Polyole, Fettreich und Alkohol berechnet.</string>
+    <string name="info_source_monash">FODMAP-Forschung der Monash University; Varney J. et al., FODMAPs: food composition, defining cutoff values and international application. J Gastroenterol Hepatol 2017;32 Suppl 1:53–61.</string>
+    <string name="info_source_rome">Lacy B. E. et al., Bowel Disorders. Gastroenterology 2016;150:1393–1407 (Rom-IV-Kriterien).</string>
+    <string name="info_source_bristol">Lewis S. J., Heaton K. W., Stool form scale as a useful guide to intestinal transit time. Scand J Gastroenterol 1997;32:920–924.</string>
+    <string name="info_version">Version %1$s</string>
+</resources>

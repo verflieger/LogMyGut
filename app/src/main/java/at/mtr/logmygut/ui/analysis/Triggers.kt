@@ -57,11 +57,12 @@ import at.mtr.logmygut.domain.mealLabelFor
 import at.mtr.logmygut.ui.common.ShortDateTimeFormat
 import at.mtr.logmygut.ui.common.label
 import at.mtr.logmygut.ui.common.local
+import at.mtr.logmygut.ui.info.InfoPage
 import kotlin.math.roundToInt
 
 /** Trigger → symptom analysis (SPEC 6.3): disclaimer, current hints, then all tags for one outcome. */
 @Composable
-fun TriggersTab(vm: AnalysisViewModel, onOpenMeal: (Long) -> Unit, onOpenSettings: () -> Unit) {
+fun TriggersTab(vm: AnalysisViewModel, onOpenMeal: (Long) -> Unit, onOpenSettings: () -> Unit, onOpenInfo: (InfoPage) -> Unit) {
     val state by vm.triggers.collectAsStateWithLifecycle()
     var outcomeIndex by rememberSaveable { mutableStateOf(0) }
     var open by remember { mutableStateOf<Pair<Tag, Outcome>?>(null) }
@@ -74,7 +75,13 @@ fun TriggersTab(vm: AnalysisViewModel, onOpenMeal: (Long) -> Unit, onOpenSetting
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        item(key = "disclaimer") { Disclaimer() }
+        item(key = "disclaimer") {
+            Disclaimer()
+            Row {
+                TextButton(onClick = { onOpenInfo(InfoPage.TRIGGERS) }) { Text(stringResource(R.string.analysis_triggers_info)) }
+                TextButton(onClick = { onOpenInfo(InfoPage.IBS) }) { Text(stringResource(R.string.info_ibs_title)) }
+            }
+        }
         item(key = "hints-title") { SectionHeader(stringResource(R.string.analysis_hints_title)) }
         if (hints.isEmpty()) {
             item(key = "no-hints") {

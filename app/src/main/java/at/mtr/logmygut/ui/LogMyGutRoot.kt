@@ -46,6 +46,8 @@ import at.mtr.logmygut.ui.entry.MedicationEditScreen
 import at.mtr.logmygut.ui.entry.SymptomsEditScreen
 import at.mtr.logmygut.ui.history.DayScreen
 import at.mtr.logmygut.ui.history.HistoryScreen
+import at.mtr.logmygut.ui.info.InfoPage
+import at.mtr.logmygut.ui.info.InfoScreen
 import at.mtr.logmygut.ui.library.DishDetailScreen
 import at.mtr.logmygut.ui.library.IngredientDetailScreen
 import at.mtr.logmygut.ui.library.LibraryScreen
@@ -75,6 +77,8 @@ private const val TransitionMillis = 250
 @Serializable data class DayRoute(val epochDay: Long)
 @Serializable object LibraryRoute
 @Serializable object AnalysisSettingsRoute
+/** An info page, as [InfoPage.name]. */
+@Serializable data class InfoRoute(val page: String)
 @Serializable data class IngredientDetailRoute(val id: Long = 0)
 @Serializable data class DishDetailRoute(val id: Long = 0)
 
@@ -160,15 +164,18 @@ fun LogMyGutRoot() {
                     onOpenDay = { navController.navigate(DayRoute(it.toEpochDay())) },
                     onOpenMeal = { navController.navigate(MealEditRoute(it)) },
                     onOpenSettings = { navController.navigate(AnalysisSettingsRoute) },
+                    onOpenInfo = { navController.navigate(InfoRoute(it.name)) },
                 )
             }
             composable<SettingsRoute> {
                 SettingsScreen(
                     onOpenLibrary = { navController.navigate(LibraryRoute) },
                     onOpenAnalysisSettings = { navController.navigate(AnalysisSettingsRoute) },
+                    onOpenInfo = { navController.navigate(InfoRoute(it.name)) },
                 )
             }
             composable<AnalysisSettingsRoute> { AnalysisSettingsScreen(onBack = navController::popBackStack) }
+            composable<InfoRoute> { InfoScreen(InfoPage.valueOf(it.toRoute<InfoRoute>().page), onBack = navController::popBackStack) }
             composable<LibraryRoute> {
                 LibraryScreen(
                     onBack = navController::popBackStack,
@@ -205,7 +212,12 @@ fun LogMyGutRoot() {
             }
             composable<BowelEditRoute> {
                 val route = it.toRoute<BowelEditRoute>()
-                BowelEditScreen(route.id.takeIf { id -> id != 0L }, onDone = navController::popBackStack, onDeleted = onDeleted)
+                BowelEditScreen(
+                    route.id.takeIf { id -> id != 0L },
+                    onDone = navController::popBackStack,
+                    onDeleted = onDeleted,
+                    onOpenInfo = { navController.navigate(InfoRoute(InfoPage.BRISTOL.name)) },
+                )
             }
             composable<SymptomsEditRoute> {
                 val route = it.toRoute<SymptomsEditRoute>()
@@ -213,6 +225,7 @@ fun LogMyGutRoot() {
                     route.timestampMillis.takeIf { ms -> ms != 0L }?.let(Instant::ofEpochMilli),
                     onDone = navController::popBackStack,
                     onDeleted = onDeleted,
+                    onOpenInfo = { navController.navigate(InfoRoute(InfoPage.SYMPTOMS.name)) },
                 )
             }
             composable<MedicationEditRoute> {

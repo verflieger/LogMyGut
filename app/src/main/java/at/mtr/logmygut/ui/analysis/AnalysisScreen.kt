@@ -46,6 +46,7 @@ import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.bandColors
 import at.mtr.logmygut.ui.common.label
 import at.mtr.logmygut.ui.common.severityLabel
+import at.mtr.logmygut.ui.info.InfoPage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -53,7 +54,7 @@ private val ReadoutDayFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("E
 
 /** Analyse tab (SPEC 6): trends and the trigger analysis. */
 @Composable
-fun AnalysisScreen(onOpenDay: (LocalDate) -> Unit, onOpenMeal: (Long) -> Unit, onOpenSettings: () -> Unit) {
+fun AnalysisScreen(onOpenDay: (LocalDate) -> Unit, onOpenMeal: (Long) -> Unit, onOpenSettings: () -> Unit, onOpenInfo: (InfoPage) -> Unit) {
     val container = appContainer()
     val vm = viewModel { AnalysisViewModel(container.analysisRepository, container.settings) }
     // New entries and changed settings show up when coming back to the tab.
@@ -70,7 +71,7 @@ fun AnalysisScreen(onOpenDay: (LocalDate) -> Unit, onOpenMeal: (Long) -> Unit, o
         }
         when (tab) {
             0 -> TrendsTab(vm, onOpenDay)
-            else -> TriggersTab(vm, onOpenMeal, onOpenSettings)
+            else -> TriggersTab(vm, onOpenMeal, onOpenSettings, onOpenInfo)
         }
     }
 }

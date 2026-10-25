@@ -79,6 +79,7 @@
     <string name="bowel_title_new">Stuhlgang eintragen</string>
     <string name="bowel_title_edit">Stuhlgang bearbeiten</string>
     <string name="bowel_bristol">Stuhlform (Bristol-Skala)</string>
+    <string name="bowel_type">Typ %1$d</string>
     <string name="bowel_urgent">Dringlich (Stuhldrang)</string>
     <string name="bowel_pain_before">Bauchschmerzen/Krämpfe vorher</string>
     <string name="bowel_pain_after">Danach:</string>

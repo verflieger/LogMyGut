@@ -47,6 +47,7 @@ import at.mtr.logmygut.R
 import at.mtr.logmygut.data.ReminderSettings
 import at.mtr.logmygut.data.SettingsRepository
 import at.mtr.logmygut.ui.common.TimeFormat
+import at.mtr.logmygut.ui.info.InfoPage
 import at.mtr.logmygut.ui.common.appContainer
 import java.time.LocalTime
 import kotlinx.coroutines.flow.SharingStarted
@@ -63,9 +64,9 @@ class SettingsViewModel(private val settings: SettingsRepository) : ViewModel() 
     fun setReminderTime(time: LocalTime) { viewModelScope.launch { settings.setReminderTime(time) } }
 }
 
-/** Einstellungen tab (SPEC 2): reminder, food library, analysis parameters and backup. Info pages follow later. */
+/** Einstellungen tab (SPEC 2): reminder, food library, analysis parameters, backup and the info pages. */
 @Composable
-fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit) {
+fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit, onOpenInfo: (InfoPage) -> Unit) {
     val container = appContainer()
     val vm = viewModel { SettingsViewModel(container.settings) }
     val reminder by vm.reminder.collectAsStateWithLifecycle()
@@ -92,6 +93,15 @@ fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit
         HorizontalDivider(Modifier.padding(vertical = 8.dp))
         SectionTitle(stringResource(R.string.settings_backup_section))
         BackupSection()
+        HorizontalDivider(Modifier.padding(vertical = 8.dp))
+        SectionTitle(stringResource(R.string.settings_info_section))
+        InfoPage.entries.forEach { page ->
+            ListItem(
+                modifier = Modifier.clickable { onOpenInfo(page) },
+                headlineContent = { Text(stringResource(page.title)) },
+                trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
+            )
+        }
     }
 }
 

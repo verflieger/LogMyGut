@@ -46,6 +46,7 @@ import at.mtr.logmygut.ui.common.DayHeaderFormat
 import at.mtr.logmygut.ui.common.Loaded
 import at.mtr.logmygut.ui.common.TimeFormat
 import at.mtr.logmygut.ui.common.appContainer
+import at.mtr.logmygut.ui.common.BristolIcon
 import at.mtr.logmygut.ui.common.bristolGroup
 import at.mtr.logmygut.ui.common.label
 import at.mtr.logmygut.ui.common.local
@@ -171,7 +172,9 @@ fun TimelineRow(entry: TimelineEntry, onClick: () -> Unit) {
     }
     ElevatedCard(Modifier.fillMaxWidth().clickable(onClick = onClick)) {
         ListItem(
-            leadingContent = { Icon(icon, contentDescription = null) },
+            leadingContent = {
+                if (entry is TimelineEntry.BowelMovement) BristolIcon(entry.entry.bristol) else Icon(icon, contentDescription = null)
+            },
             overlineContent = { Text(TimeFormat.format(time)) },
             headlineContent = { Text(headline) },
             supportingContent = supporting?.let { { Text(it) } },

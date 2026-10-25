@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108">
+  <!-- Source of the adaptive launcher icon (res/drawable/ic_launcher_*.xml). Keep the shape inside the 66 dp safe circle. -->
+  <rect width="108" height="108" fill="#2F6B4F"/>
+  <g transform="translate(54,54) scale(0.8) translate(-54,-54) translate(-3,1)"><path fill="#F3EBDD" fill-rule="evenodd" d="M57,23 L66,23 L66,33 C66,43 59,47 59,53 C59,59 66,61 73,57 L80,52 L85,59 L79,66 C71,77 58,81 46,78 C32,74 26,60 29,46 C32,35 41,30 49,30 C53,30 56,32 57,33 Z M34,62 L38,58 L43,63 L52,54 L56,58 L43,71 Z"/></g>
+</svg>

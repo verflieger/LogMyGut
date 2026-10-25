@@ -5,14 +5,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.HelpOutline
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +34,7 @@ import at.mtr.logmygut.R
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.db.BowelMovementEntity
 import at.mtr.logmygut.domain.PainChange
+import at.mtr.logmygut.ui.common.BristolIcon
 import at.mtr.logmygut.ui.common.DateTimeField
 import at.mtr.logmygut.ui.common.EditorScaffold
 import at.mtr.logmygut.ui.common.SegmentedChoice
@@ -91,7 +94,7 @@ class BowelEditViewModel(private val journal: JournalRepository, private val id:
 }
 
 @Composable
-fun BowelEditScreen(id: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit) {
+fun BowelEditScreen(id: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenInfo: () -> Unit) {
     val container = appContainer()
     val vm = viewModel { BowelEditViewModel(container.journalRepository, id) }
     val scope = rememberCoroutineScope()
@@ -102,6 +105,11 @@ fun BowelEditScreen(id: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Uni
         onSave = { scope.launch(Dispatchers.Main.immediate) { vm.save(); onDone() } },
         saveEnabled = vm.canSave,
         onDelete = if (vm.isEdit) ({ scope.launch(Dispatchers.Main.immediate) { onDeleted(vm.delete()); onDone() } }) else null,
+        menu = {
+            IconButton(onClick = onOpenInfo) {
+                Icon(Icons.AutoMirrored.Outlined.HelpOutline, contentDescription = stringResource(R.string.info_more))
+            }
+        },
     ) { modifier ->
         Column(
             modifier.verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
@@ -145,14 +153,9 @@ private fun BristolOption(type: Int, selected: Boolean, onSelect: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         RadioButton(selected = selected, onClick = null)
-        Surface(
-            shape = MaterialTheme.shapes.small,
-            color = MaterialTheme.colorScheme.secondaryContainer,
-            modifier = Modifier.padding(horizontal = 8.dp).size(32.dp),
-        ) {
-            Text("$type", Modifier.padding(4.dp), style = MaterialTheme.typography.titleMedium)
-        }
+        BristolIcon(type, Modifier.padding(horizontal = 8.dp), height = 32.dp)
         Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.bowel_type, type), style = MaterialTheme.typography.labelLarge)
             Text(stringResource(bristolDescription(type)), style = MaterialTheme.typography.bodyMedium)
             Text(stringResource(bristolGroup(type)), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }

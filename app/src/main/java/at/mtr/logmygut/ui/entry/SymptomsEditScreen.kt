@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -78,7 +79,7 @@ class SymptomsEditViewModel(private val journal: JournalRepository, private val 
 }
 
 @Composable
-fun SymptomsEditScreen(groupTimestamp: Instant?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit) {
+fun SymptomsEditScreen(groupTimestamp: Instant?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenInfo: () -> Unit) {
     val container = appContainer()
     val vm = viewModel { SymptomsEditViewModel(container.journalRepository, groupTimestamp) }
     val scope = rememberCoroutineScope()
@@ -89,6 +90,11 @@ fun SymptomsEditScreen(groupTimestamp: Instant?, onDone: () -> Unit, onDeleted: 
         onSave = { scope.launch(Dispatchers.Main.immediate) { vm.save(); onDone() } },
         saveEnabled = vm.canSave,
         onDelete = if (vm.isEdit) ({ scope.launch(Dispatchers.Main.immediate) { onDeleted(vm.delete()); onDone() } }) else null,
+        menu = {
+            IconButton(onClick = onOpenInfo) {
+                Icon(Icons.AutoMirrored.Outlined.HelpOutline, contentDescription = stringResource(R.string.info_more))
+            }
+        },
     ) { modifier ->
         Column(
             modifier.verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
