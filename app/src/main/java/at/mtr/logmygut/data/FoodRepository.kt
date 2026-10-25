@@ -114,15 +114,14 @@ class FoodRepository(
     /** Creates ([IngredientDraft.id] 0) or updates an ingredient; [IngredientDraft.tags] are the tags it should end up with. */
     suspend fun saveIngredient(draft: IngredientDraft): Long {
         require(draft.name.isNotBlank()) { "Name is required" }
-        require(draft.unit == FoodUnit.SIZE || !draft.unitLabel.isNullOrBlank()) { "Count units need a label" }
+        requireUnitLabel(draft.unit, draft.unitLabel)
         draft.parentId?.let { require(canBeParent(draft.id.takeIf { id -> id != 0L }, it)) { "Invalid parent" } }
         val rows = ownTagRows(draft.parentId, draft.tags)
         val aliases = draft.aliases.map { it.trim() }.filter { it.isNotEmpty() }.distinct()
         return db.withTransaction {
             val existing = draft.id.takeIf { it != 0L }?.let { dao.getFood(it) }
             val unit = if (existing != null && dao.isUsedInMeals(existing.id)) existing.unit else draft.unit
-            val unitLabel = draft.unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT }
-                ?: existing?.unitLabel.takeIf { unit == FoodUnit.COUNT }
+            val unitLabel = storedUnitLabel(unit, draft.unitLabel, fallback = existing?.unitLabel)
             val name = draft.name.trim()
             if (existing == null) {
                 dao.insertFoodWithDetails(
@@ -151,7 +150,7 @@ class FoodRepository(
     suspend fun saveDish(draft: DishDraft): Long {
         require(draft.name.isNotBlank()) { "Name is required" }
         require(draft.ingredientIds.isNotEmpty()) { "A dish needs at least one ingredient" }
-        require(draft.unit == FoodUnit.SIZE || !draft.unitLabel.isNullOrBlank()) { "Count units need a label" }
+        requireUnitLabel(draft.unit, draft.unitLabel)
         val aliases = draft.aliases.map { it.trim() }.filter { it.isNotEmpty() }.distinct()
         val name = draft.name.trim()
         return db.withTransaction {
@@ -163,7 +162,7 @@ class FoodRepository(
                 dao.updateFood(
                     existing.copy(
                         name = name, aliases = aliases, unit = unit,
-                        unitLabel = (draft.unitLabel?.let(::unitLabelKey) ?: existing.unitLabel).takeIf { unit == FoodUnit.COUNT },
+                        unitLabel = storedUnitLabel(unit, draft.unitLabel, fallback = existing.unitLabel),
                         userModified = existing.builtIn,
                         drink = draft.drink, portionGrams = draft.portionGrams.takeIf { draft.drink },
                     ),
@@ -244,7 +243,7 @@ class FoodRepository(
             name = name.trim(),
             aliases = aliases,
             unit = unit,
-            unitLabel = unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT },
+            unitLabel = storedUnitLabel(unit, unitLabel),
             note = note,
             drink = isDrinkUnit(unit, unitLabel),
         ),
@@ -268,7 +267,7 @@ class FoodRepository(
                 name = name.trim(),
                 aliases = aliases,
                 unit = unit,
-                unitLabel = unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT },
+                unitLabel = storedUnitLabel(unit, unitLabel),
                 drink = drink,
                 portionGrams = portionGrams.takeIf { drink },
             ),
@@ -277,6 +276,16 @@ class FoodRepository(
         )
     }
 }
+
+private fun requireUnitLabel(unit: FoodUnit, label: String?) =
+    require(unit == FoodUnit.SIZE || !label.isNullOrBlank()) { "Count units need a label" }
+
+/**
+ * The label stored for a food with [unit]: for count units [label] as its built-in key ([unitLabelKey]), or [fallback]
+ * when no label is given; sizes have none.
+ */
+private fun storedUnitLabel(unit: FoodUnit, label: String?, fallback: String? = null): String? =
+    (label?.let(::unitLabelKey) ?: fallback).takeIf { unit == FoodUnit.COUNT }
 
 /** What the ingredient editor saves. [tags] are the final, effective tags; inheritance is worked out on save. */
 data class IngredientDraft(
