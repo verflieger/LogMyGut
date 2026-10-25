@@ -65,6 +65,10 @@ class MealEditViewModel(
     var results by mutableStateOf<List<FoodHit>>(emptyList())
         private set
 
+    /** Key of the item added last from the search, so the screen can scroll it into view. */
+    var addedKey by mutableStateOf<Int?>(null)
+        private set
+
     val isEdit get() = mealId != null
     val isFuture get() = timestamp.isAfter(Instant.now())
     val canSave get() = items.isNotEmpty() && !isFuture
@@ -111,7 +115,9 @@ class MealEditViewModel(
         viewModelScope.launch {
             val ingredients = if (food.kind == FoodKind.DISH) foods.getFoods(foods.getDishIngredientIds(food.id)) else emptyList()
             val amount = if (food.unit == FoodUnit.COUNT) Amount.Count(1) else Amount.Size(PortionSize.M)
-            items += buildItem(food, amount, ingredients)
+            val item = buildItem(food, amount, ingredients)
+            items += item
+            addedKey = item.key
         }
     }
 

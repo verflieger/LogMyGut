@@ -4,7 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -42,6 +47,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import at.mtr.logmygut.LogMyGutApp
@@ -102,7 +108,20 @@ fun EditorScaffold(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
             ) { Text(stringResource(R.string.action_save)) }
         },
-    ) { padding -> content(Modifier.padding(padding)) }
+    ) { padding ->
+        // Edge-to-edge: the keyboard doesn't resize the window, it covers the save button. The content ends
+        // above whichever is higher, so the field being typed in and items just added stay visible.
+        val direction = LocalLayoutDirection.current
+        val keyboard = WindowInsets.ime.asPaddingValues().calculateBottomPadding()
+        content(
+            Modifier.padding(
+                start = padding.calculateStartPadding(direction),
+                top = padding.calculateTopPadding(),
+                end = padding.calculateEndPadding(direction),
+                bottom = maxOf(padding.calculateBottomPadding(), keyboard),
+            ),
+        )
+    }
 }
 
 /** Shows a timestamp and lets the user pick a date, then a time. Future dates can't be selected. */

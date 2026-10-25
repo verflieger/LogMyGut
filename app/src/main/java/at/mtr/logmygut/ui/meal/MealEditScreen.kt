@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Close
@@ -28,6 +29,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +37,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -58,6 +61,7 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
     val scope = rememberCoroutineScope()
     var adjusting by remember { mutableStateOf<MealItemUi?>(null) }
     var creatingName by remember { mutableStateOf<String?>(null) }
+    val focus = LocalFocusManager.current
 
     EditorScaffold(
         title = stringResource(if (vm.isEdit) R.string.meal_title_edit else R.string.meal_title_new),
@@ -66,10 +70,20 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
         saveEnabled = vm.canSave,
         onDelete = if (vm.isEdit) ({ scope.launch(Dispatchers.Main.immediate) { onDeleted(vm.delete()); onDone() } }) else null,
     ) { modifier ->
-        LazyColumn(modifier, contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            item { DateTimeField(vm.timestamp, { vm.timestamp = it }, isError = vm.isFuture) }
-
-            item {
+        val listState = rememberLazyListState()
+        // Scroll a newly added item into view. Adding also closes the keyboard, so the whole meal is visible.
+        LaunchedEffect(vm.addedKey) {
+            val index = vm.items.indexOfFirst { it.key == vm.addedKey }
+            if (index >= 0 && vm.query.isBlank()) listState.animateScrollToItem(index)
+        }
+        // Search results sit above the items, so show them from the top while searching.
+        LaunchedEffect(vm.results) {
+            if (vm.query.isNotBlank()) listState.scrollToItem(0)
+        }
+        Column(modifier) {
+            // Time and search stay on top, so the next food can be added without scrolling back up.
+            Column(Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                DateTimeField(vm.timestamp, { vm.timestamp = it }, isError = vm.isFuture)
                 OutlinedTextField(
                     vm.query, vm::onQueryChange, Modifier.fillMaxWidth(),
                     leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null) },
@@ -77,49 +91,57 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
                     singleLine = true,
                 )
             }
-            if (vm.query.isNotBlank()) {
-                items(vm.results, key = { "result-${it.food.id}" }) { hit ->
-                    SearchResultRow(hit, onClick = { vm.addFood(hit.food) }, onLongClick = { onOpenFood(hit.food) })
-                }
-                item {
-                    ListItem(
-                        modifier = Modifier.clickable { creatingName = vm.query },
-                        leadingContent = { Icon(Icons.Outlined.Add, contentDescription = null) },
-                        headlineContent = { Text(stringResource(R.string.meal_create_new, vm.query.trim())) },
-                    )
-                    HorizontalDivider()
-                }
-            }
-
-            if (vm.items.isEmpty()) {
-                item {
-                    Text(
-                        stringResource(R.string.meal_no_items),
-                        Modifier.padding(vertical = 16.dp),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-            items(vm.items, key = { "item-${it.key}" }) { item ->
-                MealItemCard(
-                    item = item,
-                    onAmount = { vm.setAmount(item.key, it) },
-                    onRemove = { vm.removeItem(item.key) },
-                    onAdjust = { adjusting = item },
-                )
-            }
-
-            item {
-                Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text(stringResource(R.string.meal_eaten_out))
-                        Text(stringResource(R.string.meal_eaten_out_hint), style = MaterialTheme.typography.bodySmall)
+            HorizontalDivider()
+            LazyColumn(
+                Modifier.weight(1f),
+                state = listState,
+                contentPadding = PaddingValues(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                if (vm.query.isNotBlank()) {
+                    items(vm.results, key = { "result-${it.food.id}" }) { hit ->
+                        SearchResultRow(hit, onClick = { focus.clearFocus(); vm.addFood(hit.food) }, onLongClick = { onOpenFood(hit.food) })
                     }
-                    Switch(checked = vm.eatenOut, onCheckedChange = { vm.eatenOut = it })
+                    item {
+                        ListItem(
+                            modifier = Modifier.clickable { creatingName = vm.query },
+                            leadingContent = { Icon(Icons.Outlined.Add, contentDescription = null) },
+                            headlineContent = { Text(stringResource(R.string.meal_create_new, vm.query.trim())) },
+                        )
+                        HorizontalDivider()
+                    }
                 }
-            }
-            item {
-                OutlinedTextField(vm.note, { vm.note = it }, Modifier.fillMaxWidth(), label = { Text(stringResource(R.string.field_note)) })
+
+                if (vm.items.isEmpty()) {
+                    item {
+                        Text(
+                            stringResource(R.string.meal_no_items),
+                            Modifier.padding(vertical = 16.dp),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
+                items(vm.items, key = { "item-${it.key}" }) { item ->
+                    MealItemCard(
+                        item = item,
+                        onAmount = { vm.setAmount(item.key, it) },
+                        onRemove = { vm.removeItem(item.key) },
+                        onAdjust = { adjusting = item },
+                    )
+                }
+
+                item {
+                    Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text(stringResource(R.string.meal_eaten_out))
+                            Text(stringResource(R.string.meal_eaten_out_hint), style = MaterialTheme.typography.bodySmall)
+                        }
+                        Switch(checked = vm.eatenOut, onCheckedChange = { vm.eatenOut = it })
+                    }
+                }
+                item {
+                    OutlinedTextField(vm.note, { vm.note = it }, Modifier.fillMaxWidth(), label = { Text(stringResource(R.string.field_note)) })
+                }
             }
         }
     }
@@ -142,6 +164,7 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
             suggestTags = vm::suggestTags,
             search = vm::searchIngredients,
             onCreate = {
+                focus.clearFocus()
                 vm.createFood(it)
                 creatingName = null
             },

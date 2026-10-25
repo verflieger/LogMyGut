@@ -452,3 +452,15 @@ Each milestone ends with a building app, passing tests and a review by the autho
 5. **Analysis**: trends, heatmap, trigger engine and its UI.
 6. **Backup**: JSON export/import.
 7. **Info pages and polish**: Bristol illustrations, explanations, disclaimer, app icon.
+
+## 12. Backlog
+Open points for later, roughly in order. Not part of any milestone yet.
+
+- **Purpose statement on first launch** (Intended purpose, EU MDR): show the purpose statement once, before the
+  first entry, with an "Verstanden" button; remember that it was shown (DataStore, not in the backup). Needed
+  before any public release.
+- **Publishing on F-Droid**: choose a licence, publish the source, check the BLS 4.0 licence terms and credit,
+  `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and English, decide on signing.
+- **English UI**: `values-en`, units stored as keys instead of German labels (migration, backup v3), English seed
+  names and keyword rules, translated info pages, per-app language.
+- **Encrypted backup** (optional password), or at least a warning that the export holds health data in plain text.
