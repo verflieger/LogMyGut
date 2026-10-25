@@ -33,7 +33,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,31 +45,22 @@ import at.mtr.logmygut.data.FoodHit
 import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.ui.common.AmountSelector
-import at.mtr.logmygut.ui.common.DateTimeField
-import at.mtr.logmygut.ui.common.EditorScaffold
+import at.mtr.logmygut.ui.common.EntryEditorScaffold
+import at.mtr.logmygut.ui.common.EntryTimeField
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.label
 import java.time.LocalDate
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /** [onOpenFood] opens a food's library detail; reached by long-pressing a search result (SPEC 4.1). */
 @Composable
 fun MealEditScreen(mealId: Long?, day: LocalDate?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenFood: (FoodEntity) -> Unit) {
     val container = appContainer()
     val vm = viewModel { MealEditViewModel(container.foodRepository, container.journalRepository, mealId, day) }
-    val scope = rememberCoroutineScope()
     var adjusting by remember { mutableStateOf<MealItemUi?>(null) }
     var creatingName by remember { mutableStateOf<String?>(null) }
     val focus = LocalFocusManager.current
 
-    EditorScaffold(
-        title = stringResource(if (vm.isEdit) R.string.meal_title_edit else R.string.meal_title_new),
-        onBack = onDone,
-        onSave = { scope.launch(Dispatchers.Main.immediate) { vm.save(); onDone() } },
-        saveEnabled = vm.canSave,
-        onDelete = if (vm.isEdit) ({ scope.launch(Dispatchers.Main.immediate) { onDeleted(vm.delete()); onDone() } }) else null,
-    ) { modifier ->
+    EntryEditorScaffold(vm, R.string.meal_title_new, R.string.meal_title_edit, onDone, onDeleted) { modifier ->
         val listState = rememberLazyListState()
         // Scroll a newly added item into view. Adding also closes the keyboard, so the whole meal is visible.
         LaunchedEffect(vm.addedKey) {
@@ -84,7 +74,7 @@ fun MealEditScreen(mealId: Long?, day: LocalDate?, onDone: () -> Unit, onDeleted
         Column(modifier) {
             // Time and search stay on top, so the next food can be added without scrolling back up.
             Column(Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                DateTimeField(vm.timestamp, { vm.timestamp = it }, isError = vm.isFuture)
+                EntryTimeField(vm)
                 OutlinedTextField(
                     vm.query, vm::onQueryChange, Modifier.fillMaxWidth(),
                     leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null) },

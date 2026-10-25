@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,22 +19,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import at.mtr.logmygut.R
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.db.SymptomEntryEntity
 import at.mtr.logmygut.domain.SymptomType
-import at.mtr.logmygut.ui.common.DateTimeField
-import at.mtr.logmygut.ui.common.EditorScaffold
+import at.mtr.logmygut.ui.common.EntryEditViewModel
+import at.mtr.logmygut.ui.common.EntryEditorScaffold
+import at.mtr.logmygut.ui.common.EntryTimeField
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.label
 import at.mtr.logmygut.ui.common.newEntryTime
@@ -43,19 +41,17 @@ import at.mtr.logmygut.ui.common.severityLabel
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /** Edits one symptom group; [groupTimestamp] identifies an existing group, null creates a new one. */
-class SymptomsEditViewModel(private val journal: JournalRepository, private val groupTimestamp: Instant?, day: LocalDate? = null) : ViewModel() {
-    var timestamp by mutableStateOf(groupTimestamp ?: newEntryTime(day))
+class SymptomsEditViewModel(private val journal: JournalRepository, private val groupTimestamp: Instant?, day: LocalDate? = null) :
+    EntryEditViewModel(groupTimestamp ?: newEntryTime(day)) {
     /** Only touched symptoms are present. */
     val severities = mutableStateMapOf<SymptomType, Int>()
     var note by mutableStateOf("")
 
-    val isEdit get() = groupTimestamp != null
-    val isFuture get() = timestamp.isAfter(Instant.now())
-    val canSave get() = severities.isNotEmpty() && !isFuture
+    override val isEdit get() = groupTimestamp != null
+    override val isComplete get() = severities.isNotEmpty()
 
     init {
         if (groupTimestamp != null) viewModelScope.launch {
@@ -65,7 +61,7 @@ class SymptomsEditViewModel(private val journal: JournalRepository, private val 
         }
     }
 
-    suspend fun save() {
+    override suspend fun save() {
         val zone = ZoneId.systemDefault().id
         val trimmedNote = note.trim().ifEmpty { null }
         // The note is stored on the first entry of the group only.
@@ -76,32 +72,20 @@ class SymptomsEditViewModel(private val journal: JournalRepository, private val 
         journal.saveSymptoms(groupTimestamp, entries)
     }
 
-    suspend fun delete(): suspend () -> Unit = groupTimestamp?.let { journal.deleteSymptomsAt(it) } ?: {}
+    override suspend fun delete(): suspend () -> Unit = groupTimestamp?.let { journal.deleteSymptomsAt(it) } ?: {}
 }
 
 @Composable
 fun SymptomsEditScreen(groupTimestamp: Instant?, day: LocalDate?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenInfo: () -> Unit) {
     val container = appContainer()
     val vm = viewModel { SymptomsEditViewModel(container.journalRepository, groupTimestamp, day) }
-    val scope = rememberCoroutineScope()
 
-    EditorScaffold(
-        title = stringResource(if (vm.isEdit) R.string.symptoms_title_edit else R.string.symptoms_title_new),
-        onBack = onDone,
-        onSave = { scope.launch(Dispatchers.Main.immediate) { vm.save(); onDone() } },
-        saveEnabled = vm.canSave,
-        onDelete = if (vm.isEdit) ({ scope.launch(Dispatchers.Main.immediate) { onDeleted(vm.delete()); onDone() } }) else null,
-        menu = {
-            IconButton(onClick = onOpenInfo) {
-                Icon(Icons.AutoMirrored.Outlined.HelpOutline, contentDescription = stringResource(R.string.info_more))
-            }
-        },
-    ) { modifier ->
+    EntryEditorScaffold(vm, R.string.symptoms_title_new, R.string.symptoms_title_edit, onDone, onDeleted, onOpenInfo) { modifier ->
         Column(
             modifier.verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            DateTimeField(vm.timestamp, { vm.timestamp = it }, isError = vm.isFuture)
+            EntryTimeField(vm)
             Text(stringResource(R.string.symptoms_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             for (type in SymptomType.entries) {
                 SeverityRow(

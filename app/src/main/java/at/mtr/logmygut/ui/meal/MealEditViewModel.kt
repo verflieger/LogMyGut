@@ -4,7 +4,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import at.mtr.logmygut.data.FoodHit
 import at.mtr.logmygut.data.FoodRepository
@@ -19,8 +18,8 @@ import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.effectiveTags
+import at.mtr.logmygut.ui.common.EntryEditViewModel
 import at.mtr.logmygut.ui.common.newEntryTime
-import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Job
@@ -51,13 +50,12 @@ class MealEditViewModel(
     private val journal: JournalRepository,
     private val mealId: Long?,
     day: LocalDate? = null,
-) : ViewModel() {
+) : EntryEditViewModel(newEntryTime(day)) {
     private var existing: MealEntity? = null
     private var nextKey = 0
     private val tagsById = mutableMapOf<Long, List<IngredientTag>>()
     private var searchJob: Job? = null
 
-    var timestamp by mutableStateOf(newEntryTime(day))
     var eatenOut by mutableStateOf(false)
     var note by mutableStateOf("")
     val items = mutableStateListOf<MealItemUi>()
@@ -71,9 +69,8 @@ class MealEditViewModel(
     var addedKey by mutableStateOf<Int?>(null)
         private set
 
-    val isEdit get() = mealId != null
-    val isFuture get() = timestamp.isAfter(Instant.now())
-    val canSave get() = items.isNotEmpty() && !isFuture
+    override val isEdit get() = mealId != null
+    override val isComplete get() = items.isNotEmpty()
 
     init {
         if (mealId != null) viewModelScope.launch { load(mealId) }
@@ -151,7 +148,7 @@ class MealEditViewModel(
         }
     }
 
-    suspend fun save() {
+    override suspend fun save() {
         val meal = (existing ?: MealEntity(timestamp = timestamp, zoneId = ZoneId.systemDefault().id))
             .copy(timestamp = timestamp, eatenOut = eatenOut, note = note.trim().ifEmpty { null })
         val rows = items.map { item ->
@@ -168,7 +165,7 @@ class MealEditViewModel(
         journal.saveMeal(meal, rows, dishIngredients)
     }
 
-    suspend fun delete(): suspend () -> Unit = mealId?.let { journal.deleteMeal(it) } ?: {}
+    override suspend fun delete(): suspend () -> Unit = mealId?.let { journal.deleteMeal(it) } ?: {}
 
     private suspend fun buildItem(food: FoodEntity, amount: Amount, ingredients: List<FoodEntity>): MealItemUi {
         loadTags(if (food.kind == FoodKind.DISH) ingredients else listOf(food))
