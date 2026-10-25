@@ -1,11 +1,31 @@
 # LogMyGut — Specification v1
 
 A private, fully offline Android app for logging food, bowel movements and digestive
-symptoms. It surfaces *hints* about which food triggers correlate with symptoms.
+symptoms. It shows which food triggers occur together with symptoms in the user's own entries.
 Single user (the author), sideloaded. Repo, code and identifiers are in English; the UI is in Austrian German.
 
 > LogMyGut is a self-observation tool, not a diagnostic device. All analysis
-> results are presented as hints to discuss with a doctor.
+> results describe the user's own entries, to discuss with a doctor.
+
+### Intended purpose and wording (EU MDR)
+
+Software whose intended purpose is to diagnose, monitor, predict or treat a disease is a medical device under
+EU 2017/745 (MDR, rule 11: at least class IIa). The intended purpose follows from the app's texts, store listing
+and other descriptions, so all of them keep to this one:
+
+> A diary for food, drinks, bowel movements and symptoms. It shows the user's own entries as overviews and counts
+> how often symptoms were logged after meals with certain trigger tags. It does not diagnose, detect diseases or
+> intolerances, or recommend treatment or diet changes. The overviews are meant for talking to a doctor or dietitian.
+
+Wording rules for UI texts, info pages and any store listing:
+- Analysis results describe frequencies in the entries ("deutlich häufiger"), never causes, suspicions or
+  diagnoses ("Verdacht", "verursacht", "du verträgst … nicht", "Unverträglichkeit erkannt").
+- No result points to a particular test or diet. General information about tests stays on the info pages,
+  apart from the analysis results.
+- The app never says whether diagnostic criteria (e.g. Rome IV) are met. The IBS page is general information.
+- No alarm styling (error colours, warning icons) on analysis results. Warning signs that need a doctor
+  (blood in the stool etc.) are general information and stay on the IBS page.
+- The full purpose statement is on the info page "Wofür LogMyGut gedacht ist", which the analysis tab links to.
 
 ## 1. Platform & constraints
 
@@ -338,9 +358,9 @@ For each tag *T* and each outcome *S*, where *S* ∈ {each SymptomType at severi
 4. `rateExposed` = positive exposures / exposures; `rateControl` likewise for controls.
 5. Show: n exposures, `rateExposed` vs. `rateControl` (as "x von n Mahlzeiten"), and the ratio.
 6. Hint label:
-   - **deutlicher Hinweis**: n ≥ 10, ratio ≥ 2.0 and absolute difference ≥ 25 percentage points
-   - **schwacher Hinweis**: n ≥ minimum exposures (default 5) and ratio ≥ 1.5
-   - **kein Hinweis**: otherwise
+   - **deutlich häufiger** (`STRONG`): n ≥ 10, ratio ≥ 2.0 and absolute difference ≥ 25 percentage points
+   - **etwas häufiger** (`WEAK`): n ≥ minimum exposures (default 5) and ratio ≥ 1.5
+   - **nicht auffällig** (`NONE`): otherwise
    - Tags with n below the minimum are shown greyed out as "zu wenig Daten (n = 3)".
 7. **Medication adjustments**:
    - A meal with an `ENZYME` intake within ±30 min does **not** count as a `lactose` exposure.
@@ -356,14 +376,16 @@ Details:
 - Entries of only drinks without any trigger (a glass of water) are not meals and are left out entirely (3.2).
 - The ratio is shown as "nur mit diesem Auslöser" when control meals never had the outcome, and is left out when
   there are no controls or neither group had the outcome (no hint then).
-- The screen shows a "Hinweise" list (all strong and weak hints across outcomes), then all tags for one
+- The tab is called "Zusammenhänge". It shows an "Auffällig in deinen Einträgen" list (all strong and weak hints
+  across outcomes), then all tags for one
   selected outcome. The analysis settings (threshold, minimum exposures, per-tag windows, reset) are reached
   from Einstellungen and from the bottom of this screen.
 
-The screen always shows this disclaimer: tags co-occur in mixed meals (e.g. pizza = wheat + cheese
-+ tomato), so a hint is not proof. A structured elimination diet supervised by a doctor or dietitian,
-and tests such as the H₂ breath test or celiac serology, are needed to confirm anything.
-The info page also notes: **don't cut out gluten before a celiac test.**
+The screen always shows this disclaimer: it shows only what occurs together in the entries, not what causes
+symptoms; tags co-occur in mixed meals (e.g. pizza = wheat + cheese + tomato) and symptoms often have other
+reasons such as stress or sleep; the app does not diagnose; take the overview to a doctor or dietitian to look
+into causes; **don't cut out gluten before a celiac test.** Below it, links to the trigger info page and the
+purpose statement. Badges use neutral colours (see Intended purpose).
 
 ## 7. Backup
 - **Export**: the complete database (all entities including the food library and its edits) plus settings
@@ -389,15 +411,17 @@ The info page also notes: **don't cut out gluten before a celiac test.**
 - Bristol scale with illustrations and descriptions.
 - Explanation of each symptom and how to rate 0–10 (anchors: 0 none, 1–3 mild, 4–6 moderate, 7–10 severe).
 - Trigger tags: what they are, typical foods, related tests.
-- Note on IBS (Rome IV): recurring abdominal pain related to defecation and/or a change in stool frequency or form.
-  This is why the app records pain before a bowel movement and how it changed afterwards.
-- Disclaimer.
+- Note on IBS (Rome IV): recurring abdominal pain related to defecation and/or a change in stool frequency or form,
+  as general information. The page says which entries help in talking to a doctor, and that the app does not
+  check these criteria.
+- Purpose statement ("Wofür LogMyGut gedacht ist"), see Intended purpose.
 - Sources: credit the Bundeslebensmittelschlüssel 4.0 (Max Rubner-Institut) and Monash University FODMAP research.
 
 Implementation:
 - Five pages, listed under Einstellungen → Info: Bristol scale, rating symptoms, triggers (with each tag's default
-  window), IBS / Rome IV (including warning signs that need a doctor soon), and disclaimer, privacy and sources.
-  A "?" in the Stuhlgang and Beschwerden editors and two links in the Auslöser tab open the matching page.
+  window), IBS / Rome IV (including warning signs that need a doctor soon), and purpose statement, privacy and
+  sources. A "?" in the Stuhlgang and Beschwerden editors and two links in the Zusammenhänge tab (triggers, purpose)
+  open the matching page.
 - The texts live in `res/values/strings_info.xml`.
 - The Bristol illustrations are single-colour vector drawables generated by `tools/icons/build_bristol.py`
   (edit the script, not the XML), tinted brown at runtime. They appear in the picker, the timeline and the info page.

@@ -220,7 +220,7 @@
 
     <!-- Analysis: trends (SPEC 6.2) -->
     <string name="analysis_tab_trends">Verlauf &amp; Trends</string>
-    <string name="analysis_tab_triggers">Auslöser</string>
+    <string name="analysis_tab_triggers">Zusammenhänge</string>
     <string name="analysis_range_days">%1$d Tage</string>
     <string name="analysis_tap_hint">Tippe auf einen Tag für die Werte.</string>
     <string name="analysis_bristol_title">Stuhlform (Bristol-Typ)</string>
@@ -247,17 +247,17 @@
     <string name="analysis_legend_no_score">kein Wert</string>
 
     <!-- Analysis: triggers (SPEC 6.3) -->
-    <string name="analysis_disclaimer">Das sind Hinweise, keine Beweise. In gemischten Mahlzeiten kommen Auslöser oft gemeinsam vor (Pizza = Weizen + Käse + Paradeiser). Bestätigen lässt sich ein Verdacht nur mit einer ärztlich oder diätologisch begleiteten Auslassdiät und Tests wie dem H₂-Atemtest oder einem Zöliakie-Bluttest. Lass Gluten nicht vor einem Zöliakie-Test weg.</string>
-    <string name="analysis_hints_title">Hinweise</string>
-    <string name="analysis_no_hints">Noch keine Hinweise. Je mehr Mahlzeiten und Beschwerden du einträgst, desto aussagekräftiger wird die Auswertung.</string>
+    <string name="analysis_disclaimer">Hier siehst du nur, was in deinen Einträgen gemeinsam vorkommt, nicht was Beschwerden verursacht. In gemischten Mahlzeiten kommen Auslöser oft gemeinsam vor (Pizza = Weizen + Käse + Paradeiser), und Beschwerden haben oft auch andere Gründe wie Stress oder wenig Schlaf. Die App stellt keine Diagnose. Wenn du der Ursache nachgehen willst, nimm die Übersicht zu deiner Ärztin, deinem Arzt oder deiner Diätologin mit. Lass Gluten nicht weg, bevor auf Zöliakie getestet wurde.</string>
+    <string name="analysis_hints_title">Auffällig in deinen Einträgen</string>
+    <string name="analysis_no_hints">Noch nichts auffällig. Je mehr Mahlzeiten und Beschwerden du einträgst, desto mehr lässt sich vergleichen.</string>
     <string name="analysis_all_title">Alle Auslöser für …</string>
     <string name="outcome_diarrhea">Durchfall (Typ 6–7)</string>
     <string name="symptom_short_bloating">Blähbauch</string>
     <string name="symptom_short_pain">Bauchschmerzen</string>
     <string name="symptom_short_gas">Blähungen</string>
-    <string name="hint_strong">deutlicher Hinweis</string>
-    <string name="hint_weak">schwacher Hinweis</string>
-    <string name="hint_none">kein Hinweis</string>
+    <string name="hint_strong">deutlich häufiger</string>
+    <string name="hint_weak">etwas häufiger</string>
+    <string name="hint_none">nicht auffällig</string>
     <string name="analysis_too_little_data">zu wenig Daten (n = %1$d)</string>
     <string name="analysis_rate">%1$d von %2$d Mahlzeiten (%3$d %%)</string>
     <string name="analysis_with">Mit: %1$s</string>
@@ -267,7 +267,7 @@
     <string name="analysis_ratio_only_with">nur mit diesem Auslöser</string>
     <string name="analysis_window">Zeitfenster nach dem Essen: %1$s</string>
     <string name="analysis_window_range">%1$s – %2$s</string>
-    <string name="analysis_params_summary">Beschwerden zählen ab Stärke %1$d, Hinweise ab %2$d Mahlzeiten.</string>
+    <string name="analysis_params_summary">Beschwerden zählen ab Stärke %1$d, verglichen wird ab %2$d Mahlzeiten.</string>
     <string name="analysis_settings_link">Analyse-Einstellungen</string>
     <string name="analysis_sheet_hint">Mahlzeiten mit %1$s, neueste zuerst. Tippe auf eine, um sie zu öffnen.</string>
     <string name="analysis_sheet_empty">Noch keine Mahlzeit mit %1$s.</string>
@@ -279,9 +279,9 @@
     <string name="settings_analysis_hint">Ab welcher Stärke Beschwerden zählen, Zeitfenster der Auslöser</string>
     <string name="analysis_settings_title">Analyse-Einstellungen</string>
     <string name="analysis_settings_threshold">Beschwerden zählen ab Stärke</string>
-    <string name="analysis_settings_threshold_hint">Schwächere Einträge bleiben in der Auslöser-Analyse unberücksichtigt.</string>
+    <string name="analysis_settings_threshold_hint">Schwächere Einträge zählen beim Vergleich nicht mit.</string>
     <string name="analysis_settings_min_exposures">Mindestens Mahlzeiten</string>
-    <string name="analysis_settings_min_exposures_hint">So oft muss ein Auslöser gegessen worden sein, bevor ein Hinweis erscheint.</string>
+    <string name="analysis_settings_min_exposures_hint">So oft muss ein Auslöser gegessen worden sein, bevor er als auffällig gezeigt werden kann.</string>
     <string name="analysis_settings_windows">Zeitfenster nach dem Essen</string>
     <string name="analysis_settings_windows_hint">In dieser Zeit nach einer Mahlzeit zählen Beschwerden für den Auslöser. Die Vorgaben sind ungefähre Werte aus der Fachliteratur.</string>
     <string name="analysis_settings_default">Vorgabe: %1$s</string>

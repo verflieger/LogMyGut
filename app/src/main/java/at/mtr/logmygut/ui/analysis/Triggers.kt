@@ -78,7 +78,7 @@ fun TriggersTab(vm: AnalysisViewModel, onOpenMeal: (Long) -> Unit, onOpenSetting
             Disclaimer()
             Row {
                 TextButton(onClick = { onOpenInfo(InfoPage.TRIGGERS) }) { Text(stringResource(R.string.analysis_triggers_info)) }
-                TextButton(onClick = { onOpenInfo(InfoPage.IBS) }) { Text(stringResource(R.string.info_ibs_title)) }
+                TextButton(onClick = { onOpenInfo(InfoPage.ABOUT) }) { Text(stringResource(R.string.info_disclaimer_title)) }
             }
         }
         item(key = "hints-title") { SectionHeader(stringResource(R.string.analysis_hints_title)) }
@@ -192,16 +192,14 @@ private fun TriggerRow(result: TriggerResult, window: TagWindow, showOutcome: Bo
 
 @Composable
 private fun HintBadge(hint: Hint) {
+    // Neutral colours, no warning icon: a badge describes the user's entries, it is not an alarm (SPEC 6.3).
     val (container, content, text) = when (hint) {
-        Hint.STRONG -> Triple(MaterialTheme.colorScheme.errorContainer, MaterialTheme.colorScheme.onErrorContainer, R.string.hint_strong)
-        Hint.WEAK -> Triple(MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.colorScheme.onTertiaryContainer, R.string.hint_weak)
+        Hint.STRONG -> Triple(MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.colorScheme.onTertiaryContainer, R.string.hint_strong)
+        Hint.WEAK -> Triple(MaterialTheme.colorScheme.secondaryContainer, MaterialTheme.colorScheme.onSecondaryContainer, R.string.hint_weak)
         else -> Triple(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.colorScheme.onSurfaceVariant, R.string.hint_none)
     }
     Surface(color = container, contentColor = content, shape = MaterialTheme.shapes.small) {
-        Row(Modifier.padding(horizontal = 8.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            if (hint == Hint.STRONG || hint == Hint.WEAK) Icon(Icons.Outlined.WarningAmber, null, Modifier.size(14.dp))
-            Text(stringResource(text), style = MaterialTheme.typography.labelMedium)
-        }
+        Text(stringResource(text), Modifier.padding(horizontal = 8.dp, vertical = 4.dp), style = MaterialTheme.typography.labelMedium)
     }
 }
 
@@ -279,7 +277,7 @@ private fun MealRow(outcome: MealOutcome, meal: MealSummary?, onOpen: (Long) -> 
         },
         // An empty slot keeps rows without the icon aligned with those that have it.
         leadingContent = {
-            if (outcome.positive) Icon(Icons.Outlined.WarningAmber, null, tint = MaterialTheme.colorScheme.error)
+            if (outcome.positive) Icon(Icons.Outlined.WarningAmber, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
             else Spacer(Modifier.size(24.dp))
         },
         colors = ListItemDefaults.colors(containerColor = Color.Transparent),
