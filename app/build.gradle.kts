@@ -16,8 +16,8 @@ android {
         minSdk = 34
         targetSdk = 37
         // Raise versionCode for every APK given to others: Android only installs higher versions as updates.
-        versionCode = 4
-        versionName = "0.4.0"
+        versionCode = 5
+        versionName = "0.7.0"
     }
 
     // The release key lives outside the repository (SPEC.md, section 1: "Release builds").
