@@ -41,6 +41,14 @@ fun countLabel(n: Int, unitLabel: String?): String {
 /** "120 g" with a non-breaking space, rounded to whole grams; amounts below 1 g show as "< 1 g". */
 fun gramsLabel(grams: Double): String = if (grams < 1) "<\u00A01\u00A0g" else "${grams.roundToInt()}\u00A0g"
 
+/** A portion amount: grams, or millilitres for a drink. */
+fun portionLabel(amount: Double, drink: Boolean): String =
+    if (drink) "${amount.roundToInt()}\u00A0ml" else gramsLabel(amount)
+
+/** A day's fluid total: "750 ml" below a litre, then "1,3 l". */
+fun volumeLabel(millilitres: Double): String =
+    if (millilitres < 1000) "${millilitres.roundToInt()}\u00A0ml" else String.format(AppLocale, "%.1f\u00A0l", millilitres / 1000)
+
 /** Short amount for timelines: "2 Stück" or "L". */
 fun Amount.short(unitLabel: String?): String = when (this) {
     is Amount.Count -> countLabel(n, unitLabel)

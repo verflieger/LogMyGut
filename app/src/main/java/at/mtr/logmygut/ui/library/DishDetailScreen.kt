@@ -29,6 +29,7 @@ import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.Tag
+import at.mtr.logmygut.domain.isDrinkUnit
 import at.mtr.logmygut.ui.common.EditorScaffold
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.label
@@ -41,8 +42,12 @@ class DishDetailViewModel(private val foods: FoodRepository, private val id: Lon
     var food by mutableStateOf<FoodEntity?>(null); private set
     var name by mutableStateOf("")
     var aliases by mutableStateOf("")
-    var unit by mutableStateOf(FoodUnit.SIZE)
-    var unitLabel by mutableStateOf(defaultUnitLabel)
+    var unit by mutableStateOf(FoodUnit.SIZE); private set
+    var unitLabel by mutableStateOf(defaultUnitLabel); private set
+    var drink by mutableStateOf(false); private set
+    /** Millilitres of one portion, for a drink. */
+    var volume by mutableStateOf("")
+    private var drinkTouched = false
     var ingredients by mutableStateOf<List<FoodEntity>>(emptyList()); private set
     /** Union of the ingredients' tags, whatever the amount (SPEC 4: a dish has no tags of its own). */
     var triggers by mutableStateOf<Set<Tag>>(emptySet()); private set
@@ -62,10 +67,19 @@ class DishDetailViewModel(private val foods: FoodRepository, private val id: Lon
         aliases = f.aliases.joinToString(", ")
         unit = f.unit
         f.unitLabel?.let { unitLabel = it }
+        drink = f.drink
+        volume = amountText(f.portionGrams)
         unitLocked = foods.isUsedInMeals(id)
         updateIngredients(foods.getFoods(foods.getDishIngredientIds(id)))
         loaded = true
     }
+
+    fun changeUnit(value: FoodUnit) { unit = value; followUnit() }
+    fun changeUnitLabel(value: String) { unitLabel = value; followUnit() }
+    fun changeDrink(value: Boolean) { drinkTouched = true; drink = value }
+
+    /** A new dish counted in Tasse or Glas (a Melange) is a drink, until the user decides otherwise. */
+    private fun followUnit() { if (isNew && !drinkTouched) drink = isDrinkUnit(unit, unitLabel) }
 
     fun changeIngredients(list: List<FoodEntity>) {
         viewModelScope.launch { updateIngredients(list) }
@@ -87,6 +101,8 @@ class DishDetailViewModel(private val foods: FoodRepository, private val id: Lon
                 unit = unit,
                 unitLabel = unitLabel.takeIf { unit == FoodUnit.COUNT },
                 ingredientIds = ingredients.map { it.id },
+                drink = drink,
+                portionGrams = parseAmount(volume),
             ),
         )
     }
@@ -148,7 +164,8 @@ fun DishDetailScreen(id: Long?, onDone: () -> Unit, onOpenCopy: (Long) -> Unit) 
                 label = { Text(stringResource(R.string.food_aliases)) },
                 supportingText = { Text(stringResource(R.string.food_aliases_hint)) },
             )
-            UnitFields(vm.unit, { vm.unit = it }, vm.unitLabel, { vm.unitLabel = it }, vm.unitLocked)
+            UnitFields(vm.unit, vm::changeUnit, vm.unitLabel, vm::changeUnitLabel, vm.unitLocked)
+            PortionFields(vm.unit, vm.unitLabel, vm.drink, vm::changeDrink, vm.volume, { vm.volume = it }, showAmount = false)
             HorizontalDivider()
             Text(stringResource(R.string.dish_ingredients), style = MaterialTheme.typography.titleMedium)
             IngredientListEditor(vm.ingredients, vm::changeIngredients, vm::searchIngredients)

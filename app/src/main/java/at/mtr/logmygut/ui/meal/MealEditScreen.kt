@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Eco
+import androidx.compose.material.icons.outlined.LocalCafe
 import androidx.compose.material.icons.outlined.LunchDining
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.HorizontalDivider
@@ -151,7 +152,13 @@ fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> 
 
 @Composable
 private fun SearchResultRow(hit: FoodHit, onClick: () -> Unit, onLongClick: () -> Unit) {
-    val kind = stringResource(if (hit.food.kind == FoodKind.DISH) R.string.kind_dish else R.string.kind_ingredient)
+    val kind = stringResource(
+        when {
+            hit.food.drink -> R.string.kind_drink
+            hit.food.kind == FoodKind.DISH -> R.string.kind_dish
+            else -> R.string.kind_ingredient
+        },
+    )
     ListItem(
         modifier = Modifier.combinedClickable(onClick = onClick, onLongClick = onLongClick),
         leadingContent = { Icon(hit.food.kindIcon(), contentDescription = null) },
@@ -169,7 +176,7 @@ private fun MealItemCard(item: MealItemUi, onAmount: (at.mtr.logmygut.domain.Amo
                 Text(item.food.name, Modifier.weight(1f).padding(horizontal = 8.dp), style = MaterialTheme.typography.titleMedium)
                 IconButton(onClick = onRemove) { Icon(Icons.Outlined.Close, contentDescription = stringResource(R.string.action_remove)) }
             }
-            AmountSelector(item.amount, item.food.unitLabel, item.food.portionGrams, onAmount)
+            AmountSelector(item.amount, item.food.unitLabel, item.food.portionGrams, onAmount, drink = item.food.drink)
             if (item.food.kind == FoodKind.DISH) {
                 Text(item.ingredients.joinToString(", ") { it.name }, style = MaterialTheme.typography.bodySmall)
                 TextButton(onClick = onAdjust, contentPadding = PaddingValues(0.dp)) { Text(stringResource(R.string.meal_adjust_ingredients)) }
@@ -184,5 +191,9 @@ private fun MealItemCard(item: MealItemUi, onAmount: (at.mtr.logmygut.domain.Amo
     }
 }
 
-/** Dish or ingredient icon, shared by the meal editor and the library. */
-fun FoodEntity.kindIcon() = if (kind == FoodKind.DISH) Icons.Outlined.LunchDining else Icons.Outlined.Eco
+/** Drink, dish or ingredient icon, shared by the meal editor and the library. */
+fun FoodEntity.kindIcon() = when {
+    drink -> Icons.Outlined.LocalCafe
+    kind == FoodKind.DISH -> Icons.Outlined.LunchDining
+    else -> Icons.Outlined.Eco
+}

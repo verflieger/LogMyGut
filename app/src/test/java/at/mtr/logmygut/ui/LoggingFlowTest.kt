@@ -31,7 +31,7 @@ class LoggingFlowTest {
         val db = ApplicationProvider.getApplicationContext<LogMyGutApp>().container.database
         compose.waitUntil(10_000) { runBlocking { db.foodDao().count(FoodKind.DISH) > 0 } }
 
-        compose.onNodeWithText("Essen").performClick()
+        compose.onNodeWithText("Essen & Trinken").performClick()
         compose.onNode(hasSetTextAction() and hasText("Lebensmittel oder Gericht suchen …")).performTextInput("semmel")
         compose.waitUntil(5_000) { compose.onAllNodes(hasText("Semmel")).fetchSemanticsNodes().isNotEmpty() }
         compose.onAllNodes(hasText("Semmel"))[0].performClick()

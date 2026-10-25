@@ -53,7 +53,6 @@ import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.TagWindow
 import at.mtr.logmygut.domain.TriggerResult
-import at.mtr.logmygut.domain.mealLabelFor
 import at.mtr.logmygut.ui.common.ShortDateTimeFormat
 import at.mtr.logmygut.ui.common.label
 import at.mtr.logmygut.ui.common.local
@@ -271,7 +270,7 @@ private fun MealRow(outcome: MealOutcome, meal: MealSummary?, onOpen: (Long) -> 
     val time = meal.time.local()
     ListItem(
         modifier = Modifier.clickable { onOpen(meal.id) },
-        overlineContent = { Text(ShortDateTimeFormat.format(time) + " · " + stringResource(mealLabelFor(time.toLocalTime()).label())) },
+        overlineContent = { Text(ShortDateTimeFormat.format(time)) },
         headlineContent = { Text(meal.itemNames.joinToString(", ")) },
         supportingContent = if (outcome.positive) {
             { Text(stringResource(R.string.analysis_sheet_followed), color = MaterialTheme.colorScheme.error) }

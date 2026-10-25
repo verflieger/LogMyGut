@@ -4,6 +4,7 @@ import at.mtr.logmygut.data.db.BowelMovementEntity
 import at.mtr.logmygut.data.db.MealWithItems
 import at.mtr.logmygut.data.db.MedicationIntakeEntity
 import at.mtr.logmygut.data.db.SymptomEntryEntity
+import at.mtr.logmygut.domain.Amount
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.MedEffect
 import at.mtr.logmygut.domain.PortionSize
@@ -20,7 +21,19 @@ sealed interface TimelineEntry {
         val items: List<Item>,
         val eatenOut: Boolean,
     ) : TimelineEntry {
-        data class Item(val name: String, val kind: FoodKind, val count: Int?, val unitLabel: String?, val size: PortionSize?)
+        /** [millilitres] is set for drinks with a known portion volume. */
+        data class Item(
+            val name: String,
+            val kind: FoodKind,
+            val count: Int?,
+            val unitLabel: String?,
+            val size: PortionSize?,
+            val drink: Boolean = false,
+            val millilitres: Double? = null,
+        )
+
+        /** Only drinks, e.g. a coffee or a glass of water on its own. */
+        val drinksOnly: Boolean get() = items.isNotEmpty() && items.all { it.drink }
     }
 
     data class BowelMovement(override val timestamp: Instant, val entry: BowelMovementEntity) : TimelineEntry
@@ -30,6 +43,10 @@ sealed interface TimelineEntry {
 
     data class Medication(override val timestamp: Instant, val id: Long, val name: String, val effect: MedEffect?) : TimelineEntry
 }
+
+/** Millilitres drunk in [entries]: every drink counts, alcoholic ones included. */
+fun fluidMillilitres(entries: List<TimelineEntry>): Double =
+    entries.filterIsInstance<TimelineEntry.Meal>().sumOf { meal -> meal.items.sumOf { it.millilitres ?: 0.0 } }
 
 /** Merges a day's entries into one chronological list. */
 fun buildTimeline(
@@ -44,7 +61,12 @@ fun buildTimeline(
             timestamp = m.meal.timestamp,
             mealId = m.meal.id,
             items = m.items.sortedBy { it.item.id }.map {
-                TimelineEntry.Meal.Item(it.food.name, it.food.kind, it.item.count, it.food.unitLabel, it.item.size)
+                val amount = it.item.count?.let(Amount::Count) ?: Amount.Size(it.item.size ?: PortionSize.M)
+                TimelineEntry.Meal.Item(
+                    it.food.name, it.food.kind, it.item.count, it.food.unitLabel, it.item.size,
+                    drink = it.food.drink,
+                    millilitres = if (it.food.drink) it.food.portionGrams?.let(amount::grams) else null,
+                )
             },
             eatenOut = m.meal.eatenOut,
         )

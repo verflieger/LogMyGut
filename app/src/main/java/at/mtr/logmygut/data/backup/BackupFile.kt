@@ -25,7 +25,12 @@ import kotlinx.serialization.json.jsonPrimitive
 // other enums their names. Derived columns (a food's search text) are rebuilt on import.
 
 const val BackupFormat = "logmygut-backup"
-const val BackupVersion = 1
+
+/**
+ * 2: foods have `drink`; check-in values are optional. Version 1 files are still read; their drinks are
+ * derived from the unit, like the database migration to v5 did.
+ */
+const val BackupVersion = 2
 
 @Serializable
 data class BackupFile(
@@ -62,6 +67,7 @@ data class FoodJson(
     val lastUsedAt: String? = null,
     val parentId: Long? = null,
     val portionGrams: Double? = null,
+    val drink: Boolean = false,
 )
 
 @Serializable
@@ -98,7 +104,7 @@ data class SymptomJson(val id: Long, val timestamp: String, val zoneId: String, 
 data class MedicationJson(val id: Long, val timestamp: String, val zoneId: String, val name: String, val effect: MedEffect? = null, val note: String? = null)
 
 @Serializable
-data class CheckInJson(val date: String, val stress: Int, val sleep: Int)
+data class CheckInJson(val date: String, val stress: Int? = null, val sleep: Int? = null)
 
 /** Why a file can't be imported. [message] is a technical detail in English, for the error dialog's small print. */
 class BackupException(val reason: Reason, message: String) : Exception(message) {
@@ -231,6 +237,7 @@ private fun BackupFile.validate() {
     unique(checkIns, "check-ins") { it.date }
     checkIns.forEach { c ->
         check(runCatching { LocalDate.parse(c.date) }.isSuccess) { "check-in: bad date '${c.date}'" }
-        check(c.stress in 1..5 && c.sleep in 1..5) { "check-in ${c.date}: values must be 1..5" }
+        check(c.stress != null || c.sleep != null) { "check-in ${c.date}: empty" }
+        check(listOfNotNull(c.stress, c.sleep).all { it in 1..5 }) { "check-in ${c.date}: values must be 1..5" }
     }
 }

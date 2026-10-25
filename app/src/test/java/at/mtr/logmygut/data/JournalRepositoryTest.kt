@@ -155,15 +155,56 @@ class JournalRepositoryTest {
         assertEquals(mapOf(day to DaySummary(null), day.plusDays(1) to DaySummary(7)), month)
     }
 
-    @Test fun checkInIsSavedPerDayAndReplaced() = runTest {
+    @Test fun checkInHalvesAreSavedSeparately() = runTest {
         assertEquals(null, journal.observeCheckIn(day).first())
-        journal.saveCheckIn(DailyCheckInEntity(day, stress = 4, sleep = 2))
-        journal.saveCheckIn(DailyCheckInEntity(day, stress = 3, sleep = 2))
+        // Sleep in the morning, stress in the evening.
+        journal.saveSleep(day, 2)
+        assertEquals(DailyCheckInEntity(day, stress = null, sleep = 2), journal.observeCheckIn(day).first())
+        journal.saveStress(day, 4)
+        journal.saveStress(day, 3)
 
         assertEquals(DailyCheckInEntity(day, stress = 3, sleep = 2), journal.observeCheckIn(day).first())
         assertEquals(null, journal.observeCheckIn(day.plusDays(1)).first())
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun checkInRejectsOutOfRange() = runTest { journal.saveCheckIn(DailyCheckInEntity(day, stress = 0, sleep = 3)) }
+    fun checkInRejectsOutOfRange() = runTest { journal.saveStress(day, 0) }
+
+    @Test fun glassesOfWaterAddUpInOneEntry() = runTest {
+        assertTrue(journal.addGlassOfWater(at(8), zone))
+        assertTrue(journal.addGlassOfWater(at(10), zone))
+        assertTrue(journal.addGlassOfWater(at(15), zone))
+
+        val meals = journal.observeDay(day, zone).first().filterIsInstance<TimelineEntry.Meal>()
+        val water = meals.single()
+        assertEquals(at(8), water.timestamp) // stays at the first glass
+        assertEquals(3, water.items.single().count)
+        assertTrue(water.drinksOnly)
+        // The next day starts a new entry.
+        assertTrue(journal.addGlassOfWater(at(8).plus(Duration.ofDays(1)), zone))
+        assertEquals(1, journal.observeDay(day.plusDays(1), zone).first().size)
+    }
+
+    @Test fun fluidTotalCountsEveryDrinkIncludingBeer() = runTest {
+        val beer = food("Bier") // 330 ml a glass
+        val coffee = food("Kaffee") // 200 ml a cup
+        val cappuccino = foods.search("Cappuccino").first() // a drink dish, 200 ml
+        val semmel = food("semmel")
+        journal.saveMeal(
+            MealEntity(timestamp = at(12), zoneId = zone.id),
+            listOf(MealItemEntity(mealId = 0, foodId = semmel.id, count = 1), MealItemEntity(mealId = 0, foodId = beer.id, count = 2)),
+            emptyMap(),
+        )
+        journal.saveMeal(MealEntity(timestamp = at(9), zoneId = zone.id), listOf(MealItemEntity(mealId = 0, foodId = coffee.id, count = 1)), emptyMap())
+        journal.saveMeal(
+            MealEntity(timestamp = at(16), zoneId = zone.id),
+            listOf(MealItemEntity(mealId = 0, foodId = cappuccino.id, count = 1)),
+            mapOf(0 to foods.getDishIngredientIds(cappuccino.id)),
+        )
+        journal.addGlassOfWater(at(18), zone)
+
+        val timeline = journal.observeDay(day, zone).first()
+        assertEquals(2 * 330.0 + 200.0 + 200.0 + 250.0, fluidMillilitres(timeline), 0.001)
+        assertEquals(listOf(true, false, true, true), timeline.filterIsInstance<TimelineEntry.Meal>().map { it.drinksOnly })
+    }
 }

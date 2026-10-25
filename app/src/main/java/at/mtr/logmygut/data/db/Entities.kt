@@ -40,8 +40,13 @@ data class FoodEntity(
     val lastUsedAt: Instant? = null,
     /** Ingredients only: the more general food this one inherits tags from (SPEC 4.4), e.g. Essig for Apfelessig. */
     val parentId: Long? = null,
-    /** Grams of an M portion, or of one piece for count units; shown next to amounts. Null if unknown. */
+    /**
+     * Grams of an M portion, or of one piece for count units; shown next to amounts. Null if unknown.
+     * For drinks it is millilitres instead.
+     */
     val portionGrams: Double? = null,
+    /** A drink: amounts show in ml and count toward the daily fluid total. Ingredients and dishes can be drinks. */
+    @ColumnInfo(defaultValue = "0") val drink: Boolean = false,
 )
 
 /**
@@ -147,11 +152,12 @@ data class MedicationIntakeEntity(
     val note: String? = null,
 )
 
+/** Each value is answered on its own (sleep in the morning, stress in the evening), so either may be missing. */
 @Entity(tableName = "daily_check_in")
 data class DailyCheckInEntity(
     @PrimaryKey val date: LocalDate,
     /** 1..5 */
-    val stress: Int,
-    /** 1..5 */
-    val sleep: Int,
+    val stress: Int? = null,
+    /** Sleep quality of the night before, 1..5 */
+    val sleep: Int? = null,
 )

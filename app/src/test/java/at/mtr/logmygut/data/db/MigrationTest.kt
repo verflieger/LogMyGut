@@ -75,6 +75,32 @@ class MigrationTest {
         }
     }
 
+    @Test fun migrate4To5MarksDrinksAndKeepsCheckIns() {
+        helper.createDatabase(DB, 4).use { db ->
+            fun food(id: Int, name: String, unit: String, label: String?) = db.execSQL(
+                "INSERT INTO food (id, kind, name, aliases, unit, unitLabel, builtIn, userModified, hidden, searchText) " +
+                    "VALUES ($id, 'INGREDIENT', '$name', '[]', '$unit', ${label?.let { "'$it'" } ?: "NULL"}, 0, 0, 0, '$name')",
+            )
+            food(1, "Kaffee", "COUNT", "Tasse")
+            food(2, "Hausbier", "COUNT", "Glas")
+            food(3, "Semmel", "COUNT", "Stück")
+            food(4, "Joghurt", "SIZE", null)
+            db.execSQL("INSERT INTO daily_check_in (date, stress, sleep) VALUES ('2026-10-24', 2, 4)")
+        }
+
+        val db = helper.runMigrationsAndValidate(DB, 5, true, MIGRATION_4_5)
+
+        val drinks = db.query("SELECT name FROM food WHERE drink = 1 ORDER BY id").use { c ->
+            buildList { while (c.moveToNext()) add(c.getString(0)) }
+        }
+        assertEquals(listOf("Kaffee", "Hausbier"), drinks)
+        db.query("SELECT stress, sleep FROM daily_check_in WHERE date = '2026-10-24'").use { c ->
+            c.moveToFirst()
+            assertEquals(listOf(2L, 4L), listOf(c.getLong(0), c.getLong(1)))
+        }
+        db.execSQL("INSERT INTO daily_check_in (date, stress, sleep) VALUES ('2026-10-25', NULL, 3)")
+    }
+
     private companion object {
         const val DB = "migration-test"
     }

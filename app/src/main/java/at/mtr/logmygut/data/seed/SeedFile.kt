@@ -32,6 +32,7 @@ private data class IngredientJson(
     val parent: String? = null,
     val removeTags: List<String> = emptyList(),
     val grams: Double? = null,
+    val drink: Boolean = false,
 )
 
 @Serializable
@@ -42,6 +43,8 @@ private data class DishJson(
     val unit: String,
     val unitLabel: String? = null,
     val ingredients: List<String>,
+    val grams: Double? = null,
+    val drink: Boolean = false,
 )
 
 data class SeedIngredient(
@@ -58,8 +61,9 @@ data class SeedIngredient(
     val removedTags: List<Tag> = emptyList(),
     /** Permanent seed key; the original name, kept when the food is renamed. */
     val key: String = name,
-    /** Grams of an M portion, or of one piece for count units. */
+    /** Grams of an M portion, or of one piece for count units; millilitres for drinks. */
     val grams: Double? = null,
+    val drink: Boolean = false,
 )
 
 data class SeedDish(
@@ -70,6 +74,9 @@ data class SeedDish(
     /** Seed keys of [SeedIngredient]s. */
     val ingredients: List<String>,
     val key: String = name,
+    /** Millilitres of one portion, for drinks (dishes otherwise have no weight). */
+    val grams: Double? = null,
+    val drink: Boolean = false,
 )
 
 /** Parsed and validated `foods.de.json`. Seed keys (original names) identify entries across versions. */
@@ -121,7 +128,7 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
             val removed = j.removeTags.map { Tag.fromKey(it) }
             require(removed.none { it in tagKeys }) { "'${j.name}': tag both set and removed" }
             require(j.grams == null || j.grams > 0) { "'${j.name}': grams must be positive" }
-            return SeedIngredient(j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note, j.parent, removed, j.key ?: j.name, j.grams)
+            return SeedIngredient(j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note, j.parent, removed, j.key ?: j.name, j.grams, j.drink)
         }
 
         private fun validateHierarchy(ingredients: List<SeedIngredient>) {
@@ -141,7 +148,8 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
 
         private fun toDish(j: DishJson): SeedDish {
             require(j.ingredients.isNotEmpty()) { "Dish '${j.name}' has no ingredients" }
-            return SeedDish(j.name, j.aliases, parseUnit(j.name, j.unit, j.unitLabel), j.unitLabel, j.ingredients, j.key ?: j.name)
+            require(j.grams == null || j.grams > 0) { "Dish '${j.name}': grams must be positive" }
+            return SeedDish(j.name, j.aliases, parseUnit(j.name, j.unit, j.unitLabel), j.unitLabel, j.ingredients, j.key ?: j.name, j.grams, j.drink)
         }
 
         private fun parseUnit(name: String, unit: String, unitLabel: String?): FoodUnit {

@@ -29,6 +29,11 @@ enum class FoodKind { INGREDIENT, DISH }
 
 enum class FoodUnit { COUNT, SIZE }
 
+/** Count units that mean a drink. Foods counted this way are drinks unless set otherwise (SPEC 3.2). */
+val DrinkUnitLabels = listOf("Glas", "Tasse", "Dose", "Flasche")
+
+fun isDrinkUnit(unit: FoodUnit, unitLabel: String?): Boolean = unit == FoodUnit.COUNT && unitLabel in DrinkUnitLabels
+
 /** Ordered: S < M < L. */
 /** [factor] relative to M, matching the seed portion weights (SPEC 4.5): S = ½, L = 2×. */
 enum class PortionSize(val factor: Double) { S(0.5), M(1.0), L(2.0) }

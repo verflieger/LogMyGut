@@ -2,7 +2,6 @@ package at.mtr.logmygut.ui.common
 
 import androidx.annotation.StringRes
 import at.mtr.logmygut.R
-import at.mtr.logmygut.domain.MealLabel
 import at.mtr.logmygut.domain.MedEffect
 import at.mtr.logmygut.domain.PainChange
 import at.mtr.logmygut.domain.SymptomType
@@ -46,13 +45,6 @@ import at.mtr.logmygut.domain.Tag
     PainChange.BETTER -> R.string.pain_better
     PainChange.SAME -> R.string.pain_same
     PainChange.WORSE -> R.string.pain_worse
-}
-
-@StringRes fun MealLabel.label(): Int = when (this) {
-    MealLabel.BREAKFAST -> R.string.meal_label_breakfast
-    MealLabel.LUNCH -> R.string.meal_label_lunch
-    MealLabel.SNACK -> R.string.meal_label_snack
-    MealLabel.DINNER -> R.string.meal_label_dinner
 }
 
 @StringRes fun bristolDescription(type: Int): Int = when (type) {

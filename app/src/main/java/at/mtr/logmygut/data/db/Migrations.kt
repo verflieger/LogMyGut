@@ -2,6 +2,7 @@ package at.mtr.logmygut.data.db
 
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import at.mtr.logmygut.domain.DrinkUnitLabels
 
 /**
  * v1 → v2: bowel movements record pain before + how it changed afterwards instead of a single
@@ -47,4 +48,23 @@ val MIGRATION_3_4 = object : Migration(3, 4) {
     }
 }
 
-val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+/**
+ * v4 → v5: drinks and a check-in in two halves.
+ * - Foods counted in glasses, cups or cans are drinks; this also covers edited and user-created foods,
+ *   which the seed import doesn't touch.
+ * - Stress and sleep become optional; SQLite can't drop NOT NULL in place, so the table is rebuilt.
+ */
+val MIGRATION_4_5 = object : Migration(4, 5) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE `food` ADD COLUMN `drink` INTEGER NOT NULL DEFAULT 0")
+        val labels = DrinkUnitLabels.joinToString(", ") { "'$it'" }
+        db.execSQL("UPDATE `food` SET `drink` = 1 WHERE `unit` = 'COUNT' AND `unitLabel` IN ($labels)")
+
+        db.execSQL("CREATE TABLE `daily_check_in_new` (`date` TEXT NOT NULL, `stress` INTEGER, `sleep` INTEGER, PRIMARY KEY(`date`))")
+        db.execSQL("INSERT INTO `daily_check_in_new` (date, stress, sleep) SELECT date, stress, sleep FROM `daily_check_in`")
+        db.execSQL("DROP TABLE `daily_check_in`")
+        db.execSQL("ALTER TABLE `daily_check_in_new` RENAME TO `daily_check_in`")
+    }
+}
+
+val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)

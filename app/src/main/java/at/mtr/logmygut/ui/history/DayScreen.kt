@@ -48,9 +48,8 @@ class DayViewModel(private val journal: JournalRepository, val date: LocalDate) 
     val checkIn: StateFlow<Loaded<DailyCheckInEntity?>?> = journal.observeCheckIn(date).map { Loaded(it) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
-    fun saveCheckIn(stress: Int, sleep: Int) {
-        viewModelScope.launch { journal.saveCheckIn(DailyCheckInEntity(date, stress, sleep)) }
-    }
+    fun saveSleep(value: Int) { viewModelScope.launch { journal.saveSleep(date, value) } }
+    fun saveStress(value: Int) { viewModelScope.launch { journal.saveStress(date, value) } }
 }
 
 /** One day from the calendar (SPEC 2, 6.1): its check-in and timeline. Entries open their editors. */
@@ -79,7 +78,7 @@ fun DayScreen(date: LocalDate, onBack: () -> Unit, onOpen: (TimelineEntry) -> Un
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            checkIn?.let { loaded -> item(key = "checkin") { CheckInCard(loaded.value, vm::saveCheckIn) } }
+            checkIn?.let { loaded -> item(key = "checkin") { CheckInCard(loaded.value, vm::saveSleep, vm::saveStress) } }
             val entries = timeline
             if (entries != null && entries.isEmpty()) {
                 item {

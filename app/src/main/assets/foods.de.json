@@ -1,5 +1,5 @@
 {
- "version": 4,
+ "version": 5,
  "tags": [
   "lactose",
   "fructose",
@@ -740,6 +740,7 @@
     "fat": 2
    },
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 M111300"
   },
   {
@@ -756,6 +757,7 @@
     "lactose"
    ],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 M114300"
   },
   {
@@ -768,6 +770,7 @@
     "fat"
    ],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 M150000"
   },
   {
@@ -781,6 +784,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 M130300"
   },
   {
@@ -793,6 +797,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 M021000"
   },
   {
@@ -804,7 +809,8 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Hafermilch",
@@ -819,6 +825,7 @@
     "fructans": 2
    },
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 C660000"
   },
   {
@@ -833,6 +840,7 @@
     "gos"
    ],
    "grams": 250.0,
+   "drink": true,
    "note": "Aus Sojaprotein hergestellt ist sie FODMAP-arm.",
    "source": "BLS 4.0 H841100"
   },
@@ -846,6 +854,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 H800000"
   },
   {
@@ -858,6 +867,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 C650000"
   },
   {
@@ -1478,7 +1488,8 @@
    "tags": [
     "lactose"
    ],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Ei",
@@ -4123,6 +4134,7 @@
     "caffeine"
    ],
    "grams": 200.0,
+   "drink": true,
    "source": "BLS 4.0 N410100"
   },
   {
@@ -4138,6 +4150,7 @@
     "caffeine"
    ],
    "grams": 30.0,
+   "drink": true,
    "source": "BLS 4.0 N411100"
   },
   {
@@ -4148,7 +4161,8 @@
    "unit": "count",
    "unitLabel": "Tasse",
    "tags": [],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Schwarzer Tee",
@@ -4163,6 +4177,7 @@
     "caffeine"
    ],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 N630000"
   },
   {
@@ -4179,6 +4194,7 @@
     "caffeine"
    ],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 N610100"
   },
   {
@@ -4193,7 +4209,8 @@
     "fructans",
     "caffeine"
    ],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Kamillentee",
@@ -4203,7 +4220,8 @@
    "tags": [
     "fructans"
    ],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Fencheltee",
@@ -4216,7 +4234,8 @@
    "tags": [
     "fructans"
    ],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Pfefferminztee",
@@ -4229,6 +4248,7 @@
    "unitLabel": "Tasse",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 N721000"
   },
   {
@@ -4242,6 +4262,7 @@
    "unitLabel": "Tasse",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 N710000"
   },
   {
@@ -4258,6 +4279,7 @@
     "carbonated"
    ],
    "grams": 330.0,
+   "drink": true,
    "source": "BLS 4.0 N330000"
   },
   {
@@ -4271,7 +4293,8 @@
     "caffeine",
     "carbonated"
    ],
-   "grams": 330.0
+   "grams": 330.0,
+   "drink": true
   },
   {
    "name": "Limonade",
@@ -4288,6 +4311,7 @@
     "carbonated"
    ],
    "grams": 330.0,
+   "drink": true,
    "source": "BLS 4.0 N314000"
   },
   {
@@ -4300,6 +4324,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 330.0,
+   "drink": true,
    "source": "BLS 4.0 N314000"
   },
   {
@@ -4315,7 +4340,22 @@
     "carbonated"
    ],
    "grams": 330.0,
+   "drink": true,
    "source": "BLS 4.0 N019000"
+  },
+  {
+   "name": "Wasser",
+   "aliases": [
+    "Leitungswasser",
+    "Stilles Wasser",
+    "Stilles Mineralwasser",
+    "Trinkwasser"
+   ],
+   "unit": "count",
+   "unitLabel": "Glas",
+   "tags": [],
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Mineralwasser mit Kohlensäure",
@@ -4330,7 +4370,8 @@
    "tags": [
     "carbonated"
    ],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Energydrink",
@@ -4343,7 +4384,8 @@
     "caffeine",
     "carbonated"
    ],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Fruchtsaft",
@@ -4359,6 +4401,7 @@
     "polyols"
    ],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 F016600"
   },
   {
@@ -4372,6 +4415,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 F110600"
   },
   {
@@ -4390,6 +4434,7 @@
     "polyols"
    ],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 F603600"
   },
   {
@@ -4402,6 +4447,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 F032600"
   },
   {
@@ -4412,7 +4458,8 @@
     "histamine",
     "carbonated"
    ],
-   "grams": 250.0
+   "grams": 250.0,
+   "drink": true
   },
   {
    "name": "Bier",
@@ -4432,6 +4479,7 @@
     "carbonated"
    ],
    "grams": 330.0,
+   "drink": true,
    "source": "BLS 4.0 P163000"
   },
   {
@@ -4445,6 +4493,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 500.0,
+   "drink": true,
    "source": "BLS 4.0 P150000"
   },
   {
@@ -4457,6 +4506,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 330.0,
+   "drink": true,
    "source": "BLS 4.0 P192000"
   },
   {
@@ -4471,7 +4521,8 @@
    "removeTags": [
     "alcohol"
    ],
-   "grams": 330.0
+   "grams": 330.0,
+   "drink": true
   },
   {
    "name": "Wein",
@@ -4485,6 +4536,7 @@
     "alcohol"
    ],
    "grams": 125.0,
+   "drink": true,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4498,6 +4550,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 125.0,
+   "drink": true,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4513,6 +4566,7 @@
     "histamine"
    ],
    "grams": 125.0,
+   "drink": true,
    "source": "BLS 4.0 P253000"
   },
   {
@@ -4525,6 +4579,7 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 125.0,
+   "drink": true,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4541,6 +4596,7 @@
     "carbonated"
    ],
    "grams": 250.0,
+   "drink": true,
    "note": "Halb Wein, halb Soda.",
    "source": "BLS 4.0 P210000"
   },
@@ -4560,6 +4616,7 @@
     "carbonated"
    ],
    "grams": 100.0,
+   "drink": true,
    "source": "BLS 4.0 P210000"
   },
   {
@@ -4575,6 +4632,7 @@
     "alcohol"
    ],
    "grams": 250.0,
+   "drink": true,
    "source": "BLS 4.0 P353100"
   },
   {
@@ -4593,6 +4651,7 @@
     "alcohol"
    ],
    "grams": 20.0,
+   "drink": true,
    "source": "BLS 4.0 P712000"
   },
   {
@@ -4604,6 +4663,7 @@
     "fructose"
    ],
    "grams": 20.0,
+   "drink": true,
    "source": "BLS 4.0 P741000"
   },
   {
@@ -4617,7 +4677,8 @@
    "unit": "count",
    "unitLabel": "Glas",
    "tags": [],
-   "grams": 20.0
+   "grams": 20.0,
+   "drink": true
   },
   {
    "name": "Ketchup",
@@ -5570,7 +5631,9 @@
    "ingredients": [
     "Espresso",
     "Kuhmilch"
-   ]
+   ],
+   "grams": 200.0,
+   "drink": true
   },
   {
    "name": "Erdäpfelpüree",

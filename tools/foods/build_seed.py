@@ -13,6 +13,8 @@ Source format (foods.src.txt), one food per line, fields separated by " | ":
 - key: the permanent seed key when the name changed (SPEC 4: seed keys never change).
 Lines starting with "#" are comments; the line "== Gerichte" starts the dishes:
     Name | size | aliases=... | = Ingredient, Ingredient
+- Foods counted in Glas, Tasse, Dose or Flasche are drinks: g is then millilitres. A dish that is a drink
+  needs g= for its volume (e.g. Cappuccino | count:Tasse | g=200 | = Espresso, Kuhmilch).
 """
 import argparse
 import csv
@@ -23,7 +25,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parents[1] / "app" / "src" / "main" / "assets" / "foods.de.json"
-SEED_VERSION = 4
+SEED_VERSION = 5
+# Must match DrinkUnitLabels in the app (domain/Model.kt).
+DRINK_LABELS = {"Glas", "Tasse", "Dose", "Flasche"}
 TAG_ORDER = ["lactose", "fructose", "polyols", "fructans", "gos", "gluten", "histamine",
              "fat", "caffeine", "alcohol", "spicy", "carbonated"]
 COMPUTED = ["lactose", "fructose", "polyols", "fat", "alcohol"]
@@ -155,6 +159,10 @@ def resolve(ingredients, bls):
     return full, warnings, by_name
 
 
+def is_drink(unit: str) -> bool:
+    return unit.startswith("count:") and unit.split(":", 1)[1] in DRINK_LABELS
+
+
 def fmt(tag, threshold):
     return tag if threshold is None else f"{tag}:{threshold}"
 
@@ -186,6 +194,8 @@ def build(ingredients, dishes, full, by_name):
         if removed:
             entry["removeTags"] = sorted(removed, key=TAG_ORDER.index)
         entry["grams"] = float(food["g"])
+        if is_drink(food["unit"]):
+            entry["drink"] = True
         if "note" in food:
             entry["note"] = food["note"]
         if "bls" in food:
@@ -207,6 +217,11 @@ def build(ingredients, dishes, full, by_name):
         else:
             entry["unit"], entry["unitLabel"] = "count", dish["unit"].split(":", 1)[1]
         entry["ingredients"] = [key_of[i] for i in dish["ingredients"]]
+        if is_drink(dish["unit"]):
+            if "g" not in dish:
+                sys.exit(f"dish {dish['name']}: a drink needs g= (its volume in ml)")
+            entry["grams"] = float(dish["g"])
+            entry["drink"] = True
         out_dishes.append(entry)
     return {"version": SEED_VERSION, "tags": TAG_ORDER, "ingredients": out_ingredients, "dishes": out_dishes}
 

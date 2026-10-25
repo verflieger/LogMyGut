@@ -40,11 +40,13 @@ class AnalysisRepository(db: LogMyGutDatabase, private val foods: FoodRepository
                 id = meal.id,
                 time = meal.timestamp,
                 items = itemsByMeal[meal.id].orEmpty().map { item ->
-                    val isDish = foodById[item.foodId]?.kind == FoodKind.DISH
+                    val food = foodById[item.foodId]
+                    val isDish = food?.kind == FoodKind.DISH
                     AnalysisItem(
                         amount = item.count?.let { Amount.Count(it) } ?: Amount.Size(item.size ?: PortionSize.M),
                         ingredientIds = if (isDish) ingredientsByItem[item.id].orEmpty() else listOf(item.foodId),
                         isDish = isDish,
+                        isDrink = food?.drink == true,
                     )
                 },
             )

@@ -37,8 +37,8 @@ The daily reminder uses an inexact alarm or WorkManager, which is acceptable for
 
 Bottom navigation with four tabs:
 
-1. **Heute**: quick-add buttons (Essen, Stuhlgang, Beschwerden, Medikament) above today's timeline.
-   Shows a "Tages-Check-in" card if today's check-in is missing.
+1. **Heute**: quick-add buttons (Essen & Trinken, Stuhlgang, Beschwerden, Medikament), today's fluid total with
+   "+ Glas Wasser" (3.2), and today's timeline. Shows a "Tages-Check-in" card while part of today's check-in is missing.
 2. **Verlauf**: month calendar (days coloured by a "bad day" score, see 6.2). Tapping a day opens its day view:
    that day's check-in (editable) and timeline. Days with only meals or medication have no score and show a dot.
    Weeks start on Monday; future days and months can't be opened. Day boundaries use the phone's current time zone.
@@ -72,8 +72,17 @@ Every timeline entry can be tapped to edit or deleted (with an undo snackbar).
   The saved dish stays unchanged. A checkbox **"Auch im Gericht dauerhaft speichern"** (off by default)
   also writes the change into the saved dish, so it applies from now on. Past meals are not touched.
 - Meal flag: **auswärts gegessen** (restaurant/canteen; boolean).
-- Display label derived from time, not stored: 05:00–10:29 Frühstück · 10:30–14:29 Mittagessen ·
-  14:30–16:59 Jause · 17:00–21:29 Abendessen · otherwise Jause.
+- The timeline shows the time and what was eaten. There is no Frühstück/Mittagessen label: guessed from the time,
+  it was often wrong (a snack after dinner became "Abendessen").
+- **Drinks** are logged the same way ("Essen & Trinken"), because many carry triggers (coffee, beer, milk).
+  An ingredient or dish can be a drink (`drink`): its portion is then millilitres ("1 Tasse · ≈ 200 ml"), it has a
+  cup icon, and an entry of only drinks shows a cup in the timeline. Foods counted in Glas, Tasse, Dose or Flasche
+  are drinks by default; the library editor can change it.
+- **Fluid total** on Heute: the millilitres of all drinks logged today, alcoholic ones included. **"+ Glas Wasser"**
+  logs 250 ml of the built-in "Wasser" in one tap; further taps raise the count of today's water-only entry
+  instead of adding a row per glass.
+- Entries of only drinks without any trigger (water) are left out of the trigger analysis (6.3): as "meals without
+  trigger X" they would make every tag look worse than it is.
 
 ### 3.3 Bowel movement ("Stuhlgang")
 - **Bristol type 1–7** (required), chosen from a visual picker with short German descriptions.
@@ -101,8 +110,11 @@ Each touched slider becomes its own `SymptomEntry` with the shared timestamp.
   `ANTIBIOTIC`, `PAINKILLER`, `OTHER`. The tag is remembered per name and pre-filled next time.
 
 ### 3.6 Daily check-in
-- Once per calendar day: **Stress** 1–5 and **Schlafqualität** 1–5.
-- Prompted by the daily reminder and the card on "Heute". Editable afterwards from the day view.
+- Once per calendar day: **Schlaf letzte Nacht** 1–5 and **Stress** 1–5, answered separately (sleep usually in the
+  morning, stress in the evening). Tapping a value saves it right away; an answered row shrinks to its value with
+  "Ändern".
+- Prompted by the daily reminder and the card on "Heute", which stays until both are answered. Editable afterwards
+  from the day view.
 
 ### 3.7 Reminder
 - One daily notification at a user-chosen time (default 21:00, can be switched off):
@@ -273,7 +285,7 @@ Käse → Weichkäse → Camembert. At most 3 levels.
 Food(id, kind: INGREDIENT|DISH, name, aliases: List<String>, unit: COUNT|SIZE, unitLabel?, note?,
      builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?,
      searchText, lastUsedAt: Instant?, parentId?,       -- searchText = normalized "name|alias|…"; lastUsedAt for ranking
-     portionGrams: Double?)                             -- grams of an M portion / one piece; null if unknown
+     portionGrams: Double?, drink: Boolean)             -- grams of an M portion / one piece (ml for drinks); null if unknown
                                                         -- seedKey = the seed entry's key (never changes)
                                                         -- parentId: ingredients only, SPEC 4.4
 FoodTag(foodId, tag, minSize: M|L?, minCount: Int?,     -- PK (foodId, tag); both null = always applies
@@ -287,7 +299,7 @@ BowelMovement(id, timestamp, zoneId, bristol: 1..7, urgent: Boolean, painBefore:
               painAfter: BETTER|SAME|WORSE?, note?)   -- painAfter set exactly when painBefore
 SymptomEntry(id, timestamp, zoneId, type: SymptomType, severity: 0..10, note?)
 MedicationIntake(id, timestamp, zoneId, name, effect: MedEffect?, note?)
-DailyCheckIn(date: LocalDate PK, stress: 1..5, sleep: 1..5)
+DailyCheckIn(date: LocalDate PK, stress: 1..5?, sleep: 1..5?) -- answered separately, at least one set
 ```
 
 The timestamp is stored as UTC epoch millis plus the zone id, so travelling across time zones
@@ -341,6 +353,7 @@ For each tag *T* and each outcome *S*, where *S* ∈ {each SymptomType at severi
 Details:
 - The analysis uses all logged data. Windows include both ends.
 - "mit Laktase" meals are neither exposures nor controls for `lactose`; they still count for other tags.
+- Entries of only drinks without any trigger (a glass of water) are not meals and are left out entirely (3.2).
 - The ratio is shown as "nur mit diesem Auslöser" when control meals never had the outcome, and is left out when
   there are no controls or neither group had the outcome (no hint then).
 - The screen shows a "Hinweise" list (all strong and weak hints across outcomes), then all tags for one
@@ -359,10 +372,12 @@ The info page also notes: **don't cut out gluten before a celiac test.**
 - **Import**: replaces all data after a confirmation dialog, with schema version check and validation.
   If anything fails, nothing changes (single transaction).
 - Settings show the date of the last export, with a hint if it is older than 30 days.
-- **File format** (`format: "logmygut-backup"`, `version: 1`): one JSON object with `exportedAt`, `appVersion`,
+- **File format** (`format: "logmygut-backup"`, `version: 2`): one JSON object with `exportedAt`, `appVersion`,
   `settings` and one array per table, rows keeping their ids. Times are ISO-8601 instants, tags use their keys,
   other enums their names. It has its own classes (`data/backup/BackupFile.kt`), so a database change doesn't change
   the format by accident; a new format version must keep reading older ones.
+- Version 2 added the foods' `drink` flag and optional check-in values. Version 1 files still import; their
+  drinks follow from the unit (Glas, Tasse, Dose, Flasche), as in the database migration to v5.
 - **Settings in the backup:** reminder on/time, symptom threshold, minimum exposures and tag windows. Values not set
   in the backup return to their defaults. The last-export date and the "permission asked" flag stay as they are.
 - **Checks before import:** format and version first (a file from a newer app is reported as such), then values
@@ -390,8 +405,9 @@ Implementation:
   its source is `tools/icons/app_icon.svg`.
 
 ## 9. Out of scope for v1
-Water/tea counter, photos, PDF doctor report, CSV export, menstrual cycle, barcode scanning,
+Photos, PDF doctor report, CSV export, menstrual cycle, barcode scanning,
 nutrition values, cloud sync, app lock, multiple users, widgets, English UI.
+(A fluid total came in after all, as part of drink logging: 3.2.)
 
 ## 10. Quality
 - Unit tests: the analysis engine (pure Kotlin, no Android dependencies) including dose thresholds and

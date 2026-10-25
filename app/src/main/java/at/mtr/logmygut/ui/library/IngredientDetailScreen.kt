@@ -14,6 +14,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,6 +42,7 @@ import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.Threshold
+import at.mtr.logmygut.domain.isDrinkUnit
 import at.mtr.logmygut.ui.common.EditorScaffold
 import at.mtr.logmygut.ui.common.SegmentedChoice
 import at.mtr.logmygut.ui.common.appContainer
@@ -54,8 +56,9 @@ class IngredientDetailViewModel(private val foods: FoodRepository, private val i
     var food by mutableStateOf<FoodEntity?>(null); private set
     var name by mutableStateOf(""); private set
     var aliases by mutableStateOf("")
-    var unit by mutableStateOf(FoodUnit.SIZE)
-    var unitLabel by mutableStateOf(defaultUnitLabel)
+    var unit by mutableStateOf(FoodUnit.SIZE); private set
+    var unitLabel by mutableStateOf(defaultUnitLabel); private set
+    var drink by mutableStateOf(false); private set
     var grams by mutableStateOf("")
     var note by mutableStateOf("")
     var parent by mutableStateOf<FoodEntity?>(null); private set
@@ -64,6 +67,7 @@ class IngredientDetailViewModel(private val foods: FoodRepository, private val i
     var unitLocked by mutableStateOf(false); private set
     var dishes by mutableStateOf<List<FoodEntity>>(emptyList()); private set
     private var tagsTouched = false
+    private var drinkTouched = false
 
     val isNew get() = id == null
     val canSave get() = loaded && name.isNotBlank() && (unit == FoodUnit.SIZE || unitLabel.isNotBlank())
@@ -79,7 +83,8 @@ class IngredientDetailViewModel(private val foods: FoodRepository, private val i
         aliases = f.aliases.joinToString(", ")
         unit = f.unit
         f.unitLabel?.let { unitLabel = it }
-        grams = f.portionGrams?.let { if (it % 1.0 == 0.0) it.toInt().toString() else it.toString() }.orEmpty()
+        drink = f.drink
+        grams = amountText(f.portionGrams)
         note = f.note.orEmpty()
         parent = f.parentId?.let { foods.getFood(it) }
         parentTags = f.parentId?.let { foods.getIngredientTags(it) }.orEmpty()
@@ -94,6 +99,13 @@ class IngredientDetailViewModel(private val foods: FoodRepository, private val i
         // A new ingredient gets keyword-based suggestions until the user picks tags or a parent.
         if (isNew && !tagsTouched && parent == null) setTags(foods.suggestTags(value).map { IngredientTag(it) })
     }
+
+    fun changeUnit(value: FoodUnit) { unit = value; followUnit() }
+    fun changeUnitLabel(value: String) { unitLabel = value; followUnit() }
+    fun changeDrink(value: Boolean) { drinkTouched = true; drink = value }
+
+    /** A new food counted in Glas or Tasse is a drink, until the user decides otherwise. */
+    private fun followUnit() { if (isNew && !drinkTouched) drink = isDrinkUnit(unit, unitLabel) }
 
     fun setTag(tag: Tag, choice: TagChoice) {
         tagsTouched = true
@@ -130,10 +142,11 @@ class IngredientDetailViewModel(private val foods: FoodRepository, private val i
                 aliases = aliases.split(","),
                 unit = unit,
                 unitLabel = unitLabel.takeIf { unit == FoodUnit.COUNT },
-                portionGrams = grams.replace(',', '.').trim().toDoubleOrNull()?.takeIf { it > 0 },
+                portionGrams = parseAmount(grams),
                 note = note.trim().ifEmpty { null },
                 parentId = parent?.id,
                 tags = Tag.entries.filter { it in tags }.map { IngredientTag(it, tags[it]) },
+                drink = drink,
             ),
         )
     }
@@ -227,18 +240,8 @@ fun IngredientDetailScreen(id: Long?, onDone: () -> Unit, onOpenFood: (FoodEntit
                 label = { Text(stringResource(R.string.food_aliases)) },
                 supportingText = { Text(stringResource(R.string.food_aliases_hint)) },
             )
-            UnitFields(vm.unit, { vm.unit = it }, vm.unitLabel, { vm.unitLabel = it }, vm.unitLocked)
-            OutlinedTextField(
-                vm.grams, { vm.grams = it }, Modifier.fillMaxWidth(),
-                label = {
-                    Text(
-                        if (vm.unit == FoodUnit.SIZE) stringResource(R.string.food_grams_size)
-                        else stringResource(R.string.food_grams_count, vm.unitLabel),
-                    )
-                },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                singleLine = true,
-            )
+            UnitFields(vm.unit, vm::changeUnit, vm.unitLabel, vm::changeUnitLabel, vm.unitLocked)
+            PortionFields(vm.unit, vm.unitLabel, vm.drink, vm::changeDrink, vm.grams, { vm.grams = it })
 
             Text(stringResource(R.string.food_parent), style = MaterialTheme.typography.labelLarge)
             OutlinedButton(onClick = { pickingParent = true }, modifier = Modifier.fillMaxWidth()) {
@@ -315,6 +318,50 @@ fun UnitFields(unit: FoodUnit, onUnit: (FoodUnit) -> Unit, unitLabel: String, on
         }
     }
 }
+
+/**
+ * Drink switch and portion size: grams, or millilitres for a drink. Drinks count toward the daily fluid total.
+ * [showAmount] false hides the amount for foods that only need it as drinks (dishes).
+ */
+@Composable
+fun PortionFields(
+    unit: FoodUnit,
+    unitLabel: String,
+    drink: Boolean,
+    onDrink: (Boolean) -> Unit,
+    amount: String,
+    onAmount: (String) -> Unit,
+    showAmount: Boolean = true,
+) {
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.food_drink), style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(R.string.food_drink_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        Switch(checked = drink, onCheckedChange = onDrink)
+    }
+    if (showAmount || drink) {
+        OutlinedTextField(
+            amount, onAmount, Modifier.fillMaxWidth(),
+            label = {
+                Text(
+                    when {
+                        unit == FoodUnit.SIZE -> stringResource(if (drink) R.string.food_ml_size else R.string.food_grams_size)
+                        else -> stringResource(if (drink) R.string.food_ml_count else R.string.food_grams_count, unitLabel)
+                    },
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            singleLine = true,
+        )
+    }
+}
+
+/** Parses an amount field ("250", "12,5"); empty or invalid means unknown. */
+fun parseAmount(text: String): Double? = text.replace(',', '.').trim().toDoubleOrNull()?.takeIf { it > 0 }
+
+/** The amount as the editor shows it: "250", or "12.5". */
+fun amountText(value: Double?): String = value?.let { if (it % 1.0 == 0.0) it.toInt().toString() else it.toString() }.orEmpty()
 
 /** "geändert" / "ausgeblendet" state and the from-now-on rule, shown above the fields. */
 @Composable

@@ -358,6 +358,7 @@ Cola Zero | count:Glas | g=330 | aliases=Cola light | tags=caffeine, carbonated
 Limonade | count:Glas | g=330 | bls=N314000 | aliases=Limo, Fanta, Sprite, Kracherl, Tonic | tags=carbonated
   Almdudler | count:Glas | g=330 | bls=N314000 | aliases=Kräuterlimonade
   Eistee | count:Glas | g=330 | bls=N019000 | aliases=Ice Tea | no=carbonated
+Wasser | count:Glas | g=250 | aliases=Leitungswasser, Stilles Wasser, Stilles Mineralwasser, Trinkwasser
 Mineralwasser mit Kohlensäure | count:Glas | g=250 | aliases=Sprudel, Soda, Prickelnd, Sodawasser | tags=carbonated
 Energydrink | count:Dose | g=250 | aliases=Red Bull | tags=caffeine, carbonated
 Fruchtsaft | count:Glas | g=250 | bls=F016600 | aliases=Saft, Multivitaminsaft, Mehrfruchtsaft
@@ -454,7 +455,7 @@ Kaiserschmarrn | size | = Weizenmehl, Ei, Kuhmilch, Butter, Zucker, Rosinen
 Palatschinken | count:Stück | aliases=Pfannkuchen, Eierkuchen, Crêpes | = Weizenmehl, Ei, Kuhmilch
 Geröstete Erdäpfel | size | aliases=Geröstete Kartoffeln, Hash Browns | = Erdäpfel, Zwiebel, Speck, Speiseöl
 Schweinsbraten | size | aliases=Schweinebraten, Surbraten | = Schweinefleisch, Bratensaft
-Cappuccino | count:Tasse | aliases=Latte Macchiato, Melange, Milchkaffee, Flat White | = Espresso, Kuhmilch
+Cappuccino | count:Tasse | g=200 | aliases=Latte Macchiato, Melange, Milchkaffee, Flat White | = Espresso, Kuhmilch
 Erdäpfelpüree | size | aliases=Kartoffelpüree, Püree, Stampf | = Erdäpfel, Kuhmilch, Butter
 Leberkässemmel | count:Stück | aliases=Leberkäsesemmel, LKS | = Semmel, Leberkäs, Senf
 Kasnocken | size | aliases=Pinzgauer Kasnocken | = Spätzle, Graukäse, Zwiebel, Butter

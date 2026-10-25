@@ -167,17 +167,25 @@ fun DateTimeField(value: Instant, onChange: (Instant) -> Unit, isError: Boolean,
 
 /**
  * Count stepper or S/M/L segmented control, depending on the amount type.
- * [portionGrams] (M portion or one piece) adds gram hints: "S · 15 g", "2 Stück · ≈ 120 g".
+ * [portionGrams] (M portion or one piece) adds gram hints: "S · 15 g", "2 Stück · ≈ 120 g"; for a [drink]
+ * they are millilitres: "1 Tasse · ≈ 200 ml".
  */
 @Composable
-fun AmountSelector(amount: Amount, unitLabel: String?, portionGrams: Double?, onChange: (Amount) -> Unit, modifier: Modifier = Modifier) {
+fun AmountSelector(
+    amount: Amount,
+    unitLabel: String?,
+    portionGrams: Double?,
+    onChange: (Amount) -> Unit,
+    modifier: Modifier = Modifier,
+    drink: Boolean = false,
+) {
     when (amount) {
         is Amount.Count -> Row(modifier, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FilledTonalIconButton(onClick = { onChange(Amount.Count(amount.n - 1)) }, enabled = amount.n > 1) {
                 Icon(Icons.Outlined.Remove, contentDescription = null)
             }
             Text(
-                countLabel(amount.n, unitLabel) + (portionGrams?.let { " · ≈ " + gramsLabel(amount.grams(it)) } ?: ""),
+                countLabel(amount.n, unitLabel) + (portionGrams?.let { " · ≈ " + portionLabel(amount.grams(it), drink) } ?: ""),
                 style = MaterialTheme.typography.bodyLarge,
             )
             FilledTonalIconButton(onClick = { onChange(Amount.Count(amount.n + 1)) }) {
@@ -194,7 +202,7 @@ fun AmountSelector(amount: Amount, unitLabel: String?, portionGrams: Double?, on
                     icon = {},
                 ) {
                     Text(
-                        size.name + (portionGrams?.let { " · " + gramsLabel(Amount.Size(size).grams(it)) } ?: ""),
+                        size.name + (portionGrams?.let { " · " + portionLabel(Amount.Size(size).grams(it), drink) } ?: ""),
                         maxLines = 1,
                         softWrap = false,
                     )

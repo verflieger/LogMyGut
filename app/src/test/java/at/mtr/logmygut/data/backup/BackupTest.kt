@@ -7,7 +7,6 @@ import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.SettingsRepository
 import at.mtr.logmygut.data.TestDatabase
 import at.mtr.logmygut.data.db.BowelMovementEntity
-import at.mtr.logmygut.data.db.DailyCheckInEntity
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.db.MealEntity
 import at.mtr.logmygut.data.db.MealItemEntity
@@ -100,7 +99,9 @@ class BackupTest {
             ),
         )
         journal.saveMedication(MedicationIntakeEntity(timestamp = at(2), zoneId = zone, name = "Laktase", effect = MedEffect.ENZYME))
-        journal.saveCheckIn(DailyCheckInEntity(LocalDate.of(2026, 10, 24), stress = 2, sleep = 4))
+        journal.saveSleep(LocalDate.of(2026, 10, 24), 4)
+        journal.saveStress(LocalDate.of(2026, 10, 24), 2)
+        journal.saveSleep(LocalDate.of(2026, 10, 25), 3) // stress not answered yet
 
         val settings = settings("source").apply {
             setReminderEnabled(false)
@@ -157,6 +158,19 @@ class BackupTest {
             assertEquals(BackupException.Reason.INVALID, e.reason)
         }
         assertEquals(before, repo.export(now))
+    }
+
+    @Test fun version1FilesGetDrinksFromTheirUnit() = runTest {
+        val (db, settings) = fullSource()
+        val current = parseBackup(BackupRepository(db, settings).export(now))
+        val v1 = current.copy(version = 1, foods = current.foods.map { it.copy(drink = false) })
+
+        val target = BackupRepository(emptyDb(), settings("target"))
+        target.restore(target.read(BackupJson.encodeToString(BackupFile.serializer(), v1)))
+
+        val drinks = target.read(target.export(now)).foods.filter { it.drink }.map { it.name }
+        assertTrue("Kaffee" in drinks && "Bier" in drinks && "Wasser" in drinks)
+        assertTrue("Semmel" !in drinks)
     }
 
     @Test fun rejectsFilesThatAreNotBackups() {

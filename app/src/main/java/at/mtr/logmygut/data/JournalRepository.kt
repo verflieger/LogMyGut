@@ -1,5 +1,6 @@
 package at.mtr.logmygut.data
 
+import androidx.room.withTransaction
 import at.mtr.logmygut.data.db.BowelMovementEntity
 import at.mtr.logmygut.data.db.DailyCheckInEntity
 import at.mtr.logmygut.data.db.LogMyGutDatabase
@@ -26,8 +27,11 @@ data class DaySummary(val score: Int?, val antibiotic: Boolean = false)
 /** A dish item's actual ingredients for one meal, keyed by the item's position in the meal. */
 typealias DishIngredientsByItemIndex = Map<Int, List<Long>>
 
+/** Seed key of plain water, for the "+ Glas Wasser" button. */
+const val WaterSeedKey = "Wasser"
+
 /** Logging and reading journal entries. Delete methods return an undo action. */
-class JournalRepository(db: LogMyGutDatabase) {
+class JournalRepository(private val db: LogMyGutDatabase) {
     private val dao = db.journalDao()
 
     fun observeDay(date: LocalDate, zone: ZoneId = ZoneId.systemDefault()): Flow<List<TimelineEntry>> {
@@ -66,9 +70,20 @@ class JournalRepository(db: LogMyGutDatabase) {
 
     fun observeCheckIn(date: LocalDate): Flow<DailyCheckInEntity?> = dao.observeCheckIn(date)
 
-    suspend fun saveCheckIn(entry: DailyCheckInEntity) {
-        require(entry.stress in 1..5 && entry.sleep in 1..5) { "Stress and sleep are rated 1..5" }
-        dao.upsertCheckIn(entry)
+    /** Saves the night's sleep quality (1..5); the day's stress value stays as it is. */
+    suspend fun saveSleep(date: LocalDate, sleep: Int) {
+        require(sleep in 1..5) { "Sleep is rated 1..5" }
+        updateCheckIn(date) { it.copy(sleep = sleep) }
+    }
+
+    /** Saves the day's stress (1..5); the sleep value stays as it is. */
+    suspend fun saveStress(date: LocalDate, stress: Int) {
+        require(stress in 1..5) { "Stress is rated 1..5" }
+        updateCheckIn(date) { it.copy(stress = stress) }
+    }
+
+    private suspend fun updateCheckIn(date: LocalDate, change: (DailyCheckInEntity) -> DailyCheckInEntity) = db.withTransaction {
+        dao.upsertCheckIn(change(dao.getCheckIn(date) ?: DailyCheckInEntity(date)))
     }
 
     // Meals
@@ -93,6 +108,25 @@ class JournalRepository(db: LogMyGutDatabase) {
             .toMap()
         dao.deleteMeal(id)
         return { dao.restoreMeal(snapshot.meal, items, dishIngredients) }
+    }
+
+    /**
+     * One more glass of water today (the built-in "Wasser"). Repeated taps raise the count of today's water-only
+     * entry instead of adding a row per glass; its time stays that of the first glass. Returns false when the
+     * seed hasn't been imported yet.
+     */
+    suspend fun addGlassOfWater(now: Instant, zone: ZoneId = ZoneId.systemDefault()): Boolean = db.withTransaction {
+        val water = db.foodDao().getBySeedKey(WaterSeedKey) ?: return@withTransaction false
+        val date = now.atZone(zone).toLocalDate()
+        val meals = dao.getMeals(date.atStartOfDay(zone).toInstant(), date.plusDays(1).atStartOfDay(zone).toInstant())
+        val itemsByMeal = dao.getMealItems(meals.map { it.id }).groupBy { it.mealId }
+        val waterItem = itemsByMeal.values.firstOrNull { items -> items.singleOrNull()?.foodId == water.id }?.single()
+        if (waterItem != null) {
+            dao.incrementItemCount(waterItem.id)
+        } else {
+            dao.saveMeal(MealEntity(timestamp = now, zoneId = zone.id), listOf(MealItemEntity(mealId = 0, foodId = water.id, count = 1)), emptyMap())
+        }
+        true
     }
 
     // Bowel movements

@@ -13,6 +13,7 @@ import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.MaxFoodDepth
 import at.mtr.logmygut.domain.inheritTags
+import at.mtr.logmygut.domain.isDrinkUnit
 import at.mtr.logmygut.domain.matchedAlias
 import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.domain.Threshold
@@ -129,7 +130,7 @@ class FoodRepository(
                     food = FoodEntity(
                         kind = FoodKind.INGREDIENT, name = name, aliases = aliases, unit = unit, unitLabel = unitLabel,
                         note = draft.note, searchText = searchTextFor(name, aliases), parentId = draft.parentId,
-                        portionGrams = draft.portionGrams,
+                        portionGrams = draft.portionGrams, drink = draft.drink,
                     ),
                     tags = rows,
                     ingredientIds = emptyList(),
@@ -139,7 +140,7 @@ class FoodRepository(
                     existing.copy(
                         name = name, aliases = aliases, unit = unit, unitLabel = unitLabel, note = draft.note,
                         searchText = searchTextFor(name, aliases), parentId = draft.parentId,
-                        portionGrams = draft.portionGrams, userModified = existing.builtIn,
+                        portionGrams = draft.portionGrams, drink = draft.drink, userModified = existing.builtIn,
                     ),
                 )
                 dao.replaceTags(existing.id, rows)
@@ -158,7 +159,7 @@ class FoodRepository(
         return db.withTransaction {
             val existing = draft.id.takeIf { it != 0L }?.let { dao.getFood(it) }
             if (existing == null) {
-                createDish(name, draft.unit, draft.unitLabel?.trim(), draft.ingredientIds, aliases)
+                createDish(name, draft.unit, draft.unitLabel?.trim(), draft.ingredientIds, aliases, draft.drink, draft.portionGrams)
             } else {
                 val unit = if (dao.isUsedInMeals(existing.id)) existing.unit else draft.unit
                 dao.updateFood(
@@ -166,6 +167,7 @@ class FoodRepository(
                         name = name, aliases = aliases, unit = unit,
                         unitLabel = (draft.unitLabel?.trim() ?: existing.unitLabel).takeIf { unit == FoodUnit.COUNT },
                         searchText = searchTextFor(name, aliases), userModified = existing.builtIn,
+                        drink = draft.drink, portionGrams = draft.portionGrams.takeIf { draft.drink },
                     ),
                 )
                 dao.setDishIngredients(existing.id, draft.ingredientIds)
@@ -247,6 +249,7 @@ class FoodRepository(
             unitLabel = unitLabel.takeIf { unit == FoodUnit.COUNT },
             note = note,
             searchText = searchTextFor(name, aliases),
+            drink = isDrinkUnit(unit, unitLabel),
         ),
         tags = tags.map { it.toEntity() },
         ingredientIds = emptyList(),
@@ -258,6 +261,8 @@ class FoodRepository(
         unitLabel: String?,
         ingredientIds: List<Long>,
         aliases: List<String> = emptyList(),
+        drink: Boolean = isDrinkUnit(unit, unitLabel),
+        portionGrams: Double? = null,
     ): Long {
         require(ingredientIds.isNotEmpty()) { "A dish needs at least one ingredient" }
         return dao.insertFoodWithDetails(
@@ -268,6 +273,8 @@ class FoodRepository(
                 unit = unit,
                 unitLabel = unitLabel.takeIf { unit == FoodUnit.COUNT },
                 searchText = searchTextFor(name, aliases),
+                drink = drink,
+                portionGrams = portionGrams.takeIf { drink },
             ),
             tags = emptyList(),
             ingredientIds = ingredientIds,
@@ -286,6 +293,8 @@ data class IngredientDraft(
     val note: String?,
     val parentId: Long?,
     val tags: List<IngredientTag>,
+    /** A drink: [portionGrams] is then millilitres. */
+    val drink: Boolean = false,
 )
 
 data class DishDraft(
@@ -295,6 +304,9 @@ data class DishDraft(
     val unit: FoodUnit,
     val unitLabel: String?,
     val ingredientIds: List<Long>,
+    val drink: Boolean = false,
+    /** Millilitres of one portion, for a drink. */
+    val portionGrams: Double? = null,
 )
 
 /** A search result: [matchedAlias] is set when the query matched an alias rather than the name. */

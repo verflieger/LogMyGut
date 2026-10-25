@@ -39,6 +39,7 @@ interface FoodDao {
     suspend fun getDishesUsing(id: Long): List<FoodEntity>
     @Query("UPDATE food SET parentId = :parentId WHERE id = :id") suspend fun setParent(id: Long, parentId: Long?)
     @Query("SELECT * FROM food WHERE seedKey IS NOT NULL") suspend fun getSeededFoods(): List<FoodEntity>
+    @Query("SELECT * FROM food WHERE seedKey = :seedKey") suspend fun getBySeedKey(seedKey: String): FoodEntity?
 
     @Query("SELECT seedKey FROM food WHERE seedKey IS NOT NULL") suspend fun getSeedKeys(): List<String>
     @Query("SELECT id, seedKey FROM food WHERE seedKey IS NOT NULL") suspend fun getSeedKeyIds(): List<SeedKeyId>

@@ -161,6 +161,22 @@ class TriggerAnalysisTest {
         assertEquals(Tag.entries.size * Outcome.all.size, results.size)
     }
 
+    @Test fun drinksWithoutTriggersAreNotMeals() {
+        val water = 5L
+        val coffee = 6L
+        val drinkTags = tags + (coffee to listOf(IngredientTag(Tag.CAFFEINE)))
+        fun drink(id: Long) = AnalysisItem(Count(1), listOf(id), isDish = false, isDrink = true)
+        val meals = listOf(
+            meal(1, t(0), ingredient(rice)), // a real control meal
+            meal(2, t(1), drink(water)), // ignored entirely
+            meal(3, t(2), drink(coffee)), // has a trigger: counts
+            meal(4, t(3), drink(water), ingredient(milk)), // a meal with a drink: counts
+        )
+        val lactose = analyzeTriggers(meals, drinkTags, emptyList(), emptyList(), emptyList()).get(Tag.LACTOSE, bloatingOutcome)
+        assertEquals(listOf(4L), lactose.exposures.map { it.mealId })
+        assertEquals(2, lactose.control.n) // rice and coffee, not the water
+    }
+
     @Test fun customWindowsReplaceTheDefault() {
         val meals = listOf(meal(1, t(0), ingredient(milk)))
         val symptoms = listOf(bloating(t(10)))

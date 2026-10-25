@@ -26,7 +26,7 @@
     <string name="deleted_entry">Eintrag gelöscht</string>
 
     <!-- Today -->
-    <string name="quick_meal">Essen</string>
+    <string name="quick_meal">Essen &amp; Trinken</string>
     <string name="quick_bowel">Stuhlgang</string>
     <string name="quick_symptoms">Beschwerden</string>
     <string name="quick_medication">Medikament</string>
@@ -36,15 +36,10 @@
     <string name="timeline_urgent">dringlich</string>
     <string name="timeline_pain">Krämpfe vorher, danach %1$s</string>
 
-    <!-- Meal labels (derived from time) -->
-    <string name="meal_label_breakfast">Frühstück</string>
-    <string name="meal_label_lunch">Mittagessen</string>
-    <string name="meal_label_snack">Jause</string>
-    <string name="meal_label_dinner">Abendessen</string>
 
     <!-- Meal editor -->
-    <string name="meal_title_new">Essen eintragen</string>
-    <string name="meal_title_edit">Essen bearbeiten</string>
+    <string name="meal_title_new">Essen &amp; Trinken eintragen</string>
+    <string name="meal_title_edit">Eintrag bearbeiten</string>
     <string name="meal_search_hint">Lebensmittel oder Gericht suchen …</string>
     <string name="meal_create_new">„%1$s“ neu anlegen</string>
     <string name="meal_no_items">Noch nichts ausgewählt.</string>
@@ -55,6 +50,9 @@
     <string name="meal_no_triggers">Keine bekannten Auslöser</string>
     <string name="kind_dish">Gericht</string>
     <string name="kind_ingredient">Zutat</string>
+    <string name="kind_drink">Getränk</string>
+    <string name="fluid_today">Getrunken heute: %1$s</string>
+    <string name="fluid_add_water">Glas Wasser</string>
 
     <!-- Ingredient adjust / picker -->
     <string name="adjust_title">Zutaten: %1$s</string>
@@ -154,9 +152,9 @@
     <string name="checkin_title">Tages-Check-in</string>
     <string name="checkin_stress">Stress</string>
     <string name="checkin_stress_hint">1 = kaum, 5 = sehr viel</string>
-    <string name="checkin_sleep">Schlafqualität</string>
+    <string name="checkin_sleep">Schlaf letzte Nacht</string>
     <string name="checkin_sleep_hint">1 = sehr schlecht, 5 = sehr gut</string>
-    <string name="checkin_summary">Stress %1$d · Schlaf %2$d</string>
+    <string name="checkin_value">%1$s: %2$d von 5</string>
     <string name="action_edit">Ändern</string>
 
     <!-- Einstellungen (SPEC 2, 3.7) -->
@@ -198,6 +196,10 @@
     <string name="food_unit_locked">Schon eingetragen, daher bleibt die Einheit gleich.</string>
     <string name="food_grams_size">Gramm einer normalen Portion (M)</string>
     <string name="food_grams_count">Gramm pro %1$s</string>
+    <string name="food_drink">Getränk</string>
+    <string name="food_drink_hint">Menge in Millilitern, zählt zur Trinkmenge des Tages</string>
+    <string name="food_ml_size">Milliliter einer normalen Portion (M)</string>
+    <string name="food_ml_count">Milliliter pro %1$s</string>
     <string name="food_note">Notiz</string>
     <string name="food_parent">Gehört zu</string>
     <string name="food_parent_none">Keinem Oberbegriff</string>

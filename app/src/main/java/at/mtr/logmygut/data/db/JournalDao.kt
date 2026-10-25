@@ -28,6 +28,7 @@ interface JournalDao {
     @Query("SELECT * FROM meal WHERE timestamp >= :from AND timestamp < :to ORDER BY timestamp")
     suspend fun getMeals(from: Instant, to: Instant): List<MealEntity>
     @Query("SELECT * FROM meal_item WHERE mealId IN (:mealIds)") suspend fun getMealItems(mealIds: Collection<Long>): List<MealItemEntity>
+    @Query("UPDATE meal_item SET count = count + 1 WHERE id = :id") suspend fun incrementItemCount(id: Long)
     @Query("SELECT * FROM meal_item_ingredient WHERE mealItemId IN (:itemIds)")
     suspend fun getMealItemIngredients(itemIds: Collection<Long>): List<MealItemIngredientEntity>
 
@@ -109,6 +110,7 @@ interface JournalDao {
     // Daily check-in
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun upsertCheckIn(entry: DailyCheckInEntity)
     @Query("SELECT * FROM daily_check_in WHERE date = :date") fun observeCheckIn(date: LocalDate): Flow<DailyCheckInEntity?>
+    @Query("SELECT * FROM daily_check_in WHERE date = :date") suspend fun getCheckIn(date: LocalDate): DailyCheckInEntity?
 
     // Calendar (SPEC 2, 6.2): just what the day score and the "has entries" marker need.
     @Query("SELECT timestamp, severity AS value FROM symptom_entry WHERE timestamp >= :from AND timestamp < :to")

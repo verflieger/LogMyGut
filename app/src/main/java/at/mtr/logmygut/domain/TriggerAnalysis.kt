@@ -58,7 +58,7 @@ data class AnalysisMeal(val id: Long, val time: Instant, val items: List<Analysi
  * One meal item. [ingredientIds] is the ingredient itself for an ingredient item, or the dish's actual
  * ingredients for this meal (its `MealItemIngredient`s). [amount] is the item's logged amount.
  */
-data class AnalysisItem(val amount: Amount, val ingredientIds: List<Long>, val isDish: Boolean) {
+data class AnalysisItem(val amount: Amount, val ingredientIds: List<Long>, val isDish: Boolean, val isDrink: Boolean = false) {
     /** Amount that counts for an ingredient's dose tags (SPEC 4.2): a dish of 2+ pieces counts as 2. */
     val ingredientAmount: Amount get() =
         if (isDish && amount is Amount.Count && amount.n > 2) Amount.Count(2) else amount
@@ -119,6 +119,8 @@ private val AntidiarrhealRange: Duration = Duration.ofHours(24)
 /**
  * Runs the analysis for every tag and outcome, sorted by hint strength, then ratio.
  * [tagsOf] holds each ingredient's resolved tags (inheritance already applied).
+ * Entries of only drinks without any trigger (a glass of water) are not meals: as controls they would
+ * make every tag look worse than it is.
  */
 fun analyzeTriggers(
     meals: List<AnalysisMeal>,
@@ -128,8 +130,10 @@ fun analyzeTriggers(
     medication: List<MedicationEvent>,
     params: AnalysisParams = AnalysisParams(),
 ): List<TriggerResult> {
-    val sortedMeals = meals.sortedByDescending { it.time }
-    val tagsByMeal = sortedMeals.associate { it.id to mealTags(it, tagsOf) }
+    val tagsByMeal = meals.associate { it.id to mealTags(it, tagsOf) }
+    val sortedMeals = meals
+        .filterNot { meal -> meal.items.all { it.isDrink } && tagsByMeal.getValue(meal.id).isEmpty() }
+        .sortedByDescending { it.time }
     val enzymeTimes = medication.filter { it.effect == MedEffect.ENZYME }.map { it.time }.sorted()
     val antidiarrhealTimes = medication.filter { it.effect == MedEffect.ANTIDIARRHEAL }.map { it.time }.sorted()
 

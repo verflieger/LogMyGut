@@ -17,6 +17,7 @@ import at.mtr.logmygut.data.db.MedicationIntakeEntity
 import at.mtr.logmygut.data.db.SymptomEntryEntity
 import at.mtr.logmygut.data.seed.searchTextFor
 import at.mtr.logmygut.domain.Tag
+import at.mtr.logmygut.domain.isDrinkUnit
 import java.time.Instant
 import java.time.LocalDate
 
@@ -57,7 +58,7 @@ private fun DatabaseContent.toBackup(now: Instant, appVersion: String?, settings
         FoodJson(
             id = it.id, kind = it.kind, name = it.name, aliases = it.aliases, unit = it.unit, unitLabel = it.unitLabel,
             note = it.note, builtIn = it.builtIn, userModified = it.userModified, hidden = it.hidden, seedKey = it.seedKey,
-            lastUsedAt = it.lastUsedAt?.toString(), parentId = it.parentId, portionGrams = it.portionGrams,
+            lastUsedAt = it.lastUsedAt?.toString(), parentId = it.parentId, portionGrams = it.portionGrams, drink = it.drink,
         )
     },
     foodTags = foodTags.map { FoodTagJson(it.foodId, it.tag.key, it.minSize, it.minCount, it.removed) },
@@ -81,6 +82,7 @@ private fun BackupFile.toContent() = DatabaseContent(
             note = it.note, builtIn = it.builtIn, userModified = it.userModified, hidden = it.hidden, seedKey = it.seedKey,
             searchText = searchTextFor(it.name, it.aliases), lastUsedAt = it.lastUsedAt?.let(Instant::parse),
             parentId = it.parentId, portionGrams = it.portionGrams,
+            drink = if (version >= 2) it.drink else isDrinkUnit(it.unit, it.unitLabel),
         )
     },
     foodTags = foodTags.map { FoodTagEntity(it.foodId, Tag.fromKey(it.tag), it.minSize, it.minCount, it.removed) },
