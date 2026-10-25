@@ -2,6 +2,7 @@ package at.mtr.logmygut.ui.common
 
 import at.mtr.logmygut.domain.Amount
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -21,6 +22,16 @@ fun Instant.local(zone: ZoneId = ZoneId.systemDefault()): ZonedDateTime = atZone
 
 /** Now, truncated to the minute: the default time for a new entry. */
 fun nowMinute(): Instant = Instant.now().truncatedTo(ChronoUnit.MINUTES)
+
+/**
+ * Default time for a new entry added from a day view: that [day] at the current time of day, so a forgotten
+ * entry only needs its time adjusted. Without a day (or for today) it is now.
+ */
+fun newEntryTime(day: LocalDate?, zone: ZoneId = ZoneId.systemDefault()): Instant {
+    val now = nowMinute()
+    if (day == null) return now
+    return minOf(now, ZonedDateTime.of(day, now.atZone(zone).toLocalTime(), zone).toInstant())
+}
 
 private val plurals = mapOf(
     "Scheibe" to "Scheiben",

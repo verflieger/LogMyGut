@@ -45,6 +45,7 @@ import at.mtr.logmygut.ui.entry.BowelEditScreen
 import at.mtr.logmygut.ui.entry.MedicationEditScreen
 import at.mtr.logmygut.ui.entry.SymptomsEditScreen
 import at.mtr.logmygut.ui.history.DayScreen
+import at.mtr.logmygut.ui.history.EntryKind
 import at.mtr.logmygut.ui.history.HistoryScreen
 import at.mtr.logmygut.ui.info.InfoPage
 import at.mtr.logmygut.ui.info.InfoScreen
@@ -62,6 +63,9 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 private const val TransitionMillis = 250
+private const val NoDay = Long.MIN_VALUE
+
+private fun dayOf(epochDay: Long): LocalDate? = epochDay.takeIf { it != NoDay }?.let(LocalDate::ofEpochDay)
 
 @Serializable object TodayRoute
 @Serializable object HistoryRoute
@@ -69,10 +73,11 @@ private const val TransitionMillis = 250
 @Serializable object SettingsRoute
 
 // Editor routes: 0 means "new entry".
-@Serializable data class MealEditRoute(val mealId: Long = 0)
-@Serializable data class BowelEditRoute(val id: Long = 0)
-@Serializable data class SymptomsEditRoute(val timestampMillis: Long = 0)
-@Serializable data class MedicationEditRoute(val id: Long = 0)
+// epochDay: for a new entry, the day it defaults to (added from the day view); NoDay = now.
+@Serializable data class MealEditRoute(val mealId: Long = 0, val epochDay: Long = NoDay)
+@Serializable data class BowelEditRoute(val id: Long = 0, val epochDay: Long = NoDay)
+@Serializable data class SymptomsEditRoute(val timestampMillis: Long = 0, val epochDay: Long = NoDay)
+@Serializable data class MedicationEditRoute(val id: Long = 0, val epochDay: Long = NoDay)
 /** A day from the Verlauf calendar, as [LocalDate.toEpochDay]. */
 @Serializable data class DayRoute(val epochDay: Long)
 @Serializable object LibraryRoute
@@ -157,7 +162,21 @@ fun LogMyGutRoot() {
             composable<HistoryRoute> { HistoryScreen(onOpenDay = { navController.navigate(DayRoute(it.toEpochDay())) }) }
             composable<DayRoute> {
                 val route = it.toRoute<DayRoute>()
-                DayScreen(LocalDate.ofEpochDay(route.epochDay), onBack = navController::popBackStack, onOpen = { entry -> navController.openEntry(entry) })
+                DayScreen(
+                    LocalDate.ofEpochDay(route.epochDay),
+                    onBack = navController::popBackStack,
+                    onOpen = { entry -> navController.openEntry(entry) },
+                    onAdd = { kind ->
+                        navController.navigate(
+                            when (kind) {
+                                EntryKind.MEAL -> MealEditRoute(epochDay = route.epochDay)
+                                EntryKind.BOWEL -> BowelEditRoute(epochDay = route.epochDay)
+                                EntryKind.SYMPTOMS -> SymptomsEditRoute(epochDay = route.epochDay)
+                                EntryKind.MEDICATION -> MedicationEditRoute(epochDay = route.epochDay)
+                            },
+                        )
+                    },
+                )
             }
             composable<AnalysisRoute> {
                 AnalysisScreen(
@@ -205,6 +224,7 @@ fun LogMyGutRoot() {
                 val route = it.toRoute<MealEditRoute>()
                 MealEditScreen(
                     route.mealId.takeIf { id -> id != 0L },
+                    dayOf(route.epochDay),
                     onDone = navController::popBackStack,
                     onDeleted = onDeleted,
                     onOpenFood = { food -> navController.openFood(food) },
@@ -214,6 +234,7 @@ fun LogMyGutRoot() {
                 val route = it.toRoute<BowelEditRoute>()
                 BowelEditScreen(
                     route.id.takeIf { id -> id != 0L },
+                    dayOf(route.epochDay),
                     onDone = navController::popBackStack,
                     onDeleted = onDeleted,
                     onOpenInfo = { navController.navigate(InfoRoute(InfoPage.BRISTOL.name)) },
@@ -223,6 +244,7 @@ fun LogMyGutRoot() {
                 val route = it.toRoute<SymptomsEditRoute>()
                 SymptomsEditScreen(
                     route.timestampMillis.takeIf { ms -> ms != 0L }?.let(Instant::ofEpochMilli),
+                    dayOf(route.epochDay),
                     onDone = navController::popBackStack,
                     onDeleted = onDeleted,
                     onOpenInfo = { navController.navigate(InfoRoute(InfoPage.SYMPTOMS.name)) },
@@ -230,7 +252,12 @@ fun LogMyGutRoot() {
             }
             composable<MedicationEditRoute> {
                 val route = it.toRoute<MedicationEditRoute>()
-                MedicationEditScreen(route.id.takeIf { id -> id != 0L }, onDone = navController::popBackStack, onDeleted = onDeleted)
+                MedicationEditScreen(
+                    route.id.takeIf { id -> id != 0L },
+                    dayOf(route.epochDay),
+                    onDone = navController::popBackStack,
+                    onDeleted = onDeleted,
+                )
             }
         }
     }

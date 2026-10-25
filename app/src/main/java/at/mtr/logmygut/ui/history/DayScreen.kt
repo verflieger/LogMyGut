@@ -28,11 +28,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import at.mtr.logmygut.R
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.TimelineEntry
+import at.mtr.logmygut.data.fluidMillilitres
 import at.mtr.logmygut.data.db.DailyCheckInEntity
 import at.mtr.logmygut.ui.common.CheckInCard
 import at.mtr.logmygut.ui.common.Loaded
 import at.mtr.logmygut.ui.common.LongDayFormat
 import at.mtr.logmygut.ui.common.appContainer
+import at.mtr.logmygut.ui.common.newEntryTime
+import at.mtr.logmygut.ui.common.volumeLabel
+import at.mtr.logmygut.ui.today.FluidRow
+import at.mtr.logmygut.ui.today.QuickActions
 import at.mtr.logmygut.ui.today.TimelineRow
 import at.mtr.logmygut.ui.today.key
 import java.time.LocalDate
@@ -50,12 +55,19 @@ class DayViewModel(private val journal: JournalRepository, val date: LocalDate) 
 
     fun saveSleep(value: Int) { viewModelScope.launch { journal.saveSleep(date, value) } }
     fun saveStress(value: Int) { viewModelScope.launch { journal.saveStress(date, value) } }
+    fun addGlassOfWater() { viewModelScope.launch { journal.addGlassOfWater(newEntryTime(date)) } }
 }
 
-/** One day from the calendar (SPEC 2, 6.1): its check-in and timeline. Entries open their editors. */
+/** The kinds of entry the day view can add. */
+enum class EntryKind { MEAL, BOWEL, SYMPTOMS, MEDICATION }
+
+/**
+ * One day from the calendar (SPEC 2, 6.1): add buttons, fluid total, check-in and timeline. Entries open their
+ * editors; new entries default to this day, so forgotten ones can be added later.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DayScreen(date: LocalDate, onBack: () -> Unit, onOpen: (TimelineEntry) -> Unit) {
+fun DayScreen(date: LocalDate, onBack: () -> Unit, onOpen: (TimelineEntry) -> Unit, onAdd: (EntryKind) -> Unit) {
     val container = appContainer()
     val vm = viewModel(key = date.toString()) { DayViewModel(container.journalRepository, date) }
     val timeline by vm.timeline.collectAsStateWithLifecycle()
@@ -78,6 +90,17 @@ fun DayScreen(date: LocalDate, onBack: () -> Unit, onOpen: (TimelineEntry) -> Un
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            item(key = "add") {
+                QuickActions(
+                    onAddMeal = { onAdd(EntryKind.MEAL) },
+                    onAddBowel = { onAdd(EntryKind.BOWEL) },
+                    onAddSymptoms = { onAdd(EntryKind.SYMPTOMS) },
+                    onAddMedication = { onAdd(EntryKind.MEDICATION) },
+                )
+            }
+            timeline?.let { entries ->
+                item(key = "fluid") { FluidRow(stringResource(R.string.fluid_day, volumeLabel(fluidMillilitres(entries))), vm::addGlassOfWater) }
+            }
             checkIn?.let { loaded -> item(key = "checkin") { CheckInCard(loaded.value, vm::saveSleep, vm::saveStress) } }
             val entries = timeline
             if (entries != null && entries.isEmpty()) {

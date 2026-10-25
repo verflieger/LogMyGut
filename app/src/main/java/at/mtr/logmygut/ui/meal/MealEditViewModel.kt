@@ -19,8 +19,9 @@ import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.effectiveTags
-import at.mtr.logmygut.ui.common.nowMinute
+import at.mtr.logmygut.ui.common.newEntryTime
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -49,13 +50,14 @@ class MealEditViewModel(
     private val foods: FoodRepository,
     private val journal: JournalRepository,
     private val mealId: Long?,
+    day: LocalDate? = null,
 ) : ViewModel() {
     private var existing: MealEntity? = null
     private var nextKey = 0
     private val tagsById = mutableMapOf<Long, List<IngredientTag>>()
     private var searchJob: Job? = null
 
-    var timestamp by mutableStateOf(nowMinute())
+    var timestamp by mutableStateOf(newEntryTime(day))
     var eatenOut by mutableStateOf(false)
     var note by mutableStateOf("")
     val items = mutableStateListOf<MealItemUi>()

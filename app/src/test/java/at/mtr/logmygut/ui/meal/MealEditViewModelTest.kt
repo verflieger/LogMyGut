@@ -9,8 +9,11 @@ import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
+import java.time.LocalDate
+import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -57,6 +60,18 @@ class MealEditViewModelTest {
 
         vm.setAmount(item.key, Amount.Count(2))
         assertTrue(Tag.FRUCTANS in vm.items.single().effectiveTags)
+    }
+
+    @Test fun newMealFromDayViewDefaultsToThatDay() = runTest {
+        val zone = ZoneId.systemDefault()
+        val day = LocalDate.now(zone).minusDays(3)
+        val vm = MealEditViewModel(foods, journal, null, day)
+        vm.addFood(dish("currywurst"))
+        assertEquals(day, vm.timestamp.atZone(zone).toLocalDate())
+        assertTrue(vm.canSave)
+
+        vm.save()
+        assertEquals(1, journal.observeDay(day).first().size)
     }
 
     @Test fun adjustingIngredientsChangesTriggersAndIsSaved() = runTest {

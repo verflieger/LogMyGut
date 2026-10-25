@@ -38,16 +38,17 @@ import at.mtr.logmygut.ui.common.DateTimeField
 import at.mtr.logmygut.ui.common.EditorScaffold
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.label
-import at.mtr.logmygut.ui.common.nowMinute
+import at.mtr.logmygut.ui.common.newEntryTime
 import at.mtr.logmygut.ui.common.severityLabel
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /** Edits one symptom group; [groupTimestamp] identifies an existing group, null creates a new one. */
-class SymptomsEditViewModel(private val journal: JournalRepository, private val groupTimestamp: Instant?) : ViewModel() {
-    var timestamp by mutableStateOf(groupTimestamp ?: nowMinute())
+class SymptomsEditViewModel(private val journal: JournalRepository, private val groupTimestamp: Instant?, day: LocalDate? = null) : ViewModel() {
+    var timestamp by mutableStateOf(groupTimestamp ?: newEntryTime(day))
     /** Only touched symptoms are present. */
     val severities = mutableStateMapOf<SymptomType, Int>()
     var note by mutableStateOf("")
@@ -79,9 +80,9 @@ class SymptomsEditViewModel(private val journal: JournalRepository, private val 
 }
 
 @Composable
-fun SymptomsEditScreen(groupTimestamp: Instant?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenInfo: () -> Unit) {
+fun SymptomsEditScreen(groupTimestamp: Instant?, day: LocalDate?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenInfo: () -> Unit) {
     val container = appContainer()
-    val vm = viewModel { SymptomsEditViewModel(container.journalRepository, groupTimestamp) }
+    val vm = viewModel { SymptomsEditViewModel(container.journalRepository, groupTimestamp, day) }
     val scope = rememberCoroutineScope()
 
     EditorScaffold(

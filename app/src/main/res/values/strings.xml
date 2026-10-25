@@ -52,6 +52,7 @@
     <string name="kind_ingredient">Zutat</string>
     <string name="kind_drink">Getränk</string>
     <string name="fluid_today">Getrunken heute: %1$s</string>
+    <string name="fluid_day">Getrunken: %1$s</string>
     <string name="fluid_add_water">Glas Wasser</string>
 
     <!-- Ingredient adjust / picker -->

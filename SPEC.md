@@ -60,8 +60,9 @@ Bottom navigation with four tabs:
 1. **Heute**: quick-add buttons (Essen & Trinken, Stuhlgang, Beschwerden, Medikament), today's fluid total with
    "+ Glas Wasser" (3.2), and today's timeline. Shows a "Tages-Check-in" card while part of today's check-in is missing.
 2. **Verlauf**: month calendar (days coloured by a "bad day" score, see 6.2). Tapping a day opens its day view:
-   that day's check-in (editable) and timeline. Days with only meals or medication have no score and show a dot.
-   Weeks start on Monday; future days and months can't be opened. Day boundaries use the phone's current time zone.
+   the same quick-add buttons and fluid row as Heute, that day's check-in (editable) and timeline. Entries added
+   there default to that day at the current time of day, so forgotten entries can be added later. Days with only
+   meals or medication have no score and show a dot. Weeks start on Monday; future days and months can't be opened. Day boundaries use the phone's current time zone.
 3. **Analyse**: trends and trigger analysis (section 6).
 4. **Einstellungen**: reminder, analysis parameters, **Lebensmittel & Gerichte** (section 4.1), backup, info pages.
 

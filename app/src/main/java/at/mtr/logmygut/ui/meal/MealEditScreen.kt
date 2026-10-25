@@ -50,14 +50,15 @@ import at.mtr.logmygut.ui.common.DateTimeField
 import at.mtr.logmygut.ui.common.EditorScaffold
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.label
+import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /** [onOpenFood] opens a food's library detail; reached by long-pressing a search result (SPEC 4.1). */
 @Composable
-fun MealEditScreen(mealId: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenFood: (FoodEntity) -> Unit) {
+fun MealEditScreen(mealId: Long?, day: LocalDate?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenFood: (FoodEntity) -> Unit) {
     val container = appContainer()
-    val vm = viewModel { MealEditViewModel(container.foodRepository, container.journalRepository, mealId) }
+    val vm = viewModel { MealEditViewModel(container.foodRepository, container.journalRepository, mealId, day) }
     val scope = rememberCoroutineScope()
     var adjusting by remember { mutableStateOf<MealItemUi?>(null) }
     var creatingName by remember { mutableStateOf<String?>(null) }

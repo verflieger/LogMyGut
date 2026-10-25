@@ -42,15 +42,16 @@ import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.bristolDescription
 import at.mtr.logmygut.ui.common.bristolGroup
 import at.mtr.logmygut.ui.common.label
-import at.mtr.logmygut.ui.common.nowMinute
+import at.mtr.logmygut.ui.common.newEntryTime
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BowelEditViewModel(private val journal: JournalRepository, private val id: Long?) : ViewModel() {
+class BowelEditViewModel(private val journal: JournalRepository, private val id: Long?, day: LocalDate? = null) : ViewModel() {
     private var existing: BowelMovementEntity? = null
-    var timestamp by mutableStateOf(nowMinute())
+    var timestamp by mutableStateOf(newEntryTime(day))
     var bristol by mutableStateOf<Int?>(null)
     var urgent by mutableStateOf(false)
     var painBefore by mutableStateOf(false)
@@ -94,9 +95,9 @@ class BowelEditViewModel(private val journal: JournalRepository, private val id:
 }
 
 @Composable
-fun BowelEditScreen(id: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenInfo: () -> Unit) {
+fun BowelEditScreen(id: Long?, day: LocalDate?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit, onOpenInfo: () -> Unit) {
     val container = appContainer()
-    val vm = viewModel { BowelEditViewModel(container.journalRepository, id) }
+    val vm = viewModel { BowelEditViewModel(container.journalRepository, id, day) }
     val scope = rememberCoroutineScope()
 
     EditorScaffold(

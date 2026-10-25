@@ -101,7 +101,7 @@ fun TodayScreen(
             Spacer(Modifier.height(8.dp))
             QuickActions(onAddMeal, onAddBowel, onAddSymptoms, onAddMedication)
             Spacer(Modifier.height(8.dp))
-            timeline?.let { FluidRow(fluidMillilitres(it), vm::addGlassOfWater) }
+            timeline?.let { FluidRow(stringResource(R.string.fluid_today, volumeLabel(fluidMillilitres(it))), vm::addGlassOfWater) }
         }
         // While part of today's check-in is missing (SPEC 2); afterwards it's edited from the day view.
         checkIn?.value.let { current ->
@@ -125,8 +125,9 @@ fun TodayScreen(
     }
 }
 
+/** The four add buttons; also used by the history day view. */
 @Composable
-private fun QuickActions(onAddMeal: () -> Unit, onAddBowel: () -> Unit, onAddSymptoms: () -> Unit, onAddMedication: () -> Unit) {
+fun QuickActions(onAddMeal: () -> Unit, onAddBowel: () -> Unit, onAddSymptoms: () -> Unit, onAddMedication: () -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             QuickButton(R.string.quick_meal, Icons.Outlined.Restaurant, onAddMeal, Modifier.weight(1f))
@@ -148,14 +149,14 @@ private fun QuickButton(label: Int, icon: ImageVector, onClick: () -> Unit, modi
     }
 }
 
-/** Today's fluid total from all logged drinks, with a one-tap glass of water (SPEC 3.2). */
+/** A day's fluid total ([label]) from all logged drinks, with a one-tap glass of water (SPEC 3.2). */
 @Composable
-private fun FluidRow(millilitres: Double, onAddWater: () -> Unit) {
+fun FluidRow(label: String, onAddWater: () -> Unit) {
     Row(Modifier.fillMaxWidth().padding(vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
         Icon(Icons.Outlined.WaterDrop, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
         Spacer(Modifier.width(8.dp))
         Text(
-            stringResource(R.string.fluid_today, volumeLabel(millilitres)),
+            label,
             Modifier.weight(1f),
             style = MaterialTheme.typography.titleMedium,
         )

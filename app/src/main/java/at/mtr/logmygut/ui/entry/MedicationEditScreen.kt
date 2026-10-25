@@ -33,16 +33,17 @@ import at.mtr.logmygut.ui.common.DateTimeField
 import at.mtr.logmygut.ui.common.EditorScaffold
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.label
-import at.mtr.logmygut.ui.common.nowMinute
+import at.mtr.logmygut.ui.common.newEntryTime
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MedicationEditViewModel(private val journal: JournalRepository, private val id: Long?) : ViewModel() {
+class MedicationEditViewModel(private val journal: JournalRepository, private val id: Long?, day: LocalDate? = null) : ViewModel() {
     private var existing: MedicationIntakeEntity? = null
     private var known: List<Pair<String, MedEffect?>> by mutableStateOf(emptyList())
-    var timestamp by mutableStateOf(nowMinute())
+    var timestamp by mutableStateOf(newEntryTime(day))
     var name by mutableStateOf("")
         private set
     var effect by mutableStateOf<MedEffect?>(null)
@@ -92,9 +93,9 @@ class MedicationEditViewModel(private val journal: JournalRepository, private va
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun MedicationEditScreen(id: Long?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit) {
+fun MedicationEditScreen(id: Long?, day: LocalDate?, onDone: () -> Unit, onDeleted: (suspend () -> Unit) -> Unit) {
     val container = appContainer()
-    val vm = viewModel { MedicationEditViewModel(container.journalRepository, id) }
+    val vm = viewModel { MedicationEditViewModel(container.journalRepository, id, day) }
     val scope = rememberCoroutineScope()
 
     EditorScaffold(
