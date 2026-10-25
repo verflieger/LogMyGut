@@ -10,8 +10,8 @@ import java.io.File
 
 /** Shared fixtures for Robolectric database tests. */
 object TestDatabase {
-    val seed: SeedFile by lazy { SeedFile.parse(File("src/main/assets/foods.de.json").readText()) }
-    val tagSuggester: TagSuggester by lazy { TagSuggester.fromJson(File("src/main/assets/keyword_rules.de.json").readText()) }
+    val seed: SeedFile by lazy { SeedFile.parse(File("src/main/assets/foods.json").readText()) }
+    val tagSuggester: TagSuggester by lazy { TagSuggester.fromJson(File("src/main/assets/keyword_rules.de.json").readText(), File("src/main/assets/keyword_rules.en.json").readText()) }
 
     /**
      * In-memory database whose queries run on the calling thread, so ViewModel coroutines

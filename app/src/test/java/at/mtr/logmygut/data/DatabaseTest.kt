@@ -34,7 +34,7 @@ import org.robolectric.RobolectricTestRunner
 class DatabaseTest {
     private lateinit var db: LogMyGutDatabase
     private lateinit var foods: FoodRepository
-    private val seed = SeedFile.parse(File("src/main/assets/foods.de.json").readText())
+    private val seed = SeedFile.parse(File("src/main/assets/foods.json").readText())
 
     @Before fun setUp() {
         db = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(), LogMyGutDatabase::class.java)

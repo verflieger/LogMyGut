@@ -1,5 +1,5 @@
 {
- "version": 5,
+ "version": 6,
  "tags": [
   "lactose",
   "fructose",
@@ -27,7 +27,13 @@
     "gluten"
    ],
    "grams": 45.0,
-   "source": "BLS 4.0 B251000"
+   "source": "BLS 4.0 B251000",
+   "en": {
+    "name": "Bread",
+    "aliases": [
+     "Slice of bread"
+    ]
+   }
   },
   {
    "name": "Weißbrot",
@@ -40,7 +46,14 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 40.0,
-   "source": "BLS 4.0 B311000"
+   "source": "BLS 4.0 B311000",
+   "en": {
+    "name": "White bread",
+    "aliases": [
+     "Wheat bread",
+     "Baguette"
+    ]
+   }
   },
   {
    "name": "Mischbrot",
@@ -54,7 +67,14 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 45.0,
-   "source": "BLS 4.0 B251000"
+   "source": "BLS 4.0 B251000",
+   "en": {
+    "name": "Mixed wheat-rye bread",
+    "aliases": [
+     "Farmhouse bread",
+     "Brown bread"
+    ]
+   }
   },
   {
    "name": "Roggenbrot",
@@ -67,7 +87,13 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 45.0,
-   "source": "BLS 4.0 B271000"
+   "source": "BLS 4.0 B271000",
+   "en": {
+    "name": "Rye bread",
+    "aliases": [
+     "Dark rye bread"
+    ]
+   }
   },
   {
    "name": "Vollkornbrot",
@@ -80,7 +106,15 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 B121000"
+   "source": "BLS 4.0 B121000",
+   "en": {
+    "name": "Wholemeal bread",
+    "aliases": [
+     "Whole grain bread",
+     "Whole wheat bread",
+     "Pumpernickel"
+    ]
+   }
   },
   {
    "name": "Dinkelbrot",
@@ -92,7 +126,13 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 45.0,
-   "source": "BLS 4.0 B710500"
+   "source": "BLS 4.0 B710500",
+   "en": {
+    "name": "Spelt bread",
+    "aliases": [
+     "Wholemeal spelt bread"
+    ]
+   }
   },
   {
    "name": "Dinkel-Sauerteigbrot",
@@ -105,7 +145,14 @@
    ],
    "grams": 45.0,
    "note": "Lange Teigführung baut Fructane weitgehend ab.",
-   "source": "BLS 4.0 B710500"
+   "source": "BLS 4.0 B710500",
+   "en": {
+    "name": "Spelt sourdough bread",
+    "aliases": [
+     "Sourdough"
+    ],
+    "note": "Long fermentation breaks down most of the fructans."
+   }
   },
   {
    "name": "Glutenfreies Brot",
@@ -118,7 +165,10 @@
     "gluten"
    ],
    "grams": 45.0,
-   "source": "BLS 4.0 B8A9000"
+   "source": "BLS 4.0 B8A9000",
+   "en": {
+    "name": "Gluten-free bread"
+   }
   },
   {
    "name": "Toastbrot",
@@ -131,7 +181,14 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 25.0,
-   "source": "BLS 4.0 B314000"
+   "source": "BLS 4.0 B314000",
+   "en": {
+    "name": "Toast bread",
+    "aliases": [
+     "Toast",
+     "Sandwich bread"
+    ]
+   }
   },
   {
    "name": "Knäckebrot",
@@ -143,7 +200,14 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 B6A2100"
+   "source": "BLS 4.0 B6A2100",
+   "en": {
+    "name": "Crispbread",
+    "aliases": [
+     "Rye crispbread",
+     "Crackers"
+    ]
+   }
   },
   {
    "name": "Fladenbrot",
@@ -156,7 +220,14 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
-   "grams": 120.0
+   "grams": 120.0,
+   "en": {
+    "name": "Flatbread",
+    "aliases": [
+     "Pita",
+     "Naan"
+    ]
+   }
   },
   {
    "name": "Weizentortilla",
@@ -169,7 +240,14 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 B783012"
+   "source": "BLS 4.0 B783012",
+   "en": {
+    "name": "Wheat tortilla",
+    "aliases": [
+     "Tortilla wrap",
+     "Flour tortilla"
+    ]
+   }
   },
   {
    "name": "Gebäck",
@@ -183,7 +261,14 @@
     "gluten"
    ],
    "grams": 55.0,
-   "source": "BLS 4.0 B511000"
+   "source": "BLS 4.0 B511000",
+   "en": {
+    "name": "Bread rolls",
+    "aliases": [
+     "Rolls",
+     "Baked goods"
+    ]
+   }
   },
   {
    "name": "Semmel",
@@ -199,7 +284,16 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 55.0,
-   "source": "BLS 4.0 B511000"
+   "source": "BLS 4.0 B511000",
+   "en": {
+    "name": "Bread roll",
+    "aliases": [
+     "Roll",
+     "Bun",
+     "Kaiser roll",
+     "White roll"
+    ]
+   }
   },
   {
    "name": "Vollkornsemmel",
@@ -212,7 +306,13 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 B406000"
+   "source": "BLS 4.0 B406000",
+   "en": {
+    "name": "Wholemeal roll",
+    "aliases": [
+     "Whole grain roll"
+    ]
+   }
   },
   {
    "name": "Kornspitz",
@@ -225,7 +325,14 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 70.0,
-   "source": "BLS 4.0 B406000"
+   "source": "BLS 4.0 B406000",
+   "en": {
+    "name": "Kornspitz",
+    "aliases": [
+     "Multigrain roll",
+     "Seeded roll"
+    ]
+   }
   },
   {
    "name": "Brezel",
@@ -240,7 +347,14 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 80.0,
-   "source": "BLS 4.0 B723100"
+   "source": "BLS 4.0 B723100",
+   "en": {
+    "name": "Pretzel",
+    "aliases": [
+     "Soft pretzel",
+     "Lye roll"
+    ]
+   }
   },
   {
    "name": "Croissant",
@@ -257,7 +371,10 @@
     "fat": 2
    },
    "grams": 60.0,
-   "source": "BLS 4.0 D771600"
+   "source": "BLS 4.0 D771600",
+   "en": {
+    "name": "Croissant"
+   }
   },
   {
    "name": "Mohnflesserl",
@@ -270,7 +387,13 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 B511000"
+   "source": "BLS 4.0 B511000",
+   "en": {
+    "name": "Poppy seed plait",
+    "aliases": [
+     "Poppy seed roll"
+    ]
+   }
   },
   {
    "name": "Glutenfreie Semmel",
@@ -286,7 +409,13 @@
     "gluten"
    ],
    "grams": 60.0,
-   "source": "BLS 4.0 B8A2000"
+   "source": "BLS 4.0 B8A2000",
+   "en": {
+    "name": "Gluten-free roll",
+    "aliases": [
+     "Gluten-free bun"
+    ]
+   }
   },
   {
    "name": "Reiswaffel",
@@ -297,7 +426,13 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 8.0,
-   "source": "BLS 4.0 C532700"
+   "source": "BLS 4.0 C532700",
+   "en": {
+    "name": "Rice cake",
+    "aliases": [
+     "Rice cracker"
+    ]
+   }
   },
   {
    "name": "Salzstangerl",
@@ -312,7 +447,13 @@
     "gluten"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 D064000"
+   "source": "BLS 4.0 D064000",
+   "en": {
+    "name": "Salt stick",
+    "aliases": [
+     "Pretzel sticks"
+    ]
+   }
   },
   {
    "name": "Semmelknödel",
@@ -328,7 +469,14 @@
     "gluten"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 E606000"
+   "source": "BLS 4.0 E606000",
+   "en": {
+    "name": "Bread dumpling",
+    "aliases": [
+     "Dumpling",
+     "Napkin dumpling"
+    ]
+   }
   },
   {
    "name": "Waffel",
@@ -343,7 +491,14 @@
     "gluten"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 D621200"
+   "source": "BLS 4.0 D621200",
+   "en": {
+    "name": "Wafer",
+    "aliases": [
+     "Wafer biscuits",
+     "Manner wafers"
+    ]
+   }
   },
   {
    "name": "Haferflocken",
@@ -359,7 +514,16 @@
    },
    "grams": 50.0,
    "note": "Oft mit Gluten verunreinigt (relevant bei Zöliakie).",
-   "source": "BLS 4.0 C133000"
+   "source": "BLS 4.0 C133000",
+   "en": {
+    "name": "Rolled oats",
+    "aliases": [
+     "Oats",
+     "Oatmeal",
+     "Overnight oats"
+    ],
+    "note": "Often contaminated with gluten (relevant in coeliac disease)."
+   }
   },
   {
    "name": "Müsli",
@@ -376,7 +540,14 @@
    },
    "grams": 60.0,
    "note": "Typisch mit Weizenflocken und Trockenobst.",
-   "source": "BLS 4.0 C512600"
+   "source": "BLS 4.0 C512600",
+   "en": {
+    "name": "Muesli",
+    "aliases": [
+     "Bircher muesli"
+    ],
+    "note": "Usually contains wheat flakes and dried fruit."
+   }
   },
   {
    "name": "Granola",
@@ -393,7 +564,13 @@
     "fat": "L"
    },
    "grams": 50.0,
-   "source": "BLS 4.0 C514300"
+   "source": "BLS 4.0 C514300",
+   "en": {
+    "name": "Granola",
+    "aliases": [
+     "Crunchy muesli"
+    ]
+   }
   },
   {
    "name": "Cornflakes",
@@ -403,7 +580,13 @@
    "unit": "size",
    "tags": [],
    "grams": 40.0,
-   "source": "BLS 4.0 C515000"
+   "source": "BLS 4.0 C515000",
+   "en": {
+    "name": "Cornflakes",
+    "aliases": [
+     "Corn flakes"
+    ]
+   }
   },
   {
    "name": "Reis",
@@ -415,7 +598,15 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 C352032"
+   "source": "BLS 4.0 C352032",
+   "en": {
+    "name": "Rice",
+    "aliases": [
+     "Basmati rice",
+     "Jasmine rice",
+     "Risotto rice"
+    ]
+   }
   },
   {
    "name": "Vollkornreis",
@@ -426,7 +617,13 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 C351032"
+   "source": "BLS 4.0 C351032",
+   "en": {
+    "name": "Brown rice",
+    "aliases": [
+     "Wholegrain rice"
+    ]
+   }
   },
   {
    "name": "Nudeln",
@@ -442,7 +639,16 @@
     "gluten"
    ],
    "grams": 200.0,
-   "source": "BLS 4.0 E401032"
+   "source": "BLS 4.0 E401032",
+   "en": {
+    "name": "Pasta",
+    "aliases": [
+     "Noodles",
+     "Spaghetti",
+     "Penne",
+     "Fusilli"
+    ]
+   }
   },
   {
    "name": "Vollkornnudeln",
@@ -453,7 +659,13 @@
    "unit": "size",
    "tags": [],
    "grams": 200.0,
-   "source": "BLS 4.0 E500032"
+   "source": "BLS 4.0 E500032",
+   "en": {
+    "name": "Wholemeal pasta",
+    "aliases": [
+     "Whole wheat pasta"
+    ]
+   }
   },
   {
    "name": "Eiernudeln",
@@ -466,7 +678,14 @@
    "unit": "size",
    "tags": [],
    "grams": 200.0,
-   "source": "BLS 4.0 E432032"
+   "source": "BLS 4.0 E432032",
+   "en": {
+    "name": "Egg noodles",
+    "aliases": [
+     "Tagliatelle",
+     "Egg pasta"
+    ]
+   }
   },
   {
    "name": "Glutenfreie Nudeln",
@@ -481,7 +700,13 @@
     "gluten"
    ],
    "grams": 200.0,
-   "source": "BLS 4.0 E612032"
+   "source": "BLS 4.0 E612032",
+   "en": {
+    "name": "Gluten-free pasta",
+    "aliases": [
+     "Corn pasta"
+    ]
+   }
   },
   {
    "name": "Reisnudeln",
@@ -496,7 +721,14 @@
     "gluten"
    ],
    "grams": 200.0,
-   "source": "BLS 4.0 C559032"
+   "source": "BLS 4.0 C559032",
+   "en": {
+    "name": "Rice noodles",
+    "aliases": [
+     "Glass noodles",
+     "Vermicelli"
+    ]
+   }
   },
   {
    "name": "Tortellini",
@@ -508,7 +740,14 @@
    "unit": "size",
    "tags": [],
    "grams": 200.0,
-   "source": "BLS 4.0 E609232"
+   "source": "BLS 4.0 E609232",
+   "en": {
+    "name": "Tortellini",
+    "aliases": [
+     "Ravioli",
+     "Filled pasta"
+    ]
+   }
   },
   {
    "name": "Gnocchi",
@@ -519,7 +758,13 @@
    "unit": "size",
    "tags": [],
    "grams": 200.0,
-   "source": "BLS 4.0 K270000"
+   "source": "BLS 4.0 K270000",
+   "en": {
+    "name": "Gnocchi",
+    "aliases": [
+     "Potato gnocchi"
+    ]
+   }
   },
   {
    "name": "Spätzle",
@@ -533,7 +778,14 @@
     "gluten"
    ],
    "grams": 200.0,
-   "source": "BLS 4.0 E432032"
+   "source": "BLS 4.0 E432032",
+   "en": {
+    "name": "Spätzle",
+    "aliases": [
+     "Egg noodle dumplings",
+     "Spaetzle"
+    ]
+   }
   },
   {
    "name": "Couscous",
@@ -543,7 +795,10 @@
     "gluten"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 C119232"
+   "source": "BLS 4.0 C119232",
+   "en": {
+    "name": "Couscous"
+   }
   },
   {
    "name": "Bulgur",
@@ -553,7 +808,13 @@
     "gluten"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 C119132"
+   "source": "BLS 4.0 C119132",
+   "en": {
+    "name": "Bulgur",
+    "aliases": [
+     "Bulgur wheat"
+    ]
+   }
   },
   {
    "name": "Grieß",
@@ -567,14 +828,24 @@
     "fructans",
     "gluten"
    ],
-   "grams": 50.0
+   "grams": 50.0,
+   "en": {
+    "name": "Semolina",
+    "aliases": [
+     "Durum semolina",
+     "Semolina dumplings"
+    ]
+   }
   },
   {
    "name": "Quinoa",
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 C118122"
+   "source": "BLS 4.0 C118122",
+   "en": {
+    "name": "Quinoa"
+   }
   },
   {
    "name": "Hirse",
@@ -584,7 +855,13 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 C332000"
+   "source": "BLS 4.0 C332000",
+   "en": {
+    "name": "Millet",
+    "aliases": [
+     "Millet porridge"
+    ]
+   }
   },
   {
    "name": "Buchweizen",
@@ -594,7 +871,13 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 C322000"
+   "source": "BLS 4.0 C322000",
+   "en": {
+    "name": "Buckwheat",
+    "aliases": [
+     "Buckwheat flour"
+    ]
+   }
   },
   {
    "name": "Polenta",
@@ -608,7 +891,14 @@
     "fat": "L"
    },
    "grams": 200.0,
-   "source": "BLS 4.0 C526000"
+   "source": "BLS 4.0 C526000",
+   "en": {
+    "name": "Polenta",
+    "aliases": [
+     "Cornmeal",
+     "Grits"
+    ]
+   }
   },
   {
    "name": "Weizenmehl",
@@ -622,7 +912,14 @@
     "gluten"
    ],
    "grams": 50.0,
-   "source": "BLS 4.0 C213100"
+   "source": "BLS 4.0 C213100",
+   "en": {
+    "name": "Wheat flour",
+    "aliases": [
+     "Flour",
+     "Spelt flour"
+    ]
+   }
   },
   {
    "name": "Semmelbrösel",
@@ -637,7 +934,14 @@
     "gluten"
    ],
    "grams": 20.0,
-   "source": "BLS 4.0 B821000"
+   "source": "BLS 4.0 B821000",
+   "en": {
+    "name": "Breadcrumbs",
+    "aliases": [
+     "Panko",
+     "Breading"
+    ]
+   }
   },
   {
    "name": "Kartoffeln",
@@ -653,7 +957,15 @@
    "unit": "size",
    "tags": [],
    "grams": 200.0,
-   "source": "BLS 4.0 K110132"
+   "source": "BLS 4.0 K110132",
+   "en": {
+    "name": "Potatoes",
+    "aliases": [
+     "Potato",
+     "Boiled potatoes",
+     "Parsley potatoes"
+    ]
+   }
   },
   {
    "name": "Pommes frites",
@@ -668,7 +980,14 @@
     "fat": "M"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 X654042"
+   "source": "BLS 4.0 X654042",
+   "en": {
+    "name": "French fries",
+    "aliases": [
+     "Fries",
+     "Chips"
+    ]
+   }
   },
   {
    "name": "Bratkartoffeln",
@@ -683,7 +1002,14 @@
     "fat": "M"
    },
    "grams": 200.0,
-   "source": "BLS 4.0 X651063"
+   "source": "BLS 4.0 X651063",
+   "en": {
+    "name": "Fried potatoes",
+    "aliases": [
+     "Sautéed potatoes",
+     "Home fries"
+    ]
+   }
   },
   {
    "name": "Rösti",
@@ -699,7 +1025,15 @@
     "fat": "L"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 K391200"
+   "source": "BLS 4.0 K391200",
+   "en": {
+    "name": "Rösti",
+    "aliases": [
+     "Hash brown",
+     "Potato pancake",
+     "Potato fritter"
+    ]
+   }
   },
   {
    "name": "Chips",
@@ -713,7 +1047,14 @@
     "fat": "M"
    },
    "grams": 50.0,
-   "source": "BLS 4.0 K280100"
+   "source": "BLS 4.0 K280100",
+   "en": {
+    "name": "Crisps",
+    "aliases": [
+     "Potato chips",
+     "Pringles"
+    ]
+   }
   },
   {
    "name": "Süßkartoffel",
@@ -726,7 +1067,13 @@
     "polyols": "M"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 K420100"
+   "source": "BLS 4.0 K420100",
+   "en": {
+    "name": "Sweet potato",
+    "aliases": [
+     "Yam"
+    ]
+   }
   },
   {
    "name": "Kuhmilch",
@@ -745,7 +1092,14 @@
    },
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 M111300"
+   "source": "BLS 4.0 M111300",
+   "en": {
+    "name": "Milk",
+    "aliases": [
+     "Cow's milk",
+     "Whole milk"
+    ]
+   }
   },
   {
    "name": "Laktosefreie Milch",
@@ -762,7 +1116,10 @@
    ],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 M114300"
+   "source": "BLS 4.0 M114300",
+   "en": {
+    "name": "Lactose-free milk"
+   }
   },
   {
    "name": "Buttermilch",
@@ -775,7 +1132,10 @@
    ],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 M150000"
+   "source": "BLS 4.0 M150000",
+   "en": {
+    "name": "Buttermilk"
+   }
   },
   {
    "name": "Kefir",
@@ -789,7 +1149,14 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 M130300"
+   "source": "BLS 4.0 M130300",
+   "en": {
+    "name": "Kefir",
+    "aliases": [
+     "Ayran",
+     "Yoghurt drink"
+    ]
+   }
   },
   {
    "name": "Ziegenmilch",
@@ -802,7 +1169,13 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 M021000"
+   "source": "BLS 4.0 M021000",
+   "en": {
+    "name": "Goat's milk",
+    "aliases": [
+     "Sheep's milk"
+    ]
+   }
   },
   {
    "name": "Pflanzendrink",
@@ -814,7 +1187,14 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Plant milk",
+    "aliases": [
+     "Plant-based drink",
+     "Milk alternative"
+    ]
+   }
   },
   {
    "name": "Hafermilch",
@@ -830,7 +1210,13 @@
    },
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 C660000"
+   "source": "BLS 4.0 C660000",
+   "en": {
+    "name": "Oat milk",
+    "aliases": [
+     "Oat drink"
+    ]
+   }
   },
   {
    "name": "Sojamilch",
@@ -846,7 +1232,15 @@
    "grams": 250.0,
    "drink": true,
    "note": "Aus Sojaprotein hergestellt ist sie FODMAP-arm.",
-   "source": "BLS 4.0 H841100"
+   "source": "BLS 4.0 H841100",
+   "en": {
+    "name": "Soy milk",
+    "aliases": [
+     "Soya milk",
+     "Soy drink"
+    ],
+    "note": "Made from soy protein, it is low in FODMAPs."
+   }
   },
   {
    "name": "Mandelmilch",
@@ -859,7 +1253,13 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 H800000"
+   "source": "BLS 4.0 H800000",
+   "en": {
+    "name": "Almond milk",
+    "aliases": [
+     "Almond drink"
+    ]
+   }
   },
   {
    "name": "Reisdrink",
@@ -872,7 +1272,13 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 C650000"
+   "source": "BLS 4.0 C650000",
+   "en": {
+    "name": "Rice milk",
+    "aliases": [
+     "Rice drink"
+    ]
+   }
   },
   {
    "name": "Joghurt",
@@ -885,7 +1291,15 @@
     "lactose"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 M141300"
+   "source": "BLS 4.0 M141300",
+   "en": {
+    "name": "Yoghurt",
+    "aliases": [
+     "Yogurt",
+     "Natural yoghurt",
+     "Plain yoghurt"
+    ]
+   }
   },
   {
    "name": "Laktosefreier Joghurt",
@@ -899,7 +1313,13 @@
     "lactose"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 M1E3300"
+   "source": "BLS 4.0 M1E3300",
+   "en": {
+    "name": "Lactose-free yoghurt",
+    "aliases": [
+     "Lactose-free yogurt"
+    ]
+   }
   },
   {
    "name": "Fruchtjoghurt",
@@ -911,7 +1331,14 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 M241300"
+   "source": "BLS 4.0 M241300",
+   "en": {
+    "name": "Fruit yoghurt",
+    "aliases": [
+     "Fruit yogurt",
+     "Strawberry yoghurt"
+    ]
+   }
   },
   {
    "name": "Griechisches Joghurt",
@@ -926,7 +1353,13 @@
     "fat": "M"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 M141500"
+   "source": "BLS 4.0 M141500",
+   "en": {
+    "name": "Greek yoghurt",
+    "aliases": [
+     "Greek yogurt"
+    ]
+   }
   },
   {
    "name": "Skyr",
@@ -934,7 +1367,10 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 M710100"
+   "source": "BLS 4.0 M710100",
+   "en": {
+    "name": "Skyr"
+   }
   },
   {
    "name": "Topfen",
@@ -947,7 +1383,14 @@
     "lactose"
    ],
    "grams": 125.0,
-   "source": "BLS 4.0 M713100"
+   "source": "BLS 4.0 M713100",
+   "en": {
+    "name": "Quark",
+    "aliases": [
+     "Curd cheese",
+     "Low-fat quark"
+    ]
+   }
   },
   {
    "name": "Kräutertopfen",
@@ -962,7 +1405,14 @@
     "lactose": "M"
    },
    "grams": 60.0,
-   "source": "BLS 4.0 Y771510"
+   "source": "BLS 4.0 Y771510",
+   "en": {
+    "name": "Herb quark",
+    "aliases": [
+     "Herb curd cheese",
+     "Liptauer spread"
+    ]
+   }
   },
   {
    "name": "Schlagobers",
@@ -979,7 +1429,15 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 M173800"
+   "source": "BLS 4.0 M173800",
+   "en": {
+    "name": "Cream",
+    "aliases": [
+     "Whipping cream",
+     "Whipped cream",
+     "Heavy cream"
+    ]
+   }
   },
   {
    "name": "Kaffeeobers",
@@ -995,7 +1453,15 @@
     "fat"
    ],
    "grams": 10.0,
-   "source": "BLS 4.0 M171500"
+   "source": "BLS 4.0 M171500",
+   "en": {
+    "name": "Coffee cream",
+    "aliases": [
+     "Single cream",
+     "Half-and-half",
+     "Evaporated milk"
+    ]
+   }
   },
   {
    "name": "Sauerrahm",
@@ -1010,7 +1476,10 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 M176800"
+   "source": "BLS 4.0 M176800",
+   "en": {
+    "name": "Sour cream"
+   }
   },
   {
    "name": "Crème fraîche",
@@ -1024,7 +1493,13 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 M172900"
+   "source": "BLS 4.0 M172900",
+   "en": {
+    "name": "Crème fraîche",
+    "aliases": [
+     "Creme fraiche"
+    ]
+   }
   },
   {
    "name": "Butter",
@@ -1038,7 +1513,10 @@
     "fat": "L"
    },
    "grams": 10.0,
-   "source": "BLS 4.0 Q611000"
+   "source": "BLS 4.0 Q611000",
+   "en": {
+    "name": "Butter"
+   }
   },
   {
    "name": "Butterschmalz",
@@ -1049,7 +1527,13 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 Q683000"
+   "source": "BLS 4.0 Q683000",
+   "en": {
+    "name": "Clarified butter",
+    "aliases": [
+     "Ghee"
+    ]
+   }
   },
   {
    "name": "Margarine",
@@ -1063,7 +1547,10 @@
     "fat": "L"
    },
    "grams": 10.0,
-   "source": "BLS 4.0 Q400000"
+   "source": "BLS 4.0 Q400000",
+   "en": {
+    "name": "Margarine"
+   }
   },
   {
    "name": "Käse",
@@ -1076,7 +1563,13 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 M400600"
+   "source": "BLS 4.0 M400600",
+   "en": {
+    "name": "Cheese",
+    "aliases": [
+     "Cheese slice"
+    ]
+   }
   },
   {
    "name": "Hartkäse",
@@ -1091,7 +1584,14 @@
     "histamine"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 M300600"
+   "source": "BLS 4.0 M300600",
+   "en": {
+    "name": "Hard cheese",
+    "aliases": [
+     "Aged hard cheese",
+     "Mature cheese"
+    ]
+   }
   },
   {
    "name": "Parmesan",
@@ -1107,7 +1607,15 @@
     "fat"
    ],
    "grams": 15.0,
-   "source": "BLS 4.0 M306400"
+   "source": "BLS 4.0 M306400",
+   "en": {
+    "name": "Parmesan",
+    "aliases": [
+     "Parmigiano",
+     "Grana Padano",
+     "Pecorino"
+    ]
+   }
   },
   {
    "name": "Bergkäse",
@@ -1120,7 +1628,15 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 M302600"
+   "source": "BLS 4.0 M302600",
+   "en": {
+    "name": "Mountain cheese",
+    "aliases": [
+     "Alpine cheese",
+     "Gruyère",
+     "Comté"
+    ]
+   }
   },
   {
    "name": "Emmentaler",
@@ -1131,7 +1647,13 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 M304600"
+   "source": "BLS 4.0 M304600",
+   "en": {
+    "name": "Emmental",
+    "aliases": [
+     "Swiss cheese"
+    ]
+   }
   },
   {
    "name": "Alter Gouda",
@@ -1142,7 +1664,13 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 M402600"
+   "source": "BLS 4.0 M402600",
+   "en": {
+    "name": "Aged Gouda",
+    "aliases": [
+     "Mature Gouda"
+    ]
+   }
   },
   {
    "name": "Schnittkäse",
@@ -1153,7 +1681,13 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 M400600"
+   "source": "BLS 4.0 M400600",
+   "en": {
+    "name": "Semi-hard cheese",
+    "aliases": [
+     "Sliced cheese"
+    ]
+   }
   },
   {
    "name": "Junger Gouda",
@@ -1169,7 +1703,14 @@
     "fat"
    ],
    "grams": 20.0,
-   "source": "BLS 4.0 M402600"
+   "source": "BLS 4.0 M402600",
+   "en": {
+    "name": "Young Gouda",
+    "aliases": [
+     "Gouda",
+     "Mild Gouda"
+    ]
+   }
   },
   {
    "name": "Edamer",
@@ -1181,7 +1722,10 @@
     "fat"
    ],
    "grams": 20.0,
-   "source": "BLS 4.0 M401600"
+   "source": "BLS 4.0 M401600",
+   "en": {
+    "name": "Edam"
+   }
   },
   {
    "name": "Tilsiter",
@@ -1195,7 +1739,10 @@
     "fat"
    ],
    "grams": 20.0,
-   "source": "BLS 4.0 M403700"
+   "source": "BLS 4.0 M403700",
+   "en": {
+    "name": "Tilsit"
+   }
   },
   {
    "name": "Butterkäse",
@@ -1212,7 +1759,14 @@
     "fat"
    ],
    "grams": 20.0,
-   "source": "BLS 4.0 M501600"
+   "source": "BLS 4.0 M501600",
+   "en": {
+    "name": "Butter cheese",
+    "aliases": [
+     "Bel Paese",
+     "Mild semi-soft cheese"
+    ]
+   }
   },
   {
    "name": "Raclettekäse",
@@ -1228,7 +1782,13 @@
     "fat": "M"
    },
    "grams": 60.0,
-   "source": "BLS 4.0 M307700"
+   "source": "BLS 4.0 M307700",
+   "en": {
+    "name": "Raclette cheese",
+    "aliases": [
+     "Raclette"
+    ]
+   }
   },
   {
    "name": "Weichkäse",
@@ -1238,7 +1798,10 @@
     "histamine"
    ],
    "grams": 40.0,
-   "source": "BLS 4.0 M602600"
+   "source": "BLS 4.0 M602600",
+   "en": {
+    "name": "Soft cheese"
+   }
   },
   {
    "name": "Camembert",
@@ -1246,7 +1809,10 @@
    "unit": "size",
    "tags": [],
    "grams": 40.0,
-   "source": "BLS 4.0 M602600"
+   "source": "BLS 4.0 M602600",
+   "en": {
+    "name": "Camembert"
+   }
   },
   {
    "name": "Brie",
@@ -1254,7 +1820,10 @@
    "unit": "size",
    "tags": [],
    "grams": 40.0,
-   "source": "BLS 4.0 M601800"
+   "source": "BLS 4.0 M601800",
+   "en": {
+    "name": "Brie"
+   }
   },
   {
    "name": "Gorgonzola",
@@ -1267,7 +1836,15 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 M5B1600"
+   "source": "BLS 4.0 M5B1600",
+   "en": {
+    "name": "Gorgonzola",
+    "aliases": [
+     "Blue cheese",
+     "Roquefort",
+     "Stilton"
+    ]
+   }
   },
   {
    "name": "Limburger",
@@ -1282,7 +1859,14 @@
     "fat"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 M603500"
+   "source": "BLS 4.0 M603500",
+   "en": {
+    "name": "Limburger",
+    "aliases": [
+     "Washed-rind cheese",
+     "Romadur"
+    ]
+   }
   },
   {
    "name": "Frischkäse",
@@ -1300,7 +1884,14 @@
     "fat"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 M710800"
+   "source": "BLS 4.0 M710800",
+   "en": {
+    "name": "Cream cheese",
+    "aliases": [
+     "Philadelphia",
+     "Cheese spread"
+    ]
+   }
   },
   {
    "name": "Hüttenkäse",
@@ -1314,7 +1905,10 @@
     "lactose"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 M711100"
+   "source": "BLS 4.0 M711100",
+   "en": {
+    "name": "Cottage cheese"
+   }
   },
   {
    "name": "Ricotta",
@@ -1322,7 +1916,10 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 M741600"
+   "source": "BLS 4.0 M741600",
+   "en": {
+    "name": "Ricotta"
+   }
   },
   {
    "name": "Mascarpone",
@@ -1333,7 +1930,10 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 M7A6800"
+   "source": "BLS 4.0 M7A6800",
+   "en": {
+    "name": "Mascarpone"
+   }
   },
   {
    "name": "Ziegenfrischkäse",
@@ -1347,7 +1947,14 @@
     "lactose": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 M7A1600"
+   "source": "BLS 4.0 M7A1600",
+   "en": {
+    "name": "Fresh goat's cheese",
+    "aliases": [
+     "Goat cheese",
+     "Chèvre"
+    ]
+   }
   },
   {
    "name": "Mozzarella",
@@ -1359,7 +1966,14 @@
    "unit": "size",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 M032100"
+   "source": "BLS 4.0 M032100",
+   "en": {
+    "name": "Mozzarella",
+    "aliases": [
+     "Burrata",
+     "Buffalo mozzarella"
+    ]
+   }
   },
   {
    "name": "Feta",
@@ -1372,7 +1986,14 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 M012200"
+   "source": "BLS 4.0 M012200",
+   "en": {
+    "name": "Feta",
+    "aliases": [
+     "Sheep's cheese",
+     "White cheese"
+    ]
+   }
   },
   {
    "name": "Halloumi",
@@ -1386,7 +2007,13 @@
     "fat": "M"
    },
    "grams": 60.0,
-   "source": "BLS 4.0 M524500"
+   "source": "BLS 4.0 M524500",
+   "en": {
+    "name": "Halloumi",
+    "aliases": [
+     "Grilling cheese"
+    ]
+   }
   },
   {
    "name": "Schmelzkäse",
@@ -1404,7 +2031,14 @@
     "fat"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 M810600"
+   "source": "BLS 4.0 M810600",
+   "en": {
+    "name": "Processed cheese",
+    "aliases": [
+     "Cheese slices (processed)",
+     "Cheese sauce"
+    ]
+   }
   },
   {
    "name": "Graukäse",
@@ -1423,7 +2057,14 @@
     "fat"
    ],
    "grams": 40.0,
-   "source": "BLS 4.0 M730100"
+   "source": "BLS 4.0 M730100",
+   "en": {
+    "name": "Grey cheese",
+    "aliases": [
+     "Sour milk cheese",
+     "Harzer"
+    ]
+   }
   },
   {
    "name": "Milcheis",
@@ -1439,7 +2080,14 @@
     "lactose"
    ],
    "grams": 60.0,
-   "source": "BLS 4.0 S241000"
+   "source": "BLS 4.0 S241000",
+   "en": {
+    "name": "Ice cream",
+    "aliases": [
+     "Vanilla ice cream",
+     "Gelato"
+    ]
+   }
   },
   {
    "name": "Sorbet",
@@ -1451,7 +2099,14 @@
    "unitLabel": "Kugel",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 S220000"
+   "source": "BLS 4.0 S220000",
+   "en": {
+    "name": "Sorbet",
+    "aliases": [
+     "Fruit ice",
+     "Ice lolly"
+    ]
+   }
   },
   {
    "name": "Pudding",
@@ -1466,7 +2121,16 @@
     "lactose"
    ],
    "grams": 125.0,
-   "source": "BLS 4.0 Y862143"
+   "source": "BLS 4.0 Y862143",
+   "en": {
+    "name": "Pudding",
+    "aliases": [
+     "Custard",
+     "Vanilla pudding",
+     "Chocolate pudding",
+     "Semolina pudding"
+    ]
+   }
   },
   {
    "name": "Milchreis",
@@ -1478,7 +2142,10 @@
     "fat": "L"
    },
    "grams": 200.0,
-   "source": "BLS 4.0 X810413"
+   "source": "BLS 4.0 X810413",
+   "en": {
+    "name": "Rice pudding"
+   }
   },
   {
    "name": "Kakao",
@@ -1493,7 +2160,14 @@
     "lactose"
    ],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Hot chocolate",
+    "aliases": [
+     "Cocoa",
+     "Chocolate milk"
+    ]
+   }
   },
   {
    "name": "Ei",
@@ -1508,7 +2182,16 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 E111100"
+   "source": "BLS 4.0 E111100",
+   "en": {
+    "name": "Egg",
+    "aliases": [
+     "Eggs",
+     "Boiled egg",
+     "Scrambled eggs",
+     "Fried egg"
+    ]
+   }
   },
   {
    "name": "Hendl",
@@ -1522,7 +2205,14 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 V4A6100"
+   "source": "BLS 4.0 V4A6100",
+   "en": {
+    "name": "Chicken",
+    "aliases": [
+     "Chicken breast",
+     "Chicken meat"
+    ]
+   }
   },
   {
    "name": "Pute",
@@ -1533,7 +2223,13 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 V486100"
+   "source": "BLS 4.0 V486100",
+   "en": {
+    "name": "Turkey",
+    "aliases": [
+     "Turkey breast"
+    ]
+   }
   },
   {
    "name": "Rindfleisch",
@@ -1546,7 +2242,14 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 U284100"
+   "source": "BLS 4.0 U284100",
+   "en": {
+    "name": "Beef",
+    "aliases": [
+     "Steak",
+     "Sirloin"
+    ]
+   }
   },
   {
    "name": "Schweinefleisch",
@@ -1558,7 +2261,14 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 U687000"
+   "source": "BLS 4.0 U687000",
+   "en": {
+    "name": "Pork",
+    "aliases": [
+     "Pork chop",
+     "Pork loin"
+    ]
+   }
   },
   {
    "name": "Lammfleisch",
@@ -1567,7 +2277,10 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Lamb"
+   }
   },
   {
    "name": "Wild",
@@ -1581,7 +2294,15 @@
     "histamine"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 V242100"
+   "source": "BLS 4.0 V242100",
+   "en": {
+    "name": "Game",
+    "aliases": [
+     "Venison",
+     "Wild boar",
+     "Deer"
+    ]
+   }
   },
   {
    "name": "Faschiertes",
@@ -1596,7 +2317,15 @@
     "fat": "M"
    },
    "grams": 125.0,
-   "source": "BLS 4.0 U050100"
+   "source": "BLS 4.0 U050100",
+   "en": {
+    "name": "Minced meat",
+    "aliases": [
+     "Mince",
+     "Ground beef",
+     "Ground meat"
+    ]
+   }
   },
   {
    "name": "Speck",
@@ -1613,7 +2342,14 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 W415000"
+   "source": "BLS 4.0 W415000",
+   "en": {
+    "name": "Bacon",
+    "aliases": [
+     "Streaky bacon",
+     "Pork belly"
+    ]
+   }
   },
   {
    "name": "Geselchtes",
@@ -1627,7 +2363,14 @@
     "histamine"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 W510000"
+   "source": "BLS 4.0 W510000",
+   "en": {
+    "name": "Smoked pork",
+    "aliases": [
+     "Cured smoked pork",
+     "Kassler"
+    ]
+   }
   },
   {
    "name": "Kochschinken",
@@ -1640,7 +2383,14 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 20.0,
-   "source": "BLS 4.0 W424000"
+   "source": "BLS 4.0 W424000",
+   "en": {
+    "name": "Ham",
+    "aliases": [
+     "Cooked ham",
+     "Turkey ham"
+    ]
+   }
   },
   {
    "name": "Rohschinken",
@@ -1656,7 +2406,15 @@
     "histamine"
    ],
    "grams": 15.0,
-   "source": "BLS 4.0 W441000"
+   "source": "BLS 4.0 W441000",
+   "en": {
+    "name": "Cured ham",
+    "aliases": [
+     "Prosciutto",
+     "Serrano ham",
+     "Parma ham"
+    ]
+   }
   },
   {
    "name": "Wurst",
@@ -1666,7 +2424,14 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 50.0
+   "grams": 50.0,
+   "en": {
+    "name": "Sausage",
+    "aliases": [
+     "Sausages",
+     "Cold cuts"
+    ]
+   }
   },
   {
    "name": "Extrawurst",
@@ -1683,7 +2448,15 @@
    "unitLabel": "Scheibe",
    "tags": [],
    "grams": 15.0,
-   "source": "BLS 4.0 W231100"
+   "source": "BLS 4.0 W231100",
+   "en": {
+    "name": "Luncheon meat",
+    "aliases": [
+     "Bologna",
+     "Lyoner",
+     "Cold cuts slice"
+    ]
+   }
   },
   {
    "name": "Salami",
@@ -1699,7 +2472,14 @@
     "histamine"
    ],
    "grams": 10.0,
-   "source": "BLS 4.0 W149300"
+   "source": "BLS 4.0 W149300",
+   "en": {
+    "name": "Salami",
+    "aliases": [
+     "Chorizo",
+     "Pepperoni"
+    ]
+   }
   },
   {
    "name": "Leberwurst",
@@ -1714,7 +2494,14 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 W880100"
+   "source": "BLS 4.0 W880100",
+   "en": {
+    "name": "Liver sausage",
+    "aliases": [
+     "Liverwurst",
+     "Liver pâté"
+    ]
+   }
   },
   {
    "name": "Leberkäs",
@@ -1729,7 +2516,14 @@
     "fat"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 W256100"
+   "source": "BLS 4.0 W256100",
+   "en": {
+    "name": "Leberkäse",
+    "aliases": [
+     "Meatloaf (Bavarian)",
+     "Leberkas"
+    ]
+   }
   },
   {
    "name": "Bratwurst",
@@ -1744,7 +2538,13 @@
     "fat"
    ],
    "grams": 120.0,
-   "source": "BLS 4.0 W221100"
+   "source": "BLS 4.0 W221100",
+   "en": {
+    "name": "Bratwurst",
+    "aliases": [
+     "Grilled sausage"
+    ]
+   }
   },
   {
    "name": "Würstel",
@@ -1763,7 +2563,15 @@
     "fat": 2
    },
    "grams": 50.0,
-   "source": "BLS 4.0 W211200"
+   "source": "BLS 4.0 W211200",
+   "en": {
+    "name": "Frankfurter",
+    "aliases": [
+     "Hot dog sausage",
+     "Wiener",
+     "Vienna sausage"
+    ]
+   }
   },
   {
    "name": "Käsekrainer",
@@ -1779,7 +2587,14 @@
     "fat"
    ],
    "grams": 120.0,
-   "source": "BLS 4.0 W255300"
+   "source": "BLS 4.0 W255300",
+   "en": {
+    "name": "Cheese sausage",
+    "aliases": [
+     "Käsekrainer",
+     "Kransky"
+    ]
+   }
   },
   {
    "name": "Blutwurst",
@@ -1795,7 +2610,13 @@
     "fat": 2
    },
    "grams": 100.0,
-   "source": "BLS 4.0 W343000"
+   "source": "BLS 4.0 W343000",
+   "en": {
+    "name": "Black pudding",
+    "aliases": [
+     "Blood sausage"
+    ]
+   }
   },
   {
    "name": "Mettwurst",
@@ -1812,7 +2633,14 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 W331000"
+   "source": "BLS 4.0 W331000",
+   "en": {
+    "name": "Mettwurst",
+    "aliases": [
+     "Spreadable sausage",
+     "Teewurst"
+    ]
+   }
   },
   {
    "name": "Dönerfleisch",
@@ -1826,7 +2654,14 @@
     "fat": "M"
    },
    "grams": 120.0,
-   "source": "BLS 4.0 Y384112"
+   "source": "BLS 4.0 Y384112",
+   "en": {
+    "name": "Döner meat",
+    "aliases": [
+     "Kebab meat",
+     "Gyros meat"
+    ]
+   }
   },
   {
    "name": "Fisch",
@@ -1839,7 +2674,15 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 T207100"
+   "source": "BLS 4.0 T207100",
+   "en": {
+    "name": "Fish",
+    "aliases": [
+     "Fresh fish",
+     "Fish fillet",
+     "Pollock"
+    ]
+   }
   },
   {
    "name": "Lachs",
@@ -1853,7 +2696,13 @@
     "fat": "M"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 T410100"
+   "source": "BLS 4.0 T410100",
+   "en": {
+    "name": "Salmon",
+    "aliases": [
+     "Salmon fillet"
+    ]
+   }
   },
   {
    "name": "Forelle",
@@ -1863,7 +2712,13 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Trout",
+    "aliases": [
+     "Char"
+    ]
+   }
   },
   {
    "name": "Kabeljau",
@@ -1876,7 +2731,14 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 T207100"
+   "source": "BLS 4.0 T207100",
+   "en": {
+    "name": "Cod",
+    "aliases": [
+     "Pangasius",
+     "Alaska pollock"
+    ]
+   }
   },
   {
    "name": "Zander",
@@ -1888,7 +2750,15 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 T603100"
+   "source": "BLS 4.0 T603100",
+   "en": {
+    "name": "Pike-perch",
+    "aliases": [
+     "Zander",
+     "Pike",
+     "Perch"
+    ]
+   }
   },
   {
    "name": "Karpfen",
@@ -1899,7 +2769,10 @@
     "fat": "L"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 T501100"
+   "source": "BLS 4.0 T501100",
+   "en": {
+    "name": "Carp"
+   }
   },
   {
    "name": "Thunfisch (Dose)",
@@ -1911,7 +2784,14 @@
     "histamine"
    ],
    "grams": 80.0,
-   "source": "BLS 4.0 T121902"
+   "source": "BLS 4.0 T121902",
+   "en": {
+    "name": "Canned tuna",
+    "aliases": [
+     "Tuna",
+     "Tinned tuna"
+    ]
+   }
   },
   {
    "name": "Räucherlachs",
@@ -1924,7 +2804,14 @@
     "histamine"
    ],
    "grams": 50.0,
-   "source": "BLS 4.0 T410600"
+   "source": "BLS 4.0 T410600",
+   "en": {
+    "name": "Smoked salmon",
+    "aliases": [
+     "Smoked fish",
+     "Smoked trout"
+    ]
+   }
   },
   {
    "name": "Hering",
@@ -1941,7 +2828,14 @@
     "fat": "L"
    },
    "grams": 80.0,
-   "source": "BLS 4.0 T811100"
+   "source": "BLS 4.0 T811100",
+   "en": {
+    "name": "Herring",
+    "aliases": [
+     "Pickled herring",
+     "Rollmops"
+    ]
+   }
   },
   {
    "name": "Sardinen",
@@ -1955,7 +2849,14 @@
     "histamine"
    ],
    "grams": 80.0,
-   "source": "BLS 4.0 T105100"
+   "source": "BLS 4.0 T105100",
+   "en": {
+    "name": "Sardines",
+    "aliases": [
+     "Anchovies",
+     "Mackerel"
+    ]
+   }
   },
   {
    "name": "Garnelen",
@@ -1969,7 +2870,17 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 T753100"
+   "source": "BLS 4.0 T753100",
+   "en": {
+    "name": "Prawns",
+    "aliases": [
+     "Shrimp",
+     "Scampi",
+     "Seafood",
+     "Calamari",
+     "Mussels"
+    ]
+   }
   },
   {
    "name": "Fischstäbchen",
@@ -1985,7 +2896,14 @@
     "fat": "L"
    },
    "grams": 120.0,
-   "source": "BLS 4.0 T930100"
+   "source": "BLS 4.0 T930100",
+   "en": {
+    "name": "Fish fingers",
+    "aliases": [
+     "Fish sticks",
+     "Fish cake"
+    ]
+   }
   },
   {
    "name": "Backfisch",
@@ -1999,7 +2917,14 @@
     "gluten",
     "fat"
    ],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Fried fish",
+    "aliases": [
+     "Fish and chips",
+     "Battered fish"
+    ]
+   }
   },
   {
    "name": "Tofu (fest)",
@@ -2010,7 +2935,14 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 H861000"
+   "source": "BLS 4.0 H861000",
+   "en": {
+    "name": "Firm tofu",
+    "aliases": [
+     "Tofu",
+     "Smoked tofu"
+    ]
+   }
   },
   {
    "name": "Seidentofu",
@@ -2019,13 +2951,19 @@
     "gos"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 H861100"
+   "source": "BLS 4.0 H861100",
+   "en": {
+    "name": "Silken tofu"
+   }
   },
   {
    "name": "Tempeh",
    "unit": "size",
    "tags": [],
-   "grams": 100.0
+   "grams": 100.0,
+   "en": {
+    "name": "Tempeh"
+   }
   },
   {
    "name": "Hülsenfrüchte",
@@ -2036,7 +2974,13 @@
    "tags": [
     "gos"
    ],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Pulses",
+    "aliases": [
+     "Legumes"
+    ]
+   }
   },
   {
    "name": "Erbsen",
@@ -2050,7 +2994,14 @@
     "fructans"
    ],
    "grams": 80.0,
-   "source": "BLS 4.0 G760100"
+   "source": "BLS 4.0 G760100",
+   "en": {
+    "name": "Peas",
+    "aliases": [
+     "Green peas",
+     "Frozen peas"
+    ]
+   }
   },
   {
    "name": "Kidneybohnen",
@@ -2063,7 +3014,15 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 H742100"
+   "source": "BLS 4.0 H742100",
+   "en": {
+    "name": "Kidney beans",
+    "aliases": [
+     "Beans",
+     "Red beans",
+     "Baked beans"
+    ]
+   }
   },
   {
    "name": "Weiße Bohnen",
@@ -2076,7 +3035,15 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 X571453"
+   "source": "BLS 4.0 X571453",
+   "en": {
+    "name": "White beans",
+    "aliases": [
+     "Cannellini",
+     "Borlotti",
+     "Butter beans"
+    ]
+   }
   },
   {
    "name": "Kichererbsen",
@@ -2084,7 +3051,13 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 H720902"
+   "source": "BLS 4.0 H720902",
+   "en": {
+    "name": "Chickpeas",
+    "aliases": [
+     "Garbanzo beans"
+    ]
+   }
   },
   {
    "name": "Linsen",
@@ -2096,7 +3069,14 @@
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 H730132"
+   "source": "BLS 4.0 H730132",
+   "en": {
+    "name": "Lentils",
+    "aliases": [
+     "Red lentils",
+     "Brown lentils"
+    ]
+   }
   },
   {
    "name": "Edamame",
@@ -2110,7 +3090,13 @@
     "gos": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 G750100"
+   "source": "BLS 4.0 G750100",
+   "en": {
+    "name": "Edamame",
+    "aliases": [
+     "Soybeans"
+    ]
+   }
   },
   {
    "name": "Falafel",
@@ -2121,7 +3107,10 @@
     "fructans"
    ],
    "grams": 25.0,
-   "source": "BLS 4.0 Y9A1050"
+   "source": "BLS 4.0 Y9A1050",
+   "en": {
+    "name": "Falafel"
+   }
   },
   {
    "name": "Hummus",
@@ -2137,7 +3126,14 @@
     "fat": "L"
    },
    "grams": 50.0,
-   "source": "BLS 4.0 H960000"
+   "source": "BLS 4.0 H960000",
+   "en": {
+    "name": "Hummus",
+    "aliases": [
+     "Houmous",
+     "Chickpea dip"
+    ]
+   }
   },
   {
    "name": "Kernobst",
@@ -2151,7 +3147,13 @@
     "polyols"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 F110100"
+   "source": "BLS 4.0 F110100",
+   "en": {
+    "name": "Pome fruit",
+    "aliases": [
+     "Apples and pears"
+    ]
+   }
   },
   {
    "name": "Apfel",
@@ -2163,7 +3165,13 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 F110100"
+   "source": "BLS 4.0 F110100",
+   "en": {
+    "name": "Apple",
+    "aliases": [
+     "Apples"
+    ]
+   }
   },
   {
    "name": "Birne",
@@ -2175,7 +3183,13 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 170.0,
-   "source": "BLS 4.0 F130100"
+   "source": "BLS 4.0 F130100",
+   "en": {
+    "name": "Pear",
+    "aliases": [
+     "Pears"
+    ]
+   }
   },
   {
    "name": "Quitte",
@@ -2184,7 +3198,10 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 F140100"
+   "source": "BLS 4.0 F140100",
+   "en": {
+    "name": "Quince"
+   }
   },
   {
    "name": "Steinobst",
@@ -2195,7 +3212,10 @@
    "tags": [
     "polyols"
    ],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Stone fruit"
+   }
   },
   {
    "name": "Kirschen",
@@ -2208,7 +3228,14 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 F211100"
+   "source": "BLS 4.0 F211100",
+   "en": {
+    "name": "Cherries",
+    "aliases": [
+     "Sweet cherries",
+     "Sour cherries"
+    ]
+   }
   },
   {
    "name": "Zwetschke",
@@ -2223,7 +3250,15 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 F220100"
+   "source": "BLS 4.0 F220100",
+   "en": {
+    "name": "Plum",
+    "aliases": [
+     "Plums",
+     "Damson",
+     "Mirabelle"
+    ]
+   }
   },
   {
    "name": "Pfirsich",
@@ -2235,7 +3270,13 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 130.0,
-   "source": "BLS 4.0 F203100"
+   "source": "BLS 4.0 F203100",
+   "en": {
+    "name": "Peach",
+    "aliases": [
+     "Peaches"
+    ]
+   }
   },
   {
    "name": "Nektarine",
@@ -2244,7 +3285,10 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 130.0,
-   "source": "BLS 4.0 F202100"
+   "source": "BLS 4.0 F202100",
+   "en": {
+    "name": "Nectarine"
+   }
   },
   {
    "name": "Marille",
@@ -2257,7 +3301,13 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 40.0,
-   "source": "BLS 4.0 F201100"
+   "source": "BLS 4.0 F201100",
+   "en": {
+    "name": "Apricot",
+    "aliases": [
+     "Apricots"
+    ]
+   }
   },
   {
    "name": "Mango",
@@ -2271,7 +3321,10 @@
     "polyols"
    ],
    "grams": 200.0,
-   "source": "BLS 4.0 F516100"
+   "source": "BLS 4.0 F516100",
+   "en": {
+    "name": "Mango"
+   }
   },
   {
    "name": "Beeren",
@@ -2281,7 +3334,13 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 125.0
+   "grams": 125.0,
+   "en": {
+    "name": "Berries",
+    "aliases": [
+     "Mixed berries"
+    ]
+   }
   },
   {
    "name": "Erdbeeren",
@@ -2295,7 +3354,13 @@
     "fructose": "L"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 F301100"
+   "source": "BLS 4.0 F301100",
+   "en": {
+    "name": "Strawberries",
+    "aliases": [
+     "Strawberry"
+    ]
+   }
   },
   {
    "name": "Himbeeren",
@@ -2309,7 +3374,13 @@
     "fructans": "L"
    },
    "grams": 125.0,
-   "source": "BLS 4.0 F302100"
+   "source": "BLS 4.0 F302100",
+   "en": {
+    "name": "Raspberries",
+    "aliases": [
+     "Raspberry"
+    ]
+   }
   },
   {
    "name": "Heidelbeeren",
@@ -2322,7 +3393,14 @@
    "tags": [],
    "grams": 125.0,
    "note": "BLS weist Fructoseüberschuss aus; Monash misst Heidelbeeren als verträglich.",
-   "source": "BLS 4.0 F304100"
+   "source": "BLS 4.0 F304100",
+   "en": {
+    "name": "Blueberries",
+    "aliases": [
+     "Bilberries"
+    ],
+    "note": "BLS shows excess fructose; Monash measures blueberries as tolerated."
+   }
   },
   {
    "name": "Brombeeren",
@@ -2335,7 +3413,13 @@
     "polyols"
    ],
    "grams": 125.0,
-   "source": "BLS 4.0 F303100"
+   "source": "BLS 4.0 F303100",
+   "en": {
+    "name": "Blackberries",
+    "aliases": [
+     "Blackberry"
+    ]
+   }
   },
   {
    "name": "Ribisel",
@@ -2350,7 +3434,14 @@
     "fructose": "M"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 F321100"
+   "source": "BLS 4.0 F321100",
+   "en": {
+    "name": "Currants",
+    "aliases": [
+     "Redcurrants",
+     "Blackcurrants"
+    ]
+   }
   },
   {
    "name": "Preiselbeeren",
@@ -2361,7 +3452,13 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 F401100"
+   "source": "BLS 4.0 F401100",
+   "en": {
+    "name": "Lingonberries",
+    "aliases": [
+     "Cranberries (fresh)"
+    ]
+   }
   },
   {
    "name": "Weintrauben",
@@ -2375,7 +3472,10 @@
     "fructose"
    ],
    "grams": 125.0,
-   "source": "BLS 4.0 F310100"
+   "source": "BLS 4.0 F310100",
+   "en": {
+    "name": "Grapes"
+   }
   },
   {
    "name": "Zitrusfrüchte",
@@ -2385,7 +3485,10 @@
    "unit": "count",
    "unitLabel": "Stück",
    "tags": [],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Citrus fruit"
+   }
   },
   {
    "name": "Orange",
@@ -2398,7 +3501,14 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 F603100"
+   "source": "BLS 4.0 F603100",
+   "en": {
+    "name": "Orange",
+    "aliases": [
+     "Oranges",
+     "Blood orange"
+    ]
+   }
   },
   {
    "name": "Mandarine",
@@ -2411,7 +3521,14 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 F606100"
+   "source": "BLS 4.0 F606100",
+   "en": {
+    "name": "Mandarin",
+    "aliases": [
+     "Clementine",
+     "Tangerine"
+    ]
+   }
   },
   {
    "name": "Grapefruit",
@@ -2425,7 +3542,13 @@
     "fructans"
    ],
    "grams": 250.0,
-   "source": "BLS 4.0 F604100"
+   "source": "BLS 4.0 F604100",
+   "en": {
+    "name": "Grapefruit",
+    "aliases": [
+     "Pomelo"
+    ]
+   }
   },
   {
    "name": "Zitrone",
@@ -2438,7 +3561,14 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 60.0,
-   "source": "BLS 4.0 F601100"
+   "source": "BLS 4.0 F601100",
+   "en": {
+    "name": "Lemon",
+    "aliases": [
+     "Lime",
+     "Lemon juice"
+    ]
+   }
   },
   {
    "name": "Banane",
@@ -2452,7 +3582,14 @@
    ],
    "grams": 120.0,
    "note": "Reife Bananen enthalten Fructane, unreife (grünliche) kaum.",
-   "source": "BLS 4.0 F503100"
+   "source": "BLS 4.0 F503100",
+   "en": {
+    "name": "Banana",
+    "aliases": [
+     "Bananas"
+    ],
+    "note": "Ripe bananas contain fructans, unripe (greenish) ones hardly any."
+   }
   },
   {
    "name": "Kiwi",
@@ -2460,14 +3597,23 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 70.0,
-   "source": "BLS 4.0 F514100"
+   "source": "BLS 4.0 F514100",
+   "en": {
+    "name": "Kiwi",
+    "aliases": [
+     "Kiwi fruit"
+    ]
+   }
   },
   {
    "name": "Ananas",
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 F501100"
+   "source": "BLS 4.0 F501100",
+   "en": {
+    "name": "Pineapple"
+   }
   },
   {
    "name": "Wassermelone",
@@ -2480,7 +3626,10 @@
     "polyols": "M"
    },
    "grams": 200.0,
-   "source": "BLS 4.0 F535100"
+   "source": "BLS 4.0 F535100",
+   "en": {
+    "name": "Watermelon"
+   }
   },
   {
    "name": "Honigmelone",
@@ -2494,7 +3643,14 @@
     "fructans": "L"
    },
    "grams": 200.0,
-   "source": "BLS 4.0 F533100"
+   "source": "BLS 4.0 F533100",
+   "en": {
+    "name": "Honeydew melon",
+    "aliases": [
+     "Melon",
+     "Cantaloupe"
+    ]
+   }
   },
   {
    "name": "Feige",
@@ -2507,7 +3663,13 @@
     "fructans"
    ],
    "grams": 50.0,
-   "source": "BLS 4.0 F505100"
+   "source": "BLS 4.0 F505100",
+   "en": {
+    "name": "Fig",
+    "aliases": [
+     "Figs"
+    ]
+   }
   },
   {
    "name": "Granatapfel",
@@ -2520,14 +3682,23 @@
     "fructose": "M"
    },
    "grams": 80.0,
-   "source": "BLS 4.0 F506100"
+   "source": "BLS 4.0 F506100",
+   "en": {
+    "name": "Pomegranate",
+    "aliases": [
+     "Pomegranate seeds"
+    ]
+   }
   },
   {
    "name": "Papaya",
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 F517100"
+   "source": "BLS 4.0 F517100",
+   "en": {
+    "name": "Papaya"
+   }
   },
   {
    "name": "Maracuja",
@@ -2538,7 +3709,10 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 20.0,
-   "source": "BLS 4.0 F508100"
+   "source": "BLS 4.0 F508100",
+   "en": {
+    "name": "Passion fruit"
+   }
   },
   {
    "name": "Litschi",
@@ -2551,7 +3725,13 @@
     "polyols": "M"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 F515100"
+   "source": "BLS 4.0 F515100",
+   "en": {
+    "name": "Lychee",
+    "aliases": [
+     "Litchi"
+    ]
+   }
   },
   {
    "name": "Kaki",
@@ -2563,14 +3743,24 @@
    "unitLabel": "Stück",
    "tags": [],
    "grams": 200.0,
-   "source": "BLS 4.0 F507100"
+   "source": "BLS 4.0 F507100",
+   "en": {
+    "name": "Persimmon",
+    "aliases": [
+     "Sharon fruit",
+     "Kaki"
+    ]
+   }
   },
   {
    "name": "Rhabarber",
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 F081100"
+   "source": "BLS 4.0 F081100",
+   "en": {
+    "name": "Rhubarb"
+   }
   },
   {
    "name": "Avocado",
@@ -2581,7 +3771,11 @@
    },
    "grams": 50.0,
    "note": "Ca. 1/8 Avocado gilt als verträglich.",
-   "source": "BLS 4.0 F502100"
+   "source": "BLS 4.0 F502100",
+   "en": {
+    "name": "Avocado",
+    "note": "About 1/8 of an avocado is considered tolerated."
+   }
   },
   {
    "name": "Kokosnuss",
@@ -2594,7 +3788,14 @@
    "doseTags": {
     "polyols": "L"
    },
-   "grams": 30.0
+   "grams": 30.0,
+   "en": {
+    "name": "Coconut",
+    "aliases": [
+     "Desiccated coconut",
+     "Coconut flakes"
+    ]
+   }
   },
   {
    "name": "Trockenobst",
@@ -2608,7 +3809,10 @@
     "polyols",
     "fructans"
    ],
-   "grams": 30.0
+   "grams": 30.0,
+   "en": {
+    "name": "Dried fruit"
+   }
   },
   {
    "name": "Datteln",
@@ -2626,7 +3830,13 @@
     "polyols"
    ],
    "grams": 8.0,
-   "source": "BLS 4.0 F504400"
+   "source": "BLS 4.0 F504400",
+   "en": {
+    "name": "Dates",
+    "aliases": [
+     "Date"
+    ]
+   }
   },
   {
    "name": "Rosinen",
@@ -2641,7 +3851,13 @@
     "polyols": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 F840100"
+   "source": "BLS 4.0 F840100",
+   "en": {
+    "name": "Raisins",
+    "aliases": [
+     "Sultanas"
+    ]
+   }
   },
   {
    "name": "Dörrzwetschken",
@@ -2657,7 +3873,13 @@
     "fructose"
    ],
    "grams": 10.0,
-   "source": "BLS 4.0 F220400"
+   "source": "BLS 4.0 F220400",
+   "en": {
+    "name": "Prunes",
+    "aliases": [
+     "Dried plums"
+    ]
+   }
   },
   {
    "name": "Dörrmarillen",
@@ -2672,7 +3894,10 @@
     "fructose"
    ],
    "grams": 8.0,
-   "source": "BLS 4.0 F201400"
+   "source": "BLS 4.0 F201400",
+   "en": {
+    "name": "Dried apricots"
+   }
   },
   {
    "name": "Getrocknete Feigen",
@@ -2688,7 +3913,10 @@
     "polyols"
    ],
    "grams": 20.0,
-   "source": "BLS 4.0 F505400"
+   "source": "BLS 4.0 F505400",
+   "en": {
+    "name": "Dried figs"
+   }
   },
   {
    "name": "Cranberrys",
@@ -2705,7 +3933,13 @@
     "fructans"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 F414400"
+   "source": "BLS 4.0 F414400",
+   "en": {
+    "name": "Dried cranberries",
+    "aliases": [
+     "Cranberries"
+    ]
+   }
   },
   {
    "name": "Apfelmus",
@@ -2721,7 +3955,15 @@
     "polyols": "M"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 Y864112"
+   "source": "BLS 4.0 Y864112",
+   "en": {
+    "name": "Apple sauce",
+    "aliases": [
+     "Applesauce",
+     "Stewed apple",
+     "Compote"
+    ]
+   }
   },
   {
    "name": "Zwiebelgewächse",
@@ -2732,7 +3974,13 @@
    "tags": [
     "fructans"
    ],
-   "grams": 50.0
+   "grams": 50.0,
+   "en": {
+    "name": "Alliums",
+    "aliases": [
+     "Onion family"
+    ]
+   }
   },
   {
    "name": "Zwiebel",
@@ -2746,7 +3994,15 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G480100"
+   "source": "BLS 4.0 G480100",
+   "en": {
+    "name": "Onion",
+    "aliases": [
+     "Onions",
+     "Red onion",
+     "Fried onions"
+    ]
+   }
   },
   {
    "name": "Knoblauch",
@@ -2758,7 +4014,13 @@
    "unit": "size",
    "tags": [],
    "grams": 4.0,
-   "source": "BLS 4.0 G490100"
+   "source": "BLS 4.0 G490100",
+   "en": {
+    "name": "Garlic",
+    "aliases": [
+     "Garlic clove"
+    ]
+   }
   },
   {
    "name": "Lauch",
@@ -2770,7 +4032,13 @@
    "unit": "size",
    "tags": [],
    "grams": 80.0,
-   "source": "BLS 4.0 G470100"
+   "source": "BLS 4.0 G470100",
+   "en": {
+    "name": "Leek",
+    "aliases": [
+     "Leeks"
+    ]
+   }
   },
   {
    "name": "Frühlingszwiebel",
@@ -2783,7 +4051,15 @@
    "tags": [],
    "grams": 20.0,
    "note": "Nur der grüne Teil ist FODMAP-arm.",
-   "source": "BLS 4.0 G482100"
+   "source": "BLS 4.0 G482100",
+   "en": {
+    "name": "Spring onion",
+    "aliases": [
+     "Scallion",
+     "Green onion"
+    ],
+    "note": "Only the green part is low in FODMAPs."
+   }
   },
   {
    "name": "Schalotte",
@@ -2794,7 +4070,13 @@
    "unit": "size",
    "tags": [],
    "grams": 20.0,
-   "source": "BLS 4.0 G485100"
+   "source": "BLS 4.0 G485100",
+   "en": {
+    "name": "Shallot",
+    "aliases": [
+     "Shallots"
+    ]
+   }
   },
   {
    "name": "Schnittlauch",
@@ -2806,7 +4088,11 @@
    ],
    "grams": 5.0,
    "note": "FODMAP-arm, auch in größeren Mengen.",
-   "source": "BLS 4.0 G081100"
+   "source": "BLS 4.0 G081100",
+   "en": {
+    "name": "Chives",
+    "note": "Low in FODMAPs, even in larger amounts."
+   }
   },
   {
    "name": "Kohl",
@@ -2816,7 +4102,13 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 100.0
+   "grams": 100.0,
+   "en": {
+    "name": "Cabbage",
+    "aliases": [
+     "Cabbage vegetables"
+    ]
+   }
   },
   {
    "name": "Weißkraut",
@@ -2831,7 +4123,13 @@
     "polyols": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 G342100"
+   "source": "BLS 4.0 G342100",
+   "en": {
+    "name": "White cabbage",
+    "aliases": [
+     "Coleslaw cabbage"
+    ]
+   }
   },
   {
    "name": "Rotkraut",
@@ -2843,7 +4141,10 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G341100"
+   "source": "BLS 4.0 G341100",
+   "en": {
+    "name": "Red cabbage"
+   }
   },
   {
    "name": "Wirsing",
@@ -2858,7 +4159,10 @@
     "fructans": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 G343100"
+   "source": "BLS 4.0 G343100",
+   "en": {
+    "name": "Savoy cabbage"
+   }
   },
   {
    "name": "Kohlsprossen",
@@ -2874,7 +4178,10 @@
     "polyols": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 G332100"
+   "source": "BLS 4.0 G332100",
+   "en": {
+    "name": "Brussels sprouts"
+   }
   },
   {
    "name": "Karfiol",
@@ -2887,7 +4194,10 @@
     "polyols"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 G311100"
+   "source": "BLS 4.0 G311100",
+   "en": {
+    "name": "Cauliflower"
+   }
   },
   {
    "name": "Brokkoli",
@@ -2902,7 +4212,11 @@
    },
    "grams": 150.0,
    "note": "Röschen sind gut verträglich, Stiele enthalten mehr Fructose.",
-   "source": "BLS 4.0 G312100"
+   "source": "BLS 4.0 G312100",
+   "en": {
+    "name": "Broccoli",
+    "note": "Florets are well tolerated; stalks contain more fructose."
+   }
   },
   {
    "name": "Kohlrabi",
@@ -2910,7 +4224,10 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G331100"
+   "source": "BLS 4.0 G331100",
+   "en": {
+    "name": "Kohlrabi"
+   }
   },
   {
    "name": "Chinakohl",
@@ -2922,7 +4239,15 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G321100"
+   "source": "BLS 4.0 G321100",
+   "en": {
+    "name": "Chinese cabbage",
+    "aliases": [
+     "Napa cabbage",
+     "Pak choi",
+     "Bok choy"
+    ]
+   }
   },
   {
    "name": "Grünkohl",
@@ -2936,7 +4261,10 @@
     "polyols": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 G322100"
+   "source": "BLS 4.0 G322100",
+   "en": {
+    "name": "Kale"
+   }
   },
   {
    "name": "Sauerkraut",
@@ -2946,7 +4274,10 @@
     "histamine"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 G345902"
+   "source": "BLS 4.0 G345902",
+   "en": {
+    "name": "Sauerkraut"
+   }
   },
   {
    "name": "Schwammerl",
@@ -2959,7 +4290,13 @@
     "polyols"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 K701100"
+   "source": "BLS 4.0 K701100",
+   "en": {
+    "name": "Mushrooms",
+    "aliases": [
+     "Mushroom"
+    ]
+   }
   },
   {
    "name": "Champignons",
@@ -2971,7 +4308,14 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 K701100"
+   "source": "BLS 4.0 K701100",
+   "en": {
+    "name": "Button mushrooms",
+    "aliases": [
+     "White mushrooms",
+     "Champignons"
+    ]
+   }
   },
   {
    "name": "Eierschwammerl",
@@ -2985,7 +4329,10 @@
     "polyols": "M"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 K713100"
+   "source": "BLS 4.0 K713100",
+   "en": {
+    "name": "Chanterelles"
+   }
   },
   {
    "name": "Steinpilze",
@@ -2996,14 +4343,23 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 K718100"
+   "source": "BLS 4.0 K718100",
+   "en": {
+    "name": "Porcini",
+    "aliases": [
+     "Ceps"
+    ]
+   }
   },
   {
    "name": "Shiitake",
    "parent": "Schwammerl",
    "unit": "size",
    "tags": [],
-   "grams": 100.0
+   "grams": 100.0,
+   "en": {
+    "name": "Shiitake"
+   }
   },
   {
    "name": "Austernpilze",
@@ -3018,7 +4374,13 @@
     "polyols": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 K740100"
+   "source": "BLS 4.0 K740100",
+   "en": {
+    "name": "Oyster mushrooms",
+    "aliases": [
+     "King oyster mushrooms"
+    ]
+   }
   },
   {
    "name": "Fisolen",
@@ -3033,7 +4395,14 @@
     "polyols": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 X5A8000"
+   "source": "BLS 4.0 X5A8000",
+   "en": {
+    "name": "Green beans",
+    "aliases": [
+     "French beans",
+     "String beans"
+    ]
+   }
   },
   {
    "name": "Mais",
@@ -3048,7 +4417,14 @@
     "polyols": "L"
    },
    "grams": 80.0,
-   "source": "BLS 4.0 G570100"
+   "source": "BLS 4.0 G570100",
+   "en": {
+    "name": "Sweetcorn",
+    "aliases": [
+     "Corn",
+     "Corn on the cob"
+    ]
+   }
   },
   {
    "name": "Paprika",
@@ -3059,7 +4435,15 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G543100"
+   "source": "BLS 4.0 G543100",
+   "en": {
+    "name": "Bell pepper",
+    "aliases": [
+     "Pepper",
+     "Capsicum",
+     "Red pepper"
+    ]
+   }
   },
   {
    "name": "Pfefferoni",
@@ -3070,7 +4454,14 @@
    "unit": "size",
    "tags": [],
    "grams": 20.0,
-   "source": "BLS 4.0 G553100"
+   "source": "BLS 4.0 G553100",
+   "en": {
+    "name": "Pepperoncini",
+    "aliases": [
+     "Mild chilli peppers",
+     "Pickled peppers"
+    ]
+   }
   },
   {
    "name": "Chili",
@@ -3084,7 +4475,15 @@
     "spicy"
    ],
    "grams": 5.0,
-   "source": "BLS 4.0 G554100"
+   "source": "BLS 4.0 G554100",
+   "en": {
+    "name": "Chilli",
+    "aliases": [
+     "Chili pepper",
+     "Hot pepper",
+     "Jalapeño"
+    ]
+   }
   },
   {
    "name": "Gurke",
@@ -3096,7 +4495,13 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G520100"
+   "source": "BLS 4.0 G520100",
+   "en": {
+    "name": "Cucumber",
+    "aliases": [
+     "Cucumber salad"
+    ]
+   }
   },
   {
    "name": "Essiggurkerl",
@@ -3111,7 +4516,14 @@
     "histamine"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 G520802"
+   "source": "BLS 4.0 G520802",
+   "en": {
+    "name": "Gherkins",
+    "aliases": [
+     "Pickles",
+     "Pickled cucumbers"
+    ]
+   }
   },
   {
    "name": "Tomate",
@@ -3129,7 +4541,14 @@
     "histamine"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 G561100"
+   "source": "BLS 4.0 G561100",
+   "en": {
+    "name": "Tomato",
+    "aliases": [
+     "Tomatoes",
+     "Cherry tomatoes"
+    ]
+   }
   },
   {
    "name": "Getrocknete Tomaten",
@@ -3144,7 +4563,13 @@
     "fructose": "L"
    },
    "grams": 10.0,
-   "source": "BLS 4.0 G560400"
+   "source": "BLS 4.0 G560400",
+   "en": {
+    "name": "Sun-dried tomatoes",
+    "aliases": [
+     "Dried tomatoes"
+    ]
+   }
   },
   {
    "name": "Karotte",
@@ -3157,7 +4582,13 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G620100"
+   "source": "BLS 4.0 G620100",
+   "en": {
+    "name": "Carrot",
+    "aliases": [
+     "Carrots"
+    ]
+   }
   },
   {
    "name": "Zucchini",
@@ -3170,7 +4601,13 @@
     "fructans": "L"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 G582100"
+   "source": "BLS 4.0 G582100",
+   "en": {
+    "name": "Courgette",
+    "aliases": [
+     "Zucchini"
+    ]
+   }
   },
   {
    "name": "Melanzani",
@@ -3185,7 +4622,13 @@
     "polyols": "L"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 G510100"
+   "source": "BLS 4.0 G510100",
+   "en": {
+    "name": "Aubergine",
+    "aliases": [
+     "Eggplant"
+    ]
+   }
   },
   {
    "name": "Spinat",
@@ -3198,14 +4641,27 @@
     "histamine"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 G211100"
+   "source": "BLS 4.0 G211100",
+   "en": {
+    "name": "Spinach",
+    "aliases": [
+     "Creamed spinach",
+     "Leaf spinach"
+    ]
+   }
   },
   {
    "name": "Mangold",
    "unit": "size",
    "tags": [],
    "grams": 150.0,
-   "source": "BLS 4.0 G230100"
+   "source": "BLS 4.0 G230100",
+   "en": {
+    "name": "Chard",
+    "aliases": [
+     "Swiss chard"
+    ]
+   }
   },
   {
    "name": "Kürbis",
@@ -3219,7 +4675,15 @@
     "polyols": "L"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 G581000"
+   "source": "BLS 4.0 G581000",
+   "en": {
+    "name": "Pumpkin",
+    "aliases": [
+     "Squash",
+     "Butternut squash",
+     "Hokkaido"
+    ]
+   }
   },
   {
    "name": "Rote Rüben",
@@ -3234,7 +4698,13 @@
     "gos"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 G613100"
+   "source": "BLS 4.0 G613100",
+   "en": {
+    "name": "Beetroot",
+    "aliases": [
+     "Beets"
+    ]
+   }
   },
   {
    "name": "Sellerie",
@@ -3248,7 +4718,13 @@
     "polyols": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 G660100"
+   "source": "BLS 4.0 G660100",
+   "en": {
+    "name": "Celeriac",
+    "aliases": [
+     "Celery root"
+    ]
+   }
   },
   {
    "name": "Stangensellerie",
@@ -3263,7 +4739,14 @@
    ],
    "grams": 50.0,
    "note": "Monash misst deutlich mehr Mannit als BLS.",
-   "source": "BLS 4.0 G220100"
+   "source": "BLS 4.0 G220100",
+   "en": {
+    "name": "Celery",
+    "aliases": [
+     "Celery sticks"
+    ],
+    "note": "Monash measures much more mannitol than BLS."
+   }
   },
   {
    "name": "Fenchel",
@@ -3277,7 +4760,10 @@
     "fructans": "L"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 G430100"
+   "source": "BLS 4.0 G430100",
+   "en": {
+    "name": "Fennel"
+   }
   },
   {
    "name": "Wurzelgemüse",
@@ -3287,7 +4773,13 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 100.0
+   "grams": 100.0,
+   "en": {
+    "name": "Root vegetables",
+    "aliases": [
+     "Soup greens"
+    ]
+   }
   },
   {
    "name": "Pastinake",
@@ -3298,7 +4790,13 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G640100"
+   "source": "BLS 4.0 G640100",
+   "en": {
+    "name": "Parsnip",
+    "aliases": [
+     "Parsnips"
+    ]
+   }
   },
   {
    "name": "Petersilienwurzel",
@@ -3313,7 +4811,10 @@
     "polyols": "M"
    },
    "grams": 50.0,
-   "source": "BLS 4.0 G670100"
+   "source": "BLS 4.0 G670100",
+   "en": {
+    "name": "Parsley root"
+   }
   },
   {
    "name": "Topinambur",
@@ -3325,7 +4826,13 @@
    "tags": [
     "fructans"
    ],
-   "grams": 100.0
+   "grams": 100.0,
+   "en": {
+    "name": "Jerusalem artichoke",
+    "aliases": [
+     "Sunchoke"
+    ]
+   }
   },
   {
    "name": "Rettich",
@@ -3336,7 +4843,14 @@
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G680100"
+   "source": "BLS 4.0 G680100",
+   "en": {
+    "name": "Radish (white)",
+    "aliases": [
+     "Daikon",
+     "White radish"
+    ]
+   }
   },
   {
    "name": "Radieschen",
@@ -3344,7 +4858,13 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G691100"
+   "source": "BLS 4.0 G691100",
+   "en": {
+    "name": "Radishes",
+    "aliases": [
+     "Radish"
+    ]
+   }
   },
   {
    "name": "Spargel",
@@ -3360,7 +4880,14 @@
     "fructose": "L"
    },
    "grams": 150.0,
-   "source": "BLS 4.0 G450100"
+   "source": "BLS 4.0 G450100",
+   "en": {
+    "name": "Asparagus",
+    "aliases": [
+     "Green asparagus",
+     "White asparagus"
+    ]
+   }
   },
   {
    "name": "Artischocke",
@@ -3372,7 +4899,13 @@
     "fructans"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 G410100"
+   "source": "BLS 4.0 G410100",
+   "en": {
+    "name": "Artichoke",
+    "aliases": [
+     "Artichoke hearts"
+    ]
+   }
   },
   {
    "name": "Blattsalat",
@@ -3383,7 +4916,15 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G105100"
+   "source": "BLS 4.0 G105100",
+   "en": {
+    "name": "Lettuce",
+    "aliases": [
+     "Salad",
+     "Green salad",
+     "Salad leaves"
+    ]
+   }
   },
   {
    "name": "Häuptelsalat",
@@ -3395,7 +4936,13 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G105100"
+   "source": "BLS 4.0 G105100",
+   "en": {
+    "name": "Butterhead lettuce",
+    "aliases": [
+     "Round lettuce"
+    ]
+   }
   },
   {
    "name": "Eisbergsalat",
@@ -3406,7 +4953,10 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G103100"
+   "source": "BLS 4.0 G103100",
+   "en": {
+    "name": "Iceberg lettuce"
+   }
   },
   {
    "name": "Vogerlsalat",
@@ -3418,7 +4968,14 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G104100"
+   "source": "BLS 4.0 G104100",
+   "en": {
+    "name": "Lamb's lettuce",
+    "aliases": [
+     "Corn salad",
+     "Mâche"
+    ]
+   }
   },
   {
    "name": "Rucola",
@@ -3429,7 +4986,13 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 G130100"
+   "source": "BLS 4.0 G130100",
+   "en": {
+    "name": "Rocket",
+    "aliases": [
+     "Arugula"
+    ]
+   }
   },
   {
    "name": "Endivie",
@@ -3441,7 +5004,14 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G102100"
+   "source": "BLS 4.0 G102100",
+   "en": {
+    "name": "Endive",
+    "aliases": [
+     "Frisée",
+     "Escarole"
+    ]
+   }
   },
   {
    "name": "Radicchio",
@@ -3453,7 +5023,13 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 G106100"
+   "source": "BLS 4.0 G106100",
+   "en": {
+    "name": "Radicchio",
+    "aliases": [
+     "Chicory"
+    ]
+   }
   },
   {
    "name": "Sprossen",
@@ -3465,21 +5041,34 @@
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 H650100"
+   "source": "BLS 4.0 H650100",
+   "en": {
+    "name": "Sprouts",
+    "aliases": [
+     "Bean sprouts",
+     "Mung bean sprouts"
+    ]
+   }
   },
   {
    "name": "Bambussprossen",
    "unit": "size",
    "tags": [],
    "grams": 50.0,
-   "source": "BLS 4.0 H610100"
+   "source": "BLS 4.0 H610100",
+   "en": {
+    "name": "Bamboo shoots"
+   }
   },
   {
    "name": "Okra",
    "unit": "size",
    "tags": [],
    "grams": 100.0,
-   "source": "BLS 4.0 G530100"
+   "source": "BLS 4.0 G530100",
+   "en": {
+    "name": "Okra"
+   }
   },
   {
    "name": "Oliven",
@@ -3490,14 +5079,24 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 H510802"
+   "source": "BLS 4.0 H510802",
+   "en": {
+    "name": "Olives",
+    "aliases": [
+     "Green olives",
+     "Black olives"
+    ]
+   }
   },
   {
    "name": "Kapern",
    "unit": "size",
    "tags": [],
    "grams": 5.0,
-   "source": "BLS 4.0 G012902"
+   "source": "BLS 4.0 G012902",
+   "en": {
+    "name": "Capers"
+   }
   },
   {
    "name": "Ingwer",
@@ -3507,7 +5106,13 @@
    "unit": "size",
    "tags": [],
    "grams": 5.0,
-   "source": "BLS 4.0 R211200"
+   "source": "BLS 4.0 R211200",
+   "en": {
+    "name": "Ginger",
+    "aliases": [
+     "Ginger root"
+    ]
+   }
   },
   {
    "name": "Kräuter",
@@ -3522,7 +5127,18 @@
    "unit": "size",
    "tags": [],
    "grams": 5.0,
-   "source": "BLS 4.0 G061000"
+   "source": "BLS 4.0 G061000",
+   "en": {
+    "name": "Herbs",
+    "aliases": [
+     "Parsley",
+     "Basil",
+     "Dill",
+     "Cress",
+     "Coriander",
+     "Mint"
+    ]
+   }
   },
   {
    "name": "Nüsse",
@@ -3532,7 +5148,14 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 30.0
+   "grams": 30.0,
+   "en": {
+    "name": "Nuts",
+    "aliases": [
+     "Mixed nuts",
+     "Trail mix"
+    ]
+   }
   },
   {
    "name": "Cashewkerne",
@@ -3549,7 +5172,13 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 H170100"
+   "source": "BLS 4.0 H170100",
+   "en": {
+    "name": "Cashews",
+    "aliases": [
+     "Cashew nuts"
+    ]
+   }
   },
   {
    "name": "Pistazien",
@@ -3563,7 +5192,10 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 H250600"
+   "source": "BLS 4.0 H250600",
+   "en": {
+    "name": "Pistachios"
+   }
   },
   {
    "name": "Mandeln",
@@ -3579,7 +5211,14 @@
    },
    "grams": 30.0,
    "note": "Bis ca. 10 Stück gilt als verträglich.",
-   "source": "BLS 4.0 H210100"
+   "source": "BLS 4.0 H210100",
+   "en": {
+    "name": "Almonds",
+    "aliases": [
+     "Almond butter"
+    ],
+    "note": "Up to about 10 almonds are considered tolerated."
+   }
   },
   {
    "name": "Haselnüsse",
@@ -3594,7 +5233,13 @@
     "fat": "M"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 H130100"
+   "source": "BLS 4.0 H130100",
+   "en": {
+    "name": "Hazelnuts",
+    "aliases": [
+     "Hazelnut"
+    ]
+   }
   },
   {
    "name": "Walnüsse",
@@ -3609,7 +5254,14 @@
     "fat": "M"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 H120100"
+   "source": "BLS 4.0 H120100",
+   "en": {
+    "name": "Walnuts",
+    "aliases": [
+     "Walnut",
+     "Pecans"
+    ]
+   }
   },
   {
    "name": "Erdnüsse",
@@ -3624,7 +5276,14 @@
     "fat": "L"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 H110600"
+   "source": "BLS 4.0 H110600",
+   "en": {
+    "name": "Peanuts",
+    "aliases": [
+     "Peanut",
+     "Peanut puffs"
+    ]
+   }
   },
   {
    "name": "Macadamia",
@@ -3638,7 +5297,13 @@
     "fat": "M"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 H190600"
+   "source": "BLS 4.0 H190600",
+   "en": {
+    "name": "Macadamia nuts",
+    "aliases": [
+     "Macadamia"
+    ]
+   }
   },
   {
    "name": "Paranüsse",
@@ -3649,7 +5314,10 @@
     "fat": "M"
    },
    "grams": 30.0,
-   "source": "BLS 4.0 H180100"
+   "source": "BLS 4.0 H180100",
+   "en": {
+    "name": "Brazil nuts"
+   }
   },
   {
    "name": "Pinienkerne",
@@ -3660,7 +5328,10 @@
     "fat": "L"
    },
    "grams": 15.0,
-   "source": "BLS 4.0 H320100"
+   "source": "BLS 4.0 H320100",
+   "en": {
+    "name": "Pine nuts"
+   }
   },
   {
    "name": "Erdnussbutter",
@@ -3674,7 +5345,10 @@
     "fat": "L"
    },
    "grams": 20.0,
-   "source": "BLS 4.0 H880200"
+   "source": "BLS 4.0 H880200",
+   "en": {
+    "name": "Peanut butter"
+   }
   },
   {
    "name": "Samen",
@@ -3684,7 +5358,10 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 15.0
+   "grams": 15.0,
+   "en": {
+    "name": "Seeds"
+   }
   },
   {
    "name": "Leinsamen",
@@ -3695,7 +5372,13 @@
    "unit": "size",
    "tags": [],
    "grams": 15.0,
-   "source": "BLS 4.0 H410100"
+   "source": "BLS 4.0 H410100",
+   "en": {
+    "name": "Linseed",
+    "aliases": [
+     "Flaxseed"
+    ]
+   }
   },
   {
    "name": "Chiasamen",
@@ -3706,7 +5389,13 @@
    "unit": "size",
    "tags": [],
    "grams": 15.0,
-   "source": "BLS 4.0 H480100"
+   "source": "BLS 4.0 H480100",
+   "en": {
+    "name": "Chia seeds",
+    "aliases": [
+     "Chia"
+    ]
+   }
   },
   {
    "name": "Kürbiskerne",
@@ -3717,7 +5406,13 @@
    "unit": "size",
    "tags": [],
    "grams": 15.0,
-   "source": "BLS 4.0 H310100"
+   "source": "BLS 4.0 H310100",
+   "en": {
+    "name": "Pumpkin seeds",
+    "aliases": [
+     "Sunflower seeds"
+    ]
+   }
   },
   {
    "name": "Sesam",
@@ -3729,7 +5424,14 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 H420100"
+   "source": "BLS 4.0 H420100",
+   "en": {
+    "name": "Sesame",
+    "aliases": [
+     "Tahini",
+     "Sesame paste"
+    ]
+   }
   },
   {
    "name": "Schokolade",
@@ -3744,7 +5446,10 @@
     "fat": "L"
    },
    "grams": 25.0,
-   "source": "BLS 4.0 S530000"
+   "source": "BLS 4.0 S530000",
+   "en": {
+    "name": "Chocolate"
+   }
   },
   {
    "name": "Vollmilchschokolade",
@@ -3755,7 +5460,10 @@
    "unit": "size",
    "tags": [],
    "grams": 25.0,
-   "source": "BLS 4.0 S539900"
+   "source": "BLS 4.0 S539900",
+   "en": {
+    "name": "Milk chocolate"
+   }
   },
   {
    "name": "Zartbitterschokolade",
@@ -3770,7 +5478,14 @@
     "lactose"
    ],
    "grams": 25.0,
-   "source": "BLS 4.0 S570000"
+   "source": "BLS 4.0 S570000",
+   "en": {
+    "name": "Dark chocolate",
+    "aliases": [
+     "Plain chocolate",
+     "Bittersweet chocolate"
+    ]
+   }
   },
   {
    "name": "Weiße Schokolade",
@@ -3778,7 +5493,10 @@
    "unit": "size",
    "tags": [],
    "grams": 25.0,
-   "source": "BLS 4.0 S580000"
+   "source": "BLS 4.0 S580000",
+   "en": {
+    "name": "White chocolate"
+   }
   },
   {
    "name": "Nuss-Nougat-Creme",
@@ -3792,7 +5510,13 @@
     "lactose": "L"
    },
    "grams": 20.0,
-   "source": "BLS 4.0 S145000"
+   "source": "BLS 4.0 S145000",
+   "en": {
+    "name": "Chocolate hazelnut spread",
+    "aliases": [
+     "Nutella"
+    ]
+   }
   },
   {
    "name": "Rührkuchen",
@@ -3811,7 +5535,15 @@
    "doseTags": {
     "fat": 2
    },
-   "grams": 70.0
+   "grams": 70.0,
+   "en": {
+    "name": "Cake",
+    "aliases": [
+     "Sponge cake",
+     "Marble cake",
+     "Bundt cake"
+    ]
+   }
   },
   {
    "name": "Sahnetorte",
@@ -3829,7 +5561,14 @@
     "gluten",
     "fat"
    ],
-   "grams": 120.0
+   "grams": 120.0,
+   "en": {
+    "name": "Cream cake",
+    "aliases": [
+     "Gateau",
+     "Cream slice"
+    ]
+   }
   },
   {
    "name": "Topfenkuchen",
@@ -3849,7 +5588,13 @@
     "fat": 2
    },
    "grams": 120.0,
-   "source": "BLS 4.0 D480200"
+   "source": "BLS 4.0 D480200",
+   "en": {
+    "name": "Cheesecake",
+    "aliases": [
+     "Quark cake"
+    ]
+   }
   },
   {
    "name": "Apfelstrudel",
@@ -3866,7 +5611,13 @@
     "fat"
    ],
    "grams": 150.0,
-   "source": "BLS 4.0 D483400"
+   "source": "BLS 4.0 D483400",
+   "en": {
+    "name": "Apple strudel",
+    "aliases": [
+     "Strudel"
+    ]
+   }
   },
   {
    "name": "Topfenstrudel",
@@ -3885,7 +5636,13 @@
     "fructose": 2
    },
    "grams": 150.0,
-   "source": "BLS 4.0 D540400"
+   "source": "BLS 4.0 D540400",
+   "en": {
+    "name": "Quark strudel",
+    "aliases": [
+     "Cheese strudel"
+    ]
+   }
   },
   {
    "name": "Sachertorte",
@@ -3900,7 +5657,14 @@
     "fat"
    ],
    "grams": 100.0,
-   "source": "BLS 4.0 D083000"
+   "source": "BLS 4.0 D083000",
+   "en": {
+    "name": "Sacher cake",
+    "aliases": [
+     "Chocolate cake",
+     "Sachertorte"
+    ]
+   }
   },
   {
    "name": "Germknödel",
@@ -3918,7 +5682,15 @@
     "gluten",
     "fat"
    ],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Yeast dumpling",
+    "aliases": [
+     "Germknödel",
+     "Steamed bun",
+     "Sweet dumpling"
+    ]
+   }
   },
   {
    "name": "Krapfen",
@@ -3938,7 +5710,15 @@
     "fat": 2
    },
    "grams": 70.0,
-   "source": "BLS 4.0 D741600"
+   "source": "BLS 4.0 D741600",
+   "en": {
+    "name": "Doughnut",
+    "aliases": [
+     "Donut",
+     "Jam doughnut",
+     "Berliner"
+    ]
+   }
   },
   {
    "name": "Kekse",
@@ -3954,7 +5734,15 @@
     "gluten"
    ],
    "grams": 30.0,
-   "source": "BLS 4.0 D630400"
+   "source": "BLS 4.0 D630400",
+   "en": {
+    "name": "Biscuits",
+    "aliases": [
+     "Cookies",
+     "Butter biscuits",
+     "Christmas cookies"
+    ]
+   }
   },
   {
    "name": "Lebkuchen",
@@ -3971,7 +5759,13 @@
     "lactose": 2
    },
    "grams": 30.0,
-   "source": "BLS 4.0 D650600"
+   "source": "BLS 4.0 D650600",
+   "en": {
+    "name": "Gingerbread",
+    "aliases": [
+     "Lebkuchen"
+    ]
+   }
   },
   {
    "name": "Müsliriegel",
@@ -3985,7 +5779,14 @@
     "gluten"
    ],
    "grams": 25.0,
-   "source": "BLS 4.0 S830000"
+   "source": "BLS 4.0 S830000",
+   "en": {
+    "name": "Cereal bar",
+    "aliases": [
+     "Granola bar",
+     "Muesli bar"
+    ]
+   }
   },
   {
    "name": "Proteinriegel",
@@ -3995,7 +5796,11 @@
     "polyols"
    ],
    "grams": 50.0,
-   "note": "Enthalten oft Zuckeralkohole (Maltit, Sorbit). Zutatenliste prüfen."
+   "note": "Enthalten oft Zuckeralkohole (Maltit, Sorbit). Zutatenliste prüfen.",
+   "en": {
+    "name": "Protein bar",
+    "note": "Often contain sugar alcohols (maltitol, sorbitol). Check the ingredients."
+   }
   },
   {
    "name": "Gummibärchen",
@@ -4006,7 +5811,15 @@
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 S361000"
+   "source": "BLS 4.0 S361000",
+   "en": {
+    "name": "Gummy bears",
+    "aliases": [
+     "Fruit gums",
+     "Gummies",
+     "Jelly sweets"
+    ]
+   }
   },
   {
    "name": "Zuckerfreier Kaugummi",
@@ -4018,7 +5831,14 @@
    "tags": [
     "polyols"
    ],
-   "grams": 2.0
+   "grams": 2.0,
+   "en": {
+    "name": "Sugar-free chewing gum",
+    "aliases": [
+     "Chewing gum",
+     "Gum"
+    ]
+   }
   },
   {
    "name": "Zuckerfreie Bonbons",
@@ -4030,14 +5850,24 @@
    "tags": [
     "polyols"
    ],
-   "grams": 3.0
+   "grams": 3.0,
+   "en": {
+    "name": "Sugar-free sweets",
+    "aliases": [
+     "Sugar-free candy",
+     "Sugar-free mints"
+    ]
+   }
   },
   {
    "name": "Popcorn",
    "unit": "size",
    "tags": [],
    "grams": 30.0,
-   "source": "BLS 4.0 C533000"
+   "source": "BLS 4.0 C533000",
+   "en": {
+    "name": "Popcorn"
+   }
   },
   {
    "name": "Zucker",
@@ -4049,7 +5879,14 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 S111000"
+   "source": "BLS 4.0 S111000",
+   "en": {
+    "name": "Sugar",
+    "aliases": [
+     "Icing sugar",
+     "Cane sugar"
+    ]
+   }
   },
   {
    "name": "Honig",
@@ -4062,7 +5899,10 @@
     "fructose"
    ],
    "grams": 20.0,
-   "source": "BLS 4.0 S120000"
+   "source": "BLS 4.0 S120000",
+   "en": {
+    "name": "Honey"
+   }
   },
   {
    "name": "Agavendicksaft",
@@ -4073,14 +5913,23 @@
    "tags": [
     "fructose"
    ],
-   "grams": 20.0
+   "grams": 20.0,
+   "en": {
+    "name": "Agave syrup",
+    "aliases": [
+     "Agave nectar"
+    ]
+   }
   },
   {
    "name": "Ahornsirup",
    "unit": "size",
    "tags": [],
    "grams": 20.0,
-   "source": "BLS 4.0 S151100"
+   "source": "BLS 4.0 S151100",
+   "en": {
+    "name": "Maple syrup"
+   }
   },
   {
    "name": "Marmelade",
@@ -4091,7 +5940,15 @@
    "unit": "size",
    "tags": [],
    "grams": 20.0,
-   "source": "BLS 4.0 S132000"
+   "source": "BLS 4.0 S132000",
+   "en": {
+    "name": "Jam",
+    "aliases": [
+     "Jelly",
+     "Preserves",
+     "Marmalade"
+    ]
+   }
   },
   {
    "name": "Xylit",
@@ -4102,7 +5959,13 @@
    "tags": [
     "polyols"
    ],
-   "grams": 5.0
+   "grams": 5.0,
+   "en": {
+    "name": "Xylitol",
+    "aliases": [
+     "Birch sugar"
+    ]
+   }
   },
   {
    "name": "Sorbit",
@@ -4115,7 +5978,13 @@
     "polyols"
    ],
    "grams": 5.0,
-   "source": "BLS 4.0 S162000"
+   "source": "BLS 4.0 S162000",
+   "en": {
+    "name": "Sorbitol",
+    "aliases": [
+     "Sweetener"
+    ]
+   }
   },
   {
    "name": "Erythrit",
@@ -4125,7 +5994,11 @@
    "unit": "size",
    "tags": [],
    "grams": 5.0,
-   "note": "Wird kaum vergoren und gilt als gut verträglich."
+   "note": "Wird kaum vergoren und gilt als gut verträglich.",
+   "en": {
+    "name": "Erythritol",
+    "note": "Hardly fermented and considered well tolerated."
+   }
   },
   {
    "name": "Kaffee",
@@ -4142,7 +6015,15 @@
    ],
    "grams": 200.0,
    "drink": true,
-   "source": "BLS 4.0 N410100"
+   "source": "BLS 4.0 N410100",
+   "en": {
+    "name": "Coffee",
+    "aliases": [
+     "Filter coffee",
+     "Americano",
+     "Black coffee"
+    ]
+   }
   },
   {
    "name": "Espresso",
@@ -4158,7 +6039,10 @@
    ],
    "grams": 30.0,
    "drink": true,
-   "source": "BLS 4.0 N411100"
+   "source": "BLS 4.0 N411100",
+   "en": {
+    "name": "Espresso"
+   }
   },
   {
    "name": "Tee",
@@ -4169,7 +6053,10 @@
    "unitLabel": "Tasse",
    "tags": [],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Tea"
+   }
   },
   {
    "name": "Schwarzer Tee",
@@ -4185,7 +6072,14 @@
    ],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 N630000"
+   "source": "BLS 4.0 N630000",
+   "en": {
+    "name": "Black tea",
+    "aliases": [
+     "Earl Grey",
+     "English breakfast tea"
+    ]
+   }
   },
   {
    "name": "Grüner Tee",
@@ -4202,7 +6096,14 @@
    ],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 N610100"
+   "source": "BLS 4.0 N610100",
+   "en": {
+    "name": "Green tea",
+    "aliases": [
+     "Matcha",
+     "Mate"
+    ]
+   }
   },
   {
    "name": "Chai",
@@ -4217,7 +6118,13 @@
     "caffeine"
    ],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Chai",
+    "aliases": [
+     "Chai latte"
+    ]
+   }
   },
   {
    "name": "Kamillentee",
@@ -4228,7 +6135,10 @@
     "fructans"
    ],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Chamomile tea"
+   }
   },
   {
    "name": "Fencheltee",
@@ -4242,7 +6152,10 @@
     "fructans"
    ],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Fennel tea"
+   }
   },
   {
    "name": "Pfefferminztee",
@@ -4256,7 +6169,14 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 N721000"
+   "source": "BLS 4.0 N721000",
+   "en": {
+    "name": "Peppermint tea",
+    "aliases": [
+     "Mint tea",
+     "Herbal tea"
+    ]
+   }
   },
   {
    "name": "Früchtetee",
@@ -4270,7 +6190,14 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 N710000"
+   "source": "BLS 4.0 N710000",
+   "en": {
+    "name": "Fruit tea",
+    "aliases": [
+     "Rosehip tea",
+     "Rooibos"
+    ]
+   }
   },
   {
    "name": "Cola",
@@ -4287,7 +6214,14 @@
    ],
    "grams": 330.0,
    "drink": true,
-   "source": "BLS 4.0 N330000"
+   "source": "BLS 4.0 N330000",
+   "en": {
+    "name": "Cola",
+    "aliases": [
+     "Coke",
+     "Pepsi"
+    ]
+   }
   },
   {
    "name": "Cola Zero",
@@ -4301,7 +6235,14 @@
     "carbonated"
    ],
    "grams": 330.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Diet cola",
+    "aliases": [
+     "Coke Zero",
+     "Diet Coke"
+    ]
+   }
   },
   {
    "name": "Limonade",
@@ -4319,7 +6260,17 @@
    ],
    "grams": 330.0,
    "drink": true,
-   "source": "BLS 4.0 N314000"
+   "source": "BLS 4.0 N314000",
+   "en": {
+    "name": "Lemonade",
+    "aliases": [
+     "Soft drink",
+     "Soda",
+     "Fanta",
+     "Sprite",
+     "Tonic"
+    ]
+   }
   },
   {
    "name": "Almdudler",
@@ -4332,7 +6283,13 @@
    "tags": [],
    "grams": 330.0,
    "drink": true,
-   "source": "BLS 4.0 N314000"
+   "source": "BLS 4.0 N314000",
+   "en": {
+    "name": "Almdudler",
+    "aliases": [
+     "Herbal lemonade"
+    ]
+   }
   },
   {
    "name": "Eistee",
@@ -4348,7 +6305,13 @@
    ],
    "grams": 330.0,
    "drink": true,
-   "source": "BLS 4.0 N019000"
+   "source": "BLS 4.0 N019000",
+   "en": {
+    "name": "Iced tea",
+    "aliases": [
+     "Ice tea"
+    ]
+   }
   },
   {
    "name": "Wasser",
@@ -4362,7 +6325,15 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Water",
+    "aliases": [
+     "Tap water",
+     "Still water",
+     "Drinking water"
+    ]
+   }
   },
   {
    "name": "Mineralwasser mit Kohlensäure",
@@ -4378,7 +6349,15 @@
     "carbonated"
    ],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Sparkling water",
+    "aliases": [
+     "Soda water",
+     "Carbonated water",
+     "Fizzy water"
+    ]
+   }
   },
   {
    "name": "Energydrink",
@@ -4392,7 +6371,13 @@
     "carbonated"
    ],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Energy drink",
+    "aliases": [
+     "Red Bull"
+    ]
+   }
   },
   {
    "name": "Fruchtsaft",
@@ -4409,7 +6394,14 @@
    ],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 F016600"
+   "source": "BLS 4.0 F016600",
+   "en": {
+    "name": "Fruit juice",
+    "aliases": [
+     "Juice",
+     "Multivitamin juice"
+    ]
+   }
   },
   {
    "name": "Apfelsaft",
@@ -4423,7 +6415,13 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 F110600"
+   "source": "BLS 4.0 F110600",
+   "en": {
+    "name": "Apple juice",
+    "aliases": [
+     "Apple spritzer"
+    ]
+   }
   },
   {
    "name": "Orangensaft",
@@ -4442,7 +6440,13 @@
    ],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 F603600"
+   "source": "BLS 4.0 F603600",
+   "en": {
+    "name": "Orange juice",
+    "aliases": [
+     "OJ"
+    ]
+   }
   },
   {
    "name": "Smoothie",
@@ -4455,7 +6459,13 @@
    "tags": [],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 F032600"
+   "source": "BLS 4.0 F032600",
+   "en": {
+    "name": "Smoothie",
+    "aliases": [
+     "Fruit smoothie"
+    ]
+   }
   },
   {
    "name": "Kombucha",
@@ -4466,7 +6476,10 @@
     "carbonated"
    ],
    "grams": 250.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Kombucha"
+   }
   },
   {
    "name": "Bier",
@@ -4487,7 +6500,15 @@
    ],
    "grams": 330.0,
    "drink": true,
-   "source": "BLS 4.0 P163000"
+   "source": "BLS 4.0 P163000",
+   "en": {
+    "name": "Beer",
+    "aliases": [
+     "Lager",
+     "Pilsner",
+     "Pint"
+    ]
+   }
   },
   {
    "name": "Weißbier",
@@ -4501,7 +6522,14 @@
    "tags": [],
    "grams": 500.0,
    "drink": true,
-   "source": "BLS 4.0 P150000"
+   "source": "BLS 4.0 P150000",
+   "en": {
+    "name": "Wheat beer",
+    "aliases": [
+     "Hefeweizen",
+     "Weissbier"
+    ]
+   }
   },
   {
    "name": "Radler",
@@ -4514,7 +6542,13 @@
    "tags": [],
    "grams": 330.0,
    "drink": true,
-   "source": "BLS 4.0 P192000"
+   "source": "BLS 4.0 P192000",
+   "en": {
+    "name": "Shandy",
+    "aliases": [
+     "Radler"
+    ]
+   }
   },
   {
    "name": "Alkoholfreies Bier",
@@ -4529,7 +6563,13 @@
     "alcohol"
    ],
    "grams": 330.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Alcohol-free beer",
+    "aliases": [
+     "Non-alcoholic beer"
+    ]
+   }
   },
   {
    "name": "Wein",
@@ -4544,7 +6584,13 @@
    ],
    "grams": 125.0,
    "drink": true,
-   "source": "BLS 4.0 P210000"
+   "source": "BLS 4.0 P210000",
+   "en": {
+    "name": "Wine",
+    "aliases": [
+     "Glass of wine"
+    ]
+   }
   },
   {
    "name": "Weißwein",
@@ -4558,7 +6604,14 @@
    "tags": [],
    "grams": 125.0,
    "drink": true,
-   "source": "BLS 4.0 P210000"
+   "source": "BLS 4.0 P210000",
+   "en": {
+    "name": "White wine",
+    "aliases": [
+     "Grüner Veltliner",
+     "Riesling"
+    ]
+   }
   },
   {
    "name": "Rotwein",
@@ -4574,7 +6627,14 @@
    ],
    "grams": 125.0,
    "drink": true,
-   "source": "BLS 4.0 P253000"
+   "source": "BLS 4.0 P253000",
+   "en": {
+    "name": "Red wine",
+    "aliases": [
+     "Zweigelt",
+     "Blaufränkisch"
+    ]
+   }
   },
   {
    "name": "Rosé",
@@ -4587,7 +6647,13 @@
    "tags": [],
    "grams": 125.0,
    "drink": true,
-   "source": "BLS 4.0 P210000"
+   "source": "BLS 4.0 P210000",
+   "en": {
+    "name": "Rosé",
+    "aliases": [
+     "Rosé wine"
+    ]
+   }
   },
   {
    "name": "Spritzer",
@@ -4605,7 +6671,14 @@
    "grams": 250.0,
    "drink": true,
    "note": "Halb Wein, halb Soda.",
-   "source": "BLS 4.0 P210000"
+   "source": "BLS 4.0 P210000",
+   "en": {
+    "name": "Wine spritzer",
+    "aliases": [
+     "Spritzer"
+    ],
+    "note": "Half wine, half soda water."
+   }
   },
   {
    "name": "Sekt",
@@ -4624,7 +6697,15 @@
    ],
    "grams": 100.0,
    "drink": true,
-   "source": "BLS 4.0 P210000"
+   "source": "BLS 4.0 P210000",
+   "en": {
+    "name": "Sparkling wine",
+    "aliases": [
+     "Prosecco",
+     "Champagne",
+     "Aperol Spritz"
+    ]
+   }
   },
   {
    "name": "Most",
@@ -4640,7 +6721,14 @@
    ],
    "grams": 250.0,
    "drink": true,
-   "source": "BLS 4.0 P353100"
+   "source": "BLS 4.0 P353100",
+   "en": {
+    "name": "Cider",
+    "aliases": [
+     "Apple cider",
+     "Perry"
+    ]
+   }
   },
   {
    "name": "Spirituosen",
@@ -4659,7 +6747,17 @@
    ],
    "grams": 20.0,
    "drink": true,
-   "source": "BLS 4.0 P712000"
+   "source": "BLS 4.0 P712000",
+   "en": {
+    "name": "Spirits",
+    "aliases": [
+     "Schnapps",
+     "Vodka",
+     "Gin",
+     "Whisky",
+     "Shot"
+    ]
+   }
   },
   {
    "name": "Rum",
@@ -4671,7 +6769,10 @@
    ],
    "grams": 20.0,
    "drink": true,
-   "source": "BLS 4.0 P741000"
+   "source": "BLS 4.0 P741000",
+   "en": {
+    "name": "Rum"
+   }
   },
   {
    "name": "Likör",
@@ -4685,7 +6786,14 @@
    "unitLabel": "Glas",
    "tags": [],
    "grams": 20.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Liqueur",
+    "aliases": [
+     "Egg liqueur",
+     "Amaretto"
+    ]
+   }
   },
   {
    "name": "Ketchup",
@@ -4700,7 +6808,15 @@
    },
    "grams": 15.0,
    "note": "1 EL gilt als verträglich.",
-   "source": "BLS 4.0 R141100"
+   "source": "BLS 4.0 R141100",
+   "en": {
+    "name": "Ketchup",
+    "aliases": [
+     "Tomato ketchup",
+     "Curry ketchup"
+    ],
+    "note": "1 tablespoon is considered tolerated."
+   }
   },
   {
    "name": "Mayonnaise",
@@ -4713,7 +6829,13 @@
     "fat": "M"
    },
    "grams": 20.0,
-   "source": "BLS 4.0 Q991000"
+   "source": "BLS 4.0 Q991000",
+   "en": {
+    "name": "Mayonnaise",
+    "aliases": [
+     "Mayo"
+    ]
+   }
   },
   {
    "name": "Remoulade",
@@ -4727,7 +6849,13 @@
     "fat": "L"
    },
    "grams": 20.0,
-   "source": "BLS 4.0 Q999000"
+   "source": "BLS 4.0 Q999000",
+   "en": {
+    "name": "Remoulade",
+    "aliases": [
+     "Tartar sauce"
+    ]
+   }
   },
   {
    "name": "Senf",
@@ -4739,7 +6867,14 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 R132000"
+   "source": "BLS 4.0 R132000",
+   "en": {
+    "name": "Mustard",
+    "aliases": [
+     "Dijon mustard",
+     "Sweet mustard"
+    ]
+   }
   },
   {
    "name": "Kren",
@@ -4752,7 +6887,10 @@
     "spicy"
    ],
    "grams": 10.0,
-   "source": "BLS 4.0 G630100"
+   "source": "BLS 4.0 G630100",
+   "en": {
+    "name": "Horseradish"
+   }
   },
   {
    "name": "Sojasauce",
@@ -4766,7 +6904,13 @@
     "histamine"
    ],
    "grams": 15.0,
-   "source": "BLS 4.0 R143000"
+   "source": "BLS 4.0 R143000",
+   "en": {
+    "name": "Soy sauce",
+    "aliases": [
+     "Tamari"
+    ]
+   }
   },
   {
    "name": "Pesto",
@@ -4781,7 +6925,13 @@
    "doseTags": {
     "fat": "L"
    },
-   "grams": 30.0
+   "grams": 30.0,
+   "en": {
+    "name": "Pesto",
+    "aliases": [
+     "Basil pesto"
+    ]
+   }
   },
   {
    "name": "Tomatensauce",
@@ -4797,7 +6947,15 @@
     "fructans",
     "histamine"
    ],
-   "grams": 100.0
+   "grams": 100.0,
+   "en": {
+    "name": "Tomato sauce",
+    "aliases": [
+     "Passata",
+     "Pasta sauce",
+     "Marinara"
+    ]
+   }
   },
   {
    "name": "Bratensaft",
@@ -4812,7 +6970,14 @@
     "fructans",
     "fat"
    ],
-   "grams": 60.0
+   "grams": 60.0,
+   "en": {
+    "name": "Gravy",
+    "aliases": [
+     "Roast gravy",
+     "Meat juices"
+    ]
+   }
   },
   {
    "name": "Sauce Hollandaise",
@@ -4823,7 +6988,14 @@
    "unit": "size",
    "tags": [],
    "grams": 40.0,
-   "source": "BLS 4.0 U990400"
+   "source": "BLS 4.0 U990400",
+   "en": {
+    "name": "Hollandaise sauce",
+    "aliases": [
+     "Hollandaise",
+     "Béarnaise"
+    ]
+   }
   },
   {
    "name": "Chilisauce",
@@ -4838,7 +7010,16 @@
     "fructans",
     "spicy"
    ],
-   "grams": 15.0
+   "grams": 15.0,
+   "en": {
+    "name": "Chilli sauce",
+    "aliases": [
+     "Hot sauce",
+     "Sriracha",
+     "Tabasco",
+     "Sweet chilli sauce"
+    ]
+   }
   },
   {
    "name": "Currypulver",
@@ -4850,7 +7031,14 @@
    "tags": [
     "spicy"
    ],
-   "grams": 3.0
+   "grams": 3.0,
+   "en": {
+    "name": "Curry powder",
+    "aliases": [
+     "Curry",
+     "Curry paste"
+    ]
+   }
   },
   {
    "name": "Paprikapulver",
@@ -4860,7 +7048,14 @@
    ],
    "unit": "size",
    "tags": [],
-   "grams": 3.0
+   "grams": 3.0,
+   "en": {
+    "name": "Paprika powder",
+    "aliases": [
+     "Paprika",
+     "Sweet paprika"
+    ]
+   }
   },
   {
    "name": "Pfeffer",
@@ -4872,7 +7067,14 @@
    "tags": [
     "spicy"
    ],
-   "grams": 1.0
+   "grams": 1.0,
+   "en": {
+    "name": "Pepper (spice)",
+    "aliases": [
+     "Black pepper",
+     "Cayenne pepper"
+    ]
+   }
   },
   {
    "name": "Essig",
@@ -4884,7 +7086,10 @@
     "histamine"
    ],
    "grams": 10.0,
-   "source": "BLS 4.0 R121000"
+   "source": "BLS 4.0 R121000",
+   "en": {
+    "name": "Vinegar"
+   }
   },
   {
    "name": "Weinessig",
@@ -4896,7 +7101,14 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 R121000"
+   "source": "BLS 4.0 R121000",
+   "en": {
+    "name": "Wine vinegar",
+    "aliases": [
+     "Red wine vinegar",
+     "White wine vinegar"
+    ]
+   }
   },
   {
    "name": "Balsamico",
@@ -4909,7 +7121,14 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 R125000"
+   "source": "BLS 4.0 R125000",
+   "en": {
+    "name": "Balsamic vinegar",
+    "aliases": [
+     "Balsamic",
+     "Balsamic glaze"
+    ]
+   }
   },
   {
    "name": "Apfelessig",
@@ -4921,7 +7140,13 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 R123100"
+   "source": "BLS 4.0 R123100",
+   "en": {
+    "name": "Cider vinegar",
+    "aliases": [
+     "Apple cider vinegar"
+    ]
+   }
   },
   {
    "name": "Branntweinessig",
@@ -4937,7 +7162,14 @@
     "histamine"
    ],
    "grams": 10.0,
-   "source": "BLS 4.0 R122000"
+   "source": "BLS 4.0 R122000",
+   "en": {
+    "name": "Spirit vinegar",
+    "aliases": [
+     "White vinegar",
+     "Distilled vinegar"
+    ]
+   }
   },
   {
    "name": "Brühe",
@@ -4953,7 +7185,17 @@
    ],
    "grams": 250.0,
    "note": "Fertigbrühen enthalten meist Zwiebel- und Knoblauchpulver.",
-   "source": "BLS 4.0 X416243"
+   "source": "BLS 4.0 X416243",
+   "en": {
+    "name": "Stock",
+    "aliases": [
+     "Broth",
+     "Bouillon",
+     "Stock cube",
+     "Vegetable stock"
+    ],
+    "note": "Ready-made stocks usually contain onion and garlic powder."
+   }
   },
   {
    "name": "Inulin",
@@ -4966,7 +7208,15 @@
    "tags": [
     "fructans"
    ],
-   "grams": 5.0
+   "grams": 5.0,
+   "en": {
+    "name": "Inulin",
+    "aliases": [
+     "Chicory fibre",
+     "Fibre supplement",
+     "Oligofructose"
+    ]
+   }
   },
   {
    "name": "Kokosmilch",
@@ -4979,7 +7229,10 @@
     "fat": "M"
    },
    "grams": 100.0,
-   "source": "BLS 4.0 H154000"
+   "source": "BLS 4.0 H154000",
+   "en": {
+    "name": "Coconut milk"
+   }
   },
   {
    "name": "Speiseöl",
@@ -4992,7 +7245,14 @@
     "fat": "L"
    },
    "grams": 10.0,
-   "source": "BLS 4.0 Q180000"
+   "source": "BLS 4.0 Q180000",
+   "en": {
+    "name": "Cooking oil",
+    "aliases": [
+     "Oil",
+     "Vegetable oil"
+    ]
+   }
   },
   {
    "name": "Olivenöl",
@@ -5000,7 +7260,10 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 Q120000"
+   "source": "BLS 4.0 Q120000",
+   "en": {
+    "name": "Olive oil"
+   }
   },
   {
    "name": "Rapsöl",
@@ -5008,7 +7271,13 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 Q180000"
+   "source": "BLS 4.0 Q180000",
+   "en": {
+    "name": "Rapeseed oil",
+    "aliases": [
+     "Canola oil"
+    ]
+   }
   },
   {
    "name": "Sonnenblumenöl",
@@ -5016,7 +7285,10 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 Q320000"
+   "source": "BLS 4.0 Q320000",
+   "en": {
+    "name": "Sunflower oil"
+   }
   },
   {
    "name": "Kürbiskernöl",
@@ -5028,7 +7300,10 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 Q180000"
+   "source": "BLS 4.0 Q180000",
+   "en": {
+    "name": "Pumpkin seed oil"
+   }
   },
   {
    "name": "Kokosöl",
@@ -5039,7 +7314,10 @@
    "unit": "size",
    "tags": [],
    "grams": 10.0,
-   "source": "BLS 4.0 Q550000"
+   "source": "BLS 4.0 Q550000",
+   "en": {
+    "name": "Coconut oil"
+   }
   },
   {
    "name": "Frittierfett",
@@ -5050,7 +7328,14 @@
    "tags": [
     "fat"
    ],
-   "grams": 20.0
+   "grams": 20.0,
+   "en": {
+    "name": "Frying fat",
+    "aliases": [
+     "Frying oil",
+     "Deep-frying oil"
+    ]
+   }
   },
   {
    "name": "Schmalz",
@@ -5064,7 +7349,14 @@
     "fat": "L"
    },
    "grams": 10.0,
-   "source": "BLS 4.0 Q860000"
+   "source": "BLS 4.0 Q860000",
+   "en": {
+    "name": "Lard",
+    "aliases": [
+     "Dripping",
+     "Pork fat"
+    ]
+   }
   },
   {
    "name": "Chicken Nuggets",
@@ -5078,7 +7370,14 @@
     "gluten",
     "fat"
    ],
-   "grams": 150.0
+   "grams": 150.0,
+   "en": {
+    "name": "Chicken nuggets",
+    "aliases": [
+     "Nuggets",
+     "Chicken wings"
+    ]
+   }
   },
   {
    "name": "Frühlingsrolle",
@@ -5092,7 +7391,13 @@
     "gluten",
     "fat"
    ],
-   "grams": 70.0
+   "grams": 70.0,
+   "en": {
+    "name": "Spring roll",
+    "aliases": [
+     "Egg roll"
+    ]
+   }
   },
   {
    "name": "Tortillachips",
@@ -5106,7 +7411,14 @@
     "fat": "L"
    },
    "grams": 50.0,
-   "source": "BLS 4.0 C546000"
+   "source": "BLS 4.0 C546000",
+   "en": {
+    "name": "Tortilla chips",
+    "aliases": [
+     "Corn chips",
+     "Nachos (chips)"
+    ]
+   }
   },
   {
    "name": "Tzatziki",
@@ -5119,7 +7431,14 @@
     "lactose",
     "fructans"
    ],
-   "grams": 50.0
+   "grams": 50.0,
+   "en": {
+    "name": "Tzatziki",
+    "aliases": [
+     "Garlic sauce",
+     "Yoghurt sauce"
+    ]
+   }
   }
  ],
  "dishes": [
@@ -5134,7 +7453,13 @@
     "Paradeissauce",
     "Mozzarella",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Pizza",
+    "aliases": [
+     "Pizza Margherita"
+    ]
+   }
   },
   {
    "name": "Lasagne",
@@ -5147,7 +7472,13 @@
     "Butter",
     "Weizenmehl",
     "Gereifter Hartkäse"
-   ]
+   ],
+   "en": {
+    "name": "Lasagne",
+    "aliases": [
+     "Lasagna"
+    ]
+   }
   },
   {
    "name": "Spaghetti Bolognese",
@@ -5162,7 +7493,14 @@
     "Zwiebel",
     "Knoblauch",
     "Karotte"
-   ]
+   ],
+   "en": {
+    "name": "Spaghetti Bolognese",
+    "aliases": [
+     "Bolognese",
+     "Spag bol"
+    ]
+   }
   },
   {
    "name": "Spaghetti Carbonara",
@@ -5176,7 +7514,13 @@
     "Ei",
     "Parmesan",
     "Schlagobers"
-   ]
+   ],
+   "en": {
+    "name": "Spaghetti Carbonara",
+    "aliases": [
+     "Carbonara"
+    ]
+   }
   },
   {
    "name": "Käsespätzle",
@@ -5189,7 +7533,14 @@
     "Bergkäse",
     "Zwiebel",
     "Butter"
-   ]
+   ],
+   "en": {
+    "name": "Cheese spätzle",
+    "aliases": [
+     "Käsespätzle",
+     "Cheese noodles"
+    ]
+   }
   },
   {
    "name": "Wiener Schnitzel",
@@ -5204,7 +7555,14 @@
     "Weizenmehl",
     "Ei",
     "Frittierfett"
-   ]
+   ],
+   "en": {
+    "name": "Wiener Schnitzel",
+    "aliases": [
+     "Schnitzel",
+     "Breaded escalope"
+    ]
+   }
   },
   {
    "name": "Gulasch",
@@ -5219,7 +7577,13 @@
     "Paprikapulver",
     "Brühe",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Goulash",
+    "aliases": [
+     "Beef goulash"
+    ]
+   }
   },
   {
    "name": "Tafelspitz",
@@ -5234,7 +7598,13 @@
     "Stangensellerie",
     "Lauch",
     "Kren"
-   ]
+   ],
+   "en": {
+    "name": "Boiled beef",
+    "aliases": [
+     "Tafelspitz"
+    ]
+   }
   },
   {
    "name": "Frittatensuppe",
@@ -5248,7 +7618,14 @@
     "Weizenmehl",
     "Ei",
     "Kuhmilch"
-   ]
+   ],
+   "en": {
+    "name": "Pancake strip soup",
+    "aliases": [
+     "Frittatensuppe",
+     "Clear soup with garnish"
+    ]
+   }
   },
   {
    "name": "Hühnersuppe",
@@ -5264,7 +7641,13 @@
     "Karotte",
     "Stangensellerie",
     "Lauch"
-   ]
+   ],
+   "en": {
+    "name": "Chicken soup",
+    "aliases": [
+     "Chicken noodle soup"
+    ]
+   }
   },
   {
    "name": "Kartoffelsuppe",
@@ -5281,7 +7664,13 @@
     "Karotte",
     "Brühe",
     "Schlagobers"
-   ]
+   ],
+   "en": {
+    "name": "Potato soup",
+    "aliases": [
+     "Cream soup"
+    ]
+   }
   },
   {
    "name": "Tomatensuppe",
@@ -5296,7 +7685,10 @@
     "Zwiebel",
     "Brühe",
     "Schlagobers"
-   ]
+   ],
+   "en": {
+    "name": "Tomato soup"
+   }
   },
   {
    "name": "Linseneintopf",
@@ -5311,7 +7703,14 @@
     "Zwiebel",
     "Erdäpfel",
     "Brühe"
-   ]
+   ],
+   "en": {
+    "name": "Lentil stew",
+    "aliases": [
+     "Lentil soup",
+     "Dal"
+    ]
+   }
   },
   {
    "name": "Erbsensuppe",
@@ -5325,7 +7724,13 @@
     "Erdäpfel",
     "Brühe",
     "Speck"
-   ]
+   ],
+   "en": {
+    "name": "Pea soup",
+    "aliases": [
+     "Split pea soup"
+    ]
+   }
   },
   {
    "name": "Bohneneintopf",
@@ -5339,7 +7744,13 @@
     "Erdäpfel",
     "Brühe",
     "Speck"
-   ]
+   ],
+   "en": {
+    "name": "Bean stew",
+    "aliases": [
+     "Bean soup"
+    ]
+   }
   },
   {
    "name": "Chili con Carne",
@@ -5352,7 +7763,10 @@
     "Knoblauch",
     "Chili",
     "Mais"
-   ]
+   ],
+   "en": {
+    "name": "Chili con carne"
+   }
   },
   {
    "name": "Kartoffelsalat",
@@ -5367,7 +7781,10 @@
     "Mayonnaise",
     "Essiggurkerl",
     "Brühe"
-   ]
+   ],
+   "en": {
+    "name": "Potato salad"
+   }
   },
   {
    "name": "Gemischter Salat",
@@ -5378,7 +7795,13 @@
     "Gurke",
     "Balsamico",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Mixed salad",
+    "aliases": [
+     "Side salad"
+    ]
+   }
   },
   {
    "name": "Currywurst",
@@ -5388,7 +7811,13 @@
     "Bratwurst",
     "Ketchup",
     "Currypulver"
-   ]
+   ],
+   "en": {
+    "name": "Currywurst",
+    "aliases": [
+     "Curry sausage"
+    ]
+   }
   },
   {
    "name": "Döner Kebab",
@@ -5406,7 +7835,15 @@
     "Paradeiser",
     "Zwiebel",
     "Tzatziki"
-   ]
+   ],
+   "en": {
+    "name": "Döner kebab",
+    "aliases": [
+     "Doner",
+     "Kebab",
+     "Dürüm"
+    ]
+   }
   },
   {
    "name": "Gyros",
@@ -5419,7 +7856,13 @@
     "Zwiebel",
     "Tzatziki",
     "Pommes frites"
-   ]
+   ],
+   "en": {
+    "name": "Gyros",
+    "aliases": [
+     "Souvlaki"
+    ]
+   }
   },
   {
    "name": "Burger",
@@ -5437,7 +7880,14 @@
     "Zwiebel",
     "Paradeiser",
     "Blattsalat"
-   ]
+   ],
+   "en": {
+    "name": "Burger",
+    "aliases": [
+     "Hamburger",
+     "Cheeseburger"
+    ]
+   }
   },
   {
    "name": "Hot Dog",
@@ -5449,7 +7899,10 @@
     "Ketchup",
     "Senf",
     "Zwiebel"
-   ]
+   ],
+   "en": {
+    "name": "Hot dog"
+   }
   },
   {
    "name": "Wrap",
@@ -5464,7 +7917,13 @@
     "Blattsalat",
     "Paradeiser",
     "Sauerrahm"
-   ]
+   ],
+   "en": {
+    "name": "Wrap",
+    "aliases": [
+     "Burrito"
+    ]
+   }
   },
   {
    "name": "Nachos mit Käse",
@@ -5476,7 +7935,13 @@
     "Tortillachips",
     "Schmelzkäse",
     "Chili"
-   ]
+   ],
+   "en": {
+    "name": "Nachos with cheese",
+    "aliases": [
+     "Nachos"
+    ]
+   }
   },
   {
    "name": "Sushi",
@@ -5491,7 +7956,14 @@
     "Fisch (frisch)",
     "Gurke",
     "Sojasauce"
-   ]
+   ],
+   "en": {
+    "name": "Sushi",
+    "aliases": [
+     "Maki",
+     "Nigiri"
+    ]
+   }
   },
   {
    "name": "Ramen",
@@ -5506,7 +7978,15 @@
     "Ei",
     "Sojasauce",
     "Frühlingszwiebel"
-   ]
+   ],
+   "en": {
+    "name": "Ramen",
+    "aliases": [
+     "Instant noodles",
+     "Udon",
+     "Noodle soup"
+    ]
+   }
   },
   {
    "name": "Asiatisches Wokgericht",
@@ -5526,7 +8006,17 @@
     "Knoblauch",
     "Sojasauce",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Asian stir-fry",
+    "aliases": [
+     "Stir-fry",
+     "Wok",
+     "Fried noodles",
+     "Fried rice",
+     "Pad Thai"
+    ]
+   }
   },
   {
    "name": "Indisches Curry",
@@ -5543,7 +8033,15 @@
     "Currypulver",
     "Kokosmilch",
     "Reis"
-   ]
+   ],
+   "en": {
+    "name": "Indian curry",
+    "aliases": [
+     "Thai curry",
+     "Tikka masala",
+     "Korma"
+    ]
+   }
   },
   {
    "name": "Toast Hawaii",
@@ -5557,7 +8055,14 @@
     "Kochschinken",
     "Ananas",
     "Junger Gouda"
-   ]
+   ],
+   "en": {
+    "name": "Toast Hawaii",
+    "aliases": [
+     "Ham and cheese toast",
+     "Toastie"
+    ]
+   }
   },
   {
    "name": "Belegte Semmel",
@@ -5574,7 +8079,15 @@
     "Butter",
     "Kochschinken",
     "Junger Gouda"
-   ]
+   ],
+   "en": {
+    "name": "Filled roll",
+    "aliases": [
+     "Sandwich",
+     "Ham roll",
+     "Cheese roll"
+    ]
+   }
   },
   {
    "name": "Kaiserschmarrn",
@@ -5586,7 +8099,13 @@
     "Butter",
     "Zucker",
     "Rosinen"
-   ]
+   ],
+   "en": {
+    "name": "Kaiserschmarrn",
+    "aliases": [
+     "Shredded pancake"
+    ]
+   }
   },
   {
    "name": "Palatschinken",
@@ -5601,7 +8120,14 @@
     "Weizenmehl",
     "Ei",
     "Kuhmilch"
-   ]
+   ],
+   "en": {
+    "name": "Pancakes",
+    "aliases": [
+     "Crêpes",
+     "Pancake"
+    ]
+   }
   },
   {
    "name": "Geröstete Kartoffeln",
@@ -5616,7 +8142,14 @@
     "Zwiebel",
     "Speck",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Pan-fried potatoes",
+    "aliases": [
+     "Hash browns",
+     "Potato hash"
+    ]
+   }
   },
   {
    "name": "Schweinsbraten",
@@ -5628,7 +8161,13 @@
    "ingredients": [
     "Schweinefleisch",
     "Bratensaft"
-   ]
+   ],
+   "en": {
+    "name": "Roast pork",
+    "aliases": [
+     "Pork roast"
+    ]
+   }
   },
   {
    "name": "Cappuccino",
@@ -5645,7 +8184,16 @@
     "Kuhmilch"
    ],
    "grams": 200.0,
-   "drink": true
+   "drink": true,
+   "en": {
+    "name": "Cappuccino",
+    "aliases": [
+     "Latte",
+     "Latte macchiato",
+     "Flat white",
+     "Milky coffee"
+    ]
+   }
   },
   {
    "name": "Kartoffelpüree",
@@ -5660,7 +8208,14 @@
     "Erdäpfel",
     "Kuhmilch",
     "Butter"
-   ]
+   ],
+   "en": {
+    "name": "Mashed potatoes",
+    "aliases": [
+     "Mash",
+     "Potato purée"
+    ]
+   }
   },
   {
    "name": "Leberkässemmel",
@@ -5674,7 +8229,13 @@
     "Semmel",
     "Leberkäs",
     "Senf"
-   ]
+   ],
+   "en": {
+    "name": "Leberkäse roll",
+    "aliases": [
+     "Leberkäse sandwich"
+    ]
+   }
   },
   {
    "name": "Kasnocken",
@@ -5687,7 +8248,14 @@
     "Graukäse",
     "Zwiebel",
     "Butter"
-   ]
+   ],
+   "en": {
+    "name": "Kasnocken",
+    "aliases": [
+     "Cheese dumplings",
+     "Cheese spätzle (Pinzgau)"
+    ]
+   }
   },
   {
    "name": "Grenadiermarsch",
@@ -5698,7 +8266,13 @@
     "Zwiebel",
     "Speck",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Grenadiermarsch",
+    "aliases": [
+     "Pasta and potato hash"
+    ]
+   }
   },
   {
    "name": "Krautfleckerl",
@@ -5709,7 +8283,13 @@
     "Zwiebel",
     "Zucker",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Krautfleckerl",
+    "aliases": [
+     "Cabbage and pasta"
+    ]
+   }
   },
   {
    "name": "Schinkenfleckerl",
@@ -5719,7 +8299,13 @@
     "Kochschinken",
     "Ei",
     "Sauerrahm"
-   ]
+   ],
+   "en": {
+    "name": "Schinkenfleckerl",
+    "aliases": [
+     "Ham and pasta bake"
+    ]
+   }
   },
   {
    "name": "Eiernockerl",
@@ -5729,7 +8315,14 @@
     "Ei",
     "Butter",
     "Schnittlauch"
-   ]
+   ],
+   "en": {
+    "name": "Eiernockerl",
+    "aliases": [
+     "Egg dumplings",
+     "Egg spätzle"
+    ]
+   }
   },
   {
    "name": "Backhendl",
@@ -5743,7 +8336,14 @@
     "Weizenmehl",
     "Ei",
     "Frittierfett"
-   ]
+   ],
+   "en": {
+    "name": "Fried chicken",
+    "aliases": [
+     "Backhendl",
+     "Breaded chicken"
+    ]
+   }
   },
   {
    "name": "Cordon bleu",
@@ -5756,7 +8356,13 @@
     "Weizenmehl",
     "Ei",
     "Frittierfett"
-   ]
+   ],
+   "en": {
+    "name": "Cordon bleu",
+    "aliases": [
+     "Chicken cordon bleu"
+    ]
+   }
   },
   {
    "name": "Faschierte Laibchen",
@@ -5772,7 +8378,15 @@
     "Zwiebel",
     "Ei",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Meatballs (patties)",
+    "aliases": [
+     "Meat patties",
+     "Rissoles",
+     "Frikadellen"
+    ]
+   }
   },
   {
    "name": "Zwiebelrostbraten",
@@ -5783,7 +8397,14 @@
     "Weizenmehl",
     "Bratensaft",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Onion roast beef",
+    "aliases": [
+     "Zwiebelrostbraten",
+     "Steak with onions"
+    ]
+   }
   },
   {
    "name": "Beuschel",
@@ -5794,7 +8415,13 @@
     "Essig",
     "Sauerrahm",
     "Weizenmehl"
-   ]
+   ],
+   "en": {
+    "name": "Beuschel",
+    "aliases": [
+     "Lung ragout"
+    ]
+   }
   },
   {
    "name": "Krautsalat",
@@ -5804,7 +8431,13 @@
     "Essig",
     "Speiseöl",
     "Speck"
-   ]
+   ],
+   "en": {
+    "name": "Cabbage salad",
+    "aliases": [
+     "Coleslaw"
+    ]
+   }
   },
   {
    "name": "Linsen mit Knödel",
@@ -5815,7 +8448,13 @@
     "Speck",
     "Zwiebel",
     "Essig"
-   ]
+   ],
+   "en": {
+    "name": "Lentils with dumpling",
+    "aliases": [
+     "Lentil stew with dumpling"
+    ]
+   }
   },
   {
    "name": "Spinat mit Spiegelei",
@@ -5829,7 +8468,13 @@
     "Erdäpfel",
     "Schlagobers",
     "Knoblauch"
-   ]
+   ],
+   "en": {
+    "name": "Spinach with fried egg",
+    "aliases": [
+     "Creamed spinach with egg"
+    ]
+   }
   },
   {
    "name": "Gemüsecurry",
@@ -5845,7 +8490,13 @@
     "Currypulver",
     "Kokosmilch",
     "Reis"
-   ]
+   ],
+   "en": {
+    "name": "Vegetable curry",
+    "aliases": [
+     "Vegetarian curry"
+    ]
+   }
   },
   {
    "name": "Risotto",
@@ -5860,7 +8511,13 @@
     "Parmesan",
     "Butter",
     "Weißwein"
-   ]
+   ],
+   "en": {
+    "name": "Risotto",
+    "aliases": [
+     "Mushroom risotto"
+    ]
+   }
   },
   {
    "name": "Müsli mit Joghurt",
@@ -5872,7 +8529,14 @@
     "Müsli",
     "Joghurt",
     "Banane"
-   ]
+   ],
+   "en": {
+    "name": "Muesli with yoghurt",
+    "aliases": [
+     "Yoghurt with muesli",
+     "Yogurt with granola"
+    ]
+   }
   },
   {
    "name": "Porridge",
@@ -5885,7 +8549,13 @@
     "Kuhmilch",
     "Banane",
     "Honig"
-   ]
+   ],
+   "en": {
+    "name": "Porridge",
+    "aliases": [
+     "Oatmeal with fruit"
+    ]
+   }
   },
   {
    "name": "Marillenknödel",
@@ -5902,7 +8572,15 @@
     "Semmelbrösel",
     "Butter",
     "Zucker"
-   ]
+   ],
+   "en": {
+    "name": "Apricot dumplings",
+    "aliases": [
+     "Marillenknödel",
+     "Plum dumplings",
+     "Quark dumplings"
+    ]
+   }
   },
   {
    "name": "Kaspressknödel",
@@ -5917,7 +8595,13 @@
     "Ei",
     "Zwiebel",
     "Speiseöl"
-   ]
+   ],
+   "en": {
+    "name": "Kaspressknödel",
+    "aliases": [
+     "Fried cheese dumplings"
+    ]
+   }
   },
   {
    "name": "Steirischer Backhendlsalat",
@@ -5932,7 +8616,13 @@
     "Blattsalat",
     "Kürbiskernöl",
     "Kürbiskerne"
-   ]
+   ],
+   "en": {
+    "name": "Styrian fried chicken salad",
+    "aliases": [
+     "Fried chicken salad"
+    ]
+   }
   }
  ]
 }

@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.intOrNull
+import java.util.Locale
 
 @Serializable
 private data class SeedFileJson(
@@ -33,7 +34,11 @@ private data class IngredientJson(
     val removeTags: List<String> = emptyList(),
     val grams: Double? = null,
     val drink: Boolean = false,
+    val en: TextJson? = null,
 )
+
+@Serializable
+private data class TextJson(val name: String, val aliases: List<String> = emptyList(), val note: String? = null)
 
 @Serializable
 private data class DishJson(
@@ -45,41 +50,71 @@ private data class DishJson(
     val ingredients: List<String>,
     val grams: Double? = null,
     val drink: Boolean = false,
+    val en: TextJson? = null,
 )
 
+/** Languages the seed names foods in. German is the source ([SeedFood.name] etc.), the others are translations. */
+val SeedLanguages = listOf("de", "en")
+
+/** The seed language for [locale]: its own when the seed has it, otherwise English. */
+fun seedLanguage(locale: Locale): String = locale.language.takeIf { it in SeedLanguages } ?: "en"
+
+/** A food's name, aliases and note in one language. */
+data class SeedText(val name: String, val aliases: List<String>, val note: String? = null)
+
+/** What ingredients and dishes share: a permanent key and their texts in each language. */
+sealed interface SeedFood {
+    val key: String
+    val name: String
+    val aliases: List<String>
+    val note: String?
+    /** Texts in the other [SeedLanguages], by language code. */
+    val translations: Map<String, SeedText>
+
+    /** The food's texts in [language]; German when there is no translation. */
+    fun text(language: String): SeedText = translations[language] ?: SeedText(name, aliases, note)
+
+    /** Every name and alias in every language. */
+    fun allNames(): List<String> = listOf(name) + aliases + translations.values.flatMap { listOf(it.name) + it.aliases }
+}
+
 data class SeedIngredient(
-    val name: String,
-    val aliases: List<String>,
+    override val name: String,
+    override val aliases: List<String>,
     val unit: FoodUnit,
     val unitLabel: String?,
     /** Own tags; inherited ones from [parent] are not repeated here. */
     val tags: List<IngredientTag>,
-    val note: String?,
+    override val note: String?,
     /** Seed key of the parent ingredient (SPEC 4.4), or null. */
     val parent: String? = null,
     /** Inherited tags this ingredient does not have. */
     val removedTags: List<Tag> = emptyList(),
     /** Permanent seed key; the original name, kept when the food is renamed. */
-    val key: String = name,
+    override val key: String = name,
     /** Grams of an M portion, or of one piece for count units; millilitres for drinks. */
     val grams: Double? = null,
     val drink: Boolean = false,
-)
+    override val translations: Map<String, SeedText> = emptyMap(),
+) : SeedFood
 
 data class SeedDish(
-    val name: String,
-    val aliases: List<String>,
+    override val name: String,
+    override val aliases: List<String>,
     val unit: FoodUnit,
     val unitLabel: String?,
     /** Seed keys of [SeedIngredient]s. */
     val ingredients: List<String>,
-    val key: String = name,
+    override val key: String = name,
     /** Millilitres of one portion, for drinks (dishes otherwise have no weight). */
     val grams: Double? = null,
     val drink: Boolean = false,
-)
+    override val translations: Map<String, SeedText> = emptyMap(),
+) : SeedFood {
+    override val note: String? get() = null
+}
 
-/** Parsed and validated `foods.de.json`. Seed keys (original names) identify entries across versions. */
+/** Parsed and validated `foods.json`. Seed keys (original names) identify entries across versions. */
 data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val dishes: List<SeedDish>) {
 
     companion object {
@@ -99,10 +134,13 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
                 val missing = dish.ingredients.filterNot { it in ingredientKeys }
                 require(missing.isEmpty()) { "Dish '${dish.name}' references unknown ingredients $missing" }
             }
-            val allNames = (ingredients.map { listOf(it.name) + it.aliases } + dishes.map { listOf(it.name) + it.aliases })
-                .flatten().map { it.lowercase() }
-            val duplicates = allNames.groupingBy { it }.eachCount().filterValues { it > 1 }.keys
-            require(duplicates.isEmpty()) { "Duplicate names/aliases: $duplicates" }
+            // Within each language, a name or alias belongs to one food, so a search term is unambiguous.
+            val foods: List<SeedFood> = ingredients + dishes
+            for (language in SeedLanguages) {
+                val names = foods.flatMap { food -> food.text(language).let { listOf(it.name) + it.aliases } }.map { it.lowercase() }
+                val duplicates = names.groupingBy { it }.eachCount().filterValues { it > 1 }.keys
+                require(duplicates.isEmpty()) { "Duplicate names/aliases ($language): $duplicates" }
+            }
 
             return SeedFile(raw.version, ingredients, dishes)
         }
@@ -128,7 +166,10 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
             val removed = j.removeTags.map { Tag.fromKey(it) }
             require(removed.none { it in tagKeys }) { "'${j.name}': tag both set and removed" }
             require(j.grams == null || j.grams > 0) { "'${j.name}': grams must be positive" }
-            return SeedIngredient(j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note, j.parent, removed, j.key ?: j.name, j.grams, j.drink)
+            return SeedIngredient(
+                j.name, j.aliases, unit, j.unitLabel, always + dosed, j.note, j.parent, removed, j.key ?: j.name, j.grams, j.drink,
+                translations(j.en),
+            )
         }
 
         private fun validateHierarchy(ingredients: List<SeedIngredient>) {
@@ -149,8 +190,14 @@ data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val
         private fun toDish(j: DishJson): SeedDish {
             require(j.ingredients.isNotEmpty()) { "Dish '${j.name}' has no ingredients" }
             require(j.grams == null || j.grams > 0) { "Dish '${j.name}': grams must be positive" }
-            return SeedDish(j.name, j.aliases, parseUnit(j.name, j.unit, j.unitLabel), j.unitLabel, j.ingredients, j.key ?: j.name, j.grams, j.drink)
+            return SeedDish(
+                j.name, j.aliases, parseUnit(j.name, j.unit, j.unitLabel), j.unitLabel, j.ingredients, j.key ?: j.name, j.grams, j.drink,
+                translations(j.en),
+            )
         }
+
+        private fun translations(en: TextJson?): Map<String, SeedText> =
+            en?.let { mapOf("en" to SeedText(it.name, it.aliases, it.note)) }.orEmpty()
 
         private fun parseUnit(name: String, unit: String, unitLabel: String?): FoodUnit {
             val parsed = when (unit) {

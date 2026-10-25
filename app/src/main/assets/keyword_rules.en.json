@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "comment": "English counterpart of keyword_rules.de.json; both apply together. Matching: case-insensitive substring of the food name, so keywords avoid words that occur inside German or English food names (no bare 'tea', which matches 'steak', or 'beer', which matches 'Erdbeeren').",
+  "rules": [
+    {"keywords": ["onion", "garlic", "leek", "shallot"], "tags": ["fructans"]},
+    {"keywords": ["wheat", "barley", "bread", "bagel", "baguette", "noodle", "pasta", "spaghetti", "dough", "breaded", "cake", "pastry", "dumpling", "biscuit", "cookie", "cracker", "pizza", "croissant", "pancake", "waffle", "doughnut", "donut", "pretzel", "muffin", "scone", "toast"], "tags": ["fructans", "gluten"]},
+    {"keywords": ["spelt", "rye"], "tags": ["gluten"]},
+    {"keywords": ["milk", "cream", "yoghurt", "yogurt", "custard", "pudding", "ice cream", "milkshake", "latte"], "tags": ["lactose"]},
+    {"keywords": ["lactose-free", "lactose free", "oat milk", "almond milk", "soy milk", "rice milk", "coconut milk"], "tags": [], "removes": ["lactose"]},
+    {"keywords": ["gluten-free", "gluten free"], "tags": [], "removes": ["gluten", "fructans"]},
+    {"keywords": ["bean", "lentil", "chickpea", "hummus", "falafel", "soy"], "tags": ["gos"]},
+    {"keywords": ["apple", "pear", "cherr", "plum", "peach", "apricot", "nectarine"], "tags": ["fructose", "polyols"]},
+    {"keywords": ["mango", "honey", "agave", "juice", "fructose"], "tags": ["fructose"]},
+    {"keywords": ["sugar-free", "sugar free", "sorbitol", "xylitol", "maltitol", "mannitol", "erythritol", "mushroom", "cauliflower"], "tags": ["polyols"]},
+    {"keywords": ["salami", "cured ham", "prosciutto", "smoked", "tuna", "sauerkraut", "red wine", "parmesan", "aged", "mature", "tomato", "spinach"], "tags": ["histamine"]},
+    {"keywords": ["fried", "fries", "crisps", "breaded", "bacon", "mayo", "cream", "sausage", "fatty", "battered", "deep-fried"], "tags": ["fat"]},
+    {"keywords": ["coffee", "espresso", "cappuccino", "latte", "black tea", "green tea", "iced tea", "matcha", "chai", "cola", "energy drink"], "tags": ["caffeine"]},
+    {"keywords": ["herbal tea", "chamomile", "peppermint tea", "rooibos", "fruit tea", "decaf"], "tags": [], "removes": ["caffeine"]},
+    {"keywords": ["lager", "pilsner", "stout", "wine", "prosecco", "champagne", "whisky", "whiskey", "vodka", "liqueur", "cocktail", "cider", "spirit"], "tags": ["alcohol"]},
+    {"keywords": ["alcohol-free", "non-alcoholic", "alcohol free"], "tags": [], "removes": ["alcohol"]},
+    {"keywords": ["chilli", "chili", "spicy", "hot sauce", "jalapeño", "sriracha", "wasabi", "horseradish", "vindaloo"], "tags": ["spicy"]},
+    {"keywords": ["sparkling", "fizzy", "carbonated", "soda", "lemonade", "cola", "tonic", "prosecco", "champagne", "lager", "pilsner"], "tags": ["carbonated"]}
+  ]
+}

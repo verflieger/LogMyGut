@@ -1,0 +1,469 @@
+# English names for foods.src.txt. Format: see build_seed.py.
+# One line per food, keyed by its German name in foods.src.txt:
+#     German name = English name | aliases=A, B | note=...
+# Every food needs a line. Aliases are English search terms; the German name and aliases stay searchable as well.
+# Austrian dishes without an English name keep it and get a descriptive alias.
+
+# ---------- Bread & baked goods ----------
+Brot = Bread | aliases=Slice of bread
+Weißbrot = White bread | aliases=Wheat bread, Baguette
+Mischbrot = Mixed wheat-rye bread | aliases=Farmhouse bread, Brown bread
+Roggenbrot = Rye bread | aliases=Dark rye bread
+Vollkornbrot = Wholemeal bread | aliases=Whole grain bread, Whole wheat bread, Pumpernickel
+Dinkelbrot = Spelt bread | aliases=Wholemeal spelt bread
+Dinkel-Sauerteigbrot = Spelt sourdough bread | aliases=Sourdough | note=Long fermentation breaks down most of the fructans.
+Glutenfreies Brot = Gluten-free bread
+Toastbrot = Toast bread | aliases=Toast, Sandwich bread
+Knäckebrot = Crispbread | aliases=Rye crispbread, Crackers
+Fladenbrot = Flatbread | aliases=Pita, Naan
+Weizentortilla = Wheat tortilla | aliases=Tortilla wrap, Flour tortilla
+Gebäck = Bread rolls | aliases=Rolls, Baked goods
+Semmel = Bread roll | aliases=Roll, Bun, Kaiser roll, White roll
+Vollkornsemmel = Wholemeal roll | aliases=Whole grain roll
+Kornspitz = Kornspitz | aliases=Multigrain roll, Seeded roll
+Brezel = Pretzel | aliases=Soft pretzel, Lye roll
+Croissant = Croissant
+Mohnflesserl = Poppy seed plait | aliases=Poppy seed roll
+Glutenfreie Semmel = Gluten-free roll | aliases=Gluten-free bun
+Reiswaffel = Rice cake | aliases=Rice cracker
+Salzstangerl = Salt stick | aliases=Pretzel sticks
+Semmelknödel = Bread dumpling | aliases=Dumpling, Napkin dumpling
+Waffel = Wafer | aliases=Wafer biscuits, Manner wafers
+Haferflocken = Rolled oats | aliases=Oats, Oatmeal, Overnight oats | note=Often contaminated with gluten (relevant in coeliac disease).
+Müsli = Muesli | aliases=Bircher muesli | note=Usually contains wheat flakes and dried fruit.
+Granola = Granola | aliases=Crunchy muesli
+Cornflakes = Cornflakes | aliases=Corn flakes
+Reis = Rice | aliases=Basmati rice, Jasmine rice, Risotto rice
+Vollkornreis = Brown rice | aliases=Wholegrain rice
+Nudeln = Pasta | aliases=Noodles, Spaghetti, Penne, Fusilli
+Vollkornnudeln = Wholemeal pasta | aliases=Whole wheat pasta
+Eiernudeln = Egg noodles | aliases=Tagliatelle, Egg pasta
+Glutenfreie Nudeln = Gluten-free pasta | aliases=Corn pasta
+Reisnudeln = Rice noodles | aliases=Glass noodles, Vermicelli
+Tortellini = Tortellini | aliases=Ravioli, Filled pasta
+Gnocchi = Gnocchi | aliases=Potato gnocchi
+Spätzle = Spätzle | aliases=Egg noodle dumplings, Spaetzle
+Couscous = Couscous
+Bulgur = Bulgur | aliases=Bulgur wheat
+Grieß = Semolina | aliases=Durum semolina, Semolina dumplings
+Quinoa = Quinoa
+Hirse = Millet | aliases=Millet porridge
+Buchweizen = Buckwheat | aliases=Buckwheat flour
+Polenta = Polenta | aliases=Cornmeal, Grits
+Weizenmehl = Wheat flour | aliases=Flour, Spelt flour
+Semmelbrösel = Breadcrumbs | aliases=Panko, Breading
+Kartoffeln = Potatoes | aliases=Potato, Boiled potatoes, Parsley potatoes
+Pommes frites = French fries | aliases=Fries, Chips
+Bratkartoffeln = Fried potatoes | aliases=Sautéed potatoes, Home fries
+Rösti = Rösti | aliases=Hash brown, Potato pancake, Potato fritter
+Chips = Crisps | aliases=Potato chips, Pringles
+Süßkartoffel = Sweet potato | aliases=Yam
+
+# ---------- Milk & dairy ----------
+Kuhmilch = Milk | aliases=Cow's milk, Whole milk
+Laktosefreie Milch = Lactose-free milk
+Buttermilch = Buttermilk
+Kefir = Kefir | aliases=Ayran, Yoghurt drink
+Ziegenmilch = Goat's milk | aliases=Sheep's milk
+Pflanzendrink = Plant milk | aliases=Plant-based drink, Milk alternative
+Hafermilch = Oat milk | aliases=Oat drink
+Sojamilch = Soy milk | aliases=Soya milk, Soy drink | note=Made from soy protein, it is low in FODMAPs.
+Mandelmilch = Almond milk | aliases=Almond drink
+Reisdrink = Rice milk | aliases=Rice drink
+Joghurt = Yoghurt | aliases=Yogurt, Natural yoghurt, Plain yoghurt
+Laktosefreier Joghurt = Lactose-free yoghurt | aliases=Lactose-free yogurt
+Fruchtjoghurt = Fruit yoghurt | aliases=Fruit yogurt, Strawberry yoghurt
+Griechisches Joghurt = Greek yoghurt | aliases=Greek yogurt
+Skyr = Skyr
+Topfen = Quark | aliases=Curd cheese, Low-fat quark
+Kräutertopfen = Herb quark | aliases=Herb curd cheese, Liptauer spread
+Schlagobers = Cream | aliases=Whipping cream, Whipped cream, Heavy cream
+Kaffeeobers = Coffee cream | aliases=Single cream, Half-and-half, Evaporated milk
+Sauerrahm = Sour cream
+Crème fraîche = Crème fraîche | aliases=Creme fraiche
+Butter = Butter
+Butterschmalz = Clarified butter | aliases=Ghee
+Margarine = Margarine
+Käse = Cheese | aliases=Cheese slice
+Hartkäse = Hard cheese | aliases=Aged hard cheese, Mature cheese
+Parmesan = Parmesan | aliases=Parmigiano, Grana Padano, Pecorino
+Bergkäse = Mountain cheese | aliases=Alpine cheese, Gruyère, Comté
+Emmentaler = Emmental | aliases=Swiss cheese
+Alter Gouda = Aged Gouda | aliases=Mature Gouda
+Schnittkäse = Semi-hard cheese | aliases=Sliced cheese
+Junger Gouda = Young Gouda | aliases=Gouda, Mild Gouda
+Edamer = Edam
+Tilsiter = Tilsit
+Butterkäse = Butter cheese | aliases=Bel Paese, Mild semi-soft cheese
+Raclettekäse = Raclette cheese | aliases=Raclette
+Weichkäse = Soft cheese
+Camembert = Camembert
+Brie = Brie
+Gorgonzola = Gorgonzola | aliases=Blue cheese, Roquefort, Stilton
+Limburger = Limburger | aliases=Washed-rind cheese, Romadur
+Frischkäse = Cream cheese | aliases=Philadelphia, Cheese spread
+Hüttenkäse = Cottage cheese
+Ricotta = Ricotta
+Mascarpone = Mascarpone
+Ziegenfrischkäse = Fresh goat's cheese | aliases=Goat cheese, Chèvre
+Mozzarella = Mozzarella | aliases=Burrata, Buffalo mozzarella
+Feta = Feta | aliases=Sheep's cheese, White cheese
+Halloumi = Halloumi | aliases=Grilling cheese
+Schmelzkäse = Processed cheese | aliases=Cheese slices (processed), Cheese sauce
+Graukäse = Grey cheese | aliases=Sour milk cheese, Harzer
+Milcheis = Ice cream | aliases=Vanilla ice cream, Gelato
+Sorbet = Sorbet | aliases=Fruit ice, Ice lolly
+Pudding = Pudding | aliases=Custard, Vanilla pudding, Chocolate pudding, Semolina pudding
+Milchreis = Rice pudding
+Kakao = Hot chocolate | aliases=Cocoa, Chocolate milk
+Ei = Egg | aliases=Eggs, Boiled egg, Scrambled eggs, Fried egg
+
+# ---------- Meat, fish & alternatives ----------
+Hendl = Chicken | aliases=Chicken breast, Chicken meat
+Pute = Turkey | aliases=Turkey breast
+Rindfleisch = Beef | aliases=Steak, Sirloin
+Schweinefleisch = Pork | aliases=Pork chop, Pork loin
+Lammfleisch = Lamb
+Wild = Game | aliases=Venison, Wild boar, Deer
+Faschiertes = Minced meat | aliases=Mince, Ground beef, Ground meat
+Speck = Bacon | aliases=Streaky bacon, Pork belly
+Geselchtes = Smoked pork | aliases=Cured smoked pork, Kassler
+Kochschinken = Ham | aliases=Cooked ham, Turkey ham
+Rohschinken = Cured ham | aliases=Prosciutto, Serrano ham, Parma ham
+Wurst = Sausage | aliases=Sausages, Cold cuts
+Extrawurst = Luncheon meat | aliases=Bologna, Lyoner, Cold cuts slice
+Salami = Salami | aliases=Chorizo, Pepperoni
+Leberwurst = Liver sausage | aliases=Liverwurst, Liver pâté
+Leberkäs = Leberkäse | aliases=Meatloaf (Bavarian), Leberkas
+Bratwurst = Bratwurst | aliases=Grilled sausage
+Würstel = Frankfurter | aliases=Hot dog sausage, Wiener, Vienna sausage
+Käsekrainer = Cheese sausage | aliases=Käsekrainer, Kransky
+Blutwurst = Black pudding | aliases=Blood sausage
+Mettwurst = Mettwurst | aliases=Spreadable sausage, Teewurst
+Dönerfleisch = Döner meat | aliases=Kebab meat, Gyros meat
+Fisch = Fish | aliases=Fresh fish, Fish fillet, Pollock
+Lachs = Salmon | aliases=Salmon fillet
+Forelle = Trout | aliases=Char
+Kabeljau = Cod | aliases=Pangasius, Alaska pollock
+Zander = Pike-perch | aliases=Zander, Pike, Perch
+Karpfen = Carp
+Thunfisch (Dose) = Canned tuna | aliases=Tuna, Tinned tuna
+Räucherlachs = Smoked salmon | aliases=Smoked fish, Smoked trout
+Hering = Herring | aliases=Pickled herring, Rollmops
+Sardinen = Sardines | aliases=Anchovies, Mackerel
+Garnelen = Prawns | aliases=Shrimp, Scampi, Seafood, Calamari, Mussels
+Fischstäbchen = Fish fingers | aliases=Fish sticks, Fish cake
+Backfisch = Fried fish | aliases=Fish and chips, Battered fish
+Tofu (fest) = Firm tofu | aliases=Tofu, Smoked tofu
+Seidentofu = Silken tofu
+Tempeh = Tempeh
+Hülsenfrüchte = Pulses | aliases=Legumes
+Erbsen = Peas | aliases=Green peas, Frozen peas
+Kidneybohnen = Kidney beans | aliases=Beans, Red beans, Baked beans
+Weiße Bohnen = White beans | aliases=Cannellini, Borlotti, Butter beans
+Kichererbsen = Chickpeas | aliases=Garbanzo beans
+Linsen = Lentils | aliases=Red lentils, Brown lentils
+Edamame = Edamame | aliases=Soybeans
+Falafel = Falafel
+Hummus = Hummus | aliases=Houmous, Chickpea dip
+
+# ---------- Fruit ----------
+Kernobst = Pome fruit | aliases=Apples and pears
+Apfel = Apple | aliases=Apples
+Birne = Pear | aliases=Pears
+Quitte = Quince
+Steinobst = Stone fruit
+Kirschen = Cherries | aliases=Sweet cherries, Sour cherries
+Zwetschke = Plum | aliases=Plums, Damson, Mirabelle
+Pfirsich = Peach | aliases=Peaches
+Nektarine = Nectarine
+Marille = Apricot | aliases=Apricots
+Mango = Mango
+Beeren = Berries | aliases=Mixed berries
+Erdbeeren = Strawberries | aliases=Strawberry
+Himbeeren = Raspberries | aliases=Raspberry
+Heidelbeeren = Blueberries | aliases=Bilberries | note=BLS shows excess fructose; Monash measures blueberries as tolerated.
+Brombeeren = Blackberries | aliases=Blackberry
+Ribisel = Currants | aliases=Redcurrants, Blackcurrants
+Preiselbeeren = Lingonberries | aliases=Cranberries (fresh)
+Weintrauben = Grapes
+Zitrusfrüchte = Citrus fruit
+Orange = Orange | aliases=Oranges, Blood orange
+Mandarine = Mandarin | aliases=Clementine, Tangerine
+Grapefruit = Grapefruit | aliases=Pomelo
+Zitrone = Lemon | aliases=Lime, Lemon juice
+Banane = Banana | aliases=Bananas | note=Ripe bananas contain fructans, unripe (greenish) ones hardly any.
+Kiwi = Kiwi | aliases=Kiwi fruit
+Ananas = Pineapple
+Wassermelone = Watermelon
+Honigmelone = Honeydew melon | aliases=Melon, Cantaloupe
+Feige = Fig | aliases=Figs
+Granatapfel = Pomegranate | aliases=Pomegranate seeds
+Papaya = Papaya
+Maracuja = Passion fruit
+Litschi = Lychee | aliases=Litchi
+Kaki = Persimmon | aliases=Sharon fruit, Kaki
+Rhabarber = Rhubarb
+Avocado = Avocado | note=About 1/8 of an avocado is considered tolerated.
+Kokosnuss = Coconut | aliases=Desiccated coconut, Coconut flakes
+Trockenobst = Dried fruit
+Datteln = Dates | aliases=Date
+Rosinen = Raisins | aliases=Sultanas
+Dörrzwetschken = Prunes | aliases=Dried plums
+Dörrmarillen = Dried apricots
+Getrocknete Feigen = Dried figs
+Cranberrys = Dried cranberries | aliases=Cranberries
+Apfelmus = Apple sauce | aliases=Applesauce, Stewed apple, Compote
+
+# ---------- Vegetables ----------
+Zwiebelgewächse = Alliums | aliases=Onion family
+Zwiebel = Onion | aliases=Onions, Red onion, Fried onions
+Knoblauch = Garlic | aliases=Garlic clove
+Lauch = Leek | aliases=Leeks
+Frühlingszwiebel = Spring onion | aliases=Scallion, Green onion | note=Only the green part is low in FODMAPs.
+Schalotte = Shallot | aliases=Shallots
+Schnittlauch = Chives | note=Low in FODMAPs, even in larger amounts.
+Kohl = Cabbage | aliases=Cabbage vegetables
+Weißkraut = White cabbage | aliases=Coleslaw cabbage
+Rotkraut = Red cabbage
+Wirsing = Savoy cabbage
+Kohlsprossen = Brussels sprouts
+Karfiol = Cauliflower
+Brokkoli = Broccoli | note=Florets are well tolerated; stalks contain more fructose.
+Kohlrabi = Kohlrabi
+Chinakohl = Chinese cabbage | aliases=Napa cabbage, Pak choi, Bok choy
+Grünkohl = Kale
+Sauerkraut = Sauerkraut
+Schwammerl = Mushrooms | aliases=Mushroom
+Champignons = Button mushrooms | aliases=White mushrooms, Champignons
+Eierschwammerl = Chanterelles
+Steinpilze = Porcini | aliases=Ceps
+Shiitake = Shiitake
+Austernpilze = Oyster mushrooms | aliases=King oyster mushrooms
+Fisolen = Green beans | aliases=French beans, String beans
+Mais = Sweetcorn | aliases=Corn, Corn on the cob
+Paprika = Bell pepper | aliases=Pepper, Capsicum, Red pepper
+Pfefferoni = Pepperoncini | aliases=Mild chilli peppers, Pickled peppers
+Chili = Chilli | aliases=Chili pepper, Hot pepper, Jalapeño
+Gurke = Cucumber | aliases=Cucumber salad
+Essiggurkerl = Gherkins | aliases=Pickles, Pickled cucumbers
+Tomate = Tomato | aliases=Tomatoes, Cherry tomatoes
+Getrocknete Tomaten = Sun-dried tomatoes | aliases=Dried tomatoes
+Karotte = Carrot | aliases=Carrots
+Zucchini = Courgette | aliases=Zucchini
+Melanzani = Aubergine | aliases=Eggplant
+Spinat = Spinach | aliases=Creamed spinach, Leaf spinach
+Mangold = Chard | aliases=Swiss chard
+Kürbis = Pumpkin | aliases=Squash, Butternut squash, Hokkaido
+Rote Rüben = Beetroot | aliases=Beets
+Sellerie = Celeriac | aliases=Celery root
+Stangensellerie = Celery | aliases=Celery sticks | note=Monash measures much more mannitol than BLS.
+Fenchel = Fennel
+Wurzelgemüse = Root vegetables | aliases=Soup greens
+Pastinake = Parsnip | aliases=Parsnips
+Petersilienwurzel = Parsley root
+Topinambur = Jerusalem artichoke | aliases=Sunchoke
+Rettich = Radish (white) | aliases=Daikon, White radish
+Radieschen = Radishes | aliases=Radish
+Spargel = Asparagus | aliases=Green asparagus, White asparagus
+Artischocke = Artichoke | aliases=Artichoke hearts
+Blattsalat = Lettuce | aliases=Salad, Green salad, Salad leaves
+Häuptelsalat = Butterhead lettuce | aliases=Round lettuce
+Eisbergsalat = Iceberg lettuce
+Vogerlsalat = Lamb's lettuce | aliases=Corn salad, Mâche
+Rucola = Rocket | aliases=Arugula
+Endivie = Endive | aliases=Frisée, Escarole
+Radicchio = Radicchio | aliases=Chicory
+Sprossen = Sprouts | aliases=Bean sprouts, Mung bean sprouts
+Bambussprossen = Bamboo shoots
+Okra = Okra
+Oliven = Olives | aliases=Green olives, Black olives
+Kapern = Capers
+Ingwer = Ginger | aliases=Ginger root
+Kräuter = Herbs | aliases=Parsley, Basil, Dill, Cress, Coriander, Mint
+
+# ---------- Nuts & seeds ----------
+Nüsse = Nuts | aliases=Mixed nuts, Trail mix
+Cashewkerne = Cashews | aliases=Cashew nuts
+Pistazien = Pistachios
+Mandeln = Almonds | aliases=Almond butter | note=Up to about 10 almonds are considered tolerated.
+Haselnüsse = Hazelnuts | aliases=Hazelnut
+Walnüsse = Walnuts | aliases=Walnut, Pecans
+Erdnüsse = Peanuts | aliases=Peanut, Peanut puffs
+Macadamia = Macadamia nuts | aliases=Macadamia
+Paranüsse = Brazil nuts
+Pinienkerne = Pine nuts
+Erdnussbutter = Peanut butter
+Samen = Seeds
+Leinsamen = Linseed | aliases=Flaxseed
+Chiasamen = Chia seeds | aliases=Chia
+Kürbiskerne = Pumpkin seeds | aliases=Sunflower seeds
+Sesam = Sesame | aliases=Tahini, Sesame paste
+
+# ---------- Sweets & snacks ----------
+Schokolade = Chocolate
+Vollmilchschokolade = Milk chocolate
+Zartbitterschokolade = Dark chocolate | aliases=Plain chocolate, Bittersweet chocolate
+Weiße Schokolade = White chocolate
+Nuss-Nougat-Creme = Chocolate hazelnut spread | aliases=Nutella
+Rührkuchen = Cake | aliases=Sponge cake, Marble cake, Bundt cake
+Sahnetorte = Cream cake | aliases=Gateau, Cream slice
+Topfenkuchen = Cheesecake | aliases=Quark cake
+Apfelstrudel = Apple strudel | aliases=Strudel
+Topfenstrudel = Quark strudel | aliases=Cheese strudel
+Sachertorte = Sacher cake | aliases=Chocolate cake, Sachertorte
+Germknödel = Yeast dumpling | aliases=Germknödel, Steamed bun, Sweet dumpling
+Krapfen = Doughnut | aliases=Donut, Jam doughnut, Berliner
+Kekse = Biscuits | aliases=Cookies, Butter biscuits, Christmas cookies
+Lebkuchen = Gingerbread | aliases=Lebkuchen
+Müsliriegel = Cereal bar | aliases=Granola bar, Muesli bar
+Proteinriegel = Protein bar | note=Often contain sugar alcohols (maltitol, sorbitol). Check the ingredients.
+Gummibärchen = Gummy bears | aliases=Fruit gums, Gummies, Jelly sweets
+Zuckerfreier Kaugummi = Sugar-free chewing gum | aliases=Chewing gum, Gum
+Zuckerfreie Bonbons = Sugar-free sweets | aliases=Sugar-free candy, Sugar-free mints
+Popcorn = Popcorn
+Zucker = Sugar | aliases=Icing sugar, Cane sugar
+Honig = Honey
+Agavendicksaft = Agave syrup | aliases=Agave nectar
+Ahornsirup = Maple syrup
+Marmelade = Jam | aliases=Jelly, Preserves, Marmalade
+Xylit = Xylitol | aliases=Birch sugar
+Sorbit = Sorbitol | aliases=Sweetener
+Erythrit = Erythritol | note=Hardly fermented and considered well tolerated.
+
+# ---------- Drinks ----------
+Kaffee = Coffee | aliases=Filter coffee, Americano, Black coffee
+Espresso = Espresso
+Tee = Tea
+Schwarzer Tee = Black tea | aliases=Earl Grey, English breakfast tea
+Grüner Tee = Green tea | aliases=Matcha, Mate
+Chai = Chai | aliases=Chai latte
+Kamillentee = Chamomile tea
+Fencheltee = Fennel tea
+Pfefferminztee = Peppermint tea | aliases=Mint tea, Herbal tea
+Früchtetee = Fruit tea | aliases=Rosehip tea, Rooibos
+Cola = Cola | aliases=Coke, Pepsi
+Cola Zero = Diet cola | aliases=Coke Zero, Diet Coke
+Limonade = Lemonade | aliases=Soft drink, Soda, Fanta, Sprite, Tonic
+Almdudler = Almdudler | aliases=Herbal lemonade
+Eistee = Iced tea | aliases=Ice tea
+Wasser = Water | aliases=Tap water, Still water, Drinking water
+Mineralwasser mit Kohlensäure = Sparkling water | aliases=Soda water, Carbonated water, Fizzy water
+Energydrink = Energy drink | aliases=Red Bull
+Fruchtsaft = Fruit juice | aliases=Juice, Multivitamin juice
+Apfelsaft = Apple juice | aliases=Apple spritzer
+Orangensaft = Orange juice | aliases=OJ
+Smoothie = Smoothie | aliases=Fruit smoothie
+Kombucha = Kombucha
+Bier = Beer | aliases=Lager, Pilsner, Pint
+Weißbier = Wheat beer | aliases=Hefeweizen, Weissbier
+Radler = Shandy | aliases=Radler
+Alkoholfreies Bier = Alcohol-free beer | aliases=Non-alcoholic beer
+Wein = Wine | aliases=Glass of wine
+Weißwein = White wine | aliases=Grüner Veltliner, Riesling
+Rotwein = Red wine | aliases=Zweigelt, Blaufränkisch
+Rosé = Rosé | aliases=Rosé wine
+Spritzer = Wine spritzer | aliases=Spritzer | note=Half wine, half soda water.
+Sekt = Sparkling wine | aliases=Prosecco, Champagne, Aperol Spritz
+Most = Cider | aliases=Apple cider, Perry
+Spirituosen = Spirits | aliases=Schnapps, Vodka, Gin, Whisky, Shot
+Rum = Rum
+Likör = Liqueur | aliases=Egg liqueur, Amaretto
+
+# ---------- Sauces, seasoning, fats ----------
+Ketchup = Ketchup | aliases=Tomato ketchup, Curry ketchup | note=1 tablespoon is considered tolerated.
+Mayonnaise = Mayonnaise | aliases=Mayo
+Remoulade = Remoulade | aliases=Tartar sauce
+Senf = Mustard | aliases=Dijon mustard, Sweet mustard
+Kren = Horseradish
+Sojasauce = Soy sauce | aliases=Tamari
+Pesto = Pesto | aliases=Basil pesto
+Tomatensauce = Tomato sauce | aliases=Passata, Pasta sauce, Marinara
+Bratensaft = Gravy | aliases=Roast gravy, Meat juices
+Sauce Hollandaise = Hollandaise sauce | aliases=Hollandaise, Béarnaise
+Chilisauce = Chilli sauce | aliases=Hot sauce, Sriracha, Tabasco, Sweet chilli sauce
+Currypulver = Curry powder | aliases=Curry, Curry paste
+Paprikapulver = Paprika powder | aliases=Paprika, Sweet paprika
+Pfeffer = Pepper (spice) | aliases=Black pepper, Cayenne pepper
+Essig = Vinegar
+Weinessig = Wine vinegar | aliases=Red wine vinegar, White wine vinegar
+Balsamico = Balsamic vinegar | aliases=Balsamic, Balsamic glaze
+Apfelessig = Cider vinegar | aliases=Apple cider vinegar
+Branntweinessig = Spirit vinegar | aliases=White vinegar, Distilled vinegar
+Brühe = Stock | aliases=Broth, Bouillon, Stock cube, Vegetable stock | note=Ready-made stocks usually contain onion and garlic powder.
+Inulin = Inulin | aliases=Chicory fibre, Fibre supplement, Oligofructose
+Kokosmilch = Coconut milk
+Speiseöl = Cooking oil | aliases=Oil, Vegetable oil
+Olivenöl = Olive oil
+Rapsöl = Rapeseed oil | aliases=Canola oil
+Sonnenblumenöl = Sunflower oil
+Kürbiskernöl = Pumpkin seed oil
+Kokosöl = Coconut oil
+Frittierfett = Frying fat | aliases=Frying oil, Deep-frying oil
+Schmalz = Lard | aliases=Dripping, Pork fat
+
+# ---------- Ready-made ----------
+Chicken Nuggets = Chicken nuggets | aliases=Nuggets, Chicken wings
+Frühlingsrolle = Spring roll | aliases=Egg roll
+Tortillachips = Tortilla chips | aliases=Corn chips, Nachos (chips)
+Tzatziki = Tzatziki | aliases=Garlic sauce, Yoghurt sauce
+
+# ---------- Dishes ----------
+Pizza = Pizza | aliases=Pizza Margherita
+Lasagne = Lasagne | aliases=Lasagna
+Spaghetti Bolognese = Spaghetti Bolognese | aliases=Bolognese, Spag bol
+Spaghetti Carbonara = Spaghetti Carbonara | aliases=Carbonara
+Käsespätzle = Cheese spätzle | aliases=Käsespätzle, Cheese noodles
+Wiener Schnitzel = Wiener Schnitzel | aliases=Schnitzel, Breaded escalope
+Gulasch = Goulash | aliases=Beef goulash
+Tafelspitz = Boiled beef | aliases=Tafelspitz
+Frittatensuppe = Pancake strip soup | aliases=Frittatensuppe, Clear soup with garnish
+Hühnersuppe = Chicken soup | aliases=Chicken noodle soup
+Kartoffelsuppe = Potato soup | aliases=Cream soup
+Tomatensuppe = Tomato soup
+Linseneintopf = Lentil stew | aliases=Lentil soup, Dal
+Erbsensuppe = Pea soup | aliases=Split pea soup
+Bohneneintopf = Bean stew | aliases=Bean soup
+Chili con Carne = Chili con carne
+Kartoffelsalat = Potato salad
+Gemischter Salat = Mixed salad | aliases=Side salad
+Currywurst = Currywurst | aliases=Curry sausage
+Döner Kebab = Döner kebab | aliases=Doner, Kebab, Dürüm
+Gyros = Gyros | aliases=Souvlaki
+Burger = Burger | aliases=Hamburger, Cheeseburger
+Hot Dog = Hot dog
+Wrap = Wrap | aliases=Burrito
+Nachos mit Käse = Nachos with cheese | aliases=Nachos
+Sushi = Sushi | aliases=Maki, Nigiri
+Ramen = Ramen | aliases=Instant noodles, Udon, Noodle soup
+Asiatisches Wokgericht = Asian stir-fry | aliases=Stir-fry, Wok, Fried noodles, Fried rice, Pad Thai
+Indisches Curry = Indian curry | aliases=Thai curry, Tikka masala, Korma
+Toast Hawaii = Toast Hawaii | aliases=Ham and cheese toast, Toastie
+Belegte Semmel = Filled roll | aliases=Sandwich, Ham roll, Cheese roll
+Kaiserschmarrn = Kaiserschmarrn | aliases=Shredded pancake
+Palatschinken = Pancakes | aliases=Crêpes, Pancake
+Geröstete Kartoffeln = Pan-fried potatoes | aliases=Hash browns, Potato hash
+Schweinsbraten = Roast pork | aliases=Pork roast
+Cappuccino = Cappuccino | aliases=Latte, Latte macchiato, Flat white, Milky coffee
+Kartoffelpüree = Mashed potatoes | aliases=Mash, Potato purée
+Leberkässemmel = Leberkäse roll | aliases=Leberkäse sandwich
+Kasnocken = Kasnocken | aliases=Cheese dumplings, Cheese spätzle (Pinzgau)
+Grenadiermarsch = Grenadiermarsch | aliases=Pasta and potato hash
+Krautfleckerl = Krautfleckerl | aliases=Cabbage and pasta
+Schinkenfleckerl = Schinkenfleckerl | aliases=Ham and pasta bake
+Eiernockerl = Eiernockerl | aliases=Egg dumplings, Egg spätzle
+Backhendl = Fried chicken | aliases=Backhendl, Breaded chicken
+Cordon bleu = Cordon bleu | aliases=Chicken cordon bleu
+Faschierte Laibchen = Meatballs (patties) | aliases=Meat patties, Rissoles, Frikadellen
+Zwiebelrostbraten = Onion roast beef | aliases=Zwiebelrostbraten, Steak with onions
+Beuschel = Beuschel | aliases=Lung ragout
+Krautsalat = Cabbage salad | aliases=Coleslaw
+Linsen mit Knödel = Lentils with dumpling | aliases=Lentil stew with dumpling
+Spinat mit Spiegelei = Spinach with fried egg | aliases=Creamed spinach with egg
+Gemüsecurry = Vegetable curry | aliases=Vegetarian curry
+Risotto = Risotto | aliases=Mushroom risotto
+Müsli mit Joghurt = Muesli with yoghurt | aliases=Yoghurt with muesli, Yogurt with granola
+Porridge = Porridge | aliases=Oatmeal with fruit
+Marillenknödel = Apricot dumplings | aliases=Marillenknödel, Plum dumplings, Quark dumplings
+Kaspressknödel = Kaspressknödel | aliases=Fried cheese dumplings
+Steirischer Backhendlsalat = Styrian fried chicken salad | aliases=Fried chicken salad

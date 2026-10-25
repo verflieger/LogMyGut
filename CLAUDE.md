@@ -6,8 +6,9 @@ LogMyGut is a private, fully offline Android app (Kotlin, Jetpack Compose, Room,
 drinks, bowel movements and symptoms. **`SPEC.md` is the source of truth** for behaviour, data model, backup format
 and wording; code comments cite it as "SPEC 4.2" etc. Update SPEC.md alongside behaviour changes.
 
-Code, identifiers and SPEC are English; all UI text is **Austrian German** (Semmel, Topfen, Erdäpfel, "Jänner"),
-lives in `app/src/main/res/values/strings.xml`, and dates are formatted with locale `de-AT`.
+Code, identifiers and SPEC are English. The UI is **English** (default, `res/values/`) and **Austrian German**
+(`res/values-de/`: Semmel, Topfen, "Jänner"); every string needs both. Dates go through `localizedFormat` in
+`ui/common/Formatting.kt`, never fixed patterns.
 
 ## Commands
 
@@ -29,7 +30,7 @@ test + Robolectric under `app/src/test`.
 Seed and asset generators (Python, standard library unless noted):
 
 ```sh
-python tools/foods/build_seed.py [--report FILE]   # foods.src.txt + bls_subset.tsv -> app/src/main/assets/foods.de.json
+python tools/foods/build_seed.py [--report FILE]   # foods.src.txt + foods.en.txt + bls_subset.tsv -> app/src/main/assets/foods.json
 python tools/foods/extract_bls.py                  # needs openpyxl + data-sources/BLS_4_0_Daten_2025_DE.xlsx (not in git)
 python tools/icons/build_bristol.py                # from repo root; writes res/drawable/bristol_<n>.xml
 ```
@@ -48,9 +49,17 @@ python tools/icons/build_bristol.py                # from repo root; writes res/
   always resolved from **current** food settings (`domain/EffectiveTags.kt`), so fixing a tag corrects past analysis.
   A meal stores its **actual ingredient list** per dish item (`MealItemIngredient`), so editing a recipe never
   rewrites past meals.
-- **Seed data**: `foods.de.json` is generated — edit `tools/foods/foods.src.txt` and rerun `build_seed.py`, never
-  the JSON by hand. Seed keys are permanent (rename via `key=Old name`). The importer only updates built-in foods without `userModified`, and never changes an existing food's unit.
-  `DRINK_LABELS` in `build_seed.py` must match `DrinkUnitLabels` in `domain/Model.kt`.
+- **Seed data**: `foods.json` is generated — edit `tools/foods/foods.src.txt` (German) and `foods.en.txt` (English,
+  one line per food, keyed by German name) and rerun `build_seed.py`, never the JSON by hand. Seed keys are permanent
+  (rename via `key=Old name`). The importer never changes an existing food's unit and only fully updates built-in
+  foods without `userModified`.
+- **Food names follow the language** (SPEC 4): `SeedImporter.import(seed, language)` stores built-in names in the
+  app's language with the other language's names as aliases; it runs on start, on configuration change
+  (`LogMyGutApp.onConfigurationChanged`) and after a backup restore. Changed built-ins follow the language unless the
+  user renamed them.
+- **Unit labels**: built-in labels are stored as German keys (`UnitLabelKeys` in `domain/Model.kt`), shown via
+  `Resources.unitName`/`countLabel`; typed labels go through `unitLabelKey`. `DRINK_LABELS` in `build_seed.py` must
+  match `DrinkUnitLabels`.
 - **Database changes**: bump `version` in `LogMyGutDatabase`, add a `Migration` to `data/db/Migrations.kt`
   (`ALL_MIGRATIONS`), and commit the exported schema in `app/schemas/`. `MigrationTest` reads those schemas
   (they are added to debug assets for Robolectric).
@@ -64,7 +73,7 @@ python tools/icons/build_bristol.py                # from repo root; writes res/
 - **No network.** The manifest removes `INTERNET`/`ACCESS_NETWORK_STATE`, `allowBackup="false"`; no analytics or
   crash reporting. `ManifestPrivacyTest` enforces this.
 - **EU MDR wording** (SPEC "Intended purpose and wording"): analysis texts describe frequencies in the user's own
-  entries ("deutlich häufiger"), never causes, suspicions or diagnoses ("Verdacht", "Unverträglichkeit"), never
+  entries ("deutlich häufiger" / "noticeably more often"), never causes, suspicions or diagnoses ("Verdacht", "Unverträglichkeit"), never
   point to a test or diet, never say whether Rome IV criteria are met, and use no alarm styling on results.
 - **Releases**: raise `versionCode`/`versionName` in `app/build.gradle.kts` for every APK handed out. Release signing
   reads `~/.config/logmygut/keystore.properties` (not in git; without it the APK stays unsigned). APKs are copied to

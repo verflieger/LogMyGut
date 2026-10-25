@@ -11,6 +11,7 @@ import at.mtr.logmygut.data.backup.BackupRepository
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
+import at.mtr.logmygut.data.seed.seedLanguage
 import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.reminder.Reminder
 import kotlinx.coroutines.CoroutineScope
@@ -26,11 +27,13 @@ class AppContainer(private val context: Context) {
 
     val database: LogMyGutDatabase by lazy { LogMyGutDatabase.create(context) }
 
-    private val tagSuggester: TagSuggester by lazy { TagSuggester.fromJson(readAsset("keyword_rules.de.json")) }
-
-    val foodRepository: FoodRepository by lazy {
-        FoodRepository(database, tagSuggester, loadSeed = { SeedFile.parse(readAsset("foods.de.json")) })
+    private val tagSuggester: TagSuggester by lazy {
+        TagSuggester.fromJson(readAsset("keyword_rules.de.json"), readAsset("keyword_rules.en.json"))
     }
+
+    private val seed: SeedFile by lazy { SeedFile.parse(readAsset("foods.json")) }
+
+    val foodRepository: FoodRepository by lazy { FoodRepository(database, tagSuggester, syncSeed = ::syncSeed) }
 
     val journalRepository: JournalRepository by lazy { JournalRepository(database) }
 
@@ -39,7 +42,11 @@ class AppContainer(private val context: Context) {
     val settings: SettingsRepository by lazy { SettingsRepository.create(context) }
 
     val backupRepository: BackupRepository by lazy {
-        BackupRepository(database, settings, context.packageManager.getPackageInfo(context.packageName, 0).versionName)
+        BackupRepository(
+            database, settings, context.packageManager.getPackageInfo(context.packageName, 0).versionName,
+            // A backup may come from a phone in another language; rename its built-in foods to this one's.
+            afterRestore = ::syncSeed,
+        )
     }
 
     /**
@@ -56,13 +63,19 @@ class AppContainer(private val context: Context) {
         }
     }
 
-    /** Syncs the built-in foods with the seed file (see [SeedImporter]). Cheap when nothing changed. */
+    /**
+     * Syncs the built-in foods with the seed file, named in the app's current language (see [SeedImporter]).
+     * Cheap when nothing changed; called on start and when the language changes.
+     */
     fun importSeedInBackground() {
-        appScope.launch(Dispatchers.IO) {
-            val result = SeedImporter(database).import(SeedFile.parse(readAsset("foods.de.json")))
-            if (result.inserted + result.updated > 0) {
-                Log.i("LogMyGut", "Seed import: added ${result.inserted}, updated ${result.updated} foods")
-            }
+        appScope.launch(Dispatchers.IO) { syncSeed() }
+    }
+
+    private suspend fun syncSeed() {
+        val language = seedLanguage(context.resources.configuration.locales[0])
+        val result = SeedImporter(database).import(seed, language)
+        if (result.inserted + result.updated > 0) {
+            Log.i("LogMyGut", "Seed import ($language): added ${result.inserted}, updated ${result.updated} foods")
         }
     }
 

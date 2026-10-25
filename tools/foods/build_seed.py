@@ -1,4 +1,4 @@
-"""Builds app/src/main/assets/foods.de.json from foods.src.txt and bls_subset.tsv (SPEC 4.4, 4.5).
+"""Builds app/src/main/assets/foods.json from foods.src.txt, foods.en.txt and bls_subset.tsv (SPEC 4.4, 4.5).
 
 Standard library only. Usage: python build_seed.py [--report FILE]
 
@@ -15,6 +15,10 @@ Lines starting with "#" are comments; the line "== Gerichte" starts the dishes:
     Name | size | aliases=... | = Ingredient, Ingredient
 - Foods counted in Glas, Tasse, Dose or Flasche are drinks: g is then millilitres. A dish that is a drink
   needs g= for its volume (e.g. Cappuccino | count:Tasse | g=200 | = Espresso, Kuhmilch).
+
+foods.en.txt holds the English name, aliases and note of every food, keyed by its German name:
+    Semmel = Bread roll | aliases=Roll, Bun | note=...
+Each food needs exactly one line, and a food with a German note needs an English one.
 """
 import argparse
 import csv
@@ -24,8 +28,8 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE.parents[1] / "app" / "src" / "main" / "assets" / "foods.de.json"
-SEED_VERSION = 5
+OUT = HERE.parents[1] / "app" / "src" / "main" / "assets" / "foods.json"
+SEED_VERSION = 6
 # Must match DrinkUnitLabels in the app (domain/Model.kt).
 DRINK_LABELS = {"Glas", "Tasse", "Dose", "Flasche"}
 TAG_ORDER = ["lactose", "fructose", "polyols", "fructans", "gos", "gluten", "histamine",
@@ -126,6 +130,41 @@ def parse_source(path: Path):
     return ingredients, dishes
 
 
+def parse_translations(path: Path, foods: list[dict]) -> dict[str, dict]:
+    """English texts per German food name; every food must have exactly one."""
+    texts = {}
+    for number, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        german, sep, rest = raw.partition(" = ")
+        if not sep:
+            sys.exit(f"foods.en.txt line {number}: expected 'German name = English name'")
+        fields = [f.strip() for f in rest.split(" | ")]
+        text = {"name": fields[0]}
+        for kv in fields[1:]:
+            key, sep, value = kv.partition("=")
+            if not sep or key not in ("aliases", "note"):
+                sys.exit(f"foods.en.txt line {number}: unknown field {kv!r}")
+            text[key] = [a.strip() for a in value.split(",")] if key == "aliases" else value
+        if german.strip() in texts:
+            sys.exit(f"foods.en.txt line {number}: {german.strip()!r} appears twice")
+        texts[german.strip()] = text
+    names = [f["name"] for f in foods]
+    missing = [n for n in names if n not in texts]
+    unknown = [n for n in texts if n not in names]
+    if missing or unknown:
+        sys.exit(f"foods.en.txt: missing {missing}, unknown {unknown}")
+    for food in foods:
+        if ("note" in food) != ("note" in texts[food["name"]]):
+            sys.exit(f"foods.en.txt: {food['name']!r} needs a note exactly when the German entry has one")
+    # Like the German ones, English names and aliases each belong to one food, so a search term is unambiguous.
+    english = [n.casefold() for t in texts.values() for n in [t["name"], *t.get("aliases", [])]]
+    duplicates = sorted({n for n in english if english.count(n) > 1})
+    if duplicates:
+        sys.exit(f"foods.en.txt: English names or aliases used twice: {duplicates}")
+    return texts
+
+
 def load_bls() -> dict[str, dict]:
     with open(HERE / "bls_subset.tsv", encoding="utf-8") as f:
         return {row["code"]: row for row in csv.DictReader(f, delimiter="\t")}
@@ -167,7 +206,7 @@ def fmt(tag, threshold):
     return tag if threshold is None else f"{tag}:{threshold}"
 
 
-def build(ingredients, dishes, full, by_name):
+def build(ingredients, dishes, full, by_name, english):
     key_of = {f["name"]: f.get("key", f["name"]) for f in ingredients}
     out_ingredients = []
     for food in ingredients:
@@ -200,6 +239,7 @@ def build(ingredients, dishes, full, by_name):
             entry["note"] = food["note"]
         if "bls" in food:
             entry["source"] = f"BLS 4.0 {food['bls']}"
+        entry["en"] = english[food["name"]]
         out_ingredients.append(entry)
 
     out_dishes = []
@@ -222,6 +262,7 @@ def build(ingredients, dishes, full, by_name):
                 sys.exit(f"dish {dish['name']}: a drink needs g= (its volume in ml)")
             entry["grams"] = float(dish["g"])
             entry["drink"] = True
+        entry["en"] = english[dish["name"]]
         out_dishes.append(entry)
     return {"version": SEED_VERSION, "tags": TAG_ORDER, "ingredients": out_ingredients, "dishes": out_dishes}
 
@@ -251,8 +292,9 @@ def main() -> None:
     args = parser.parse_args()
 
     ingredients, dishes = parse_source(HERE / "foods.src.txt")
+    english = parse_translations(HERE / "foods.en.txt", ingredients + dishes)
     full, warnings, by_name = resolve(ingredients, load_bls())
-    seed = build(ingredients, dishes, full, by_name)
+    seed = build(ingredients, dishes, full, by_name, english)
     previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
     changes = changes_against(previous, ingredients, full)
 

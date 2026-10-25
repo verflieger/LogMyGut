@@ -1,6 +1,7 @@
 package at.mtr.logmygut.data
 
 import at.mtr.logmygut.data.db.LogMyGutDatabase
+import at.mtr.logmygut.data.seed.SeedImporter
 import at.mtr.logmygut.data.db.MealEntity
 import at.mtr.logmygut.data.db.MealItemEntity
 import at.mtr.logmygut.domain.FoodKind
@@ -28,7 +29,7 @@ class LibraryTest {
 
     @Before fun setUp() = runTest {
         db = TestDatabase.createSeeded()
-        foods = FoodRepository(db, TestDatabase.tagSuggester, loadSeed = { TestDatabase.seed })
+        foods = FoodRepository(db, TestDatabase.tagSuggester, syncSeed = { SeedImporter(db).import(TestDatabase.seed) })
     }
 
     @After fun tearDown() = db.close()

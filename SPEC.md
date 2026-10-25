@@ -2,7 +2,7 @@
 
 A private, fully offline Android app for logging food, bowel movements and digestive
 symptoms. It shows which food triggers occur together with symptoms in the user's own entries.
-Single user (the author), sideloaded. Repo, code and identifiers are in English; the UI is in Austrian German.
+Single user (the author), sideloaded. Repo, code and identifiers are in English; the UI is in English and Austrian German.
 
 > LogMyGut is a self-observation tool, not a diagnostic device. All analysis
 > results describe the user's own entries, to discuss with a doctor.
@@ -40,7 +40,7 @@ Wording rules for UI texts, info pages and any store listing:
 | Licence | Code GPL-3.0-or-later (`LICENSE`); food data and keyword rules CC BY 4.0 (`LICENSES/CC-BY-4.0.txt`); the BLS extract keeps the MRI's terms. |
 | Network | **None.** No `INTERNET` permission in the manifest. No analytics, crash reporting or cloud backup (`android:allowBackup="false"`). |
 | App lock | None (relies on the device lock screen) |
-| Localization | All UI text in `res/values/strings.xml`, in **Austrian German** (Semmel, Topfen, Faschiertes …). Standard German food names are search aliases. Where the Austrian word is less common (Paradeiser, Erdäpfel), the food uses the standard name and keeps the Austrian one as an alias. Dates and times are formatted with locale `de-AT` (e.g. "Jänner"). English can be added later. |
+| Localization | **English** (default, `res/values/`) and **Austrian German** (`res/values-de/`), following the phone's language or Android's per-app language setting; other languages get English. German uses Austrian words (Semmel, Topfen, Faschiertes …) with standard German food names as search aliases; where the Austrian word is less common (Paradeiser, Erdäpfel), the food uses the standard name and keeps the Austrian one as an alias. Dates follow the language; German always formats as `de-AT` (e.g. "Jänner"). |
 
 Permissions: `POST_NOTIFICATIONS` (reminder), `SCHEDULE_EXACT_ALARM` is **not** used.
 The daily reminder uses an inexact alarm or WorkManager, which is acceptable for this purpose.
@@ -83,12 +83,16 @@ Every timeline entry can be tapped to edit or deleted (with an undo snackbar).
   umlaut-insensitive, prefix and substring). Dishes and ingredients get different icons.
   Ranking: exact name/alias match, then name prefix, then alias prefix, then substring; within each, recently used first.
 - An unknown name can be created inline:
-  - as an **ingredient**: tags are suggested from `app/src/main/assets/keyword_rules.de.json` and shown pre-selected;
+  - as an **ingredient**: tags are suggested from `app/src/main/assets/keyword_rules.de.json` and `keyword_rules.en.json`
+    (both apply, whatever the language) and shown pre-selected;
     the user confirms or edits them;
   - as a **dish**: the user picks its ingredients from the same search; missing ingredients can be
     created inline.
 - **Amount per item** depends on the item's `unit`:
-  - `count`: integer stepper, default 1, label from `unitLabel` (e.g. "2 Scheiben").
+  - `count`: integer stepper, default 1, label from `unitLabel` (e.g. "2 Scheiben" / "2 slices"). The built-in labels
+    (Stück, Scheibe, Glas, Tasse, Dose, Flasche, Kugel, Portion) are stored as these German words, which act as keys,
+    and shown translated; a label typed in either language ("slice", "Gläser") is saved as its key. Other labels are
+    the user's own and stay as typed.
   - `size`: S / M / L chips, default M.
 - **Zutaten anpassen** on a dish item: remove or add ingredients for this meal only.
   The saved dish stays unchanged. A checkbox **"Auch im Gericht dauerhaft speichern"** (off by default)
@@ -157,15 +161,23 @@ Two kinds of entries:
 
 Seed data and editing:
 
-- Seeded from `app/src/main/assets/foods.de.json`, which is **generated** from `tools/foods/foods.src.txt` by
-  `tools/foods/build_seed.py` (see 4.5). About 380 ingredients and 60 dishes, with Austrian names and standard German
-  aliases, `unit`, `unitLabel`, and for ingredients `grams`, `tags`, optional `doseTags`, `parent`, `removeTags` and `note`.
-  Dishes list their `ingredients` by seed key.
-- On every app start the importer syncs the built-in foods with the seed (cheap when nothing changed):
-  missing entries are added; built-in entries the user hasn't changed get the seed's current name, aliases, note,
-  tags, parent or recipe. The unit of an existing food never changes, because logged meal items depend on it.
+- Seeded from `app/src/main/assets/foods.json`, which is **generated** from `tools/foods/foods.src.txt` (German) and
+  `tools/foods/foods.en.txt` (English, keyed by the German name) by `tools/foods/build_seed.py` (see 4.5). About 380
+  ingredients and 60 dishes, with Austrian names and standard German aliases, English names and aliases (`en`),
+  `unit`, `unitLabel`, and for ingredients `grams`, `tags`, optional `doseTags`, `parent`, `removeTags` and `note`.
+  Dishes list their `ingredients` by seed key. Within each language, a name or alias belongs to one food.
+- On every app start, after a language change and after a backup import, the importer syncs the built-in foods with
+  the seed (cheap when nothing changed): missing entries are added; built-in entries the user hasn't changed get the
+  seed's current name, aliases, note, tags, parent or recipe. The unit of an existing food never changes, because
+  logged meal items depend on it.
+- **Names follow the language.** Built-in foods are stored with the name, aliases and note in the app's language;
+  the names and aliases in the other language are added as aliases, so search finds a food in either language.
+  Meals refer to foods by id and the analysis uses tags, so switching languages, or importing a backup made in the
+  other language, only renames the built-in foods.
 - Users can edit any ingredient (tags, dose thresholds, unit, aliases, parent) or dish (ingredient list), create new ones,
-  and hide built-in ones. Editing sets `userModified`; such entries (and user-created ones) are never touched by the seed.
+  and hide built-in ones. Editing sets `userModified`; such entries keep everything the seed would change, except that
+  their name still follows the language as long as it is one of the seed's names (or the seed key). A food the user
+  renamed keeps its name. User-created foods are never touched by the seed.
 - **Seed keys are permanent.** A seed entry's `key` (default: its `name`) identifies it across versions. To rename an
   entry, change `name` and set `key` to the old name.
 
@@ -406,10 +418,10 @@ purpose statement. Badges use neutral colours (see Intended purpose).
   in the backup return to their defaults. The last-export date and the "permission asked" flag stay as they are.
 - **Checks before import:** format and version first (a file from a newer app is reported as such), then values
   and references (ids, foods and their hierarchy, tags, ranges). A file that passes but still fails in the database
-  leaves the database unchanged. The error dialog names the problem in German, with a technical detail below.
+  leaves the database unchanged. The error dialog names the problem in the app's language, with a technical detail below.
 - The hint shows when there was never an export or the last one is more than 30 days old.
 
-## 8. Info pages (German)
+## 8. Info pages (English and German)
 - Bristol scale with illustrations and descriptions.
 - Explanation of each symptom and how to rate 0–10 (anchors: 0 none, 1–3 mild, 4–6 moderate, 7–10 severe).
 - Trigger tags: what they are, typical foods, related tests.
@@ -432,8 +444,8 @@ Implementation:
 
 ## 9. Out of scope for v1
 Photos, PDF doctor report, CSV export, menstrual cycle, barcode scanning,
-nutrition values, cloud sync, app lock, multiple users, widgets, English UI.
-(A fluid total came in after all, as part of drink logging: 3.2.)
+nutrition values, cloud sync, app lock, multiple users, widgets.
+(A fluid total came in after all, as part of drink logging: 3.2, and so did an English UI.)
 
 ## 10. Quality
 - Unit tests: the analysis engine (pure Kotlin, no Android dependencies) including dose thresholds and
@@ -463,6 +475,4 @@ Open points for later, roughly in order. Not part of any milestone yet.
   before any public release.
 - **Publishing on F-Droid**: publish the source, confirm with the MRI that the BLS extract may be redistributed,
   `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and English, decide on signing.
-- **English UI**: `values-en`, units stored as keys instead of German labels (migration, backup v3), English seed
-  names and keyword rules, translated info pages, per-app language.
 - **Encrypted backup** (optional password), or at least a warning that the export holds health data in plain text.

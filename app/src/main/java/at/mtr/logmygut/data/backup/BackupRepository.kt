@@ -26,6 +26,8 @@ class BackupRepository(
     db: LogMyGutDatabase,
     private val settings: SettingsRepository,
     private val appVersion: String? = null,
+    /** Runs after a successful restore, e.g. to rename built-in foods to the current language. */
+    private val afterRestore: suspend () -> Unit = {},
 ) {
     private val dao = db.backupDao()
 
@@ -47,6 +49,7 @@ class BackupRepository(
             throw BackupException(BackupException.Reason.INVALID, e.message ?: "database rejected the data")
         }
         settings.restore(backup.settings)
+        afterRestore()
     }
 }
 

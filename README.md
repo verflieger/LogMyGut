@@ -6,7 +6,8 @@ A private, fully offline Android diary for food, drinks, bowel movements and dig
 > how often symptoms were logged after meals with certain trigger tags. It does not diagnose, detect diseases or
 > intolerances, or recommend treatment or diet changes. The overviews are meant for talking to a doctor or dietitian.
 
-The UI is in Austrian German. The full specification is in [SPEC.md](SPEC.md).
+The app is in English and (Austrian) German, following the phone's language or Android's per-app language setting;
+food names switch with it. The full specification is in [SPEC.md](SPEC.md).
 
 ## Features
 
@@ -44,7 +45,8 @@ install them over the existing app.
 
 ### Food data
 
-`app/src/main/assets/foods.de.json` is generated. Edit `tools/foods/foods.src.txt`, then run:
+`app/src/main/assets/foods.json` is generated. Edit `tools/foods/foods.src.txt` (German) and
+`tools/foods/foods.en.txt` (English names, one line per food), then run:
 
 ```sh
 python tools/foods/build_seed.py
@@ -68,8 +70,9 @@ Copyright © 2026 verflieger
 
 - **Code:** [GNU General Public License v3.0 or later](LICENSE) (GPL-3.0-or-later). You may use, change and share
   the app, as long as anything you distribute based on it is also published under the GPL.
-- **Food data:** the food list and its tags (`tools/foods/foods.src.txt`, `app/src/main/assets/foods.de.json`) and
-  the tag suggestion rules (`app/src/main/assets/keyword_rules.de.json`) are licensed under
+- **Food data:** the food list and its tags (`tools/foods/foods.src.txt`, `tools/foods/foods.en.txt`,
+  `app/src/main/assets/foods.json`) and the tag suggestion rules (`app/src/main/assets/keyword_rules.*.json`) are
+  licensed under
   [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
 - **BLS extract:** `tools/foods/bls_subset.tsv` holds values from the BLS 4.0 and stays under the Max Rubner-Institut's
   terms; cite it as shown under [Sources](#sources).

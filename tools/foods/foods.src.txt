@@ -1,4 +1,4 @@
-# Source of app/src/main/assets/foods.de.json. Format: see build_seed.py.
+# Source of app/src/main/assets/foods.json (English names: foods.en.txt). Format: see build_seed.py.
 # g = grams of a normal (M) portion, or of one piece for count units.
 # Hand-curated tags follow Monash FODMAP (fructans, GOS, and where Monash measured differently than BLS),
 # histamine follows the commonly published histamine-intolerance lists; all marked tags=.

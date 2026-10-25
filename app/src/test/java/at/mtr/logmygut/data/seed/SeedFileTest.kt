@@ -12,7 +12,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class SeedFileTest {
-    private val seed = SeedFile.parse(File("src/main/assets/foods.de.json").readText())
+    private val seed = SeedFile.parse(File("src/main/assets/foods.json").readText())
 
     @Test fun shippedSeedIsValid() {
         assertTrue("expected ~380 ingredients, got ${seed.ingredients.size}", seed.ingredients.size >= 350)

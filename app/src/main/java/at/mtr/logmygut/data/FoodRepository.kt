@@ -4,7 +4,6 @@ import androidx.room.withTransaction
 import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.data.db.FoodTagEntity
 import at.mtr.logmygut.data.db.LogMyGutDatabase
-import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
 import at.mtr.logmygut.data.seed.searchTextFor
 import at.mtr.logmygut.data.seed.toEntity
@@ -23,12 +22,12 @@ import kotlinx.coroutines.flow.Flow
 
 /**
  * Access to the food library: search, tag lookup, creating and editing foods (SPEC 4).
- * [loadSeed] supplies the seed file for "Auf Standard zurücksetzen".
+ * [syncSeed] brings the built-in foods in line with the seed, for "Reset to default".
  */
 class FoodRepository(
     private val db: LogMyGutDatabase,
     private val tagSuggester: TagSuggester,
-    private val loadSeed: suspend () -> SeedFile = { error("No seed file available") },
+    private val syncSeed: suspend () -> Unit = { error("No seed file available") },
 ) {
     private val dao = db.foodDao()
 
@@ -199,7 +198,7 @@ class FoodRepository(
         val food = dao.getFood(id) ?: return
         require(food.builtIn) { "Only built-in foods can be reset" }
         dao.clearUserModified(id)
-        SeedImporter(db).import(loadSeed())
+        syncSeed()
     }
 
     private suspend fun ancestorsOf(id: Long): List<Long> {

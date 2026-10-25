@@ -16,9 +16,10 @@ private data class KeywordRuleJson(
 private data class KeywordRule(val keywords: List<String>, val adds: Set<Tag>, val removes: Set<Tag>)
 
 /**
- * Suggests tags for a user-created ingredient from its name (SPEC 3.2), using
- * `keyword_rules.de.json`. All matching rules' tags are unioned first, then all
- * matching rules' `removes` are applied, so "Laktosefreie Milch" ends up without lactose.
+ * Suggests tags for a user-created ingredient from its name (SPEC 3.2), using the keyword rules of every language
+ * (`keyword_rules.de.json`, `keyword_rules.en.json`), so a name in either language gets suggestions. All matching
+ * rules' tags are unioned first, then all matching rules' `removes` are applied, so "Laktosefreie Milch" ends up
+ * without lactose.
  */
 class TagSuggester private constructor(private val rules: List<KeywordRule>) {
 
@@ -31,10 +32,11 @@ class TagSuggester private constructor(private val rules: List<KeywordRule>) {
     companion object {
         private val json = Json { ignoreUnknownKeys = true }
 
-        fun fromJson(text: String): TagSuggester {
-            val file = json.decodeFromString<KeywordRulesFile>(text)
+        /** Combines the rules of all given keyword rule files. */
+        fun fromJson(vararg texts: String): TagSuggester {
+            val rules = texts.flatMap { json.decodeFromString<KeywordRulesFile>(it).rules }
             return TagSuggester(
-                file.rules.map { rule ->
+                rules.map { rule ->
                     KeywordRule(
                         keywords = rule.keywords.map(::normalizeForSearch),
                         adds = rule.tags.mapTo(mutableSetOf(), Tag::fromKey),
