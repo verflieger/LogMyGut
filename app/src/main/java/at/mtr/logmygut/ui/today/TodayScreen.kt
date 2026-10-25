@@ -34,6 +34,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -57,7 +58,7 @@ import at.mtr.logmygut.ui.common.bristolGroup
 import at.mtr.logmygut.ui.common.label
 import at.mtr.logmygut.ui.common.local
 import at.mtr.logmygut.ui.common.nowMinute
-import at.mtr.logmygut.ui.common.short
+import at.mtr.logmygut.ui.common.shortAmount
 import at.mtr.logmygut.ui.common.volumeLabel
 import java.time.LocalDate
 import kotlinx.coroutines.flow.SharingStarted
@@ -172,13 +173,14 @@ fun FluidRow(label: String, onAddWater: () -> Unit) {
 @Composable
 fun TimelineRow(entry: TimelineEntry, onClick: () -> Unit) {
     val time = entry.timestamp.local()
+    val resources = LocalResources.current
     val (icon, headline, supporting) = when (entry) {
         // What was eaten is the headline; the time above it says when.
         is TimelineEntry.Meal -> Triple(
             if (entry.drinksOnly) Icons.Outlined.LocalCafe else Icons.Outlined.Restaurant,
             entry.items.joinToString(", ") { item ->
                 val amount = item.count?.let { Amount.Count(it) } ?: item.size?.let { Amount.Size(it) }
-                if (amount == null) item.name else "${item.name} (${amount.short(item.unitLabel)})"
+                if (amount == null) item.name else "${item.name} (${resources.shortAmount(amount, item.unitLabel)})"
             },
             stringResource(R.string.timeline_eaten_out).takeIf { entry.eatenOut },
         )

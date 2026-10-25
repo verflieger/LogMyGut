@@ -45,6 +45,11 @@ android {
         compose = true
     }
 
+    // Lists the app's languages (English default, German) for Android's per-app language setting.
+    androidResources {
+        generateLocaleConfig = true
+    }
+
     testOptions {
         // Robolectric needs merged resources and assets (seed files) on the unit-test classpath.
         unitTests.isIncludeAndroidResources = true

@@ -47,6 +47,7 @@ import at.mtr.logmygut.data.DaySummary
 import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.domain.ScoreBand
 import at.mtr.logmygut.ui.common.AppLocale
+import at.mtr.logmygut.ui.common.localizedFormat
 import at.mtr.logmygut.ui.common.LongDayFormat
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.bandColors
@@ -64,7 +65,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 
-private val MonthFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("LLLL yyyy", AppLocale)
+/** "Jänner 2026" / "January 2026". */
+private val MonthFormat: DateTimeFormatter get() = localizedFormat("LLLLy")
 
 class HistoryViewModel(private val journal: JournalRepository) : ViewModel() {
     val today: LocalDate = LocalDate.now()

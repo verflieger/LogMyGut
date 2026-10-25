@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import at.mtr.logmygut.R
 import at.mtr.logmygut.domain.ScoreBand
 import at.mtr.logmygut.ui.common.AppLocale
+import at.mtr.logmygut.ui.common.localizedFormat
 import at.mtr.logmygut.ui.common.bandColors
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -43,7 +44,8 @@ import java.time.temporal.TemporalAdjusters
 // Trend charts (SPEC 6.2), drawn by hand: hairline grid, 2 dp lines, 8 dp dots with a surface ring,
 // bars capped at 24 dp with rounded tops. Tapping a day selects it; the screen shows its values above.
 
-private val AxisDayFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("d.M.", AppLocale)
+/** "3.3." / "3/3". */
+private val AxisDayFormat: DateTimeFormatter get() = localizedFormat("dM")
 
 /** Maps days to x (one slot per day) and values to y inside [plot]. */
 class DayAxis(val days: List<LocalDate>, val plot: Rect, private val yMin: Float, private val yMax: Float) {

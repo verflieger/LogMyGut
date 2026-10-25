@@ -182,9 +182,10 @@ fun NewFoodDialog(
     )
 }
 
-/** "„Tomate“ · Essig · Zutat": why a search result matched and where it belongs; [kind] null omits the kind. */
+/** "„Paradeiser“ · Zutat": why a search result matched and where it belongs; [kind] null omits the kind. */
+@Composable
 internal fun hitContext(hit: FoodHit, kind: String?): String =
-    listOfNotNull(hit.matchedAlias?.let { "„$it“" }, hit.parentName, kind).joinToString(" · ")
+    listOfNotNull(hit.matchedAlias?.let { stringResource(R.string.search_alias_match, it) }, hit.parentName, kind).joinToString(" · ")
 
 /** Current ingredients with ✕, plus a search to add more. Used inside dialogs and scrolling screens, so no lazy lists. */
 @Composable

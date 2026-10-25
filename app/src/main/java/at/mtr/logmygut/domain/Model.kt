@@ -29,10 +29,32 @@ enum class FoodKind { INGREDIENT, DISH }
 
 enum class FoodUnit { COUNT, SIZE }
 
+/**
+ * Built-in count unit labels. They are stored as these German words, which act as language-neutral keys: the UI
+ * shows them translated, and [unitLabelKey] maps a label typed in German or English back to its key. Any other
+ * label is the user's own and stays as typed.
+ */
+val UnitLabelKeys = listOf("Stück", "Scheibe", "Glas", "Tasse", "Dose", "Flasche", "Kugel", "Portion")
+
 /** Count units that mean a drink. Foods counted this way are drinks unless set otherwise (SPEC 3.2). */
 val DrinkUnitLabels = listOf("Glas", "Tasse", "Dose", "Flasche")
 
-fun isDrinkUnit(unit: FoodUnit, unitLabel: String?): Boolean = unit == FoodUnit.COUNT && unitLabel in DrinkUnitLabels
+private val unitLabelSpellings: Map<String, String> = mapOf(
+    "Stück" to listOf("stück", "stk", "piece", "pieces", "pc", "pcs"),
+    "Scheibe" to listOf("scheibe", "scheiben", "slice", "slices"),
+    "Glas" to listOf("glas", "gläser", "glass", "glasses"),
+    "Tasse" to listOf("tasse", "tassen", "cup", "cups"),
+    "Dose" to listOf("dose", "dosen", "can", "cans", "tin", "tins"),
+    "Flasche" to listOf("flasche", "flaschen", "bottle", "bottles"),
+    "Kugel" to listOf("kugel", "kugeln", "scoop", "scoops"),
+    "Portion" to listOf("portion", "portionen", "portions", "serving", "servings"),
+).flatMap { (key, spellings) -> spellings.map { it to key } }.toMap()
+
+/** How a typed unit label is stored: the built-in key it names in any language, otherwise trimmed as typed. */
+fun unitLabelKey(label: String): String = label.trim().let { unitLabelSpellings[it.lowercase()] ?: it }
+
+fun isDrinkUnit(unit: FoodUnit, unitLabel: String?): Boolean =
+    unit == FoodUnit.COUNT && unitLabel?.let(::unitLabelKey) in DrinkUnitLabels
 
 /** Ordered: S < M < L. */
 /** [factor] relative to M, matching the seed portion weights (SPEC 4.5): S = ½, L = 2×. */

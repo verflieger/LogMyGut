@@ -1,311 +1,322 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- English, the default. German is in values-de. -->
 <resources>
-    <string name="app_name">LogMyGut</string>
+    <string name="app_name" translatable="false">LogMyGut</string>
 
     <!-- Navigation -->
-    <string name="tab_today">Heute</string>
-    <string name="tab_history">Verlauf</string>
-    <string name="tab_analysis">Analyse</string>
-    <string name="tab_settings">Einstellungen</string>
+    <string name="tab_today">Today</string>
+    <string name="tab_history">History</string>
+    <string name="tab_analysis">Analysis</string>
+    <string name="tab_settings">Settings</string>
 
     <!-- Common -->
-    <string name="action_save">Speichern</string>
-    <string name="action_cancel">Abbrechen</string>
-    <string name="action_delete">Löschen</string>
-    <string name="action_back">Zurück</string>
-    <string name="action_undo">Rückgängig</string>
-    <string name="action_remove">Entfernen</string>
-    <string name="action_done">Fertig</string>
-    <string name="action_next">Weiter</string>
-    <string name="action_increase">Mehr</string>
-    <string name="action_decrease">Weniger</string>
-    <string name="antibiotic_day">Antibiotikum</string>
-    <string name="field_time">Zeitpunkt</string>
-    <string name="field_note">Notiz (optional)</string>
-    <string name="error_future_time">Der Zeitpunkt liegt in der Zukunft.</string>
-    <string name="deleted_entry">Eintrag gelöscht</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_back">Back</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_done">Done</string>
+    <string name="action_next">Next</string>
+    <string name="action_increase">More</string>
+    <string name="action_decrease">Less</string>
+    <string name="antibiotic_day">Antibiotic</string>
+    <string name="field_time">Time</string>
+    <string name="field_note">Note (optional)</string>
+    <string name="error_future_time">This time is in the future.</string>
+    <string name="deleted_entry">Entry deleted</string>
 
     <!-- Today -->
-    <string name="quick_meal">Essen &amp; Trinken</string>
-    <string name="quick_bowel">Stuhlgang</string>
-    <string name="quick_symptoms">Beschwerden</string>
-    <string name="quick_medication">Medikament</string>
-    <string name="today_empty">Noch nichts eingetragen.\nTipp oben auf einen der Knöpfe.</string>
-    <string name="timeline_eaten_out">auswärts</string>
-    <string name="timeline_bristol">Stuhlgang · Typ %1$d</string>
-    <string name="timeline_urgent">dringlich</string>
-    <string name="timeline_pain">Krämpfe vorher, danach %1$s</string>
+    <string name="quick_meal">Food &amp; drinks</string>
+    <string name="quick_bowel">Bowel movement</string>
+    <string name="quick_symptoms">Symptoms</string>
+    <string name="quick_medication">Medication</string>
+    <string name="today_empty">Nothing logged yet.\nTap one of the buttons above.</string>
+    <string name="timeline_eaten_out">eaten out</string>
+    <string name="timeline_bristol">Bowel movement · Type %1$d</string>
+    <string name="timeline_urgent">urgent</string>
+    <string name="timeline_pain">Cramps before, %1$s afterwards</string>
 
 
     <!-- Meal editor -->
-    <string name="meal_title_new">Essen &amp; Trinken eintragen</string>
-    <string name="meal_title_edit">Eintrag bearbeiten</string>
-    <string name="meal_search_hint">Lebensmittel oder Gericht suchen …</string>
-    <string name="meal_create_new">„%1$s“ neu anlegen</string>
-    <string name="meal_no_items">Noch nichts ausgewählt.</string>
-    <string name="meal_eaten_out">Auswärts gegessen</string>
-    <string name="meal_eaten_out_hint">Restaurant, Kantine, bei Freunden</string>
-    <string name="meal_adjust_ingredients">Zutaten anpassen</string>
-    <string name="meal_triggers">Auslöser: %1$s</string>
-    <string name="meal_no_triggers">Keine bekannten Auslöser</string>
-    <string name="kind_dish">Gericht</string>
-    <string name="kind_ingredient">Zutat</string>
-    <string name="kind_drink">Getränk</string>
-    <string name="fluid_today">Getrunken heute: %1$s</string>
-    <string name="fluid_day">Getrunken: %1$s</string>
-    <string name="fluid_add_water">Glas Wasser</string>
+    <string name="meal_title_new">Log food &amp; drinks</string>
+    <string name="meal_title_edit">Edit entry</string>
+    <string name="search_alias_match">“%1$s”</string>
+    <string name="meal_search_hint">Search food or dish …</string>
+    <string name="meal_create_new">Create “%1$s”</string>
+    <string name="meal_no_items">Nothing selected yet.</string>
+    <string name="meal_eaten_out">Eaten out</string>
+    <string name="meal_eaten_out_hint">Restaurant, canteen, at friends\'</string>
+    <string name="meal_adjust_ingredients">Adjust ingredients</string>
+    <string name="meal_triggers">Triggers: %1$s</string>
+    <string name="meal_no_triggers">No known triggers</string>
+    <string name="kind_dish">Dish</string>
+    <string name="kind_ingredient">Ingredient</string>
+    <string name="kind_drink">Drink</string>
+    <string name="fluid_today">Drunk today: %1$s</string>
+    <string name="fluid_day">Drunk: %1$s</string>
+    <string name="fluid_add_water">Glass of water</string>
 
     <!-- Ingredient adjust / picker -->
-    <string name="adjust_title">Zutaten: %1$s</string>
-    <string name="adjust_save_to_dish">Auch im Gericht dauerhaft speichern</string>
-    <string name="adjust_save_to_dish_hint">Gilt ab jetzt für neue Einträge. Frühere Mahlzeiten bleiben unverändert.</string>
-    <string name="picker_search_hint">Zutat suchen …</string>
-    <string name="picker_need_one">Mindestens eine Zutat ist nötig.</string>
+    <string name="adjust_title">Ingredients: %1$s</string>
+    <string name="adjust_save_to_dish">Also save to the dish</string>
+    <string name="adjust_save_to_dish_hint">Applies to new entries from now on. Earlier meals stay as they are.</string>
+    <string name="picker_search_hint">Search ingredient …</string>
+    <string name="picker_need_one">At least one ingredient is needed.</string>
 
     <!-- New food -->
-    <string name="new_food_title">Neu anlegen</string>
+    <string name="new_food_title">Create new</string>
     <string name="new_food_name">Name</string>
-    <string name="new_food_unit">Menge angeben als</string>
-    <string name="unit_size">Größe S / M / L</string>
-    <string name="unit_count">Anzahl</string>
-    <string name="new_food_unit_label">Einheit (z. B. Stück, Scheibe, Glas)</string>
-    <string name="new_food_tags">Auslöser</string>
-    <string name="new_food_tags_hint">Vorschläge anhand des Namens. Bitte prüfen.</string>
-    <string name="new_food_ingredients">Zutaten</string>
-    <string name="unit_label_default">Stück</string>
+    <string name="new_food_unit">Amount given as</string>
+    <string name="unit_size">Size S / M / L</string>
+    <string name="unit_count">Count</string>
+    <string name="new_food_unit_label">Unit (e.g. piece, slice, glass)</string>
+    <string name="new_food_tags">Triggers</string>
+    <string name="new_food_tags_hint">Suggested from the name. Please check.</string>
+    <string name="new_food_ingredients">Ingredients</string>
+    <string name="unit_label_default">piece</string>
+    <!-- Built-in unit labels (stored as German keys, see UnitLabelKeys); quantity picks singular or plural. -->
+    <plurals name="unit_piece"><item quantity="one">piece</item><item quantity="other">pieces</item></plurals>
+    <plurals name="unit_slice"><item quantity="one">slice</item><item quantity="other">slices</item></plurals>
+    <plurals name="unit_glass"><item quantity="one">glass</item><item quantity="other">glasses</item></plurals>
+    <plurals name="unit_cup"><item quantity="one">cup</item><item quantity="other">cups</item></plurals>
+    <plurals name="unit_can"><item quantity="one">can</item><item quantity="other">cans</item></plurals>
+    <plurals name="unit_bottle"><item quantity="one">bottle</item><item quantity="other">bottles</item></plurals>
+    <plurals name="unit_scoop"><item quantity="one">scoop</item><item quantity="other">scoops</item></plurals>
+    <plurals name="unit_portion"><item quantity="one">portion</item><item quantity="other">portions</item></plurals>
 
     <!-- Bowel movement -->
-    <string name="bowel_title_new">Stuhlgang eintragen</string>
-    <string name="bowel_title_edit">Stuhlgang bearbeiten</string>
-    <string name="bowel_bristol">Stuhlform (Bristol-Skala)</string>
-    <string name="bowel_type">Typ %1$d</string>
-    <string name="bowel_urgent">Dringlich (Stuhldrang)</string>
-    <string name="bowel_pain_before">Bauchschmerzen/Krämpfe vorher</string>
-    <string name="bowel_pain_after">Danach:</string>
-    <string name="pain_better">besser</string>
-    <string name="pain_same">gleich</string>
-    <string name="pain_worse">schlimmer</string>
-    <string name="bristol_group_constipation">Verstopfung</string>
+    <string name="bowel_title_new">Log bowel movement</string>
+    <string name="bowel_title_edit">Edit bowel movement</string>
+    <string name="bowel_bristol">Stool form (Bristol scale)</string>
+    <string name="bowel_type">Type %1$d</string>
+    <string name="bowel_urgent">Urgent (strong urge)</string>
+    <string name="bowel_pain_before">Abdominal pain/cramps before</string>
+    <string name="bowel_pain_after">Afterwards:</string>
+    <string name="pain_better">better</string>
+    <string name="pain_same">same</string>
+    <string name="pain_worse">worse</string>
+    <string name="bristol_group_constipation">constipation</string>
     <string name="bristol_group_normal">normal</string>
-    <string name="bristol_group_diarrhea">Durchfall</string>
-    <string name="bristol_1">Einzelne, feste Kügelchen, schwer auszuscheiden</string>
-    <string name="bristol_2">Wurstförmig, aber klumpig</string>
-    <string name="bristol_3">Wurstförmig mit Rissen an der Oberfläche</string>
-    <string name="bristol_4">Wurstförmig, glatt und weich</string>
-    <string name="bristol_5">Weiche Klümpchen mit glatten Rändern</string>
-    <string name="bristol_6">Breiige Stücke mit ausgefransten Rändern</string>
-    <string name="bristol_7">Wässrig, ohne feste Bestandteile</string>
+    <string name="bristol_group_diarrhea">diarrhoea</string>
+    <string name="bristol_1">Separate hard lumps, hard to pass</string>
+    <string name="bristol_2">Sausage-shaped but lumpy</string>
+    <string name="bristol_3">Sausage-shaped with cracks on the surface</string>
+    <string name="bristol_4">Sausage-shaped, smooth and soft</string>
+    <string name="bristol_5">Soft blobs with clear-cut edges</string>
+    <string name="bristol_6">Mushy pieces with ragged edges</string>
+    <string name="bristol_7">Watery, no solid pieces</string>
 
     <!-- Symptoms -->
-    <string name="symptoms_title_new">Beschwerden eintragen</string>
-    <string name="symptoms_title_edit">Beschwerden bearbeiten</string>
-    <string name="symptoms_hint">Nur was du antippst, wird gespeichert. 0 = keine, 1–3 leicht, 4–6 mittel, 7–10 stark.</string>
-    <string name="symptoms_not_set">nicht erfasst</string>
-    <string name="symptoms_need_one">Bitte mindestens eine Beschwerde einstellen.</string>
-    <string name="symptom_bloating">Blähbauch / Völlegefühl</string>
-    <string name="symptom_pain">Bauchschmerzen / Krämpfe</string>
-    <string name="symptom_gas">Blähungen (Winde)</string>
-    <string name="symptom_nausea">Übelkeit</string>
-    <string name="symptom_fatigue">Müdigkeit</string>
-    <string name="symptom_headache">Kopfschmerzen</string>
-    <string name="severity_none">keine</string>
-    <string name="severity_mild">leicht</string>
-    <string name="severity_moderate">mittel</string>
-    <string name="severity_severe">stark</string>
+    <string name="symptoms_title_new">Log symptoms</string>
+    <string name="symptoms_title_edit">Edit symptoms</string>
+    <string name="symptoms_hint">Only what you tap is saved. 0 = none, 1–3 mild, 4–6 moderate, 7–10 severe.</string>
+    <string name="symptoms_not_set">not logged</string>
+    <string name="symptoms_need_one">Please set at least one symptom.</string>
+    <string name="symptom_bloating">Bloating / fullness</string>
+    <string name="symptom_pain">Abdominal pain / cramps</string>
+    <string name="symptom_gas">Wind (flatulence)</string>
+    <string name="symptom_nausea">Nausea</string>
+    <string name="symptom_fatigue">Tiredness</string>
+    <string name="symptom_headache">Headache</string>
+    <string name="severity_none">none</string>
+    <string name="severity_mild">mild</string>
+    <string name="severity_moderate">moderate</string>
+    <string name="severity_severe">severe</string>
 
     <!-- Medication -->
-    <string name="med_title_new">Medikament eintragen</string>
-    <string name="med_title_edit">Medikament bearbeiten</string>
+    <string name="med_title_new">Log medication</string>
+    <string name="med_title_edit">Edit medication</string>
     <string name="med_name">Name</string>
-    <string name="med_effect">Wirkung (optional)</string>
-    <string name="med_effect_antidiarrheal">stopfend</string>
-    <string name="med_effect_enzyme">Enzym</string>
-    <string name="med_effect_antibiotic">Antibiotikum</string>
-    <string name="med_effect_painkiller">Schmerzmittel</string>
-    <string name="med_effect_other">Sonstiges</string>
+    <string name="med_effect">Effect (optional)</string>
+    <string name="med_effect_antidiarrheal">anti-diarrhoeal</string>
+    <string name="med_effect_enzyme">enzyme</string>
+    <string name="med_effect_antibiotic">antibiotic</string>
+    <string name="med_effect_painkiller">painkiller</string>
+    <string name="med_effect_other">other</string>
 
     <!-- Trigger tags -->
-    <string name="tag_lactose">Laktose</string>
-    <string name="tag_fructose">Fruktose</string>
-    <string name="tag_polyols">Polyole</string>
-    <string name="tag_fructans">Fruktane</string>
+    <string name="tag_lactose">Lactose</string>
+    <string name="tag_fructose">Fructose</string>
+    <string name="tag_polyols">Polyols</string>
+    <string name="tag_fructans">Fructans</string>
     <string name="tag_gos">GOS</string>
     <string name="tag_gluten">Gluten</string>
-    <string name="tag_histamine">Histamin</string>
-    <string name="tag_fat">Fettreich</string>
-    <string name="tag_caffeine">Koffein</string>
-    <string name="tag_alcohol">Alkohol</string>
-    <string name="tag_spicy">Scharf</string>
-    <string name="tag_carbonated">Kohlensäure</string>
+    <string name="tag_histamine">Histamine</string>
+    <string name="tag_fat">High fat</string>
+    <string name="tag_caffeine">Caffeine</string>
+    <string name="tag_alcohol">Alcohol</string>
+    <string name="tag_spicy">Spicy</string>
+    <string name="tag_carbonated">Carbonated</string>
 
-    <!-- Verlauf (SPEC 2, 6.2) -->
-    <string name="history_prev_month">Voriger Monat</string>
-    <string name="history_next_month">Nächster Monat</string>
-    <string name="history_legend_title">Schlimmster Wert des Tages</string>
-    <string name="history_legend_logged">nur Einträge</string>
-    <string name="history_hint">Tippe auf einen Tag für seine Einträge und den Check-in.</string>
-    <string name="history_day_score">%1$s, Wert %2$d</string>
-    <string name="history_day_logged">%1$s, nur Einträge</string>
-    <string name="history_day_empty">%1$s, keine Einträge</string>
-    <string name="day_empty">An diesem Tag ist nichts eingetragen.</string>
+    <!-- History (SPEC 2, 6.2) -->
+    <string name="history_prev_month">Previous month</string>
+    <string name="history_next_month">Next month</string>
+    <string name="history_legend_title">Worst value of the day</string>
+    <string name="history_legend_logged">entries only</string>
+    <string name="history_hint">Tap a day for its entries and check-in.</string>
+    <string name="history_day_score">%1$s, value %2$d</string>
+    <string name="history_day_logged">%1$s, entries only</string>
+    <string name="history_day_empty">%1$s, no entries</string>
+    <string name="day_empty">Nothing logged on this day.</string>
 
-    <!-- Tages-Check-in (SPEC 3.6) -->
-    <string name="checkin_title">Tages-Check-in</string>
+    <!-- Daily check-in (SPEC 3.6) -->
+    <string name="checkin_title">Daily check-in</string>
     <string name="checkin_stress">Stress</string>
-    <string name="checkin_stress_hint">1 = kaum, 5 = sehr viel</string>
-    <string name="checkin_sleep">Schlaf letzte Nacht</string>
-    <string name="checkin_sleep_hint">1 = sehr schlecht, 5 = sehr gut</string>
-    <string name="checkin_value">%1$s: %2$d von 5</string>
-    <string name="action_edit">Ändern</string>
+    <string name="checkin_stress_hint">1 = hardly any, 5 = a lot</string>
+    <string name="checkin_sleep">Sleep last night</string>
+    <string name="checkin_sleep_hint">1 = very bad, 5 = very good</string>
+    <string name="checkin_value">%1$s: %2$d of 5</string>
+    <string name="action_edit">Change</string>
 
-    <!-- Einstellungen (SPEC 2, 3.7) -->
-    <string name="settings_reminder_section">Erinnerung</string>
-    <string name="settings_reminder">Tägliche Erinnerung</string>
-    <string name="settings_reminder_hint">„Hast du heute alles eingetragen?“</string>
-    <string name="settings_reminder_time">Uhrzeit</string>
-    <string name="settings_notifications_off">Benachrichtigungen sind ausgeschaltet, daher kommt keine Erinnerung.</string>
-    <string name="settings_notifications_allow">Erlauben</string>
-    <string name="settings_food_section">Lebensmittel</string>
-    <string name="settings_library_hint">Zutaten und Gerichte bearbeiten, eigene anlegen, Auslöser anpassen</string>
-    <string name="reminder_channel">Tägliche Erinnerung</string>
-    <string name="reminder_text">Hast du heute alles eingetragen?</string>
+    <!-- Settings (SPEC 2, 3.7) -->
+    <string name="settings_reminder_section">Reminder</string>
+    <string name="settings_reminder">Daily reminder</string>
+    <string name="settings_reminder_hint">“Have you logged everything today?”</string>
+    <string name="settings_reminder_time">Time</string>
+    <string name="settings_notifications_off">Notifications are off, so no reminder will appear.</string>
+    <string name="settings_notifications_allow">Allow</string>
+    <string name="settings_food_section">Food</string>
+    <string name="settings_library_hint">Edit ingredients and dishes, add your own, adjust triggers</string>
+    <string name="reminder_channel">Daily reminder</string>
+    <string name="reminder_text">Have you logged everything today?</string>
 
-    <!-- Lebensmittel & Gerichte (SPEC 4.1) -->
-    <string name="library_title">Lebensmittel &amp; Gerichte</string>
-    <string name="library_tab_dishes">Gerichte</string>
-    <string name="library_tab_ingredients">Zutaten</string>
-    <string name="library_search">Suchen …</string>
-    <string name="library_own">Eigene</string>
-    <string name="library_builtin">Vorgegeben</string>
-    <string name="library_hidden">Ausgeblendet</string>
-    <string name="library_modified">geändert</string>
-    <string name="library_nothing_found">Nichts gefunden.</string>
-    <string name="library_new_dish">Neues Gericht</string>
-    <string name="library_new_ingredient">Neue Zutat</string>
-    <string name="food_menu">Weitere Aktionen</string>
-    <string name="food_hide">Ausblenden</string>
-    <string name="food_unhide">Einblenden</string>
-    <string name="food_duplicate">Duplizieren</string>
-    <string name="food_reset">Auf Standard zurücksetzen</string>
-    <string name="food_copy_suffix">(Kopie)</string>
-    <string name="food_hidden_hint">Ausgeblendet: erscheint nicht mehr in der Suche, bleibt aber in alten Einträgen.</string>
-    <string name="food_from_now_on">Änderungen gelten ab jetzt. Frühere Mahlzeiten behalten ihre Zutaten.</string>
+    <!-- Food & dishes (SPEC 4.1) -->
+    <string name="library_title">Food &amp; dishes</string>
+    <string name="library_tab_dishes">Dishes</string>
+    <string name="library_tab_ingredients">Ingredients</string>
+    <string name="library_search">Search …</string>
+    <string name="library_own">Your own</string>
+    <string name="library_builtin">Built-in</string>
+    <string name="library_hidden">Hidden</string>
+    <string name="library_modified">changed</string>
+    <string name="library_nothing_found">Nothing found.</string>
+    <string name="library_new_dish">New dish</string>
+    <string name="library_new_ingredient">New ingredient</string>
+    <string name="food_menu">More actions</string>
+    <string name="food_hide">Hide</string>
+    <string name="food_unhide">Show again</string>
+    <string name="food_duplicate">Duplicate</string>
+    <string name="food_reset">Reset to default</string>
+    <string name="food_copy_suffix">(copy)</string>
+    <string name="food_hidden_hint">Hidden: no longer appears in search, but stays in earlier entries.</string>
+    <string name="food_from_now_on">Changes apply from now on. Earlier meals keep their ingredients.</string>
     <string name="food_name">Name</string>
-    <string name="food_aliases">Andere Namen</string>
-    <string name="food_aliases_hint">Mit Komma trennen, z. B. Tomaten, Paradeiser</string>
-    <string name="food_unit">Menge</string>
-    <string name="food_unit_locked">Schon eingetragen, daher bleibt die Einheit gleich.</string>
-    <string name="food_grams_size">Gramm einer normalen Portion (M)</string>
-    <string name="food_grams_count">Gramm pro %1$s</string>
-    <string name="food_drink">Getränk</string>
-    <string name="food_drink_hint">Menge in Millilitern, zählt zur Trinkmenge des Tages</string>
-    <string name="food_ml_size">Milliliter einer normalen Portion (M)</string>
-    <string name="food_ml_count">Milliliter pro %1$s</string>
-    <string name="food_note">Notiz</string>
-    <string name="food_parent">Gehört zu</string>
-    <string name="food_parent_none">Keinem Oberbegriff</string>
-    <string name="food_parent_choose">Oberbegriff wählen</string>
-    <string name="food_parent_hint">Die Zutat übernimmt die Auslöser des Oberbegriffs, z. B. Apfelessig von Essig.</string>
-    <string name="food_tags">Auslöser</string>
-    <string name="food_tags_hint">„ab …“: gilt erst ab dieser Menge.</string>
-    <string name="food_tag_inherited">wie %1$s</string>
-    <string name="tag_off">aus</string>
-    <string name="tag_always">immer</string>
-    <string name="tag_from">ab %1$s</string>
-    <string name="food_used_in">Verwendet in</string>
-    <string name="title_ingredient_new">Neue Zutat</string>
-    <string name="title_dish_new">Neues Gericht</string>
-    <string name="dish_ingredients">Zutaten</string>
-    <string name="dish_triggers">Auslöser (automatisch)</string>
-    <string name="dish_no_triggers">keine</string>
+    <string name="food_aliases">Other names</string>
+    <string name="food_aliases_hint">Separate with commas, e.g. Tomatoes, Cherry tomatoes</string>
+    <string name="food_unit">Amount</string>
+    <string name="food_unit_locked">Already logged, so the unit stays the same.</string>
+    <string name="food_grams_size">Grams in a normal portion (M)</string>
+    <string name="food_grams_count">Grams per %1$s</string>
+    <string name="food_drink">Drink</string>
+    <string name="food_drink_hint">Amount in millilitres, counts toward the day\'s fluid total</string>
+    <string name="food_ml_size">Millilitres in a normal portion (M)</string>
+    <string name="food_ml_count">Millilitres per %1$s</string>
+    <string name="food_note">Note</string>
+    <string name="food_parent">Belongs to</string>
+    <string name="food_parent_none">No parent food</string>
+    <string name="food_parent_choose">Choose parent food</string>
+    <string name="food_parent_hint">The ingredient takes on the parent\'s triggers, e.g. cider vinegar from vinegar.</string>
+    <string name="food_tags">Triggers</string>
+    <string name="food_tags_hint">“from …”: applies only from this amount.</string>
+    <string name="food_tag_inherited">as %1$s</string>
+    <string name="tag_off">off</string>
+    <string name="tag_always">always</string>
+    <string name="tag_from">from %1$s</string>
+    <string name="food_used_in">Used in</string>
+    <string name="title_ingredient_new">New ingredient</string>
+    <string name="title_dish_new">New dish</string>
+    <string name="dish_ingredients">Ingredients</string>
+    <string name="dish_triggers">Triggers (automatic)</string>
+    <string name="dish_no_triggers">none</string>
 
     <!-- Analysis: trends (SPEC 6.2) -->
-    <string name="analysis_tab_trends">Verlauf &amp; Trends</string>
-    <string name="analysis_tab_triggers">Zusammenhänge</string>
-    <string name="analysis_range_days">%1$d Tage</string>
-    <string name="analysis_tap_hint">Tippe auf einen Tag für die Werte.</string>
-    <string name="analysis_bristol_title">Stuhlform (Bristol-Typ)</string>
-    <string name="analysis_bristol_readout">Typ %1$s</string>
+    <string name="analysis_tab_trends">History &amp; trends</string>
+    <string name="analysis_tab_triggers">Connections</string>
+    <string name="analysis_range_days">%1$d days</string>
+    <string name="analysis_tap_hint">Tap a day for its values.</string>
+    <string name="analysis_bristol_title">Stool form (Bristol type)</string>
+    <string name="analysis_bristol_readout">Type %1$s</string>
     <string name="analysis_median_readout">Median %1$s</string>
-    <string name="analysis_no_bowel">kein Stuhlgang eingetragen</string>
-    <string name="analysis_bristol_description">Bristol-Typ jedes Stuhlgangs der letzten %1$d Tage mit gleitendem Median über 7 Tage</string>
-    <string name="analysis_legend_bowel">Stuhlgang</string>
-    <string name="analysis_legend_median">Median (7 Tage)</string>
+    <string name="analysis_no_bowel">no bowel movement logged</string>
+    <string name="analysis_bristol_description">Bristol type of each bowel movement in the last %1$d days, with a 7-day moving median</string>
+    <string name="analysis_legend_bowel">Bowel movement</string>
+    <string name="analysis_legend_median">Median (7 days)</string>
     <string name="analysis_legend_normal">normal (3–5)</string>
-    <string name="analysis_symptom_title">Beschwerden (Höchstwert pro Tag)</string>
+    <string name="analysis_symptom_title">Symptoms (highest value per day)</string>
     <string name="analysis_severity_readout">%1$d (%2$s)</string>
-    <string name="analysis_no_entry">kein Eintrag</string>
-    <string name="analysis_symptom_description">Höchste Stärke von %1$s pro Tag, letzte %2$d Tage</string>
-    <string name="analysis_count_title">Stuhlgänge pro Tag</string>
+    <string name="analysis_no_entry">no entry</string>
+    <string name="analysis_symptom_description">Highest severity of %1$s per day, last %2$d days</string>
+    <string name="analysis_count_title">Bowel movements per day</string>
     <plurals name="analysis_bowel_count">
-        <item quantity="one">%1$d Stuhlgang</item>
-        <item quantity="other">%1$d Stuhlgänge</item>
+        <item quantity="one">%1$d bowel movement</item>
+        <item quantity="other">%1$d bowel movements</item>
     </plurals>
-    <string name="analysis_count_description">Anzahl der Stuhlgänge pro Tag, letzte %1$d Tage</string>
-    <string name="analysis_heatmap_title">Kalender</string>
-    <string name="analysis_heatmap_hint">Schlimmster Wert jedes Tages, letzte %1$d Wochen. Tippe auf einen Tag, um ihn zu öffnen.</string>
-    <string name="analysis_heatmap_description">Kalender der letzten %1$d Wochen, jeder Tag gefärbt nach seinem schlimmsten Wert</string>
-    <string name="analysis_legend_no_score">kein Wert</string>
+    <string name="analysis_count_description">Number of bowel movements per day, last %1$d days</string>
+    <string name="analysis_heatmap_title">Calendar</string>
+    <string name="analysis_heatmap_hint">Worst value of each day, last %1$d weeks. Tap a day to open it.</string>
+    <string name="analysis_heatmap_description">Calendar of the last %1$d weeks, each day coloured by its worst value</string>
+    <string name="analysis_legend_no_score">no value</string>
 
     <!-- Analysis: triggers (SPEC 6.3) -->
-    <string name="analysis_disclaimer">Hier siehst du nur, was in deinen Einträgen gemeinsam vorkommt, nicht was Beschwerden verursacht. In gemischten Mahlzeiten kommen Auslöser oft gemeinsam vor (Pizza = Weizen + Käse + Tomate), und Beschwerden haben oft auch andere Gründe wie Stress oder wenig Schlaf. Die App stellt keine Diagnose. Wenn du der Ursache nachgehen willst, nimm die Übersicht zu deiner Ärztin, deinem Arzt oder deiner Diätologin mit. Lass Gluten nicht weg, bevor auf Zöliakie getestet wurde.</string>
-    <string name="analysis_hints_title">Auffällig in deinen Einträgen</string>
-    <string name="analysis_no_hints">Noch nichts auffällig. Je mehr Mahlzeiten und Beschwerden du einträgst, desto mehr lässt sich vergleichen.</string>
-    <string name="analysis_all_title">Alle Auslöser für …</string>
-    <string name="outcome_diarrhea">Durchfall (Typ 6–7)</string>
-    <string name="symptom_short_bloating">Blähbauch</string>
-    <string name="symptom_short_pain">Bauchschmerzen</string>
-    <string name="symptom_short_gas">Blähungen</string>
-    <string name="hint_strong">deutlich häufiger</string>
-    <string name="hint_weak">etwas häufiger</string>
-    <string name="hint_none">nicht auffällig</string>
-    <string name="analysis_too_little_data">zu wenig Daten (n = %1$d)</string>
-    <string name="analysis_rate">%1$d von %2$d Mahlzeiten (%3$d %%)</string>
-    <string name="analysis_with">Mit: %1$s</string>
-    <string name="analysis_without">Ohne: %1$s</string>
-    <string name="analysis_with_lactase">Mit Laktase (nicht mitgezählt): %1$s</string>
-    <string name="analysis_ratio">%1$s-mal so oft</string>
-    <string name="analysis_ratio_only_with">nur mit diesem Auslöser</string>
-    <string name="analysis_window">Zeitfenster nach dem Essen: %1$s</string>
+    <string name="analysis_disclaimer">This only shows what occurs together in your entries, not what causes symptoms. In mixed meals, triggers often come together (pizza = wheat + cheese + tomato), and symptoms often have other reasons too, such as stress or little sleep. The app does not diagnose. If you want to look into the cause, take this overview to your doctor or dietitian. Don\'t cut out gluten before you have been tested for coeliac disease.</string>
+    <string name="analysis_hints_title">Stands out in your entries</string>
+    <string name="analysis_no_hints">Nothing stands out yet. The more meals and symptoms you log, the more there is to compare.</string>
+    <string name="analysis_all_title">All triggers for …</string>
+    <string name="outcome_diarrhea">Diarrhoea (type 6–7)</string>
+    <string name="symptom_short_bloating">Bloating</string>
+    <string name="symptom_short_pain">Abdominal pain</string>
+    <string name="symptom_short_gas">Wind</string>
+    <string name="hint_strong">noticeably more often</string>
+    <string name="hint_weak">somewhat more often</string>
+    <string name="hint_none">nothing notable</string>
+    <string name="analysis_too_little_data">too little data (n = %1$d)</string>
+    <string name="analysis_rate">%1$d of %2$d meals (%3$d %%)</string>
+    <string name="analysis_with">With: %1$s</string>
+    <string name="analysis_without">Without: %1$s</string>
+    <string name="analysis_with_lactase">With lactase (not counted): %1$s</string>
+    <string name="analysis_ratio">%1$s times as often</string>
+    <string name="analysis_ratio_only_with">only with this trigger</string>
+    <string name="analysis_window">Time window after eating: %1$s</string>
     <string name="analysis_window_range">%1$s – %2$s</string>
-    <string name="analysis_params_summary">Beschwerden zählen ab Stärke %1$d, verglichen wird ab %2$d Mahlzeiten.</string>
-    <string name="analysis_settings_link">Analyse-Einstellungen</string>
-    <string name="analysis_sheet_hint">Mahlzeiten mit %1$s, neueste zuerst. Tippe auf eine, um sie zu öffnen.</string>
-    <string name="analysis_sheet_empty">Noch keine Mahlzeit mit %1$s.</string>
-    <string name="analysis_sheet_lactase">Mit Laktase eingenommen</string>
-    <string name="analysis_sheet_followed">danach Beschwerden im Zeitfenster</string>
+    <string name="analysis_params_summary">Symptoms count from severity %1$d; comparisons start at %2$d meals.</string>
+    <string name="analysis_settings_link">Analysis settings</string>
+    <string name="analysis_sheet_hint">Meals with %1$s, newest first. Tap one to open it.</string>
+    <string name="analysis_sheet_empty">No meal with %1$s yet.</string>
+    <string name="analysis_sheet_lactase">Taken with lactase</string>
+    <string name="analysis_sheet_followed">symptoms in the time window afterwards</string>
 
     <!-- Analysis settings -->
-    <string name="settings_analysis_section">Analyse</string>
-    <string name="settings_analysis_hint">Ab welcher Stärke Beschwerden zählen, Zeitfenster der Auslöser</string>
-    <string name="analysis_settings_title">Analyse-Einstellungen</string>
-    <string name="analysis_settings_threshold">Beschwerden zählen ab Stärke</string>
-    <string name="analysis_settings_threshold_hint">Schwächere Einträge zählen beim Vergleich nicht mit.</string>
-    <string name="analysis_settings_min_exposures">Mindestens Mahlzeiten</string>
-    <string name="analysis_settings_min_exposures_hint">So oft muss ein Auslöser gegessen worden sein, bevor er als auffällig gezeigt werden kann.</string>
-    <string name="analysis_settings_windows">Zeitfenster nach dem Essen</string>
-    <string name="analysis_settings_windows_hint">In dieser Zeit nach einer Mahlzeit zählen Beschwerden für den Auslöser. Die Vorgaben sind ungefähre Werte aus der Fachliteratur.</string>
-    <string name="analysis_settings_default">Vorgabe: %1$s</string>
-    <string name="analysis_settings_from">Ab</string>
-    <string name="analysis_settings_to">Bis</string>
-    <string name="analysis_settings_reset">Auf Standard zurücksetzen</string>
-    <string name="analysis_settings_reset_confirm">Stärke, Mindestanzahl und alle Zeitfenster auf die Vorgaben zurücksetzen?</string>
+    <string name="settings_analysis_section">Analysis</string>
+    <string name="settings_analysis_hint">From which severity symptoms count, trigger time windows</string>
+    <string name="analysis_settings_title">Analysis settings</string>
+    <string name="analysis_settings_threshold">Symptoms count from severity</string>
+    <string name="analysis_settings_threshold_hint">Milder entries are left out of the comparison.</string>
+    <string name="analysis_settings_min_exposures">Minimum meals</string>
+    <string name="analysis_settings_min_exposures_hint">How often a trigger must have been eaten before it can be shown as standing out.</string>
+    <string name="analysis_settings_windows">Time windows after eating</string>
+    <string name="analysis_settings_windows_hint">Symptoms within this time after a meal count for the trigger. The defaults are rough values from the literature.</string>
+    <string name="analysis_settings_default">Default: %1$s</string>
+    <string name="analysis_settings_from">From</string>
+    <string name="analysis_settings_to">To</string>
+    <string name="analysis_settings_reset">Reset to defaults</string>
+    <string name="analysis_settings_reset_confirm">Reset severity, minimum meals and all time windows to the defaults?</string>
 
     <!-- Backup (SPEC 7) -->
-    <string name="settings_backup_section">Datensicherung</string>
-    <string name="backup_export">Daten exportieren</string>
-    <string name="backup_last_export">Zuletzt gesichert: %1$s</string>
-    <string name="backup_never">Noch nie gesichert</string>
-    <string name="backup_overdue">Sichere deine Daten regelmäßig, am besten mindestens alle %1$d Tage. Die App macht selbst keine Sicherung.</string>
-    <string name="backup_exported">Sicherung gespeichert</string>
-    <string name="backup_import">Daten importieren</string>
-    <string name="backup_import_hint">Ersetzt alle Einträge, Lebensmittel und Einstellungen durch eine Sicherung</string>
-    <string name="backup_confirm_title">Sicherung einspielen?</string>
-    <string name="backup_confirm_text">Die Sicherung vom %1$s enthält %2$d Mahlzeiten, %3$d Stuhlgänge, %4$d Beschwerde-Einträge und %5$d Medikamente.\n\nAlle jetzigen Einträge, Lebensmittel-Änderungen und Einstellungen werden dadurch ersetzt. Das lässt sich nicht rückgängig machen.</string>
-    <string name="backup_confirm_action">Ersetzen</string>
-    <string name="backup_imported">Sicherung eingespielt.</string>
-    <string name="backup_error_not_a_backup">Diese Datei ist keine LogMyGut-Sicherung. Es wurde nichts geändert.</string>
-    <string name="backup_error_too_new">Diese Sicherung stammt aus einer neueren Version von LogMyGut. Aktualisiere die App und versuche es noch einmal. Es wurde nichts geändert.</string>
-    <string name="backup_error_invalid">Die Sicherung ist beschädigt oder unvollständig. Es wurde nichts geändert.</string>
-    <string name="backup_error_io">Die Datei konnte nicht gelesen oder geschrieben werden. Es wurde nichts geändert.</string>
+    <string name="settings_backup_section">Backup</string>
+    <string name="backup_export">Export data</string>
+    <string name="backup_last_export">Last backup: %1$s</string>
+    <string name="backup_never">Never backed up</string>
+    <string name="backup_overdue">Back up your data regularly, ideally at least every %1$d days. The app makes no backups by itself.</string>
+    <string name="backup_exported">Backup saved</string>
+    <string name="backup_import">Import data</string>
+    <string name="backup_import_hint">Replaces all entries, foods and settings with a backup</string>
+    <string name="backup_confirm_title">Restore backup?</string>
+    <string name="backup_confirm_text">The backup from %1$s contains %2$d meals, %3$d bowel movements, %4$d symptom entries and %5$d medications.\n\nAll current entries, food changes and settings will be replaced. This can\'t be undone.</string>
+    <string name="backup_confirm_action">Replace</string>
+    <string name="backup_imported">Backup restored.</string>
+    <string name="backup_error_not_a_backup">This file is not a LogMyGut backup. Nothing was changed.</string>
+    <string name="backup_error_too_new">This backup comes from a newer version of LogMyGut. Update the app and try again. Nothing was changed.</string>
+    <string name="backup_error_invalid">The backup is damaged or incomplete. Nothing was changed.</string>
+    <string name="backup_error_io">The file could not be read or written. Nothing was changed.</string>
 </resources>

@@ -20,9 +20,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
-/** End-to-end on a simulated device: logging from Heute, and the Verlauf calendar. */
+/** End-to-end on a simulated device in German: logging from Heute, and the Verlauf calendar. */
 @RunWith(RobolectricTestRunner::class)
+@Config(qualifiers = "de-rAT")
 class LoggingFlowTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
 

@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
@@ -33,11 +34,18 @@ import at.mtr.logmygut.domain.isDrinkUnit
 import at.mtr.logmygut.ui.common.EditorScaffold
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.label
+import at.mtr.logmygut.ui.common.unitName
 import at.mtr.logmygut.ui.meal.IngredientListEditor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DishDetailViewModel(private val foods: FoodRepository, private val id: Long?, defaultUnitLabel: String) : ViewModel() {
+class DishDetailViewModel(
+    private val foods: FoodRepository,
+    private val id: Long?,
+    defaultUnitLabel: String,
+    /** Shows a stored unit label in the app's language ([unitName]). */
+    private val unitText: (String) -> String,
+) : ViewModel() {
     var loaded by mutableStateOf(id == null); private set
     var food by mutableStateOf<FoodEntity?>(null); private set
     var name by mutableStateOf("")
@@ -66,7 +74,7 @@ class DishDetailViewModel(private val foods: FoodRepository, private val id: Lon
         name = f.name
         aliases = f.aliases.joinToString(", ")
         unit = f.unit
-        f.unitLabel?.let { unitLabel = it }
+        f.unitLabel?.let { unitLabel = unitText(it) }
         drink = f.drink
         volume = amountText(f.portionGrams)
         unitLocked = foods.isUsedInMeals(id)
@@ -126,7 +134,9 @@ class DishDetailViewModel(private val foods: FoodRepository, private val id: Lon
 fun DishDetailScreen(id: Long?, onDone: () -> Unit, onOpenCopy: (Long) -> Unit) {
     val container = appContainer()
     val defaultUnitLabel = stringResource(R.string.unit_label_default)
-    val vm = viewModel { DishDetailViewModel(container.foodRepository, id, defaultUnitLabel) }
+    // The application's resources, so the ViewModel doesn't keep an Activity alive.
+    val appResources = LocalContext.current.applicationContext.resources
+    val vm = viewModel { DishDetailViewModel(container.foodRepository, id, defaultUnitLabel, appResources::unitName) }
     val scope = rememberCoroutineScope()
     val copySuffix = stringResource(R.string.food_copy_suffix)
     val food = vm.food

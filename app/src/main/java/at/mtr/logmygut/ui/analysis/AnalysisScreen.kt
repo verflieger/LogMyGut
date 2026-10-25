@@ -42,6 +42,7 @@ import at.mtr.logmygut.R
 import at.mtr.logmygut.domain.ScoreBand
 import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.ui.common.AppLocale
+import at.mtr.logmygut.ui.common.localizedFormat
 import at.mtr.logmygut.ui.common.appContainer
 import at.mtr.logmygut.ui.common.bandColors
 import at.mtr.logmygut.ui.common.label
@@ -50,7 +51,8 @@ import at.mtr.logmygut.ui.info.InfoPage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-private val ReadoutDayFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("EE, d. MMM", AppLocale)
+/** "Mo., 3. März" / "Mon, Mar 3". */
+private val ReadoutDayFormat: DateTimeFormatter get() = localizedFormat("EEEdMMM")
 
 /** Analyse tab (SPEC 6): trends and the trigger analysis. */
 @Composable

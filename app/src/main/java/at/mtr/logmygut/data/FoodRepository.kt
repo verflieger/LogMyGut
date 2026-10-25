@@ -18,6 +18,7 @@ import at.mtr.logmygut.domain.matchedAlias
 import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.domain.Threshold
 import at.mtr.logmygut.domain.normalizeForSearch
+import at.mtr.logmygut.domain.unitLabelKey
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -122,7 +123,7 @@ class FoodRepository(
         return db.withTransaction {
             val existing = draft.id.takeIf { it != 0L }?.let { dao.getFood(it) }
             val unit = if (existing != null && dao.isUsedInMeals(existing.id)) existing.unit else draft.unit
-            val unitLabel = draft.unitLabel?.trim().takeIf { unit == FoodUnit.COUNT }
+            val unitLabel = draft.unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT }
                 ?: existing?.unitLabel.takeIf { unit == FoodUnit.COUNT }
             val name = draft.name.trim()
             if (existing == null) {
@@ -159,13 +160,13 @@ class FoodRepository(
         return db.withTransaction {
             val existing = draft.id.takeIf { it != 0L }?.let { dao.getFood(it) }
             if (existing == null) {
-                createDish(name, draft.unit, draft.unitLabel?.trim(), draft.ingredientIds, aliases, draft.drink, draft.portionGrams)
+                createDish(name, draft.unit, draft.unitLabel, draft.ingredientIds, aliases, draft.drink, draft.portionGrams)
             } else {
                 val unit = if (dao.isUsedInMeals(existing.id)) existing.unit else draft.unit
                 dao.updateFood(
                     existing.copy(
                         name = name, aliases = aliases, unit = unit,
-                        unitLabel = (draft.unitLabel?.trim() ?: existing.unitLabel).takeIf { unit == FoodUnit.COUNT },
+                        unitLabel = (draft.unitLabel?.let(::unitLabelKey) ?: existing.unitLabel).takeIf { unit == FoodUnit.COUNT },
                         searchText = searchTextFor(name, aliases), userModified = existing.builtIn,
                         drink = draft.drink, portionGrams = draft.portionGrams.takeIf { draft.drink },
                     ),
@@ -246,7 +247,7 @@ class FoodRepository(
             name = name.trim(),
             aliases = aliases,
             unit = unit,
-            unitLabel = unitLabel.takeIf { unit == FoodUnit.COUNT },
+            unitLabel = unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT },
             note = note,
             searchText = searchTextFor(name, aliases),
             drink = isDrinkUnit(unit, unitLabel),
@@ -271,7 +272,7 @@ class FoodRepository(
                 name = name.trim(),
                 aliases = aliases,
                 unit = unit,
-                unitLabel = unitLabel.takeIf { unit == FoodUnit.COUNT },
+                unitLabel = unitLabel?.let(::unitLabelKey).takeIf { unit == FoodUnit.COUNT },
                 searchText = searchTextFor(name, aliases),
                 drink = drink,
                 portionGrams = portionGrams.takeIf { drink },

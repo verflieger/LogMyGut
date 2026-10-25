@@ -48,6 +48,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import at.mtr.logmygut.LogMyGutApp
@@ -204,7 +205,7 @@ fun AmountSelector(
                 Icon(Icons.Outlined.Remove, contentDescription = null)
             }
             Text(
-                countLabel(amount.n, unitLabel) + (portionGrams?.let { " · ≈ " + portionLabel(amount.grams(it), drink) } ?: ""),
+                LocalResources.current.countLabel(amount.n, unitLabel) + (portionGrams?.let { " · ≈ " + portionLabel(amount.grams(it), drink) } ?: ""),
                 style = MaterialTheme.typography.bodyLarge,
             )
             FilledTonalIconButton(onClick = { onChange(Amount.Count(amount.n + 1)) }) {
