@@ -19,10 +19,12 @@ import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.domain.Threshold
 import java.io.File
 import java.time.Instant
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -145,6 +147,16 @@ class DatabaseTest {
         val id = journal.saveMeal(meal(), listOf(MealItemEntity(mealId = 0, foodId = bread, count = 1)), emptyMap())
         journal.saveMeal(meal().copy(id = id), listOf(MealItemEntity(mealId = id, foodId = bread, count = 3)), emptyMap())
         assertEquals(listOf(3), journal.getMealItems(listOf(id)).map { it.count })
+    }
+
+    @Test fun countUnitsNeedALabel() = runTest {
+        assertThrows(IllegalArgumentException::class.java) {
+            runBlocking { foods.createIngredient("Ohne Einheit", FoodUnit.COUNT, " ", emptyList()) }
+        }
+        val bread = foods.createIngredient("Brot", FoodUnit.COUNT, "Scheibe", emptyList())
+        assertThrows(IllegalArgumentException::class.java) {
+            runBlocking { foods.createDish("Ohne Einheit", FoodUnit.COUNT, null, listOf(bread)) }
+        }
     }
 
     @Test fun childInheritsOverridesAndRemovesParentTags() = runTest {

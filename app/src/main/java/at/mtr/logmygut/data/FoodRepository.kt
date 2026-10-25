@@ -237,19 +237,22 @@ class FoodRepository(
         tags: List<IngredientTag>,
         aliases: List<String> = emptyList(),
         note: String? = null,
-    ): Long = dao.insertFoodWithDetails(
-        food = FoodEntity(
-            kind = FoodKind.INGREDIENT,
-            name = name.trim(),
-            aliases = aliases,
-            unit = unit,
-            unitLabel = storedUnitLabel(unit, unitLabel),
-            note = note,
-            drink = isDrinkUnit(unit, unitLabel),
-        ),
-        tags = tags.map { it.toEntity() },
-        ingredientIds = emptyList(),
-    )
+    ): Long {
+        requireUnitLabel(unit, unitLabel)
+        return dao.insertFoodWithDetails(
+            food = FoodEntity(
+                kind = FoodKind.INGREDIENT,
+                name = name.trim(),
+                aliases = aliases,
+                unit = unit,
+                unitLabel = storedUnitLabel(unit, unitLabel),
+                note = note,
+                drink = isDrinkUnit(unit, unitLabel),
+            ),
+            tags = tags.map { it.toEntity() },
+            ingredientIds = emptyList(),
+        )
+    }
 
     suspend fun createDish(
         name: String,
@@ -261,6 +264,7 @@ class FoodRepository(
         portionGrams: Double? = null,
     ): Long {
         require(ingredientIds.isNotEmpty()) { "A dish needs at least one ingredient" }
+        requireUnitLabel(unit, unitLabel)
         return dao.insertFoodWithDetails(
             food = FoodEntity(
                 kind = FoodKind.DISH,
