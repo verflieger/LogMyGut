@@ -37,7 +37,7 @@ Wording rules for UI texts, info pages and any store listing:
 | Package id | `at.mtr.logmygut` |
 | App name | LogMyGut |
 | Distribution | Sideload: debug builds via Android Studio / adb, release APKs handed out directly. No Play Store. |
-| Licence | Code GPL-3.0-or-later (`LICENSE`); food data and keyword rules CC BY 4.0 (`LICENSES/CC-BY-4.0.txt`); the BLS extract keeps the MRI's terms. |
+| Licence | Code GPL-3.0-or-later (`LICENSE`); food data and keyword rules CC BY 4.0 (`LICENSES/CC-BY-4.0.txt`); the BLS extract is the MRI's, also CC BY 4.0, credited in the README and on the info page. |
 | Network | **None.** No `INTERNET` permission in the manifest. No analytics, crash reporting or cloud backup (`android:allowBackup="false"`). |
 | App lock | None (relies on the device lock screen) |
 | Localization | **English** (default, `res/values/`) and **Austrian German** (`res/values-de/`), following the phone's language or Android's per-app language setting; other languages get English. German uses Austrian words (Semmel, Topfen, Faschiertes …) with standard German food names as search aliases; where the Austrian word is less common (Paradeiser, Erdäpfel), the food uses the standard name and keeps the Austrian one as an alias. Dates follow the language; German always formats as `de-AT` (e.g. "Jänner"). |
@@ -291,7 +291,7 @@ Käse → Weichkäse → Camembert. At most 3 levels.
 ### 4.5 Seed data sources
 
 - **Nutrient tags** (lactose, fructose, polyols, fat, alcohol) are computed from the **Bundeslebensmittelschlüssel
-  (BLS) 4.0** (Max Rubner-Institut 2025, DOI 10.25826/Data20251217-134202-0), free to use including for apps.
+  (BLS) 4.0** (Max Rubner-Institut 2025, DOI 10.25826/Data20251217-134202-0), licensed under CC BY 4.0.
   Only the needed rows are kept in `tools/foods/bls_subset.tsv`; the full file is not in the repository.
 - Each ingredient has a portion weight: grams of an M portion (S = ½, L = 2×) or of one piece. A tag applies from
   the smallest amount whose content reaches the cutoff, which gives "always", "ab M", "ab L" or "ab 2 Stück":
@@ -471,8 +471,8 @@ Each milestone ends with a building app, passing tests and a review by the autho
 Open points for later, roughly in order. Not part of any milestone yet.
 
 - **Purpose statement on first launch** (Intended purpose, EU MDR): show the purpose statement once, before the
-  first entry, with an "Verstanden" button; remember that it was shown (DataStore, not in the backup). Needed
-  before any public release.
-- **Publishing on F-Droid**: publish the source, confirm with the MRI that the BLS extract may be redistributed,
-  `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and English, decide on signing.
+  first entry, with an "Verstanden" button; remember that it was shown (DataStore, not in the backup). Optional
+  for now; worth adding before a store listing.
+- **Publishing on F-Droid**: `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and English,
+  decide on signing.
 - **Encrypted backup** (optional password), or at least a warning that the export holds health data in plain text.

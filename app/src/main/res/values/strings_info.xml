@@ -92,7 +92,7 @@
     <string name="info_privacy_title">Your data</string>
     <string name="info_privacy">All entries stay on this device. The app has no internet access, sends nothing and makes no cloud backup. So you are responsible for backups yourself: Settings → Backup.</string>
     <string name="info_sources_title">Sources</string>
-    <string name="info_source_bls">German Nutrient Database (Bundeslebensmittelschlüssel, BLS) 4.0, Max Rubner-Institut, 2025 (DOI 10.25826/Data20251217-134202-0). The triggers lactose, fructose, polyols, high fat and alcohol are calculated from it.</string>
+    <string name="info_source_bls">German Nutrient Database (Bundeslebensmittelschlüssel, BLS) 4.0, Max Rubner-Institut, 2025 (DOI 10.25826/Data20251217-134202-0), CC BY 4.0. The triggers lactose, fructose, polyols, high fat and alcohol are calculated from it.</string>
     <string name="info_source_monash">Monash University FODMAP research; Varney J. et al., FODMAPs: food composition, defining cutoff values and international application. J Gastroenterol Hepatol 2017;32 Suppl 1:53–61.</string>
     <string name="info_source_rome">Lacy B. E. et al., Bowel Disorders. Gastroenterology 2016;150:1393–1407 (Rome IV criteria).</string>
     <string name="info_source_bristol">Lewis S. J., Heaton K. W., Stool form scale as a useful guide to intestinal transit time. Scand J Gastroenterol 1997;32:920–924.</string>

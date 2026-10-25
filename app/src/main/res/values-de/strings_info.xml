@@ -92,7 +92,7 @@
     <string name="info_privacy_title">Deine Daten</string>
     <string name="info_privacy">Alle Einträge bleiben auf diesem Gerät. Die App hat keinen Internetzugang, sendet nichts und macht keine Cloud-Sicherung. Darum bist du selbst für Sicherungen verantwortlich: Einstellungen → Datensicherung.</string>
     <string name="info_sources_title">Quellen</string>
-    <string name="info_source_bls">Bundeslebensmittelschlüssel (BLS) 4.0, Max Rubner-Institut, 2025 (DOI 10.25826/Data20251217-134202-0). Daraus sind die Auslöser Laktose, Fruktose, Polyole, Fettreich und Alkohol berechnet.</string>
+    <string name="info_source_bls">Bundeslebensmittelschlüssel (BLS) 4.0, Max Rubner-Institut, 2025 (DOI 10.25826/Data20251217-134202-0), CC BY 4.0. Daraus sind die Auslöser Laktose, Fruktose, Polyole, Fettreich und Alkohol berechnet.</string>
     <string name="info_source_monash">FODMAP-Forschung der Monash University; Varney J. et al., FODMAPs: food composition, defining cutoff values and international application. J Gastroenterol Hepatol 2017;32 Suppl 1:53–61.</string>
     <string name="info_source_rome">Lacy B. E. et al., Bowel Disorders. Gastroenterology 2016;150:1393–1407 (Rom-IV-Kriterien).</string>
     <string name="info_source_bristol">Lewis S. J., Heaton K. W., Stool form scale as a useful guide to intestinal transit time. Scand J Gastroenterol 1997;32:920–924.</string>

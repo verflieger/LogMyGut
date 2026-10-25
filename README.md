@@ -59,8 +59,8 @@ repository (needs `openpyxl`).
 
 - Nutrient-based tags are computed from the **Bundeslebensmittelschlüssel (BLS) 4.0**: Max Rubner-Institut (2025):
   Bundeslebensmittelschlüssel (BLS), Version 4.0 – Deutsche Nährstoffdatenbank. Karlsruhe.
-  DOI [10.25826/Data20251217-134202-0](https://doi.org/10.25826/Data20251217-134202-0). The BLS is free to use,
-  including in apps ([BLS FAQ](https://www.blsdb.de/faq)).
+  DOI [10.25826/Data20251217-134202-0](https://doi.org/10.25826/Data20251217-134202-0), licensed under
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - Curated tags follow published **Monash University FODMAP** research and commonly published histamine lists.
 - The Bristol stool illustrations were drawn for this app and are not taken from the original chart.
 
@@ -72,7 +72,7 @@ Copyright © 2026 verflieger
   the app, as long as anything you distribute based on it is also published under the GPL.
 - **Food data:** the food list and its tags (`tools/foods/foods.src.txt`, `tools/foods/foods.en.txt`,
   `app/src/main/assets/foods.json`) and the tag suggestion rules (`app/src/main/assets/keyword_rules.*.json`) are
-  licensed under
-  [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
-- **BLS extract:** `tools/foods/bls_subset.tsv` holds values from the BLS 4.0 and stays under the Max Rubner-Institut's
-  terms; cite it as shown under [Sources](#sources).
+  licensed under [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
+- **BLS extract:** `tools/foods/bls_subset.tsv` holds values from the BLS 4.0 by the Max Rubner-Institut, also under
+  [CC BY 4.0](LICENSES/CC-BY-4.0.txt); attribution as shown under [Sources](#sources). The extract keeps only the
+  needed rows and nutrient columns; the values are unchanged.
