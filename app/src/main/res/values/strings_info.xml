@@ -86,7 +86,7 @@
     <string name="info_ibs_warning">Blut im Stuhl oder schwarzer Stuhl · ungewollter Gewichtsverlust · Fieber · Beschwerden, die dich nachts aufwecken · neue Beschwerden ab etwa 50 · Blutarmut · Darmkrebs, Zöliakie oder chronisch-entzündliche Darmerkrankungen in der Familie.</string>
 
     <!-- About: disclaimer, privacy, sources -->
-    <string name="info_about_title">Zweck, Datenschutz &amp; Quellen</string>
+    <string name="info_about_title">Zweck, Datenschutz, Quellen &amp; Lizenz</string>
     <string name="info_disclaimer_title">Wofür LogMyGut gedacht ist</string>
     <string name="info_disclaimer">LogMyGut ist ein Tagebuch für Essen, Trinken, Stuhlgang und Beschwerden. Es zeigt deine eigenen Einträge in Übersichten und zählt, wie oft nach Mahlzeiten mit bestimmten Auslösern Beschwerden eingetragen wurden. LogMyGut ist kein Medizinprodukt: Es stellt keine Diagnose, erkennt keine Krankheiten oder Unverträglichkeiten und gibt keine Behandlungs- oder Ernährungsempfehlungen. Die Übersichten kannst du zum Gespräch mit deiner Ärztin, deinem Arzt oder deiner Diätologin mitnehmen. Ändere deine Ernährung oder Medikamente nicht allein aufgrund dieser App. Bei starken oder neuen Beschwerden hol dir ärztliche Hilfe.</string>
     <string name="info_privacy_title">Deine Daten</string>
@@ -96,5 +96,7 @@
     <string name="info_source_monash">FODMAP-Forschung der Monash University; Varney J. et al., FODMAPs: food composition, defining cutoff values and international application. J Gastroenterol Hepatol 2017;32 Suppl 1:53–61.</string>
     <string name="info_source_rome">Lacy B. E. et al., Bowel Disorders. Gastroenterology 2016;150:1393–1407 (Rom-IV-Kriterien).</string>
     <string name="info_source_bristol">Lewis S. J., Heaton K. W., Stool form scale as a useful guide to intestinal transit time. Scand J Gastroenterol 1997;32:920–924.</string>
+    <string name="info_license_title">Lizenz</string>
+    <string name="info_license">LogMyGut ist freie Software unter der GNU General Public License, Version 3 oder neuer (GPL-3.0-or-later). Die Lebensmittelliste und die Regeln für Auslöser-Vorschläge stehen unter CC BY 4.0. Quellcode: github.com/verflieger/LogMyGut</string>
     <string name="info_version">Version %1$s</string>
 </resources>

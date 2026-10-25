@@ -215,6 +215,8 @@ private fun AboutPage() {
     Heading(stringResource(R.string.info_sources_title))
     listOf(R.string.info_source_bls, R.string.info_source_monash, R.string.info_source_rome, R.string.info_source_bristol)
         .forEach { Bullet(stringResource(it)) }
+    Heading(stringResource(R.string.info_license_title))
+    Paragraph(R.string.info_license)
     val context = LocalContext.current
     val version = context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty()
     Text(
