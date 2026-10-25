@@ -9,6 +9,7 @@ import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.SettingsRepository
 import at.mtr.logmygut.data.backup.BackupRepository
 import at.mtr.logmygut.data.db.LogMyGutDatabase
+import at.mtr.logmygut.data.export.ExportRepository
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
 import at.mtr.logmygut.data.seed.seedLanguage
@@ -40,6 +41,8 @@ class AppContainer(private val context: Context) {
     val analysisRepository: AnalysisRepository by lazy { AnalysisRepository(database, foodRepository) }
 
     val settings: SettingsRepository by lazy { SettingsRepository.create(context) }
+
+    val exportRepository: ExportRepository by lazy { ExportRepository(database, foodRepository, analysisRepository) }
 
     val backupRepository: BackupRepository by lazy {
         BackupRepository(

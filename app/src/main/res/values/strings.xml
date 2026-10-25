@@ -319,4 +319,47 @@
     <string name="backup_error_too_new">This backup comes from a newer version of LogMyGut. Update the app and try again. Nothing was changed.</string>
     <string name="backup_error_invalid">The backup is damaged or incomplete. Nothing was changed.</string>
     <string name="backup_error_io">The file could not be read or written. Nothing was changed.</string>
+
+    <!-- Export (SPEC 7.1) -->
+    <string name="settings_export_section">Export</string>
+    <string name="export_report">Report for your doctor (PDF)</string>
+    <string name="export_report_hint">Your entries for a period, to print or send</string>
+    <string name="export_csv">All entries as CSV</string>
+    <string name="export_csv_hint">For spreadsheets; contains all entries with notes</string>
+    <string name="export_period_days">Last %1$d days</string>
+    <string name="export_period_all">All entries</string>
+    <string name="export_privacy">The file contains health data. Only send it to people you trust.</string>
+    <string name="export_save">Save</string>
+    <string name="export_share">Share</string>
+    <string name="export_share_title">Send to …</string>
+    <string name="export_saved">File saved</string>
+    <string name="export_empty">No entries in this period.</string>
+    <string name="export_failed">The file could not be created.</string>
+
+    <!-- PDF report (SPEC 7.1): describes the entries, interprets nothing. -->
+    <string name="report_title">LogMyGut diary</string>
+    <string name="report_period">%1$s – %2$s (%3$s)</string>
+    <plurals name="report_days"><item quantity="one">%d day</item><item quantity="other">%d days</item></plurals>
+    <string name="report_created">Created on %1$s</string>
+    <string name="report_purpose">Entries from the LogMyGut diary app, as logged by the user. LogMyGut is not a medical device: it does not diagnose and does not assess these entries.</string>
+    <string name="report_overview">Overview</string>
+    <string name="report_meals">Food &amp; drinks: %1$d entries</string>
+    <string name="report_bowel">Bowel movements: %1$d (%2$s per day)</string>
+    <string name="report_bristol_count">Type %1$d: %2$d×</string>
+    <string name="report_urgent">Urgent: %1$d×</string>
+    <string name="report_pain">Cramps before: %1$d× (afterwards better %2$d, same %3$d, worse %4$d)</string>
+    <string name="report_no_symptoms">No symptoms logged.</string>
+    <string name="report_symptom">%1$s: logged %2$s, %3$d of them with severity %4$d or more; highest %5$d</string>
+    <plurals name="report_on_days"><item quantity="one">on %d day</item><item quantity="other">on %d days</item></plurals>
+    <string name="report_medication_title">Medication</string>
+    <string name="report_no_medication">No medication logged.</string>
+    <string name="report_medication">%1$s: %2$d× %3$s</string>
+    <string name="report_sleep">Sleep: %1$s of 5 on average (%2$s)</string>
+    <string name="report_stress">Stress: %1$s of 5 on average (%2$s)</string>
+    <string name="report_no_hints">Nothing stands out in the meals of this period.</string>
+    <string name="report_hints_basis">Only meals from this period are compared.</string>
+    <string name="report_diary">Entries by day</string>
+    <string name="report_bristol">Type %1$d (%2$s)</string>
+    <string name="report_note">Note: %1$s</string>
+    <string name="report_footer">LogMyGut · page %1$d</string>
 </resources>

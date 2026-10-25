@@ -317,4 +317,47 @@
     <string name="backup_error_too_new">Diese Sicherung stammt aus einer neueren Version von LogMyGut. Aktualisiere die App und versuche es noch einmal. Es wurde nichts geändert.</string>
     <string name="backup_error_invalid">Die Sicherung ist beschädigt oder unvollständig. Es wurde nichts geändert.</string>
     <string name="backup_error_io">Die Datei konnte nicht gelesen oder geschrieben werden. Es wurde nichts geändert.</string>
+
+    <!-- Export (SPEC 7.1) -->
+    <string name="settings_export_section">Export</string>
+    <string name="export_report">Bericht für den Arztbesuch (PDF)</string>
+    <string name="export_report_hint">Deine Einträge eines Zeitraums, zum Ausdrucken oder Mitschicken</string>
+    <string name="export_csv">Alle Einträge als CSV</string>
+    <string name="export_csv_hint">Für Tabellenprogramme; enthält alle Einträge mit Notizen</string>
+    <string name="export_period_days">Letzte %1$d Tage</string>
+    <string name="export_period_all">Alle Einträge</string>
+    <string name="export_privacy">Die Datei enthält Gesundheitsdaten. Schick sie nur an Menschen, denen du vertraust.</string>
+    <string name="export_save">Speichern</string>
+    <string name="export_share">Teilen</string>
+    <string name="export_share_title">Senden an …</string>
+    <string name="export_saved">Datei gespeichert</string>
+    <string name="export_empty">Keine Einträge in diesem Zeitraum.</string>
+    <string name="export_failed">Die Datei konnte nicht erstellt werden.</string>
+
+    <!-- PDF-Bericht (SPEC 7.1): beschreibt die Einträge, bewertet nichts. -->
+    <string name="report_title">LogMyGut-Tagebuch</string>
+    <string name="report_period">%1$s – %2$s (%3$s)</string>
+    <plurals name="report_days"><item quantity="one">%d Tag</item><item quantity="other">%d Tage</item></plurals>
+    <string name="report_created">Erstellt am %1$s</string>
+    <string name="report_purpose">Einträge aus der Tagebuch-App LogMyGut, so wie sie eingetragen wurden. LogMyGut ist kein Medizinprodukt: Die App stellt keine Diagnosen und bewertet diese Einträge nicht.</string>
+    <string name="report_overview">Überblick</string>
+    <string name="report_meals">Essen &amp; Trinken: %1$d Einträge</string>
+    <string name="report_bowel">Stuhlgänge: %1$d (%2$s pro Tag)</string>
+    <string name="report_bristol_count">Typ %1$d: %2$d×</string>
+    <string name="report_urgent">Dringlich: %1$d×</string>
+    <string name="report_pain">Krämpfe vorher: %1$d× (danach besser %2$d, gleich %3$d, schlimmer %4$d)</string>
+    <string name="report_no_symptoms">Keine Beschwerden eingetragen.</string>
+    <string name="report_symptom">%1$s: %2$s eingetragen, an %3$d davon mit Stärke %4$d oder mehr; höchstens %5$d</string>
+    <plurals name="report_on_days"><item quantity="one">an %d Tag</item><item quantity="other">an %d Tagen</item></plurals>
+    <string name="report_medication_title">Medikamente</string>
+    <string name="report_no_medication">Keine Medikamente eingetragen.</string>
+    <string name="report_medication">%1$s: %2$d× %3$s</string>
+    <string name="report_sleep">Schlaf: im Schnitt %1$s von 5 (%2$s)</string>
+    <string name="report_stress">Stress: im Schnitt %1$s von 5 (%2$s)</string>
+    <string name="report_no_hints">In den Mahlzeiten dieses Zeitraums fällt nichts auf.</string>
+    <string name="report_hints_basis">Verglichen werden nur Mahlzeiten aus diesem Zeitraum.</string>
+    <string name="report_diary">Einträge nach Tag</string>
+    <string name="report_bristol">Typ %1$d (%2$s)</string>
+    <string name="report_note">Notiz: %1$s</string>
+    <string name="report_footer">LogMyGut · Seite %1$d</string>
 </resources>

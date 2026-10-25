@@ -65,7 +65,7 @@ Bottom navigation with four tabs:
    there default to that day at the current time of day, so forgotten entries can be added later. Days with only
    meals or medication have no score and show a dot. Weeks start on Monday; future days and months can't be opened. Day boundaries use the phone's current time zone.
 3. **Analyse**: trends and trigger analysis (section 6).
-4. **Einstellungen**: reminder, analysis parameters, **Lebensmittel & Gerichte** (section 4.1), backup, info pages.
+4. **Einstellungen**: reminder, analysis parameters, **Lebensmittel & Gerichte** (section 4.1), export (7.1), backup, info pages.
 
 Every timeline entry can be tapped to edit or deleted (with an undo snackbar).
 
@@ -421,6 +421,30 @@ purpose statement. Badges use neutral colours (see Intended purpose).
   leaves the database unchanged. The error dialog names the problem in the app's language, with a technical detail below.
 - The hint shows when there was never an export or the last one is more than 30 days old.
 
+### 7.1 Report and CSV export
+Under Einstellungen → Export, for taking entries to a doctor or dietitian, or into a spreadsheet. Both can be saved
+(Storage Access Framework) or shared (Android share sheet via a `FileProvider` for the cache folder `exports/`, which
+holds only the latest export). The dialog says the file contains health data. Unlike the backup, neither file can be
+imported again.
+
+- **PDF report** ("Bericht für den Arztbesuch") for the last 14, 30 or 90 days or all entries, in the app's language,
+  A4. It describes the entries and interprets nothing (see Intended purpose):
+  - header: period, creation date and a short purpose statement (diary, not a medical device);
+  - overview: number of food & drink entries; bowel movements (total, per day, per Bristol type, urgent, cramps before
+    and how they changed); per symptom the days it was logged, the days it reached the analysis threshold and its
+    highest value; medication by name (intakes, days); average sleep and stress from the check-ins;
+  - "Auffällig in deinen Einträgen": the strong and weak hints (6.3) computed from the period's meals only, with the
+    same wording and numbers as the Zusammenhänge tab, the parameter summary and the disclaimer;
+  - entries by day: each day with entries, its check-in values and fluid total, then every entry with its time and
+    note. Meal items show amount and ml; dish items list the meal's actual ingredients.
+  - Footer "LogMyGut · Seite n".
+- **CSV** ("Alle Einträge als CSV") of all entries: RFC 4180, comma-separated, CRLF, UTF-8 with byte order mark.
+  English column names `date, time, zone, entry, meal, name, kind, amount, unit, ml, ingredients, value, urgent,
+  pain_before, pain_after, eaten_out, effect, note`. One row per meal item (`meal` = the meal's id, so items group),
+  bowel movement (`value` = Bristol type), symptom (`name` = symptom key, `value` = severity), medication and
+  check-in value (`entry` = `check_in`, `name` = `sleep`/`stress`, no time). Date and time are in the zone the entry
+  was logged in; enum values are lower-case keys; food names are as stored.
+
 ## 8. Info pages (English and German)
 - Bristol scale with illustrations and descriptions.
 - Explanation of each symptom and how to rate 0–10 (anchors: 0 none, 1–3 mild, 4–6 moderate, 7–10 severe).
@@ -443,9 +467,10 @@ Implementation:
   its source is `tools/icons/app_icon.svg`.
 
 ## 9. Out of scope for v1
-Photos, PDF doctor report, CSV export, menstrual cycle, barcode scanning,
+Photos, menstrual cycle, barcode scanning,
 nutrition values, cloud sync, app lock, multiple users, widgets.
-(A fluid total came in after all, as part of drink logging: 3.2, and so did an English UI.)
+(A fluid total came in after all, as part of drink logging: 3.2, and so did an English UI, a PDF report and a CSV
+export: 7.1.)
 
 ## 10. Quality
 - Unit tests: the analysis engine (pure Kotlin, no Android dependencies) including dose thresholds and
@@ -473,6 +498,6 @@ Open points for later, roughly in order. Not part of any milestone yet.
 - **Purpose statement on first launch** (Intended purpose, EU MDR): show the purpose statement once, before the
   first entry, with an "Verstanden" button; remember that it was shown (DataStore, not in the backup). Optional
   for now; worth adding before a store listing.
-- **Publishing on F-Droid**: `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and English,
+- **Publishing on F-Droid**: done so far: `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and
+  English with screenshots - **Publishing on F-Droid**: `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and English,
   decide on signing.
-- **Encrypted backup** (optional password), or at least a warning that the export holds health data in plain text.
