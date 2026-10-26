@@ -36,7 +36,7 @@ Wording rules for UI texts, info pages and any store listing:
 | Min / target SDK | 34 (Android 14) / latest stable |
 | Package id | `at.mtr.logmygut` |
 | App name | LogMyGut |
-| Distribution | GitHub Releases (APKs signed with the developer's key) and, planned from 0.9, F-Droid (built and signed by F-Droid, so the two can't update each other). Store texts and screenshots in `fastlane/metadata/android/` (en-US, de-DE). No Play Store. |
+| Distribution | GitHub Releases (APKs signed with the developer's key). F-Droid store texts and screenshots are in `fastlane/metadata/android/` (en-US, de-DE); publishing there is in the backlog (section 12). No Play Store. |
 | Licence | Code GPL-3.0-or-later (`LICENSE`); food data and keyword rules CC BY 4.0 (`LICENSES/CC-BY-4.0.txt`); the BLS extract is the MRI's, also CC BY 4.0, credited in the README and on the info page. |
 | Network | **None.** No `INTERNET` permission in the manifest. No analytics, crash reporting or cloud backup (`android:allowBackup="false"`). |
 | App lock | None (relies on the device lock screen) |
@@ -560,7 +560,8 @@ Open points for later, roughly in order. Not part of any milestone yet.
 - **Purpose statement on first launch** (Intended purpose, EU MDR): show the purpose statement once, before the
   first entry, with an "Verstanden" button; remember that it was shown (DataStore, not in the backup). Optional
   for now; worth adding before a store listing.
-- **Publishing on F-Droid**: done so far: `dependenciesInfo { includeInApk = false }`, Fastlane metadata in German and
-  English with screenshots from made-up sample data; F-Droid signs with its own key. Open: tag a release with the
-  metadata and open the `fdroiddata` merge request.
+- **Publishing on F-Droid**, only if others want it: done so far: `dependenciesInfo { includeInApk = false }`,
+  Fastlane metadata in German and English with screenshots from made-up sample data. F-Droid builds and signs with
+  its own key, so its APKs and the GitHub ones can't update each other. Open: tag a release with the metadata and
+  open the `fdroiddata` merge request.
 - **Encrypted backup** (optional password), or at least a warning that the export holds health data in plain text.
