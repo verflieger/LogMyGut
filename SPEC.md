@@ -168,16 +168,38 @@ Seed data and editing:
   Dishes list their `ingredients` by seed key. Within each language, a name or alias belongs to one food.
 - On every app start, after a language change and after a backup import, the importer syncs the built-in foods with
   the seed (cheap when nothing changed): missing entries are added; built-in entries the user hasn't changed get the
-  seed's current name, aliases, note, tags, parent or recipe. The unit of an existing food never changes, because
-  logged meal items depend on it.
+  seed's current name, aliases, note, portion weight, drink flag and recipe. Tags and parent follow the rules
+  below. The unit of an existing food never changes, because logged meal items depend on it.
 - **Names follow the language.** Built-in foods are stored with the name, aliases and note in the app's language;
   the names and aliases in the other language are added as aliases, so search finds a food in either language.
   Meals refer to foods by id and the analysis uses tags, so switching languages, or importing a backup made in the
   other language, only renames the built-in foods.
 - Users can edit any ingredient (tags, dose thresholds, unit, aliases, parent) or dish (ingredient list), create new ones,
-  and hide built-in ones. Editing sets `userModified`; such entries keep everything the seed would change, except that
-  their name still follows the language as long as it is one of the seed's names (or the seed key). A food the user
-  renamed keeps its name. User-created foods are never touched by the seed.
+  and hide built-in ones. Editing sets `userModified`; such entries keep their name, aliases, note, portion weight,
+  drink flag and recipe against the seed, except that their name still follows the language as long as it is one of
+  the seed's names (or the seed key). A food the user renamed keeps its name. User-created foods are never touched
+  by the seed.
+- **Tags of built-in ingredients: attached or detached.** Each tag row has a source: `SEED` (the seed's tags and
+  `removeTags`) or `USER` (the user's decisions). Per tag, a `USER` row wins over the `SEED` row.
+  - **Attached** (default): the food has `SEED` rows plus `USER` rows for the user's differences only. The editor
+    shows the full effective list; saving stores a `USER` row only where the list differs from the seed rows resolved
+    against the current parent (an added tag or another threshold → set; a missing one → removed). Saving without
+    changes stores no `USER` rows (it still marks the food as edited via `userModified`). The sync replaces the
+    `SEED` rows and **moves the food to its seed parent, even if edited**; `USER` rows stay and keep applying. So a
+    new seed tag reaches edited foods unless the user removed it.
+  - **Detached** (`tagsDetached`): only `USER` rows, the full own list relative to the current parent (like a
+    user-created food). The sync never touches its tags or parent; other fields follow `userModified` as above.
+    Inheritance from the parent stays live (4.4).
+  - A built-in ingredient **detaches** when the user saves it with a different parent (its rows become the full own
+    list relative to the new parent; setting the parent back doesn't re-attach), when the database migration to v6
+    found it already edited, and in two rare sync cases: the seed no longer has it, or its seed parent isn't possible
+    with the other foods (a cycle, or more than 3 levels counting its descendants). On a sync detach its effective
+    tags are kept as its own, so nothing changes for the analysis. The sync checks the whole new hierarchy at once,
+    so a swap (A under B becomes B under A) is fine.
+  - **Caveat:** a detached food gets no new seed tags, and neither do attached children that would only *inherit*
+    them from a detached parent (the seed stores a tag shared with the parent only on the parent). Resetting the
+    detached food (4.1) fixes both.
+  - Only the reset (4.1) attaches a food again. Dishes have no tag rows and are never detached.
 - **Seed keys are permanent.** A seed entry's `key` (default: its `name`) identifies it across versions. To rename an
   entry, change `name` and set `key` to the old name.
 
@@ -232,7 +254,12 @@ had, and tag changes affect the analysis as described above.
   threshold per tag ("immer" / "ab M" / "ab L", or "ab N Stück"), note, and a "In N Gerichten verwendet" list.
 - **Duplizieren** creates a variant ("Bolognese (vegetarisch)").
 - **Ausblenden** hides an entry from search; it is never deleted, because past meals reference it.
-  Built-in entries offer **"Auf Standard zurücksetzen"**, which restores the seed version.
+- **"Auf Standard zurücksetzen"** (menu of built-in entries that are edited or detached) restores the seed version in
+  one transaction: the food's `USER` rows are deleted, it is attached again and unedited, and the seed import writes
+  its seed name, tags and parent. It is checked first; if the seed no longer has the food, or its seed parent isn't
+  possible here, nothing changes and a message says why: "Nicht mehr in der Standardliste, daher nicht
+  zurücksetzbar." / "Kann nicht auf Standard zurückgesetzt werden: Die Standard-Zuordnung ist hier nicht möglich."
+- **Detached hint:** the ingredient editor of a detached food shows "Tags folgen nicht mehr dem Standard".
 - **Edit marker:** a built-in entry the user has edited is marked "geändert".
 - **Shortcut:** long-press on a search result in the meal entry opens the same detail screen.
 
@@ -283,7 +310,11 @@ Käse → Weichkäse → Camembert. At most 3 levels.
 - A child **inherits the parent's tags live**: changing a tag on Essig changes it for every vinegar that doesn't set
   that tag itself.
 - A child's own tag entry replaces the inherited one (e.g. a different dose threshold). A child can also **remove**
-  an inherited tag (Branntweinessig removes histamine).
+  an inherited tag (Branntweinessig removes histamine). "Own" means the food's rows after a `USER` row has replaced
+  the `SEED` row for the same tag (4).
+- Changing the parent of a built-in ingredient detaches it (4). The hierarchy check (no cycles, at most 3 levels
+  counting all descendants) is one shared function, `parentProblems` in `domain/FoodHierarchy.kt`, used by the
+  editor's parent check (`FoodRepository.canBeParent`) and by the seed sync (`planSeedParents`).
 - Search results show the parent ("Apfelessig · Essig") and, when the query matched an alias, that alias
   ("Tomate" with „Paradeiser“).
 - The analysis stays tag-based. Later, per-food views may roll children up into their parent.
@@ -317,13 +348,15 @@ Käse → Weichkäse → Camembert. At most 3 levels.
 
 ```
 Food(id, kind: INGREDIENT|DISH, name, aliases: List<String>, unit: COUNT|SIZE, unitLabel?, note?,
-     builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?,
+     builtIn: Boolean, userModified: Boolean, hidden: Boolean, seedKey?, tagsDetached: Boolean,
      searchText, lastUsedAt: Instant?, parentId?,       -- searchText = normalized "name|alias|…", set on every write and refreshed on start; lastUsedAt for ranking
      portionGrams: Double?, drink: Boolean)             -- grams of an M portion / one piece (ml for drinks); null if unknown
                                                         -- seedKey = the seed entry's key (never changes)
                                                         -- parentId: ingredients only, SPEC 4.4
-FoodTag(foodId, tag, minSize: M|L?, minCount: Int?,     -- PK (foodId, tag); both null = always applies
-        removed: Boolean)                               -- removed = cancels the tag inherited from the parent
+                                                        -- tagsDetached: built-in ingredients only (SPEC 4)
+FoodTag(foodId, tag, minSize: M|L?, minCount: Int?,     -- PK (foodId, tag, source); both null = always applies
+        removed: Boolean, source: SEED|USER)            -- removed = cancels the inherited tag (no threshold then)
+                                                        -- SEED rows: attached built-ins only; USER wins per tag
 DishIngredient(dishId, ingredientId)                    -- the saved recipe
 Meal(id, timestamp: Instant, zoneId, eatenOut: Boolean, note?)
 MealItem(id, mealId, foodId, count: Int?, size: S|M|L?) -- foodId = ingredient or dish
@@ -408,17 +441,23 @@ purpose statement. Badges use neutral colours (see Intended purpose).
 - **Import**: replaces all data after a confirmation dialog, with schema version check and validation.
   If anything fails, nothing changes (single transaction).
 - Settings show the date of the last export, with a hint if it is older than 30 days.
-- **File format** (`format: "logmygut-backup"`, `version: 2`): one JSON object with `exportedAt`, `appVersion`,
+- **File format** (`format: "logmygut-backup"`, `version: 3`): one JSON object with `exportedAt`, `appVersion`,
   `settings` and one array per table, rows keeping their ids. Times are ISO-8601 instants, tags use their keys,
   other enums their names. It has its own classes (`data/backup/BackupFile.kt`), so a database change doesn't change
   the format by accident; a new format version must keep reading older ones.
-- Version 2 added the foods' `drink` flag and optional check-in values. Version 1 files still import; their
-  drinks follow from the unit (Glas, Tasse, Dose, Flasche), as in the database migration to v5.
+- Version 3 stores each food tag row with its `source` (`SEED`/`USER`, unique per food, tag and source) and the
+  foods' `tagsDetached` flag; rows are exported and restored as they are. Version 2 added the foods' `drink` flag
+  and optional check-in values.
+- **Versions 1 and 2 are no longer read.** Such files are rejected ("Diese Sicherung stammt aus einer älteren
+  Version von LogMyGut und kann nicht importiert werden. Es wurde nichts geändert."). This is a one-time exception
+  to the rule above (decided 2026-10-26; only the developer had backups).
 - **Settings in the backup:** reminder on/time, symptom threshold, minimum exposures and tag windows. Values not set
   in the backup return to their defaults. The last-export date and the "permission asked" flag stay as they are.
-- **Checks before import:** format and version first (a file from a newer app is reported as such), then values
-  and references (ids, foods and their hierarchy, tags, ranges). A file that passes but still fails in the database
-  leaves the database unchanged. The error dialog names the problem in the app's language, with a technical detail below.
+- **Checks before import:** format and version first (a file from a newer or too old app is reported as such), then
+  values and references (ids, foods and their hierarchy, tags, ranges; `SEED` rows only on built-in ingredients that
+  aren't detached, `tagsDetached` only on built-in ingredients, a removal without threshold). A file that passes but
+  still fails in the database leaves the database unchanged. The error dialog names the problem in the app's
+  language, with a technical detail below.
 - The hint shows when there was never an export or the last one is more than 30 days old.
 
 ### 7.1 Report and CSV export

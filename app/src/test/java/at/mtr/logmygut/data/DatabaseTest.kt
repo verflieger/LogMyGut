@@ -8,13 +8,15 @@ import at.mtr.logmygut.data.db.MealEntity
 import at.mtr.logmygut.data.db.MealItemEntity
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
-import at.mtr.logmygut.data.seed.toEntity
+import at.mtr.logmygut.data.db.toEntity
 import at.mtr.logmygut.domain.Amount
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
+import at.mtr.logmygut.domain.TagRow
+import at.mtr.logmygut.domain.TagSource
 import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.domain.Threshold
 import java.io.File
@@ -173,7 +175,7 @@ class DatabaseTest {
     @Test fun parentTagChangeReachesChildren() = runTest {
         SeedImporter(db).import(SeedFile.parse(vinegarSeed))
         val essig = foods.search("essig").first { it.name == "Essig" }
-        db.foodDao().replaceTags(essig.id, listOf(IngredientTag(Tag.SPICY).toEntity()))
+        db.foodDao().replaceTags(essig.id, TagSource.SEED, listOf(TagRow(Tag.SPICY, threshold = null, removed = false, TagSource.SEED).toEntity()))
 
         val balsamico = foods.search("balsamico").first { it.name == "Balsamico" }
         assertEquals(setOf(Tag.SPICY, Tag.FRUCTOSE), foods.getIngredientTags(balsamico.id).map { it.tag }.toSet())

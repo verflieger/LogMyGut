@@ -2,31 +2,37 @@ package at.mtr.logmygut.data
 
 import androidx.room.withTransaction
 import at.mtr.logmygut.data.db.FoodEntity
-import at.mtr.logmygut.data.db.FoodTagEntity
+import at.mtr.logmygut.data.db.tagsFollowSeed
+import at.mtr.logmygut.data.db.toEntity
+import at.mtr.logmygut.data.db.toRow
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.seed.SeedImporter
-import at.mtr.logmygut.data.seed.toEntity
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.MaxFoodDepth
-import at.mtr.logmygut.domain.inheritTags
+import at.mtr.logmygut.domain.TagSource
+import at.mtr.logmygut.domain.fullRowsFor
+import at.mtr.logmygut.domain.ownRows
+import at.mtr.logmygut.domain.levelOf
+import at.mtr.logmygut.domain.parentProblems
+import at.mtr.logmygut.domain.resolveTags
+import at.mtr.logmygut.domain.userRowsFor
 import at.mtr.logmygut.domain.isDrinkUnit
 import at.mtr.logmygut.domain.matchedAlias
 import at.mtr.logmygut.domain.TagSuggester
-import at.mtr.logmygut.domain.Threshold
 import at.mtr.logmygut.domain.normalizeForSearch
 import at.mtr.logmygut.domain.unitLabelKey
 import kotlinx.coroutines.flow.Flow
 
 /**
  * Access to the food library: search, tag lookup, creating and editing foods (SPEC 4).
- * [syncSeed] brings the built-in foods in line with the seed, for "Reset to default".
+ * [resetFood] restores one built-in food from the seed, for "Reset to default" ([SeedImporter.reset]).
  */
 class FoodRepository(
     private val db: LogMyGutDatabase,
     private val tagSuggester: TagSuggester,
-    private val syncSeed: suspend () -> Unit = { error("No seed file available") },
+    private val resetFood: suspend (Long) -> SeedImporter.ResetResult = { error("No seed file available") },
 ) {
     private val dao = db.foodDao()
 
@@ -74,15 +80,8 @@ class FoodRepository(
             rows.forEach { parentOf[it.id] = it.parentId }
             pending = rows.mapNotNull { it.parentId }.filterNot { it in parentOf }.toSet()
         }
-        val rowsByFood = dao.getTagsFor(parentOf.keys).groupBy { it.foodId }
-
-        val resolved = mutableMapOf<Long, List<IngredientTag>>()
-        fun resolve(id: Long, depth: Int): List<IngredientTag> = resolved[id] ?: run {
-            val parent = parentOf[id]?.takeIf { depth < MaxFoodDepth - 1 }?.let { resolve(it, depth + 1) }.orEmpty()
-            val (removed, own) = rowsByFood[id].orEmpty().partition { it.removed }
-            inheritTags(parent, own.map { it.toDomain() }, removed.map { it.tag }).also { resolved[id] = it }
-        }
-        return foodIds.associateWith { resolve(it, 0) }.filterValues { it.isNotEmpty() }
+        val rowsByFood = dao.getTagsFor(parentOf.keys).groupBy({ it.foodId }, { it.toRow() })
+        return resolveTags(foodIds, parentOf, rowsByFood).filterValues { it.isNotEmpty() }
     }
 
     suspend fun getDishIngredientIds(dishId: Long): List<Long> = dao.getDishIngredientIds(dishId)
@@ -99,27 +98,36 @@ class FoodRepository(
 
     suspend fun dishesUsing(ingredientId: Long): List<FoodEntity> = dao.getDishesUsing(ingredientId)
 
+    /** Every ingredient's parent link, for [canBeParent]; load it once and check many candidates against it. */
+    suspend fun parentMap(): Map<Long, Long?> = dao.getIngredientParentMap()
+
     /**
-     * Whether [parentId] may become the parent of [childId] (null = a new food): no cycle,
+     * Whether [parentId] may become the parent of [childId] (null = a new food) in [parentMap]: no cycle,
      * and the hierarchy stays within [MaxFoodDepth] levels including the child's own descendants.
      */
-    suspend fun canBeParent(childId: Long?, parentId: Long): Boolean {
-        if (parentId == childId) return false
-        val ancestors = ancestorsOf(parentId)
-        if (childId != null && childId in ancestors) return false
-        val childHeight = if (childId == null) 1 else subtreeHeight(childId)
-        return ancestors.size + 1 + childHeight <= MaxFoodDepth
+    fun canBeParent(parentMap: Map<Long, Long?>, childId: Long?, parentId: Long): Boolean {
+        val child = childId ?: NEW_FOOD_ID
+        if (parentId == child) return false
+        val changed = parentMap + (child to parentId)
+        // levelOf also rejects a parent on or below a cycle, which parentProblems only reports through the cycle.
+        return levelOf(changed, child) != null && parentProblems(changed).none { child in it.foods }
     }
 
-    /** Creates ([IngredientDraft.id] 0) or updates an ingredient; [IngredientDraft.tags] are the tags it should end up with. */
+    suspend fun canBeParent(childId: Long?, parentId: Long): Boolean = canBeParent(parentMap(), childId, parentId)
+
+    /**
+     * Creates ([IngredientDraft.id] 0) or updates an ingredient; [IngredientDraft.tags] are the tags it should end up with.
+     * A built-in ingredient that follows the seed stores only its differences from the seed; saving it with another
+     * parent detaches it from the seed (SPEC 4.4).
+     */
     suspend fun saveIngredient(draft: IngredientDraft): Long {
         require(draft.name.isNotBlank()) { "Name is required" }
         requireUnitLabel(draft.unit, draft.unitLabel)
-        draft.parentId?.let { require(canBeParent(draft.id.takeIf { id -> id != 0L }, it)) { "Invalid parent" } }
-        val rows = ownTagRows(draft.parentId, draft.tags)
         val aliases = draft.aliases.map { it.trim() }.filter { it.isNotEmpty() }.distinct()
         return db.withTransaction {
             val existing = draft.id.takeIf { it != 0L }?.let { dao.getFood(it) }
+            draft.parentId?.let { require(canBeParent(existing?.id, it)) { "Invalid parent" } }
+            val parentTags = draft.parentId?.let { getIngredientTags(it) }.orEmpty()
             val unit = if (existing != null && dao.isUsedInMeals(existing.id)) existing.unit else draft.unit
             val unitLabel = storedUnitLabel(unit, draft.unitLabel, fallback = existing?.unitLabel)
             val name = draft.name.trim()
@@ -130,17 +138,23 @@ class FoodRepository(
                         note = draft.note, parentId = draft.parentId,
                         portionGrams = draft.portionGrams, drink = draft.drink,
                     ),
-                    tags = rows,
+                    tags = fullRowsFor(draft.tags, parentTags).map { it.toEntity() },
                     ingredientIds = emptyList(),
                 )
             } else {
-                dao.updateFood(
-                    existing.copy(
-                        name = name, aliases = aliases, unit = unit, unitLabel = unitLabel, note = draft.note,
-                        parentId = draft.parentId, portionGrams = draft.portionGrams, drink = draft.drink, userModified = existing.builtIn,
-                    ),
+                val updated = existing.copy(
+                    name = name, aliases = aliases, unit = unit, unitLabel = unitLabel, note = draft.note,
+                    parentId = draft.parentId, portionGrams = draft.portionGrams, drink = draft.drink, userModified = existing.builtIn,
+                    tagsDetached = existing.tagsDetached || (existing.builtIn && draft.parentId != existing.parentId),
                 )
-                dao.replaceTags(existing.id, rows)
+                dao.updateFood(updated)
+                if (updated.tagsFollowSeed()) {
+                    val seedRows = dao.getTags(existing.id).map { it.toRow() }.filter { it.source == TagSource.SEED }
+                    dao.replaceTags(existing.id, TagSource.USER, userRowsFor(draft.tags, seedRows, parentTags).map { it.toEntity() })
+                } else {
+                    // Detached and user-created foods keep their full own list, relative to the (new) parent.
+                    dao.replaceAllTags(existing.id, fullRowsFor(draft.tags, parentTags).map { it.toEntity() })
+                }
                 existing.id
             }
         }
@@ -176,57 +190,25 @@ class FoodRepository(
     /** Hidden foods disappear from search but stay in past meals; nothing is ever deleted. */
     suspend fun setHidden(id: Long, hidden: Boolean) = dao.setHidden(id, hidden)
 
-    /** A user-owned copy named "… (Kopie)" with the same tags, parent or recipe. Returns its id. */
+    /**
+     * A user-owned copy named "… (Kopie)" with the same tags, parent or recipe. Returns its id.
+     * The copy's own tags are the original's own tags as user rows, so it resolves to the same tags.
+     */
     suspend fun duplicate(id: Long, copySuffix: String): Long = db.withTransaction {
         val food = dao.getFood(id) ?: error("Food $id not found")
         val name = "${food.name} $copySuffix"
         dao.insertFoodWithDetails(
             food = food.copy(
                 id = 0, name = name, aliases = emptyList(), builtIn = false, userModified = false, hidden = false,
-                seedKey = null, lastUsedAt = null,
+                seedKey = null, lastUsedAt = null, tagsDetached = false,
             ),
-            tags = dao.getTags(id),
+            tags = ownRows(dao.getTags(id).map { it.toRow() }).map { it.copy(source = TagSource.USER).toEntity() },
             ingredientIds = dao.getDishIngredientIds(id),
         )
     }
 
-    /** Restores a built-in food to the current seed version (SPEC 4.1). Its unit stays, see [SeedImporter]. */
-    suspend fun resetToSeed(id: Long) {
-        val food = dao.getFood(id) ?: return
-        require(food.builtIn) { "Only built-in foods can be reset" }
-        dao.clearUserModified(id)
-        syncSeed()
-    }
-
-    private suspend fun ancestorsOf(id: Long): List<Long> {
-        val chain = mutableListOf<Long>()
-        var current: Long? = dao.getParentIds(listOf(id)).singleOrNull()?.parentId
-        while (current != null && current !in chain && chain.size < MaxFoodDepth) {
-            chain += current
-            current = dao.getParentIds(listOf(current)).singleOrNull()?.parentId
-        }
-        return chain
-    }
-
-    /** Levels from [id] down to its deepest descendant, [id] itself counting as 1. */
-    private suspend fun subtreeHeight(id: Long): Int {
-        var height = 1
-        var level = listOf(id)
-        while (height <= MaxFoodDepth) {
-            level = dao.getChildIds(level)
-            if (level.isEmpty()) break
-            height++
-        }
-        return height
-    }
-
-    /** Own tag rows so that inheriting from [parentId] yields exactly [tags] (SPEC 4.4). */
-    private suspend fun ownTagRows(parentId: Long?, tags: List<IngredientTag>): List<FoodTagEntity> {
-        val inherited = parentId?.let { getIngredientTags(it) }.orEmpty()
-        val own = tags.filter { it !in inherited }
-        val removed = inherited.map { it.tag }.filter { tag -> tags.none { it.tag == tag } }
-        return own.map { it.toEntity() } + removed.map { FoodTagEntity(foodId = 0, tag = it, removed = true) }
-    }
+    /** "Reset to default" (SPEC 4.1), see [SeedImporter.reset]. */
+    suspend fun resetToSeed(id: Long): SeedImporter.ResetResult = resetFood(id)
 
     fun suggestTags(name: String) = tagSuggester.suggest(name)
 
@@ -249,7 +231,7 @@ class FoodRepository(
                 note = note,
                 drink = isDrinkUnit(unit, unitLabel),
             ),
-            tags = tags.map { it.toEntity() },
+            tags = fullRowsFor(tags, parentTags = emptyList()).map { it.toEntity() },
             ingredientIds = emptyList(),
         )
     }
@@ -321,7 +303,5 @@ data class DishDraft(
 /** A search result: [matchedAlias] is set when the query matched an alias rather than the name. */
 data class FoodHit(val food: FoodEntity, val matchedAlias: String?, val parentName: String?)
 
-internal fun FoodTagEntity.toDomain() = IngredientTag(
-    tag = tag,
-    threshold = minSize?.let { Threshold.MinSize(it) } ?: minCount?.let { Threshold.MinCount(it) },
-)
+/** Placeholder id of an unsaved food in a parent map: it has no children yet. */
+private const val NEW_FOOD_ID = -1L

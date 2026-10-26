@@ -1,5 +1,6 @@
 package at.mtr.logmygut.ui.library
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -139,8 +140,10 @@ class IngredientDetailViewModel(
         }
     }
 
-    suspend fun parentCandidates(query: String): List<FoodHit> =
-        foods.searchHits(query, FoodKind.INGREDIENT, limit = 12).filter { foods.canBeParent(id, it.food.id) }
+    suspend fun parentCandidates(query: String): List<FoodHit> {
+        val parentMap = foods.parentMap()
+        return foods.searchHits(query, FoodKind.INGREDIENT, limit = 12).filter { foods.canBeParent(parentMap, id, it.food.id) }
+    }
 
     suspend fun save() {
         foods.saveIngredient(
@@ -167,10 +170,13 @@ class IngredientDetailViewModel(
 
     suspend fun duplicate(copySuffix: String): Long = foods.duplicate(id!!, copySuffix)
 
-    suspend fun resetToSeed() {
-        foods.resetToSeed(id!!)
+    /** Returns the message to show when nothing could be reset, see [failureMessage]. */
+    @StringRes
+    suspend fun resetToSeed(): Int? {
+        val result = foods.resetToSeed(id!!)
         tagsTouched = false
         load(id)
+        return result.failureMessage()
     }
 
     private fun setTags(list: List<IngredientTag>) {
@@ -213,6 +219,7 @@ fun IngredientDetailScreen(id: Long?, onDone: () -> Unit, onOpenFood: (FoodEntit
     val appResources = LocalContext.current.applicationContext.resources
     val vm = viewModel { IngredientDetailViewModel(container.foodRepository, id, defaultUnitLabel, appResources::unitName) }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     val copySuffix = stringResource(R.string.food_copy_suffix)
     var pickingParent by remember { mutableStateOf(false) }
     val food = vm.food
@@ -229,7 +236,7 @@ fun IngredientDetailScreen(id: Long?, onDone: () -> Unit, onOpenFood: (FoodEntit
                     food = food,
                     onHide = { hidden -> scope.launch { vm.setHidden(hidden) } },
                     onDuplicate = { scope.launch(Dispatchers.Main.immediate) { onOpenCopy(vm.duplicate(copySuffix)) } },
-                    onReset = { scope.launch { vm.resetToSeed() } },
+                    onReset = { scope.launch { context.showResetFailure(vm.resetToSeed()) } },
                 )
             }
         } else {
@@ -378,6 +385,9 @@ fun amountText(value: Double?): String = value?.let { if (it % 1.0 == 0.0) it.to
 fun FoodHeaderHints(food: FoodEntity?) {
     if (food?.hidden == true) {
         Text(stringResource(R.string.food_hidden_hint), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.error)
+    }
+    if (food?.tagsDetached == true) {
+        Text(stringResource(R.string.food_tags_detached_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
     if (food != null) {
         Text(stringResource(R.string.food_from_now_on), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

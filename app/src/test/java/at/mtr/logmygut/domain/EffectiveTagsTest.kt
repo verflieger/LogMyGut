@@ -60,4 +60,53 @@ class EffectiveTagsTest {
     fun countMustBePositive() {
         Count(0)
     }
+
+    // Tag rows: seed vs. user (SPEC 4)
+
+    private fun seed(tag: Tag, threshold: Threshold? = null) = TagRow(tag, threshold, removed = false, TagSource.SEED)
+    private fun user(tag: Tag, threshold: Threshold? = null) = TagRow(tag, threshold, removed = false, TagSource.USER)
+    private fun userRemoved(tag: Tag) = TagRow(tag, threshold = null, removed = true, TagSource.USER)
+
+    @Test fun userRowWinsOverSeedRow() {
+        val rows = listOf(seed(Tag.FRUCTOSE), seed(Tag.POLYOLS), userRemoved(Tag.FRUCTOSE), user(Tag.POLYOLS, Threshold.MinSize(L)))
+        assertEquals(setOf(userRemoved(Tag.FRUCTOSE), user(Tag.POLYOLS, Threshold.MinSize(L))), ownRows(rows).toSet())
+    }
+
+    @Test fun resolutionAppliesOwnRowsOverTheParent() {
+        val parent = listOf(IngredientTag(Tag.HISTAMINE), IngredientTag(Tag.FAT))
+        val rows = listOf(seed(Tag.FRUCTOSE), userRemoved(Tag.HISTAMINE), user(Tag.FAT, Threshold.MinSize(L)))
+        assertEquals(
+            setOf(IngredientTag(Tag.FRUCTOSE), IngredientTag(Tag.FAT, Threshold.MinSize(L))),
+            resolveTags(parent, rows).toSet(),
+        )
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun removalCarriesNoThreshold() {
+        TagRow(Tag.FAT, Threshold.MinSize(L), removed = true, TagSource.USER)
+    }
+
+    @Test fun fullRowsAreRelativeToTheParent() {
+        val parent = listOf(IngredientTag(Tag.HISTAMINE), IngredientTag(Tag.FAT))
+        val edited = listOf(IngredientTag(Tag.HISTAMINE), IngredientTag(Tag.FRUCTOSE, Threshold.MinSize(L)))
+        val rows = fullRowsFor(edited, parent)
+        assertEquals(setOf(user(Tag.FRUCTOSE, Threshold.MinSize(L)), userRemoved(Tag.FAT)), rows.toSet())
+        assertEquals(edited.toSet(), resolveTags(parent, rows).toSet())
+    }
+
+    @Test fun userRowsStoreOnlyDifferencesFromTheSeed() {
+        val parent = listOf(IngredientTag(Tag.HISTAMINE))
+        val seedRows = listOf(seed(Tag.FRUCTOSE), seed(Tag.FAT))
+        val unchanged = listOf(IngredientTag(Tag.HISTAMINE), IngredientTag(Tag.FRUCTOSE), IngredientTag(Tag.FAT))
+        assertEquals(emptyList<TagRow>(), userRowsFor(unchanged, seedRows, parent))
+
+        // A changed threshold, a removed own seed tag, a removed inherited tag and a new tag.
+        val edited = listOf(IngredientTag(Tag.FRUCTOSE, Threshold.MinSize(L)), IngredientTag(Tag.SPICY))
+        val rows = userRowsFor(edited, seedRows, parent)
+        assertEquals(
+            setOf(user(Tag.FRUCTOSE, Threshold.MinSize(L)), user(Tag.SPICY), userRemoved(Tag.FAT), userRemoved(Tag.HISTAMINE)),
+            rows.toSet(),
+        )
+        assertEquals(edited.toSet(), resolveTags(parent, seedRows + rows).toSet())
+    }
 }

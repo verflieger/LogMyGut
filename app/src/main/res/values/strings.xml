@@ -198,6 +198,9 @@
     <string name="food_unhide">Show again</string>
     <string name="food_duplicate">Duplicate</string>
     <string name="food_reset">Reset to default</string>
+    <string name="food_reset_not_in_seed">No longer in the default list, so it can\'t be reset.</string>
+    <string name="food_reset_parent_impossible">Can\'t reset to default: the default placement isn\'t possible here.</string>
+    <string name="food_tags_detached_hint">Tags no longer follow the default</string>
     <string name="food_copy_suffix">(copy)</string>
     <string name="food_hidden_hint">Hidden: no longer appears in search, but stays in earlier entries.</string>
     <string name="food_from_now_on">Changes apply from now on. Earlier meals keep their ingredients.</string>
@@ -317,6 +320,7 @@
     <string name="backup_imported">Backup restored.</string>
     <string name="backup_error_not_a_backup">This file is not a LogMyGut backup. Nothing was changed.</string>
     <string name="backup_error_too_new">This backup comes from a newer version of LogMyGut. Update the app and try again. Nothing was changed.</string>
+    <string name="backup_error_too_old">This backup comes from an older version of LogMyGut and can\'t be imported. Nothing was changed.</string>
     <string name="backup_error_invalid">The backup is damaged or incomplete. Nothing was changed.</string>
     <string name="backup_error_io">The file could not be read or written. Nothing was changed.</string>
 

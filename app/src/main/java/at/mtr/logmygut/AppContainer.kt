@@ -34,7 +34,7 @@ class AppContainer(private val context: Context) {
 
     private val seed: SeedFile by lazy { SeedFile.parse(readAsset("foods.json")) }
 
-    val foodRepository: FoodRepository by lazy { FoodRepository(database, tagSuggester, syncSeed = ::syncSeed) }
+    val foodRepository: FoodRepository by lazy { FoodRepository(database, tagSuggester, resetFood = ::resetToSeed) }
 
     val journalRepository: JournalRepository by lazy { JournalRepository(database) }
 
@@ -86,12 +86,17 @@ class AppContainer(private val context: Context) {
     }
 
     private suspend fun syncSeed() {
-        val language = seedLanguage(context.resources.configuration.locales[0])
+        val language = appSeedLanguage()
         val result = SeedImporter(database).import(seed, language)
         if (result.inserted + result.updated > 0) {
             Log.i("LogMyGut", "Seed import ($language): added ${result.inserted}, updated ${result.updated} foods")
         }
     }
+
+    /** "Reset to default" for one built-in food, see [SeedImporter.reset]. */
+    private suspend fun resetToSeed(foodId: Long): SeedImporter.ResetResult = SeedImporter(database).reset(seed, foodId, appSeedLanguage())
+
+    private fun appSeedLanguage(): String = seedLanguage(context.resources.configuration.locales[0])
 
     private fun readAsset(name: String): String = context.assets.open(name).bufferedReader().use { it.readText() }
 }

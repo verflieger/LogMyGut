@@ -101,6 +101,40 @@ class MigrationTest {
         db.execSQL("INSERT INTO daily_check_in (date, stress, sleep) VALUES ('2026-10-25', NULL, 3)")
     }
 
+    @Test fun migrate5To6SplitsTagRowsBySourceAndDetachesEditedIngredients() {
+        helper.createDatabase(DB, 5).use { db ->
+            fun food(id: Int, kind: String, builtIn: Int, userModified: Int) = db.execSQL(
+                "INSERT INTO food (id, kind, name, aliases, unit, builtIn, userModified, hidden, seedKey, searchText) " +
+                    "VALUES ($id, '$kind', 'F$id', '[]', 'SIZE', $builtIn, $userModified, 0, ${if (builtIn == 1) "'F$id'" else "NULL"}, 'f$id')",
+            )
+            food(1, "INGREDIENT", builtIn = 1, userModified = 0)   // follows the seed
+            food(2, "INGREDIENT", builtIn = 1, userModified = 1)   // edited built-in ingredient
+            food(3, "INGREDIENT", builtIn = 0, userModified = 0)   // user-created
+            food(4, "DISH", builtIn = 1, userModified = 1)         // edited built-in dish
+            db.execSQL("INSERT INTO food_tag (foodId, tag, minSize, removed) VALUES (1, 'fructose', 'L', 0)")
+            db.execSQL("INSERT INTO food_tag (foodId, tag, minSize, removed) VALUES (2, 'histamine', NULL, 1)")
+            db.execSQL("INSERT INTO food_tag (foodId, tag, minSize, removed) VALUES (3, 'gos', NULL, 0)")
+        }
+
+        val db = helper.runMigrationsAndValidate(DB, 6, true, MIGRATION_5_6)
+
+        val tags = db.query("SELECT foodId, tag, minSize, removed, source FROM food_tag ORDER BY foodId").use { c ->
+            buildList { while (c.moveToNext()) add(listOf(c.getLong(0), c.getString(1), c.getString(2), c.getLong(3), c.getString(4))) }
+        }
+        assertEquals(
+            listOf(
+                listOf(1L, "fructose", "L", 0L, "SEED"),
+                listOf(2L, "histamine", null, 1L, "USER"),
+                listOf(3L, "gos", null, 0L, "USER"),
+            ),
+            tags,
+        )
+        val detached = db.query("SELECT id FROM food WHERE tagsDetached = 1").use { c ->
+            buildList { while (c.moveToNext()) add(c.getLong(0)) }
+        }
+        assertEquals(listOf(2L), detached)
+    }
+
     private companion object {
         const val DB = "migration-test"
     }

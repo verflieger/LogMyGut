@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import at.mtr.logmygut.domain.FoodKind
+import at.mtr.logmygut.domain.TagSource
 import at.mtr.logmygut.domain.normalizeForSearch
 import kotlinx.coroutines.flow.Flow
 
@@ -22,6 +23,7 @@ interface FoodDao {
     @Insert suspend fun insertDishIngredients(rows: List<DishIngredientEntity>)
 
     @Query("DELETE FROM food_tag WHERE foodId = :foodId") suspend fun deleteTags(foodId: Long)
+    @Query("DELETE FROM food_tag WHERE foodId = :foodId AND source = :source") suspend fun deleteTags(foodId: Long, source: TagSource)
     @Query("DELETE FROM dish_ingredient WHERE dishId = :dishId") suspend fun deleteDishIngredients(dishId: Long)
 
     @Query("SELECT * FROM food WHERE id = :id") suspend fun getFood(id: Long): FoodEntity?
@@ -30,13 +32,17 @@ interface FoodDao {
     @Query("SELECT ingredientId FROM dish_ingredient WHERE dishId = :dishId") suspend fun getDishIngredientIds(dishId: Long): List<Long>
 
     @Query("SELECT id, parentId FROM food WHERE id IN (:ids)") suspend fun getParentIds(ids: Collection<Long>): List<FoodParent>
-    @Query("SELECT id FROM food WHERE parentId IN (:ids)") suspend fun getChildIds(ids: Collection<Long>): List<Long>
+    @Query("SELECT id, parentId FROM food WHERE kind = 'INGREDIENT'") suspend fun getIngredientParents(): List<FoodParent>
+    /** Every ingredient's parent link: food id → parent id. */
+    suspend fun getIngredientParentMap(): Map<Long, Long?> = getIngredientParents().associate { it.id to it.parentId }
 
     // Library screen (SPEC 4.1)
     @Query("SELECT * FROM food WHERE kind = :kind ORDER BY name COLLATE NOCASE") fun observeByKind(kind: FoodKind): Flow<List<FoodEntity>>
     @Query("SELECT * FROM food WHERE id = :id") fun observeFood(id: Long): Flow<FoodEntity?>
     @Query("UPDATE food SET hidden = :hidden WHERE id = :id") suspend fun setHidden(id: Long, hidden: Boolean)
     @Query("UPDATE food SET userModified = 0 WHERE id = :id") suspend fun clearUserModified(id: Long)
+    @Query("UPDATE food SET tagsDetached = 0 WHERE id = :id") suspend fun clearTagsDetached(id: Long)
+    @Query("UPDATE food SET tagsDetached = 1 WHERE id = :id") suspend fun markTagsDetached(id: Long)
     @Query(
         "SELECT EXISTS(SELECT 1 FROM meal_item WHERE foodId = :id) OR EXISTS(SELECT 1 FROM meal_item_ingredient WHERE ingredientId = :id)",
     )
@@ -86,9 +92,17 @@ interface FoodDao {
         markUserModified(dishId)
     }
 
-    /** Replaces a food's own tag rows (no userModified change; used by the seed update). */
+    /** Replaces a food's tag rows of [source] with [tags] (all of that source), keeping the others (no userModified change). */
     @Transaction
-    suspend fun replaceTags(foodId: Long, tags: List<FoodTagEntity>) {
+    suspend fun replaceTags(foodId: Long, source: TagSource, tags: List<FoodTagEntity>) {
+        require(tags.all { it.source == source }) { "Tag rows of another source than $source" }
+        deleteTags(foodId, source)
+        if (tags.isNotEmpty()) insertTags(tags.map { it.copy(foodId = foodId) })
+    }
+
+    /** Replaces all of a food's tag rows, whatever their source. */
+    @Transaction
+    suspend fun replaceAllTags(foodId: Long, tags: List<FoodTagEntity>) {
         deleteTags(foodId)
         if (tags.isNotEmpty()) insertTags(tags.map { it.copy(foodId = foodId) })
     }

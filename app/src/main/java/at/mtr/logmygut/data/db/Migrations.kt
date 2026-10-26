@@ -67,4 +67,33 @@ val MIGRATION_4_5 = object : Migration(4, 5) {
     }
 }
 
-val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+/**
+ * v5 → v6: tag rows belong to the seed or the user (SPEC 4). Unchanged built-in foods follow the seed; edited built-in
+ * ingredients keep their rows as user rows and stop following the seed (tagsDetached), as before; user-created foods
+ * only have user rows (the SQL form of `FoodEntity.tagsFollowSeed`). The primary key changes, so the tag table is
+ * rebuilt.
+ */
+val MIGRATION_5_6 = object : Migration(5, 6) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE `food` ADD COLUMN `tagsDetached` INTEGER NOT NULL DEFAULT 0")
+        db.execSQL("UPDATE `food` SET `tagsDetached` = 1 WHERE `builtIn` = 1 AND `userModified` = 1 AND `kind` = 'INGREDIENT'")
+
+        db.execSQL(
+            "CREATE TABLE `food_tag_new` (`foodId` INTEGER NOT NULL, `tag` TEXT NOT NULL, `minSize` TEXT, `minCount` INTEGER, " +
+                "`removed` INTEGER NOT NULL DEFAULT 0, `source` TEXT NOT NULL, PRIMARY KEY(`foodId`, `tag`, `source`), " +
+                "FOREIGN KEY(`foodId`) REFERENCES `food`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        )
+        db.execSQL(
+            """
+            INSERT INTO food_tag_new (foodId, tag, minSize, minCount, removed, source)
+            SELECT t.foodId, t.tag, t.minSize, t.minCount, t.removed,
+                   CASE WHEN f.builtIn = 1 AND f.userModified = 0 THEN 'SEED' ELSE 'USER' END
+            FROM food_tag t JOIN food f ON f.id = t.foodId
+            """,
+        )
+        db.execSQL("DROP TABLE `food_tag`")
+        db.execSQL("ALTER TABLE `food_tag_new` RENAME TO `food_tag`")
+    }
+}
+
+val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)

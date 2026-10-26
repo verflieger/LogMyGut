@@ -12,6 +12,9 @@ import at.mtr.logmygut.domain.PainChange
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.domain.Tag
+import at.mtr.logmygut.domain.TagRow
+import at.mtr.logmygut.domain.TagSource
+import at.mtr.logmygut.domain.Threshold
 import java.time.Instant
 import java.time.LocalDate
 
@@ -47,15 +50,24 @@ data class FoodEntity(
     val portionGrams: Double? = null,
     /** A drink: amounts show in ml and count toward the daily fluid total. Ingredients and dishes can be drinks. */
     @ColumnInfo(defaultValue = "0") val drink: Boolean = false,
+    /** Built-in ingredients only: its tags no longer follow the seed, it only has [TagSource.USER] rows (SPEC 4). */
+    @ColumnInfo(defaultValue = "0") val tagsDetached: Boolean = false,
 )
+
+/**
+ * Whether this food's tags follow the seed: a built-in ingredient that isn't [detached][FoodEntity.tagsDetached]. Such a
+ * food has [TagSource.SEED] rows plus [TagSource.USER] rows for the user's differences (SPEC 4).
+ */
+fun FoodEntity.tagsFollowSeed(): Boolean = builtIn && kind == FoodKind.INGREDIENT && !tagsDetached
 
 /**
  * A tag on an ingredient. Both thresholds null = always applies.
  * [removed] cancels the same tag inherited from the parent food instead (thresholds unused then).
+ * A food can have a seed row and a user row for the same tag; the user row wins (`ownRows` in the domain).
  */
 @Entity(
     tableName = "food_tag",
-    primaryKeys = ["foodId", "tag"],
+    primaryKeys = ["foodId", "tag", "source"],
     foreignKeys = [ForeignKey(entity = FoodEntity::class, parentColumns = ["id"], childColumns = ["foodId"], onDelete = ForeignKey.CASCADE)],
 )
 data class FoodTagEntity(
@@ -64,6 +76,24 @@ data class FoodTagEntity(
     val minSize: PortionSize? = null,
     val minCount: Int? = null,
     @ColumnInfo(defaultValue = "0") val removed: Boolean = false,
+    val source: TagSource,
+)
+
+/** The domain view of a stored tag row; all tag logic works on [TagRow] (SPEC 4.4). */
+fun FoodTagEntity.toRow() = TagRow(
+    tag = tag,
+    threshold = minSize?.let { Threshold.MinSize(it) } ?: minCount?.let { Threshold.MinCount(it) },
+    removed = removed,
+    source = source,
+)
+
+fun TagRow.toEntity(foodId: Long = 0) = FoodTagEntity(
+    foodId = foodId,
+    tag = tag,
+    minSize = (threshold as? Threshold.MinSize)?.size,
+    minCount = (threshold as? Threshold.MinCount)?.n,
+    removed = removed,
+    source = source,
 )
 
 /** The saved recipe of a dish. */

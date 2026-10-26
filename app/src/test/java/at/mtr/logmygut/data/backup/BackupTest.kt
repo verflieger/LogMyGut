@@ -7,6 +7,7 @@ import at.mtr.logmygut.data.JournalRepository
 import at.mtr.logmygut.data.SettingsRepository
 import at.mtr.logmygut.data.TestDatabase
 import at.mtr.logmygut.data.db.BowelMovementEntity
+import at.mtr.logmygut.data.db.FoodEntity
 import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.db.MealEntity
 import at.mtr.logmygut.data.db.MealItemEntity
@@ -20,6 +21,7 @@ import at.mtr.logmygut.domain.PainChange
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.domain.Tag
+import at.mtr.logmygut.domain.TagSource
 import at.mtr.logmygut.domain.TagWindow
 import at.mtr.logmygut.domain.Threshold
 import java.time.Duration
@@ -136,6 +138,83 @@ class BackupTest {
         assertTrue(FoodRepository(targetDb, TestDatabase.tagSuggester).search("apfel").any { it.seedKey == "Apfel" })
     }
 
+    /** Ids of an edited built-in that still follows the seed, a detached one, a user-created ingredient and a built-in dish. */
+    private data class EditedFoods(val attached: Long, val detached: Long, val userCreated: Long, val dish: Long)
+
+    /** A seeded database with an attached edited built-in (seed and user rows), a detached one and a user-created one. */
+    private suspend fun editedSource(): Pair<LogMyGutDatabase, EditedFoods> {
+        val db = seededDb()
+        val foods = FoodRepository(db, TestDatabase.tagSuggester)
+        fun draft(food: FoodEntity, parentId: Long?, tags: List<IngredientTag>) = IngredientDraft(
+            id = food.id, name = food.name, aliases = food.aliases, unit = food.unit, unitLabel = food.unitLabel,
+            portionGrams = food.portionGrams, note = food.note, parentId = parentId, tags = tags, drink = food.drink,
+        )
+        // Removing its own seed tag histamine, same parent: a seed row and a user removal for the same tag.
+        val weichkaese = foods.search("Weichkäse").first { it.name == "Weichkäse" }
+        foods.saveIngredient(draft(weichkaese, weichkaese.parentId, listOf(IngredientTag(Tag.FAT, Threshold.MinSize(PortionSize.L)))))
+        // Another parent detaches a built-in.
+        val child = db.foodDao().getAllFoods().first { it.builtIn && it.kind == FoodKind.INGREDIENT && it.parentId != null && it.id != weichkaese.id }
+        foods.saveIngredient(draft(child, null, foods.getIngredientTags(child.id)))
+        val own = foods.saveIngredient(
+            IngredientDraft(
+                id = 0, name = "Hausessig", aliases = emptyList(), unit = FoodUnit.SIZE, unitLabel = null, portionGrams = null,
+                note = null, parentId = null, tags = listOf(IngredientTag(Tag.FRUCTOSE)),
+            ),
+        )
+        val dish = foods.search("Pizza", FoodKind.DISH).first().id
+        return db to EditedFoods(weichkaese.id, child.id, own, dish)
+    }
+
+    @Test fun roundTripKeepsRowSourcesAndDetachedFoods() = runTest {
+        val (sourceDb, ids) = editedSource()
+        val sourceTags = sourceDb.backupDao().getFoodTags()
+        val attachedSources = sourceTags.filter { it.foodId == ids.attached }.map { it.source }.toSet()
+        assertEquals(setOf(TagSource.SEED, TagSource.USER), attachedSources)
+        assertEquals(setOf(TagSource.USER), sourceTags.filter { it.foodId == ids.detached }.map { it.source }.toSet())
+        val foodIds = sourceDb.foodDao().getIngredientParents().map { it.id }
+        val before = FoodRepository(sourceDb, TestDatabase.tagSuggester).getIngredientTags(foodIds).mapValues { it.value.toSet() }
+
+        val exported = BackupRepository(sourceDb, settings("source")).export(now)
+        val targetDb = emptyDb()
+        val target = BackupRepository(targetDb, settings("target"))
+        target.restore(target.read(exported))
+
+        assertEquals(sourceTags, targetDb.backupDao().getFoodTags())
+        val restored = targetDb.foodDao()
+        assertEquals(false, restored.getFood(ids.attached)!!.tagsDetached)
+        assertEquals(true, restored.getFood(ids.attached)!!.userModified)
+        assertEquals(true, restored.getFood(ids.detached)!!.tagsDetached)
+        assertEquals(before, FoodRepository(targetDb, TestDatabase.tagSuggester).getIngredientTags(foodIds).mapValues { it.value.toSet() })
+        assertEquals(setOf(IngredientTag(Tag.FAT, Threshold.MinSize(PortionSize.L))), before[ids.attached])
+        assertEquals(exported, target.export(now))
+    }
+
+    @Test fun rejectsSeedRowsAndDetachedFlagsWhereTheyCantBe() = runTest {
+        val (db, ids) = editedSource()
+        val backup = parseBackup(BackupRepository(db, settings("source")).export(now))
+        fun assertInvalid(changed: BackupFile, problem: String) {
+            try {
+                parseBackup(BackupJson.encodeToString(BackupFile.serializer(), changed))
+                fail("Expected INVALID: $problem")
+            } catch (e: BackupException) {
+                assertEquals(BackupException.Reason.INVALID, e.reason)
+                assertTrue(e.message, e.message!!.contains(problem))
+            }
+        }
+        fun seedRowOn(id: Long) = backup.copy(foodTags = backup.foodTags + FoodTagJson(id, Tag.CARBONATED.key, source = TagSource.SEED))
+        fun detached(id: Long) = backup.copy(foods = backup.foods.map { if (it.id == id) it.copy(tagsDetached = true) else it })
+
+        assertInvalid(seedRowOn(ids.userCreated), "seed row")
+        assertInvalid(seedRowOn(ids.detached), "seed row")
+        // Detaching an attached food without dropping its seed rows.
+        assertInvalid(detached(ids.attached), "seed row")
+        assertInvalid(detached(ids.userCreated), "detached")
+        assertInvalid(detached(ids.dish), "detached")
+        // Two rows of the same source for one tag.
+        val row = backup.foodTags.first { it.foodId == ids.attached && it.source == TagSource.USER }
+        assertInvalid(backup.copy(foodTags = backup.foodTags + row.copy(removed = !row.removed)), "duplicate")
+    }
+
     @Test fun importReplacesExistingData() = runTest {
         val (sourceDb, sourceSettings) = fullSource()
         val exported = BackupRepository(sourceDb, sourceSettings).export(now)
@@ -170,24 +249,22 @@ class BackupTest {
         assertEquals(before, repo.export(now))
     }
 
-    @Test fun version1FilesGetDrinksFromTheirUnit() = runTest {
+    @Test fun filesBeforeVersion3AreTooOld() = runTest {
         val (db, settings) = fullSource()
-        val current = parseBackup(BackupRepository(db, settings).export(now))
-        val v1 = current.copy(version = 1, foods = current.foods.map { it.copy(drink = false) })
-
-        val target = BackupRepository(emptyDb(), settings("target"))
-        target.restore(target.read(BackupJson.encodeToString(BackupFile.serializer(), v1)))
-
-        val drinks = target.read(target.export(now)).foods.filter { it.drink }.map { it.name }
-        assertTrue("Kaffee" in drinks && "Bier" in drinks && "Wasser" in drinks)
-        assertTrue("Semmel" !in drinks)
+        val repo = BackupRepository(db, settings)
+        val current = repo.read(repo.export(now))
+        for (version in listOf(1, 2)) {
+            assertReason(BackupException.Reason.TOO_OLD, BackupJson.encodeToString(BackupFile.serializer(), current.copy(version = version)))
+        }
+        // Rejected by its version, before its old structure (no tag source) is looked at.
+        assertReason(BackupException.Reason.TOO_OLD, """{"format": "logmygut-backup", "version": 2, "foodTags": [{"foodId": 1, "tag": "gluten"}]}""")
     }
 
     @Test fun rejectsFilesThatAreNotBackups() {
         assertReason(BackupException.Reason.NOT_A_BACKUP, "kein JSON")
         assertReason(BackupException.Reason.NOT_A_BACKUP, """{"version": 4, "ingredients": []}""") // a seed file
         assertReason(BackupException.Reason.TOO_NEW, """{"format": "logmygut-backup", "version": 99, "anything": "new"}""")
-        assertReason(BackupException.Reason.INVALID, """{"format": "logmygut-backup", "version": 1}""")
+        assertReason(BackupException.Reason.INVALID, """{"format": "logmygut-backup", "version": 3}""")
     }
 
     @Test fun rejectsBrokenReferencesAndValues() = runTest {
@@ -200,7 +277,10 @@ class BackupTest {
         assertInvalid(backup.copy(mealItems = backup.mealItems.map { it.copy(foodId = 999_999) }))
         assertInvalid(backup.copy(bowelMovements = backup.bowelMovements.map { it.copy(bristol = 8) }))
         assertInvalid(backup.copy(bowelMovements = backup.bowelMovements.map { it.copy(painAfter = null) }))
-        assertInvalid(backup.copy(foodTags = backup.foodTags + FoodTagJson(backup.foods.first().id, "sugar")))
+        assertInvalid(backup.copy(foodTags = backup.foodTags + FoodTagJson(backup.foods.first().id, "sugar", source = TagSource.USER)))
+        // A removal can't carry a threshold.
+        val untagged = backup.foods.first { f -> f.kind == FoodKind.INGREDIENT && backup.foodTags.none { it.foodId == f.id } }
+        assertInvalid(backup.copy(foodTags = backup.foodTags + FoodTagJson(untagged.id, Tag.GLUTEN.key, minCount = 1, removed = true, source = TagSource.USER)))
         assertInvalid(backup.copy(checkIns = backup.checkIns.map { it.copy(stress = 0) }))
         assertInvalid(backup.copy(settings = backup.settings.copy(windows = mapOf("gluten" to "60-30"))))
         // Two foods that are each other's parent.

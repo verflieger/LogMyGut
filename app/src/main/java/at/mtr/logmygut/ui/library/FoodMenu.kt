@@ -1,5 +1,8 @@
 package at.mtr.logmygut.ui.library
 
+import android.content.Context
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,10 +33,11 @@ import androidx.compose.ui.unit.dp
 import at.mtr.logmygut.R
 import at.mtr.logmygut.data.FoodHit
 import at.mtr.logmygut.data.db.FoodEntity
+import at.mtr.logmygut.data.seed.SeedImporter
 import at.mtr.logmygut.ui.meal.hitContext
 import kotlinx.coroutines.delay
 
-/** ⋮ menu of a food's detail screen (SPEC 4.1): hide/show, duplicate, and reset for edited built-ins. */
+/** ⋮ menu of a food's detail screen (SPEC 4.1): hide/show, duplicate, and reset for edited or detached built-ins. */
 @Composable
 fun FoodMenu(food: FoodEntity, onHide: (Boolean) -> Unit, onDuplicate: () -> Unit, onReset: () -> Unit) {
     var open by remember { mutableStateOf(false) }
@@ -55,7 +59,7 @@ fun FoodMenu(food: FoodEntity, onHide: (Boolean) -> Unit, onDuplicate: () -> Uni
                 onDuplicate()
             },
         )
-        if (food.builtIn && food.userModified) {
+        if (food.builtIn && (food.userModified || food.tagsDetached)) {
             DropdownMenuItem(
                 text = { Text(stringResource(R.string.food_reset)) },
                 onClick = {
@@ -65,6 +69,19 @@ fun FoodMenu(food: FoodEntity, onHide: (Boolean) -> Unit, onDuplicate: () -> Uni
             )
         }
     }
+}
+
+/** Message for a reset that changed nothing, or null when it was done. */
+@StringRes
+fun SeedImporter.ResetResult.failureMessage(): Int? = when (this) {
+    SeedImporter.ResetResult.RESET -> null
+    SeedImporter.ResetResult.NOT_IN_SEED -> R.string.food_reset_not_in_seed
+    SeedImporter.ResetResult.PARENT_IMPOSSIBLE -> R.string.food_reset_parent_impossible
+}
+
+/** Shows the [failureMessage] of a reset, if there is one. */
+fun Context.showResetFailure(@StringRes message: Int?) {
+    if (message != null) Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
 /** Search for an ingredient to become the parent; [search] already leaves out invalid choices. */

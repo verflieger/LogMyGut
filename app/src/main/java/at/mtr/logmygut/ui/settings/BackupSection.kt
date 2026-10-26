@@ -164,6 +164,7 @@ fun BackupSection() {
                 when (s.reason) {
                     BackupException.Reason.NOT_A_BACKUP -> R.string.backup_error_not_a_backup
                     BackupException.Reason.TOO_NEW -> R.string.backup_error_too_new
+                    BackupException.Reason.TOO_OLD -> R.string.backup_error_too_old
                     BackupException.Reason.INVALID -> R.string.backup_error_invalid
                     null -> R.string.backup_error_io
                 },

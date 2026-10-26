@@ -10,6 +10,7 @@ import at.mtr.logmygut.domain.PainChange
 import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.domain.Tag
+import at.mtr.logmygut.domain.TagSource
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -27,10 +28,14 @@ import kotlinx.serialization.json.jsonPrimitive
 const val BackupFormat = "logmygut-backup"
 
 /**
- * 2: foods have `drink`; check-in values are optional. Version 1 files are still read; their drinks are
- * derived from the unit, like the database migration to v5 did.
+ * 3: food tag rows carry their `source` (seed or user), foods carry `tagsDetached`. Only version 3 is read: older
+ * files are rejected as [BackupException.Reason.TOO_OLD] (a one-time exception, SPEC 7).
+ * 2: foods have `drink`; check-in values are optional.
  */
-const val BackupVersion = 2
+const val BackupVersion = 3
+
+/** The oldest version this app reads. */
+const val OldestBackupVersion = 3
 
 @Serializable
 data class BackupFile(
@@ -68,10 +73,19 @@ data class FoodJson(
     val parentId: Long? = null,
     val portionGrams: Double? = null,
     val drink: Boolean = false,
+    /** Built-in ingredients only: its tags no longer follow the seed (SPEC 4). */
+    val tagsDetached: Boolean = false,
 )
 
 @Serializable
-data class FoodTagJson(val foodId: Long, val tag: String, val minSize: PortionSize? = null, val minCount: Int? = null, val removed: Boolean = false)
+data class FoodTagJson(
+    val foodId: Long,
+    val tag: String,
+    val minSize: PortionSize? = null,
+    val minCount: Int? = null,
+    val removed: Boolean = false,
+    val source: TagSource,
+)
 
 @Serializable
 data class DishIngredientJson(val dishId: Long, val ingredientId: Long)
@@ -108,7 +122,7 @@ data class CheckInJson(val date: String, val stress: Int? = null, val sleep: Int
 
 /** Why a file can't be imported. [message] is a technical detail in English, for the error dialog's small print. */
 class BackupException(val reason: Reason, message: String) : Exception(message) {
-    enum class Reason { NOT_A_BACKUP, TOO_NEW, INVALID }
+    enum class Reason { NOT_A_BACKUP, TOO_NEW, TOO_OLD, INVALID }
 }
 
 internal val BackupJson = Json {
@@ -118,8 +132,8 @@ internal val BackupJson = Json {
 }
 
 /**
- * Reads and checks a backup. The format and version are read first, so a newer app's file is reported as
- * such even if its structure changed. Everything else is validated before anything is written.
+ * Reads and checks a backup. The format and version are read first, so a newer or older app's file is reported as
+ * such even if its structure differs. Everything else is validated before anything is written.
  */
 fun parseBackup(text: String): BackupFile {
     val header = try {
@@ -132,6 +146,7 @@ fun parseBackup(text: String): BackupFile {
     val version = runCatching { header["version"]?.jsonPrimitive?.int }.getOrNull()
         ?: throw BackupException(BackupException.Reason.INVALID, "version missing")
     if (version > BackupVersion) throw BackupException(BackupException.Reason.TOO_NEW, "version $version, this app reads up to $BackupVersion")
+    if (version < OldestBackupVersion) throw BackupException(BackupException.Reason.TOO_OLD, "version $version, this app reads from $OldestBackupVersion")
 
     val backup = try {
         BackupJson.decodeFromString(BackupFile.serializer(), text)
@@ -162,6 +177,7 @@ private fun BackupFile.validate() {
     fun isKind(id: Long, kind: FoodKind) = foodById[id]?.kind == kind
     foods.forEach { f ->
         check(f.name.isNotBlank()) { "food ${f.id}: empty name" }
+        check(!f.tagsDetached || (f.builtIn && f.kind == FoodKind.INGREDIENT)) { "food ${f.id}: detached but not a built-in ingredient" }
         f.lastUsedAt?.let { checkInstant(it, "food ${f.id}") }
         f.parentId?.let { parent ->
             check(f.kind == FoodKind.INGREDIENT && isKind(parent, FoodKind.INGREDIENT)) { "food ${f.id}: bad parent $parent" }
@@ -176,11 +192,15 @@ private fun BackupFile.validate() {
         }
     }
 
-    unique(foodTags, "food tags") { it.foodId to it.tag }
+    unique(foodTags, "food tags") { Triple(it.foodId, it.tag, it.source) }
     foodTags.forEach { t ->
         check(isKind(t.foodId, FoodKind.INGREDIENT)) { "food tag: unknown ingredient ${t.foodId}" }
+        check(t.source != TagSource.SEED || foodById.getValue(t.foodId).let { it.builtIn && !it.tagsDetached }) {
+            "food tag ${t.foodId}/${t.tag}: seed row on a food that doesn't follow the seed"
+        }
         check(Tag.entries.any { it.key == t.tag }) { "food tag: unknown tag '${t.tag}'" }
         check(t.minSize == null || t.minCount == null) { "food tag ${t.foodId}/${t.tag}: two thresholds" }
+        check(!t.removed || (t.minSize == null && t.minCount == null)) { "food tag ${t.foodId}/${t.tag}: removal with a threshold" }
         check(t.minCount == null || t.minCount >= 1) { "food tag ${t.foodId}/${t.tag}: bad count" }
     }
 

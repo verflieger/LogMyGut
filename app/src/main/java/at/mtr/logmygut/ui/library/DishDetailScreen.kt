@@ -1,5 +1,6 @@
 package at.mtr.logmygut.ui.library
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -123,9 +124,12 @@ class DishDetailViewModel(
 
     suspend fun duplicate(copySuffix: String): Long = foods.duplicate(id!!, copySuffix)
 
-    suspend fun resetToSeed() {
-        foods.resetToSeed(id!!)
+    /** Returns the message to show when nothing could be reset, see [failureMessage]. */
+    @StringRes
+    suspend fun resetToSeed(): Int? {
+        val result = foods.resetToSeed(id!!)
         load(id)
+        return result.failureMessage()
     }
 }
 
@@ -138,6 +142,7 @@ fun DishDetailScreen(id: Long?, onDone: () -> Unit, onOpenCopy: (Long) -> Unit) 
     val appResources = LocalContext.current.applicationContext.resources
     val vm = viewModel { DishDetailViewModel(container.foodRepository, id, defaultUnitLabel, appResources::unitName) }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     val copySuffix = stringResource(R.string.food_copy_suffix)
     val food = vm.food
 
@@ -153,7 +158,7 @@ fun DishDetailScreen(id: Long?, onDone: () -> Unit, onOpenCopy: (Long) -> Unit) 
                     food = food,
                     onHide = { hidden -> scope.launch { vm.setHidden(hidden) } },
                     onDuplicate = { scope.launch(Dispatchers.Main.immediate) { onOpenCopy(vm.duplicate(copySuffix)) } },
-                    onReset = { scope.launch { vm.resetToSeed() } },
+                    onReset = { scope.launch { context.showResetFailure(vm.resetToSeed()) } },
                 )
             }
         } else {

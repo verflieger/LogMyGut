@@ -196,6 +196,9 @@
     <string name="food_unhide">Einblenden</string>
     <string name="food_duplicate">Duplizieren</string>
     <string name="food_reset">Auf Standard zurücksetzen</string>
+    <string name="food_reset_not_in_seed">Nicht mehr in der Standardliste, daher nicht zurücksetzbar.</string>
+    <string name="food_reset_parent_impossible">Kann nicht auf Standard zurückgesetzt werden: Die Standard-Zuordnung ist hier nicht möglich.</string>
+    <string name="food_tags_detached_hint">Tags folgen nicht mehr dem Standard</string>
     <string name="food_copy_suffix">(Kopie)</string>
     <string name="food_hidden_hint">Ausgeblendet: erscheint nicht mehr in der Suche, bleibt aber in alten Einträgen.</string>
     <string name="food_from_now_on">Änderungen gelten ab jetzt. Frühere Mahlzeiten behalten ihre Zutaten.</string>
@@ -315,6 +318,7 @@
     <string name="backup_imported">Sicherung eingespielt.</string>
     <string name="backup_error_not_a_backup">Diese Datei ist keine LogMyGut-Sicherung. Es wurde nichts geändert.</string>
     <string name="backup_error_too_new">Diese Sicherung stammt aus einer neueren Version von LogMyGut. Aktualisiere die App und versuche es noch einmal. Es wurde nichts geändert.</string>
+    <string name="backup_error_too_old">Diese Sicherung stammt aus einer älteren Version von LogMyGut und kann nicht importiert werden. Es wurde nichts geändert.</string>
     <string name="backup_error_invalid">Die Sicherung ist beschädigt oder unvollständig. Es wurde nichts geändert.</string>
     <string name="backup_error_io">Die Datei konnte nicht gelesen oder geschrieben werden. Es wurde nichts geändert.</string>
 

@@ -9,7 +9,7 @@ import androidx.room.Transaction
 @Dao
 interface BackupDao {
     @Query("SELECT * FROM food ORDER BY id") suspend fun getFoods(): List<FoodEntity>
-    @Query("SELECT * FROM food_tag ORDER BY foodId, tag") suspend fun getFoodTags(): List<FoodTagEntity>
+    @Query("SELECT * FROM food_tag ORDER BY foodId, tag, source") suspend fun getFoodTags(): List<FoodTagEntity>
     @Query("SELECT * FROM dish_ingredient ORDER BY dishId, ingredientId") suspend fun getDishIngredients(): List<DishIngredientEntity>
     @Query("SELECT * FROM meal ORDER BY id") suspend fun getMeals(): List<MealEntity>
     @Query("SELECT * FROM meal_item ORDER BY id") suspend fun getMealItems(): List<MealItemEntity>

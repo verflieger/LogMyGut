@@ -51,8 +51,12 @@ python tools/icons/build_bristol.py                # from repo root; writes res/
   rewrites past meals.
 - **Seed data**: `foods.json` is generated — edit `tools/foods/foods.src.txt` (German) and `foods.en.txt` (English,
   one line per food, keyed by German name) and rerun `build_seed.py`, never the JSON by hand. Seed keys are permanent
-  (rename via `key=Old name`). The importer never changes an existing food's unit and only fully updates built-in
-  foods without `userModified`.
+  (rename via `key=Old name`). The importer never changes an existing food's unit and updates name, aliases, note,
+  portion weight, drink flag and recipe only on built-in foods without `userModified` (an edited food's name still
+  follows the language unless renamed). Tag rows have a `source` (SEED/USER, USER wins per tag): attached
+  built-in ingredients get new SEED rows and the seed parent even when edited (USER rows stay); detached ones
+  (`tagsDetached`, after a user parent change, the v6 migration, an impossible seed placement or the seed no longer
+  having it) are frozen until "reset to default" (SPEC 4).
 - **Food names follow the language** (SPEC 4): `SeedImporter.import(seed, language)` stores built-in names in the
   app's language with the other language's names as aliases; it runs on start, on configuration change
   (`LogMyGutApp.onConfigurationChanged`) and after a backup restore. Changed built-ins follow the language unless the
@@ -64,8 +68,8 @@ python tools/icons/build_bristol.py                # from repo root; writes res/
   (`ALL_MIGRATIONS`), and commit the exported schema in `app/schemas/`. `MigrationTest` reads those schemas
   (they are added to debug assets for Robolectric).
 - **Backup** (SPEC 7): its own DTOs in `data/backup/BackupFile.kt`, decoupled from Room entities, so DB changes
-  don't silently change the format. A new backup version must still read all older versions. Import is
-  all-or-nothing in one transaction.
+  don't silently change the format. A new backup version must still read all older versions; one-time exception:
+  v3 (tag `source`, `tagsDetached`) doesn't read versions before 3. Import is all-or-nothing in one transaction.
 - **Timestamps** are stored as UTC epoch millis plus `zoneId` so day assignment survives time-zone changes.
 
 ## Constraints to keep
