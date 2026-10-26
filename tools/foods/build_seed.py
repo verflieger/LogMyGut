@@ -25,6 +25,7 @@ import csv
 import json
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -34,49 +35,82 @@ SEED_VERSION = 6
 DRINK_LABELS = {"Glas", "Tasse", "Dose", "Flasche"}
 TAG_ORDER = ["lactose", "fructose", "polyols", "fructans", "gos", "gluten", "histamine",
              "fat", "caffeine", "alcohol", "spicy", "carbonated"]
-COMPUTED = ["lactose", "fructose", "polyols", "fat", "alcohol"]
 
-# Grams per eaten amount from which a computed tag applies (SPEC 4.5).
-CUTOFF_G = {"lactose": 1.0, "fructose": 0.5, "polyols": 0.3, "fat": 15.0, "alcohol": 1.0}
+
+def bls_value(row: dict, code: str) -> float | None:
+    """Grams per 100 g of one BLS component; None if not determined."""
+    value = row[code].strip()
+    if value in ("", "-"):
+        return None  # not determined
+    if value.startswith("<") or value == "TR":
+        return 0.0  # below detection/quantification limit, or trace
+    return float(value)
+
+
+@dataclass(frozen=True)
+class Nutrient:
+    """One BLS component."""
+    code: str
+    cutoff_g: float
+
+    def per_100g(self, row: dict) -> float | None:
+        return bls_value(row, self.code)
+
+
+@dataclass(frozen=True)
+class ExcessFructose:
+    """Fructose minus glucose (FRUS - GLUS), at least 0; unknown glucose counts as 0."""
+    cutoff_g: float
+
+    def per_100g(self, row: dict) -> float | None:
+        fructose, glucose = bls_value(row, "FRUS"), bls_value(row, "GLUS")
+        return None if fructose is None else max(0.0, fructose - (glucose or 0.0))
+
+
+@dataclass(frozen=True)
+class NutrientSum:
+    """Sum of several BLS components; unknown ones count as 0, unknown only if all are."""
+    codes: tuple[str, ...]
+    cutoff_g: float
+
+    def per_100g(self, row: dict) -> float | None:
+        values = [bls_value(row, c) for c in self.codes]
+        return None if all(v is None for v in values) else sum(v or 0.0 for v in values)
+
+
+# Tags computed from BLS values; cutoff_g is the grams per eaten amount from which the tag applies (SPEC 4.5).
+COMPUTED_RULES = {
+    "lactose": Nutrient("LACS", cutoff_g=1.0),
+    "fructose": ExcessFructose(cutoff_g=0.5),
+    "polyols": NutrientSum(("SORTL", "MANTL", "XYLTL"), cutoff_g=0.3),
+    "fat": Nutrient("FAT", cutoff_g=15.0),
+    "alcohol": Nutrient("ALC", cutoff_g=1.0),
+}
+COMPUTED = list(COMPUTED_RULES)
 # Count thresholds above 2 pieces aren't computed: like size L, 2 pieces is the largest normal amount (SPEC 4.2).
 MAX_COUNT_THRESHOLD = 2
 
 
 def per_100g(row: dict) -> dict[str, float | None]:
-    def num(key):
-        value = row[key].strip()
-        if value in ("", "-"):
-            return None  # not determined
-        if value.startswith("<") or value == "TR":
-            return 0.0  # below detection/quantification limit, or trace
-        return float(value)
-
-    fructose, glucose = num("FRUS"), num("GLUS")
-    polyols = [num(k) for k in ("SORTL", "MANTL", "XYLTL")]
-    return {
-        "lactose": num("LACS"),
-        "fructose": None if fructose is None else max(0.0, fructose - (glucose or 0.0)),  # excess fructose
-        "polyols": None if all(p is None for p in polyols) else sum(p or 0.0 for p in polyols),
-        "fat": num("FAT"),
-        "alcohol": num("ALC"),
-    }
+    """Grams per 100 g for each computed tag; None if not determined."""
+    return {tag: rule.per_100g(row) for tag, rule in COMPUTED_RULES.items()}
 
 
 def computed_tags(values: dict, unit: str, grams: float) -> dict[str, str | int | None]:
     """Tag -> threshold (None = always, "M"/"L", or a minimum count)."""
     tags = {}
-    for tag, cutoff in CUTOFF_G.items():
+    for tag, rule in COMPUTED_RULES.items():
         per_g = (values[tag] or 0.0) / 100
         if per_g <= 0:
             continue
         if unit == "size":
             for level, factor in (("S", 0.5), ("M", 1.0), ("L", 2.0)):
-                if per_g * grams * factor >= cutoff:
+                if per_g * grams * factor >= rule.cutoff_g:
                     tags[tag] = None if level == "S" else level
                     break
         else:
             for n in range(1, MAX_COUNT_THRESHOLD + 1):
-                if per_g * grams * n >= cutoff:
+                if per_g * grams * n >= rule.cutoff_g:
                     tags[tag] = None if n == 1 else n
                     break
     return tags

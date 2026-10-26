@@ -6,17 +6,28 @@ import at.mtr.logmygut.domain.PortionSize
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.Threshold
 import java.io.File
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class SeedFileTest {
-    private val seed = SeedFile.parse(File("src/main/assets/foods.json").readText())
+    private val seedText = File("src/main/assets/foods.json").readText()
+    private val seed = SeedFile.parse(seedText)
 
     @Test fun shippedSeedIsValid() {
         assertTrue("expected ~380 ingredients, got ${seed.ingredients.size}", seed.ingredients.size >= 350)
         assertTrue("expected ~60 dishes, got ${seed.dishes.size}", seed.dishes.size >= 50)
+    }
+
+    @Test fun seedTagListMatchesAppTags() {
+        // build_seed.py's TAG_ORDER must list the app's tags in the same order.
+        val tags = Json.parseToJsonElement(seedText).jsonObject.getValue("tags").jsonArray.map { it.jsonPrimitive.content }
+        assertEquals(Tag.entries.map { it.key }, tags)
     }
 
     @Test fun doseTagsAreParsed() {
