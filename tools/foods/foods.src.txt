@@ -363,7 +363,7 @@ Mineralwasser mit Kohlensäure | count:Glas | g=250 | aliases=Sprudel, Soda, Pri
 Energydrink | count:Dose | g=250 | aliases=Red Bull | tags=caffeine, carbonated
 Fruchtsaft | count:Glas | g=250 | bls=F016600 | aliases=Saft, Multivitaminsaft, Mehrfruchtsaft
   Apfelsaft | count:Glas | g=250 | bls=F110600 | aliases=Apfelschorle, Apfelsaft gespritzt
-  Orangensaft | count:Glas | g=250 | bls=F603600 | aliases=O-Saft
+  Orangensaft | count:Glas | g=250 | bls=F603600 | aliases=O-Saft | no=polyols
   Smoothie | count:Glas | g=250 | bls=F032600 | aliases=Fruchtsmoothie
 Kombucha | count:Glas | g=250 | tags=carbonated, histamine
 Bier | count:Glas | g=330 | bls=P163000 | aliases=Pils, Helles, Märzen, Krügerl, Seidl | tags=gluten, carbonated, histamine

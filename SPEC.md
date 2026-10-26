@@ -336,6 +336,10 @@ Käse → Weichkäse → Camembert. At most 3 levels.
   | alcohol | ≥ 1 g alcohol | any alcoholic drink |
 
   Count thresholds are computed up to 2 pieces only (2 pieces ≈ L, SPEC 4.2).
+- **Inheritance of computed tags:** a child's own known BLS value (also below detection limit or trace = 0)
+  replaces the tag result inherited from its parent; an unknown value ("-") keeps the inherited result for that
+  tag. A sum (polyols) is unknown only if all its parts are; unknown glucose counts as 0 for excess fructose.
+  Curated tags and `no=` apply after this.
 - **Curated tags** (fructans, GOS, gluten, histamine, caffeine, spicy, carbonated) come from published Monash FODMAP
   findings and histamine-intolerance lists. Where Monash measured a food differently than BLS suggests
   (e.g. Heidelbeeren, Brokkoli, Stangensellerie), the curated tag wins; the build prints these conflicts.

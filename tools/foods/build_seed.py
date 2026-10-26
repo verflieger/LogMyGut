@@ -7,7 +7,8 @@ Source format (foods.src.txt), one food per line, fields separated by " | ":
     Name | count:Stück | g=60 | ...
 - Indentation (2 spaces per level) makes a line the child of the closest less-indented line above it.
 - size: g is the normal (M) portion; S is half of it, L double. count:<label>: g is one piece.
-- bls: BLS 4.0 code; lactose, fructose, polyols, fat and alcohol are then computed from its values.
+- bls: BLS 4.0 code; lactose, fructose, polyols, fat and alcohol are then computed from its values. A known
+  value replaces the tag inherited from the parent; an unknown one ("-") keeps it (SPEC 4.5).
 - tags: hand-curated tags (also overriding computed ones); a suffix sets a threshold (M/L, or a count).
 - no: tags this food does not have, though computed or inherited.
 - key: the permanent seed key when the name changed (SPEC 4: seed keys never change).
@@ -205,31 +206,37 @@ def load_bls() -> dict[str, dict]:
 
 
 def resolve(ingredients, bls):
-    """Full tag set per food (inheritance applied), plus cross-check warnings."""
+    """Full tag set per food (inheritance applied), cross-check warnings and tags kept for unknown BLS values."""
     by_name = {f["name"]: f for f in ingredients}
-    full, warnings = {}, []
+    full, warnings, kept = {}, [], []
     for food in ingredients:  # parents always come before their children
         unit = "size" if food["unit"] == "size" else "count"
         tags = dict(full[food["parent"]]) if food["parent"] else {}
         manual = parse_tags(food.get("tags", ""))
+        no_tags = parse_tags(food.get("no", ""))
         if "bls" in food:
             row = bls.get(food["bls"]) or sys.exit(f"{food['name']}: BLS code {food['bls']} missing in bls_subset.tsv")
             values = per_100g(row)
             computed = computed_tags(values, unit, float(food["g"]))
             food["values"] = values
-            # The food's own measured values replace inherited nutrient tags.
+            # A known own value (also "<LOD"/"TR" = 0) replaces the inherited result for its tag;
+            # an unknown one ("-") keeps it (SPEC 4.5).
             for tag in COMPUTED:
-                tags.pop(tag, None)
+                if values[tag] is not None:
+                    tags.pop(tag, None)
+                elif tag in tags and tag not in no_tags and tag not in manual:
+                    kept.append(f"{food['name']}: keeps {fmt(tag, tags[tag])} from {food['parent']}, "
+                                f"BLS {food['bls']} has no {tag} value")
             tags.update(computed)
             for tag in COMPUTED:
-                if tag in manual and manual[tag] != computed.get(tag, "-"):
+                if tag in manual and values[tag] is not None and manual[tag] != computed.get(tag, "-"):
                     shown = "none" if tag not in computed else fmt(tag, computed[tag])
                     warnings.append(f"{food['name']}: curated {fmt(tag, manual[tag])}, BLS gives {shown}")
-        for tag in parse_tags(food.get("no", "")):
+        for tag in no_tags:
             tags.pop(tag, None)
         tags.update(manual)
         full[food["name"]] = tags
-    return full, warnings, by_name
+    return full, warnings, kept, by_name
 
 
 def is_drink(unit: str) -> bool:
@@ -327,7 +334,7 @@ def main() -> None:
 
     ingredients, dishes = parse_source(HERE / "foods.src.txt")
     english = parse_translations(HERE / "foods.en.txt", ingredients + dishes)
-    full, warnings, by_name = resolve(ingredients, load_bls())
+    full, warnings, kept, by_name = resolve(ingredients, load_bls())
     seed = build(ingredients, dishes, full, by_name, english)
     previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
     changes = changes_against(previous, ingredients, full)
@@ -335,10 +342,13 @@ def main() -> None:
     OUT.write_text(json.dumps(seed, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     with_bls = sum("bls" in f for f in ingredients)
     print(f"{len(ingredients)} ingredients ({with_bls} with BLS values), {len(dishes)} dishes -> {OUT.name}")
-    print(f"{len(warnings)} curated tags differ from BLS; {len(changes)} existing foods changed tags")
+    print(f"{len(warnings)} curated tags differ from BLS; {len(kept)} inherited tags kept for unknown BLS values; "
+          f"{len(changes)} existing foods changed tags")
     if args.report:
         args.report.write_text(
-            "# Curated vs. BLS\n" + "\n".join(warnings) + "\n\n# Tag changes of existing foods\n" + "\n".join(changes) + "\n",
+            "# Curated vs. BLS\n" + "\n".join(warnings)
+            + "\n\n# Inherited tags kept because the BLS value is unknown\n" + "\n".join(kept)
+            + "\n\n# Tag changes of existing foods\n" + "\n".join(changes) + "\n",
             encoding="utf-8",
         )
 
