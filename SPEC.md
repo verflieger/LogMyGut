@@ -65,7 +65,25 @@ Bottom navigation with four tabs:
    there default to that day at the current time of day, so forgotten entries can be added later. Days with only
    meals or medication have no score and show a dot. Weeks start on Monday; future days and months can't be opened. Day boundaries use the phone's current time zone.
 3. **Analyse**: trends and trigger analysis (section 6).
-4. **Einstellungen**: reminder, analysis parameters, **Lebensmittel & Gerichte** (section 4.1), export (7.1), backup, info pages.
+4. **Einstellungen**: reminder, analysis parameters, **Lebensmittel & Gerichte** (section 4.1), export (7.1), backup,
+   info pages, expert mode.
+
+**Expert mode.** A switch "Expertenmodus" in a section "Experten" at the end of Einstellungen, off by default. It is a
+UI preference in DataStore and not part of the backup (7). When on, the section also lists two screens; tapping a
+food there opens its editor (4.1):
+
+- **"Abgekoppelte Zutaten"**: the detached built-in ingredients (4), by name, each with its current parent (or "—").
+  A short text explains that their tags no longer follow the default and that "Auf Standard zurücksetzen" attaches
+  them again. Empty: "Keine abgekoppelten Zutaten."
+- **"Änderungen gegenüber Standard"**: the built-in ingredients and dishes that are edited (`userModified`), detached
+  or have a `USER` tag row, by name. Each lists how it differs from its entry in the current seed, in the app's
+  language: renamed (with the default name), other names (the seed's include the other language's names), note (the
+  seed's note in either language counts as unchanged, since an edited food keeps its note), portion weight, drink
+  flag, unit; parent (current and default); added and removed recipe ingredients; tags added, removed
+  or with another threshold ("Laktose hinzugefügt", "Fruktose entfernt", "Laktose ab L"). An attached food's tags
+  compare its `USER` rows with its `SEED` rows; a detached food's resolved tags are compared with what the seed
+  alone gives. A food the seed no longer has shows "Nicht mehr in der Standardliste"; a detached one "abgekoppelt".
+  An edited food without any visible difference shows "Gespeichert, keine Unterschiede".
 
 Every timeline entry can be tapped to edit or deleted (with an undo snackbar).
 
@@ -375,7 +393,7 @@ DailyCheckIn(date: LocalDate PK, stress: 1..5?, sleep: 1..5?) -- answered separa
 
 The timestamp is stored as UTC epoch millis plus the zone id, so travelling across time zones
 keeps the day assignment correct. Settings (DataStore): reminder on/time, per-tag windows,
-symptom threshold (default 4), minimum exposures (default 5).
+symptom threshold (default 4), minimum exposures (default 5), expert mode (default off).
 
 ## 6. Analysis ("Analyse" tab)
 
@@ -456,7 +474,8 @@ purpose statement. Badges use neutral colours (see Intended purpose).
   Version von LogMyGut und kann nicht importiert werden. Es wurde nichts geändert."). This is a one-time exception
   to the rule above (decided 2026-10-26; only the developer had backups).
 - **Settings in the backup:** reminder on/time, symptom threshold, minimum exposures and tag windows. Values not set
-  in the backup return to their defaults. The last-export date and the "permission asked" flag stay as they are.
+  in the backup return to their defaults. The last-export date, the "permission asked" flag and the expert mode stay
+  as they are.
 - **Checks before import:** format and version first (a file from a newer or too old app is reported as such), then
   values and references (ids, foods and their hierarchy, tags, ranges; `SEED` rows only on built-in ingredients that
   aren't detached, `tagsDetached` only on built-in ingredients, a removal without threshold). A file that passes but

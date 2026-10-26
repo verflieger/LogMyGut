@@ -233,6 +233,40 @@
     <string name="dish_triggers">Triggers (automatic)</string>
     <string name="dish_no_triggers">none</string>
 
+    <!-- Expert mode (SPEC 2) -->
+    <string name="settings_expert_section">Expert</string>
+    <string name="settings_expert_mode">Expert mode</string>
+    <string name="settings_expert_mode_hint">Shows where built-in foods differ from the default</string>
+    <string name="expert_none" translatable="false">—</string>
+    <string name="expert_detached_title">Detached ingredients</string>
+    <string name="expert_detached_hint">The tags of these ingredients no longer follow the default, so updates to the default list don\'t reach them. “Reset to default” in the ingredient\'s menu attaches it again.</string>
+    <string name="expert_detached_empty">No detached ingredients.</string>
+    <string name="expert_changes_title">Changes from the default</string>
+    <string name="expert_changes_empty">No changes from the default.</string>
+    <string name="expert_no_difference">Saved, no differences</string>
+    <string name="expert_diff_renamed">Renamed (default: %1$s)</string>
+    <string name="expert_diff_aliases">Other names changed</string>
+    <string name="expert_diff_note">Note changed</string>
+    <string name="expert_diff_unit">Unit changed</string>
+    <string name="expert_diff_portion">Portion weight changed</string>
+    <string name="expert_diff_drink_on">Marked as a drink</string>
+    <string name="expert_diff_drink_off">No longer a drink</string>
+    <string name="expert_diff_parent">Belongs to %1$s (default: %2$s)</string>
+    <plurals name="expert_diff_recipe_added">
+        <item quantity="one">Ingredient added: %1$s</item>
+        <item quantity="other">Ingredients added: %1$s</item>
+    </plurals>
+    <plurals name="expert_diff_recipe_removed">
+        <item quantity="one">Ingredient removed: %1$s</item>
+        <item quantity="other">Ingredients removed: %1$s</item>
+    </plurals>
+    <string name="expert_diff_tag_added">%1$s added</string>
+    <string name="expert_diff_tag_added_from">%1$s added (%2$s)</string>
+    <string name="expert_diff_tag_removed">%1$s removed</string>
+    <string name="expert_diff_tag_threshold">%1$s %2$s</string>
+    <string name="expert_diff_not_in_seed">No longer in the default list</string>
+    <string name="expert_diff_detached">detached</string>
+
     <!-- Analysis: trends (SPEC 6.2) -->
     <string name="analysis_tab_trends">History &amp; trends</string>
     <string name="analysis_tab_triggers">Connections</string>

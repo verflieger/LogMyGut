@@ -61,6 +61,11 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
 
     suspend fun markNotificationPermissionAsked() { store.edit { it[PermissionAsked] = true } }
 
+    /** Expert mode (SPEC 2): shows the expert screens in the settings. A UI preference, not in the backup. */
+    val expertMode: Flow<Boolean> = store.data.map { it[ExpertMode] ?: false }
+
+    suspend fun setExpertMode(enabled: Boolean) { store.edit { it[ExpertMode] = enabled } }
+
     /** Analysis parameters (SPEC 5, 6.3). A window that doesn't parse falls back to its default. */
     val analysis: Flow<AnalysisParams> = store.data.map { prefs ->
         AnalysisParams(
@@ -109,7 +114,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         )
     }
 
-    /** Replaces the backed-up settings in one edit; the rest (permission asked, last export) stays. */
+    /** Replaces the backed-up settings in one edit; the rest (permission asked, last export, expert mode) stays. */
     suspend fun restore(snapshot: SettingsSnapshot) {
         require(snapshot.isValid()) { "Invalid settings" }
         store.edit { prefs ->
@@ -126,6 +131,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         private val ReminderEnabled = booleanPreferencesKey("reminder_enabled")
         private val ReminderMinuteOfDay = intPreferencesKey("reminder_minute_of_day")
         private val PermissionAsked = booleanPreferencesKey("notification_permission_asked")
+        private val ExpertMode = booleanPreferencesKey("expert_mode")
         private val SymptomThreshold = intPreferencesKey("analysis_symptom_threshold")
         private val MinExposures = intPreferencesKey("analysis_min_exposures")
 

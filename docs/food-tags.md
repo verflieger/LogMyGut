@@ -53,3 +53,8 @@ inherited result; an unknown one keeps it.
 
 Attached foods get the tag on the next start. Detached foods, and children inheriting only from a detached parent,
 get it after a reset.
+
+## Inspecting it in the app
+
+Settings → "Expertenmodus" shows "Abgekoppelte Zutaten" and "Änderungen gegenüber Standard". The comparison with
+the seed is `seedDifferences` in `data/seed/SeedDiff.kt`, exposed as `FoodRepository.observeSeedChanges`.

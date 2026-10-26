@@ -60,16 +60,30 @@ class SettingsViewModel(private val settings: SettingsRepository) : ViewModel() 
     val reminder: StateFlow<ReminderSettings?> = settings.reminder
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    val expertMode: StateFlow<Boolean> = settings.expertMode
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
+
     fun setReminderEnabled(enabled: Boolean) { viewModelScope.launch { settings.setReminderEnabled(enabled) } }
     fun setReminderTime(time: LocalTime) { viewModelScope.launch { settings.setReminderTime(time) } }
+    fun setExpertMode(enabled: Boolean) { viewModelScope.launch { settings.setExpertMode(enabled) } }
 }
 
-/** Einstellungen tab (SPEC 2): reminder, food library, analysis parameters, export, backup and the info pages. */
+/**
+ * Einstellungen tab (SPEC 2): reminder, food library, analysis parameters, export, backup, the info pages and the
+ * expert mode with its screens.
+ */
 @Composable
-fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit, onOpenInfo: (InfoPage) -> Unit) {
+fun SettingsScreen(
+    onOpenLibrary: () -> Unit,
+    onOpenAnalysisSettings: () -> Unit,
+    onOpenInfo: (InfoPage) -> Unit,
+    onOpenDetached: () -> Unit,
+    onOpenSeedChanges: () -> Unit,
+) {
     val container = appContainer()
     val vm = viewModel { SettingsViewModel(container.settings) }
     val reminder by vm.reminder.collectAsStateWithLifecycle()
+    val expertMode by vm.expertMode.collectAsStateWithLifecycle()
 
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
         SectionTitle(stringResource(R.string.settings_reminder_section))
@@ -102,6 +116,26 @@ fun SettingsScreen(onOpenLibrary: () -> Unit, onOpenAnalysisSettings: () -> Unit
             ListItem(
                 modifier = Modifier.clickable { onOpenInfo(page) },
                 headlineContent = { Text(stringResource(page.title)) },
+                trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
+            )
+        }
+        HorizontalDivider(Modifier.padding(vertical = 8.dp))
+        SectionTitle(stringResource(R.string.settings_expert_section))
+        ListItem(
+            modifier = Modifier.clickable { vm.setExpertMode(!expertMode) },
+            headlineContent = { Text(stringResource(R.string.settings_expert_mode)) },
+            supportingContent = { Text(stringResource(R.string.settings_expert_mode_hint)) },
+            trailingContent = { Switch(checked = expertMode, onCheckedChange = vm::setExpertMode) },
+        )
+        if (expertMode) {
+            ListItem(
+                modifier = Modifier.clickable(onClick = onOpenDetached),
+                headlineContent = { Text(stringResource(R.string.expert_detached_title)) },
+                trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
+            )
+            ListItem(
+                modifier = Modifier.clickable(onClick = onOpenSeedChanges),
+                headlineContent = { Text(stringResource(R.string.expert_changes_title)) },
                 trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
             )
         }

@@ -58,10 +58,7 @@ class SeedImporter(private val db: LogMyGutDatabase) {
         val dao = db.foodDao()
         val food = dao.getFood(foodId)
         require(food != null && food.builtIn) { "Only built-in foods can be reset" }
-        val seedFood = when (food.kind) {
-            FoodKind.INGREDIENT -> seed.ingredients.firstOrNull { it.key == food.seedKey }
-            FoodKind.DISH -> seed.dishes.firstOrNull { it.key == food.seedKey }
-        } ?: return@withTransaction ResetResult.NOT_IN_SEED
+        val seedFood = seed.find(food) ?: return@withTransaction ResetResult.NOT_IN_SEED
         if (seedFood is SeedIngredient) {
             // The same plan as the import that follows, which sees this food attached at its current parent.
             val inputs = parentInputs(seed, dao.getSeededFoods().associateBy { it.seedKey!! })

@@ -54,6 +54,8 @@ import at.mtr.logmygut.ui.library.IngredientDetailScreen
 import at.mtr.logmygut.ui.library.LibraryScreen
 import at.mtr.logmygut.ui.meal.MealEditScreen
 import at.mtr.logmygut.ui.settings.AnalysisSettingsScreen
+import at.mtr.logmygut.ui.settings.DetachedIngredientsScreen
+import at.mtr.logmygut.ui.settings.SeedChangesScreen
 import at.mtr.logmygut.ui.settings.NotificationPermissionOnFirstStart
 import at.mtr.logmygut.ui.settings.SettingsScreen
 import at.mtr.logmygut.ui.today.TodayScreen
@@ -82,6 +84,8 @@ private fun dayOf(epochDay: Long): LocalDate? = epochDay.takeIf { it != NoDay }?
 @Serializable data class DayRoute(val epochDay: Long)
 @Serializable object LibraryRoute
 @Serializable object AnalysisSettingsRoute
+@Serializable object DetachedIngredientsRoute
+@Serializable object SeedChangesRoute
 /** An info page, as [InfoPage.name]. */
 @Serializable data class InfoRoute(val page: String)
 @Serializable data class IngredientDetailRoute(val id: Long = 0)
@@ -191,7 +195,15 @@ fun LogMyGutRoot() {
                     onOpenLibrary = { navController.navigate(LibraryRoute) },
                     onOpenAnalysisSettings = { navController.navigate(AnalysisSettingsRoute) },
                     onOpenInfo = { navController.navigate(InfoRoute(it.name)) },
+                    onOpenDetached = { navController.navigate(DetachedIngredientsRoute) },
+                    onOpenSeedChanges = { navController.navigate(SeedChangesRoute) },
                 )
+            }
+            composable<DetachedIngredientsRoute> {
+                DetachedIngredientsScreen(onBack = navController::popBackStack, onOpen = { food -> navController.openFood(food) })
+            }
+            composable<SeedChangesRoute> {
+                SeedChangesScreen(onBack = navController::popBackStack, onOpen = { food -> navController.openFood(food) })
             }
             composable<AnalysisSettingsRoute> { AnalysisSettingsScreen(onBack = navController::popBackStack) }
             composable<InfoRoute> { InfoScreen(InfoPage.valueOf(it.toRoute<InfoRoute>().page), onBack = navController::popBackStack) }

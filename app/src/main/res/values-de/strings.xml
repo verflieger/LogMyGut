@@ -231,6 +231,39 @@
     <string name="dish_triggers">Auslöser (automatisch)</string>
     <string name="dish_no_triggers">keine</string>
 
+    <!-- Expertenmodus (SPEC 2) -->
+    <string name="settings_expert_section">Experten</string>
+    <string name="settings_expert_mode">Expertenmodus</string>
+    <string name="settings_expert_mode_hint">Zeigt, wo vorgegebene Lebensmittel vom Standard abweichen</string>
+    <string name="expert_detached_title">Abgekoppelte Zutaten</string>
+    <string name="expert_detached_hint">Die Tags dieser Zutaten folgen nicht mehr dem Standard, Aktualisierungen der Standardliste kommen bei ihnen nicht an. „Auf Standard zurücksetzen“ im Menü der Zutat koppelt sie wieder an.</string>
+    <string name="expert_detached_empty">Keine abgekoppelten Zutaten.</string>
+    <string name="expert_changes_title">Änderungen gegenüber Standard</string>
+    <string name="expert_changes_empty">Keine Änderungen gegenüber dem Standard.</string>
+    <string name="expert_no_difference">Gespeichert, keine Unterschiede</string>
+    <string name="expert_diff_renamed">Umbenannt (Standard: %1$s)</string>
+    <string name="expert_diff_aliases">Andere Namen geändert</string>
+    <string name="expert_diff_note">Notiz geändert</string>
+    <string name="expert_diff_unit">Einheit geändert</string>
+    <string name="expert_diff_portion">Portionsgewicht geändert</string>
+    <string name="expert_diff_drink_on">Als Getränk markiert</string>
+    <string name="expert_diff_drink_off">Kein Getränk mehr</string>
+    <string name="expert_diff_parent">Gehört zu %1$s (Standard: %2$s)</string>
+    <plurals name="expert_diff_recipe_added">
+        <item quantity="one">Zutat hinzugefügt: %1$s</item>
+        <item quantity="other">Zutaten hinzugefügt: %1$s</item>
+    </plurals>
+    <plurals name="expert_diff_recipe_removed">
+        <item quantity="one">Zutat entfernt: %1$s</item>
+        <item quantity="other">Zutaten entfernt: %1$s</item>
+    </plurals>
+    <string name="expert_diff_tag_added">%1$s hinzugefügt</string>
+    <string name="expert_diff_tag_added_from">%1$s hinzugefügt (%2$s)</string>
+    <string name="expert_diff_tag_removed">%1$s entfernt</string>
+    <string name="expert_diff_tag_threshold">%1$s %2$s</string>
+    <string name="expert_diff_not_in_seed">Nicht mehr in der Standardliste</string>
+    <string name="expert_diff_detached">abgekoppelt</string>
+
     <!-- Analysis: trends (SPEC 6.2) -->
     <string name="analysis_tab_trends">Verlauf &amp; Trends</string>
     <string name="analysis_tab_triggers">Zusammenhänge</string>

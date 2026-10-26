@@ -12,6 +12,7 @@ import at.mtr.logmygut.data.db.LogMyGutDatabase
 import at.mtr.logmygut.data.export.ExportRepository
 import at.mtr.logmygut.data.seed.SeedFile
 import at.mtr.logmygut.data.seed.SeedImporter
+import at.mtr.logmygut.data.seed.seedDifferences
 import at.mtr.logmygut.data.seed.seedLanguage
 import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.reminder.Reminder
@@ -34,7 +35,12 @@ class AppContainer(private val context: Context) {
 
     private val seed: SeedFile by lazy { SeedFile.parse(readAsset("foods.json")) }
 
-    val foodRepository: FoodRepository by lazy { FoodRepository(database, tagSuggester, resetFood = ::resetToSeed) }
+    val foodRepository: FoodRepository by lazy {
+        FoodRepository(
+            database, tagSuggester, resetFood = ::resetToSeed,
+            compareWithSeed = { seedDifferences(it, seed, appSeedLanguage()) },
+        )
+    }
 
     val journalRepository: JournalRepository by lazy { JournalRepository(database) }
 

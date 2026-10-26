@@ -54,6 +54,19 @@ interface FoodDao {
     @Query("SELECT * FROM food WHERE seedKey IS NOT NULL") suspend fun getSeededFoods(): List<FoodEntity>
     @Query("SELECT * FROM food WHERE seedKey = :seedKey") suspend fun getBySeedKey(seedKey: String): FoodEntity?
 
+    // Expert screens (SPEC 2)
+    @Query("SELECT * FROM food WHERE builtIn = 1 AND tagsDetached = 1 ORDER BY name COLLATE NOCASE")
+    fun observeDetached(): Flow<List<FoodEntity>>
+    /** Built-in foods that may differ from the seed: edited, detached or with user tag rows. Also watches food_tag. */
+    @Query(
+        """
+        SELECT * FROM food f WHERE f.builtIn = 1 AND (f.userModified = 1 OR f.tagsDetached = 1
+            OR EXISTS(SELECT 1 FROM food_tag t WHERE t.foodId = f.id AND t.source = 'USER'))
+        ORDER BY f.name COLLATE NOCASE
+        """,
+    )
+    fun observeChangedBuiltIns(): Flow<List<FoodEntity>>
+
     @Query("SELECT seedKey FROM food WHERE seedKey IS NOT NULL") suspend fun getSeedKeys(): List<String>
     @Query("SELECT id, seedKey FROM food WHERE seedKey IS NOT NULL") suspend fun getSeedKeyIds(): List<SeedKeyId>
     @Query("SELECT COUNT(*) FROM food WHERE kind = :kind") suspend fun count(kind: FoodKind): Int

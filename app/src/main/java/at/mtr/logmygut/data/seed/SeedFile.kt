@@ -1,5 +1,7 @@
 package at.mtr.logmygut.data.seed
 
+import at.mtr.logmygut.data.db.FoodEntity
+import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
 import at.mtr.logmygut.domain.MaxFoodDepth
@@ -62,12 +64,17 @@ fun seedLanguage(locale: Locale): String = locale.language.takeIf { it in SeedLa
 /** A food's name, aliases and note in one language. */
 data class SeedText(val name: String, val aliases: List<String>, val note: String? = null)
 
-/** What ingredients and dishes share: a permanent key and their texts in each language. */
+/** What ingredients and dishes share: a permanent key, unit, portion weight, drink flag and texts in each language. */
 sealed interface SeedFood {
     val key: String
     val name: String
     val aliases: List<String>
     val note: String?
+    val unit: FoodUnit
+    val unitLabel: String?
+    /** Grams of an M portion, or of one piece for count units; millilitres for drinks (dishes: drinks only). */
+    val grams: Double?
+    val drink: Boolean
     /** Texts in the other [SeedLanguages], by language code. */
     val translations: Map<String, SeedText>
 
@@ -81,8 +88,8 @@ sealed interface SeedFood {
 data class SeedIngredient(
     override val name: String,
     override val aliases: List<String>,
-    val unit: FoodUnit,
-    val unitLabel: String?,
+    override val unit: FoodUnit,
+    override val unitLabel: String?,
     /** Own tags; inherited ones from [parent] are not repeated here. */
     val tags: List<IngredientTag>,
     override val note: String?,
@@ -92,23 +99,22 @@ data class SeedIngredient(
     val removedTags: List<Tag> = emptyList(),
     /** Permanent seed key; the original name, kept when the food is renamed. */
     override val key: String = name,
-    /** Grams of an M portion, or of one piece for count units; millilitres for drinks. */
-    val grams: Double? = null,
-    val drink: Boolean = false,
+    override val grams: Double? = null,
+    override val drink: Boolean = false,
     override val translations: Map<String, SeedText> = emptyMap(),
 ) : SeedFood
 
 data class SeedDish(
     override val name: String,
     override val aliases: List<String>,
-    val unit: FoodUnit,
-    val unitLabel: String?,
+    override val unit: FoodUnit,
+    override val unitLabel: String?,
     /** Seed keys of [SeedIngredient]s. */
     val ingredients: List<String>,
     override val key: String = name,
     /** Millilitres of one portion, for drinks (dishes otherwise have no weight). */
-    val grams: Double? = null,
-    val drink: Boolean = false,
+    override val grams: Double? = null,
+    override val drink: Boolean = false,
     override val translations: Map<String, SeedText> = emptyMap(),
 ) : SeedFood {
     override val note: String? get() = null
@@ -116,6 +122,19 @@ data class SeedDish(
 
 /** Parsed and validated `foods.json`. Seed keys (original names) identify entries across versions. */
 data class SeedFile(val version: Int, val ingredients: List<SeedIngredient>, val dishes: List<SeedDish>) {
+    private val ingredientsByKey by lazy { ingredients.associateBy { it.key } }
+    private val dishesByKey by lazy { dishes.associateBy { it.key } }
+
+    /** The seed ingredient with [key]; for keys the seed itself references (parents, recipes), validated on parse. */
+    fun ingredient(key: String): SeedIngredient = ingredientsByKey[key] ?: throw NoSuchElementException("No seed ingredient '$key'")
+
+    /** The seed entry of the stored [food], by kind and seed key; null for a user's own food or one the seed no longer has. */
+    fun find(food: FoodEntity): SeedFood? = food.seedKey?.let { key ->
+        when (food.kind) {
+            FoodKind.INGREDIENT -> ingredientsByKey[key]
+            FoodKind.DISH -> dishesByKey[key]
+        }
+    }
 
     companion object {
         private val json = Json { ignoreUnknownKeys = true }

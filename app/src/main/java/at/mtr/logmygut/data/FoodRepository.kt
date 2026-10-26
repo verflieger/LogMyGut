@@ -6,7 +6,12 @@ import at.mtr.logmygut.data.db.tagsFollowSeed
 import at.mtr.logmygut.data.db.toEntity
 import at.mtr.logmygut.data.db.toRow
 import at.mtr.logmygut.data.db.LogMyGutDatabase
+import at.mtr.logmygut.data.seed.FoodRef
+import at.mtr.logmygut.data.seed.SeedChangesRow
+import at.mtr.logmygut.data.seed.SeedDifference
 import at.mtr.logmygut.data.seed.SeedImporter
+import at.mtr.logmygut.data.seed.StoredBuiltIn
+import at.mtr.logmygut.data.seed.seedDifferences
 import at.mtr.logmygut.domain.FoodKind
 import at.mtr.logmygut.domain.FoodUnit
 import at.mtr.logmygut.domain.IngredientTag
@@ -24,15 +29,18 @@ import at.mtr.logmygut.domain.TagSuggester
 import at.mtr.logmygut.domain.normalizeForSearch
 import at.mtr.logmygut.domain.unitLabelKey
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 /**
  * Access to the food library: search, tag lookup, creating and editing foods (SPEC 4).
- * [resetFood] restores one built-in food from the seed, for "Reset to default" ([SeedImporter.reset]).
+ * [resetFood] restores one built-in food from the seed, for "Reset to default" ([SeedImporter.reset]);
+ * [compareWithSeed] lists how a built-in food differs from the seed in the app's language ([seedDifferences]).
  */
 class FoodRepository(
     private val db: LogMyGutDatabase,
     private val tagSuggester: TagSuggester,
     private val resetFood: suspend (Long) -> SeedImporter.ResetResult = { error("No seed file available") },
+    private val compareWithSeed: (StoredBuiltIn) -> List<SeedDifference> = { error("No seed file available") },
 ) {
     private val dao = db.foodDao()
 
@@ -208,6 +216,34 @@ class FoodRepository(
             tags = ownRows(dao.getTags(id).map { it.toRow() }).map { it.copy(source = TagSource.USER).toEntity() },
             ingredientIds = dao.getDishIngredientIds(id),
         )
+    }
+
+    // Expert screens (SPEC 2)
+
+    /** Detached built-in ingredients, alphabetically. */
+    fun observeDetached(): Flow<List<FoodEntity>> = dao.observeDetached()
+
+    /** Built-in foods that may differ from the seed, alphabetically, each with how it differs. */
+    fun observeSeedChanges(): Flow<List<SeedChangesRow>> = observeChangedBuiltIns().map { list ->
+        list.map { SeedChangesRow(it.food, compareWithSeed(it)) }
+    }
+
+    /** Built-in foods that may differ from the seed, alphabetically, with what [seedDifferences] needs. */
+    private fun observeChangedBuiltIns(): Flow<List<StoredBuiltIn>> = dao.observeChangedBuiltIns().map { foods ->
+        val rows = dao.getTagsFor(foods.map { it.id }).groupBy({ it.foodId }, { it.toRow() })
+        val parentIds = foods.mapNotNull { it.parentId }.distinct()
+        val parentTags = getIngredientTags(parentIds)
+        val recipes = foods.filter { it.kind == FoodKind.DISH }.associate { it.id to dao.getDishIngredientIds(it.id) }
+        val related = dao.getFoods(parentIds + recipes.values.flatten()).associate { it.id to FoodRef(it.seedKey, it.name) }
+        foods.map { food ->
+            StoredBuiltIn(
+                food = food,
+                rows = rows[food.id].orEmpty(),
+                parentTags = food.parentId?.let(parentTags::get).orEmpty(),
+                parent = food.parentId?.let(related::get),
+                recipe = recipes[food.id].orEmpty().mapNotNull(related::get),
+            )
+        }
     }
 
     /** "Reset to default" (SPEC 4.1), see [SeedImporter.reset]. */
