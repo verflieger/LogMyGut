@@ -29,7 +29,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import at.mtr.logmygut.R
-import at.mtr.logmygut.domain.DefaultTagWindows
 import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.ui.analysis.windowText
@@ -37,6 +36,7 @@ import at.mtr.logmygut.ui.common.BristolIcon
 import at.mtr.logmygut.ui.common.bristolDescription
 import at.mtr.logmygut.ui.common.bristolGroup
 import at.mtr.logmygut.ui.common.label
+import at.mtr.logmygut.ui.common.texts
 
 /** The info pages (SPEC 8), reached from Einstellungen and from "?" buttons where the topic comes up. */
 enum class InfoPage(@StringRes val title: Int) {
@@ -142,39 +142,21 @@ private fun SymptomsPage() {
     SymptomType.HEADACHE -> R.string.info_symptom_headache
 }
 
-/** What a tag is, where it's typically found, and how a doctor can check it. */
-private data class TagInfo(@StringRes val what: Int, @StringRes val foods: Int, @StringRes val test: Int)
-
-private fun Tag.info(): TagInfo = when (this) {
-    Tag.LACTOSE -> TagInfo(R.string.info_tag_lactose_what, R.string.info_tag_lactose_foods, R.string.info_tag_lactose_test)
-    Tag.FRUCTOSE -> TagInfo(R.string.info_tag_fructose_what, R.string.info_tag_fructose_foods, R.string.info_tag_fructose_test)
-    Tag.POLYOLS -> TagInfo(R.string.info_tag_polyols_what, R.string.info_tag_polyols_foods, R.string.info_tag_polyols_test)
-    Tag.FRUCTANS -> TagInfo(R.string.info_tag_fructans_what, R.string.info_tag_fructans_foods, R.string.info_tag_fructans_test)
-    Tag.GOS -> TagInfo(R.string.info_tag_gos_what, R.string.info_tag_gos_foods, R.string.info_tag_gos_test)
-    Tag.GLUTEN -> TagInfo(R.string.info_tag_gluten_what, R.string.info_tag_gluten_foods, R.string.info_tag_gluten_test)
-    Tag.HISTAMINE -> TagInfo(R.string.info_tag_histamine_what, R.string.info_tag_histamine_foods, R.string.info_tag_histamine_test)
-    Tag.FAT -> TagInfo(R.string.info_tag_fat_what, R.string.info_tag_fat_foods, R.string.info_tag_fat_test)
-    Tag.CAFFEINE -> TagInfo(R.string.info_tag_caffeine_what, R.string.info_tag_caffeine_foods, R.string.info_tag_caffeine_test)
-    Tag.ALCOHOL -> TagInfo(R.string.info_tag_alcohol_what, R.string.info_tag_alcohol_foods, R.string.info_tag_alcohol_test)
-    Tag.SPICY -> TagInfo(R.string.info_tag_spicy_what, R.string.info_tag_spicy_foods, R.string.info_tag_spicy_test)
-    Tag.CARBONATED -> TagInfo(R.string.info_tag_carbonated_what, R.string.info_tag_carbonated_foods, R.string.info_tag_carbonated_test)
-}
-
 @Composable
 private fun TriggersPage() {
     Paragraph(R.string.info_triggers_intro)
     Paragraph(R.string.info_triggers_fodmap)
     Paragraph(R.string.info_triggers_elimination)
     Tag.entries.forEach { tag ->
-        val info = tag.info()
+        val texts = tag.texts()
         OutlinedCard(Modifier.fillMaxWidth()) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text(stringResource(tag.label()), style = MaterialTheme.typography.titleMedium)
-                Text(stringResource(info.what), style = MaterialTheme.typography.bodyMedium)
-                Text(stringResource(R.string.info_triggers_foods, stringResource(info.foods)), style = MaterialTheme.typography.bodyMedium)
-                Text(stringResource(R.string.info_triggers_test, stringResource(info.test)), style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(texts.label), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(texts.what), style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.info_triggers_foods, stringResource(texts.foods)), style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.info_triggers_test, stringResource(texts.test)), style = MaterialTheme.typography.bodyMedium)
                 Text(
-                    stringResource(R.string.info_triggers_window, windowText(DefaultTagWindows.getValue(tag))),
+                    stringResource(R.string.info_triggers_window, windowText(tag.defaultWindow)),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

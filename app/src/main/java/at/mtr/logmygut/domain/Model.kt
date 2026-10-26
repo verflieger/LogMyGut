@@ -1,27 +1,43 @@
 package at.mtr.logmygut.domain
 
+import java.time.Duration
+
 /**
- * Core enums shared by the database, seed import and analysis.
- * Each has a stable [key] that is what gets persisted, so enum constants can be renamed safely.
+ * Core enums and value types (incl. the tags' analysis properties) shared by the database, seed import and analysis.
+ * Each enum has a stable [key] that is what gets persisted, so enum constants can be renamed safely.
  */
 
-enum class Tag(val key: String) {
-    LACTOSE("lactose"),
-    FRUCTOSE("fructose"),
-    POLYOLS("polyols"),
-    FRUCTANS("fructans"),
-    GOS("gos"),
-    GLUTEN("gluten"),
-    HISTAMINE("histamine"),
-    FAT("fat"),
-    CAFFEINE("caffeine"),
-    ALCOHOL("alcohol"),
-    SPICY("spicy"),
-    CARBONATED("carbonated");
+/**
+ * Food tags with their analysis properties (SPEC 4.3, 6.3). Display order is enum order.
+ * [defaultWindow] is the time after a meal in which an outcome counts (editable in the settings); a meal taken with
+ * medication of type [offsetBy] is listed separately instead of counting as an exposure.
+ */
+enum class Tag(val key: String, val defaultWindow: TagWindow, val offsetBy: MedEffect? = null) {
+    LACTOSE("lactose", TagWindow.of(minutes = 30, hours = 8), offsetBy = MedEffect.ENZYME),
+    FRUCTOSE("fructose", TagWindow.of(minutes = 30, hours = 8)),
+    POLYOLS("polyols", TagWindow.of(minutes = 30, hours = 8)),
+    FRUCTANS("fructans", TagWindow.of(minutes = 120, hours = 24)),
+    GOS("gos", TagWindow.of(minutes = 120, hours = 24)),
+    GLUTEN("gluten", TagWindow.of(minutes = 120, hours = 48)),
+    HISTAMINE("histamine", TagWindow.of(minutes = 15, hours = 4)),
+    FAT("fat", TagWindow.of(minutes = 60, hours = 6)),
+    CAFFEINE("caffeine", TagWindow.of(minutes = 0, hours = 2)),
+    ALCOHOL("alcohol", TagWindow.of(minutes = 60, hours = 24)),
+    SPICY("spicy", TagWindow.of(minutes = 60, hours = 24)),
+    CARBONATED("carbonated", TagWindow.of(minutes = 0, hours = 3));
 
     companion object {
         private val byKey = entries.associateBy { it.key }
         fun fromKey(key: String): Tag = byKey[key] ?: throw IllegalArgumentException("Unknown tag '$key'")
+    }
+}
+
+/** Time after a meal in which an outcome counts for a tag, both ends inclusive. */
+data class TagWindow(val from: Duration, val to: Duration) {
+    init { require(!from.isNegative && from < to) { "Window must satisfy 0 <= from < to, was $from..$to" } }
+
+    companion object {
+        fun of(minutes: Long, hours: Long) = TagWindow(Duration.ofMinutes(minutes), Duration.ofHours(hours))
     }
 }
 

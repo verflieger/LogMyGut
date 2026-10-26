@@ -42,7 +42,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import at.mtr.logmygut.R
 import at.mtr.logmygut.data.SettingsRepository
 import at.mtr.logmygut.domain.AnalysisParams
-import at.mtr.logmygut.domain.DefaultTagWindows
 import at.mtr.logmygut.domain.Tag
 import at.mtr.logmygut.domain.TagWindow
 import at.mtr.logmygut.ui.analysis.durationText
@@ -121,8 +120,8 @@ fun AnalysisSettingsScreen(onBack: () -> Unit) {
                     modifier = Modifier.clickable { editing = tag },
                     headlineContent = { Text(stringResource(tag.label())) },
                     trailingContent = { Text(windowText(window), style = MaterialTheme.typography.bodyLarge) },
-                    supportingContent = if (window != DefaultTagWindows[tag]) {
-                        { Text(stringResource(R.string.analysis_settings_default, windowText(DefaultTagWindows.getValue(tag)))) }
+                    supportingContent = if (window != tag.defaultWindow) {
+                        { Text(stringResource(R.string.analysis_settings_default, windowText(tag.defaultWindow))) }
                     } else {
                         null
                     },

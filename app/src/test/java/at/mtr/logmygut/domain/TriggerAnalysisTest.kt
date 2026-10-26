@@ -184,4 +184,26 @@ class TriggerAnalysisTest {
         val params = AnalysisParams(windows = mapOf(Tag.LACTOSE to TagWindow(Duration.ZERO, Duration.ofHours(12))))
         assertEquals(Rate(1, 1), analyzeTriggers(meals, tags, symptoms, emptyList(), emptyList(), params).get(Tag.LACTOSE, bloatingOutcome).exposed)
     }
+
+    /** One meal per tag, each taken with every kind of medication: only [Tag.offsetBy] moves it out of the exposures. */
+    @Test fun offsetByDecidesWhichMedicationListsAMealSeparately() {
+        val meals = Tag.entries.mapIndexed { i, _ ->
+            AnalysisMeal(i.toLong(), start + Duration.ofDays(i.toLong()), listOf(AnalysisItem(Amount.Count(1), listOf(i.toLong()), isDish = false)))
+        }
+        val tagsOf = Tag.entries.mapIndexed { i, tag -> i.toLong() to listOf(IngredientTag(tag)) }.toMap()
+        val medication = meals.flatMap { meal -> MedEffect.entries.map { MedicationEvent(meal.time, it) } }
+
+        val results = analyzeTriggers(meals, tagsOf, emptyList(), emptyList(), medication)
+        for ((i, tag) in Tag.entries.withIndex()) {
+            val result = results.single { it.tag == tag && it.outcome == bloatingOutcome }
+            val own = listOf(MealOutcome(i.toLong(), positive = false))
+            if (tag.offsetBy != null) {
+                assertEquals(tag.name, own, result.withEnzyme)
+                assertTrue(tag.name, result.exposures.isEmpty())
+            } else {
+                assertEquals(tag.name, own, result.exposures)
+                assertTrue(tag.name, result.withEnzyme.isEmpty())
+            }
+        }
+    }
 }

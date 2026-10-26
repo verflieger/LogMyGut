@@ -7,22 +7,9 @@ import at.mtr.logmygut.domain.PainChange
 import at.mtr.logmygut.domain.SymptomType
 import at.mtr.logmygut.domain.Tag
 
-// German display labels for domain enums. Kept in one place so all screens use the same words.
+// Display labels (English and German) for domain enums. Kept in one place so all screens use the same words.
 
-@StringRes fun Tag.label(): Int = when (this) {
-    Tag.LACTOSE -> R.string.tag_lactose
-    Tag.FRUCTOSE -> R.string.tag_fructose
-    Tag.POLYOLS -> R.string.tag_polyols
-    Tag.FRUCTANS -> R.string.tag_fructans
-    Tag.GOS -> R.string.tag_gos
-    Tag.GLUTEN -> R.string.tag_gluten
-    Tag.HISTAMINE -> R.string.tag_histamine
-    Tag.FAT -> R.string.tag_fat
-    Tag.CAFFEINE -> R.string.tag_caffeine
-    Tag.ALCOHOL -> R.string.tag_alcohol
-    Tag.SPICY -> R.string.tag_spicy
-    Tag.CARBONATED -> R.string.tag_carbonated
-}
+@StringRes fun Tag.label(): Int = texts().label
 
 @StringRes fun SymptomType.label(): Int = when (this) {
     SymptomType.BLOATING -> R.string.symptom_bloating

@@ -5,40 +5,17 @@ import java.time.Instant
 
 // Trigger → symptom analysis (SPEC 6.3). Pure Kotlin: the data layer turns the database into these inputs.
 
-/** Time after a meal in which an outcome counts for a tag, both ends inclusive. */
-data class TagWindow(val from: Duration, val to: Duration) {
-    init { require(!from.isNegative && from < to) { "Window must satisfy 0 <= from < to, was $from..$to" } }
-}
-
-/** Default windows from SPEC 4.3; editable in the settings. */
-val DefaultTagWindows: Map<Tag, TagWindow> = mapOf(
-    Tag.LACTOSE to window(minutes = 30, hours = 8),
-    Tag.FRUCTOSE to window(minutes = 30, hours = 8),
-    Tag.POLYOLS to window(minutes = 30, hours = 8),
-    Tag.FRUCTANS to window(minutes = 120, hours = 24),
-    Tag.GOS to window(minutes = 120, hours = 24),
-    Tag.GLUTEN to window(minutes = 120, hours = 48),
-    Tag.HISTAMINE to window(minutes = 15, hours = 4),
-    Tag.FAT to window(minutes = 60, hours = 6),
-    Tag.CAFFEINE to window(minutes = 0, hours = 2),
-    Tag.ALCOHOL to window(minutes = 60, hours = 24),
-    Tag.SPICY to window(minutes = 60, hours = 24),
-    Tag.CARBONATED to window(minutes = 0, hours = 3),
-)
-
-private fun window(minutes: Long, hours: Long) = TagWindow(Duration.ofMinutes(minutes), Duration.ofHours(hours))
-
 const val DefaultSymptomThreshold = 4
 const val DefaultMinExposures = 5
 
 data class AnalysisParams(
-    val windows: Map<Tag, TagWindow> = DefaultTagWindows,
+    val windows: Map<Tag, TagWindow> = Tag.entries.associateWith { it.defaultWindow },
     /** A symptom counts as an outcome from this severity on. */
     val symptomThreshold: Int = DefaultSymptomThreshold,
     /** Below this many exposures a tag shows "zu wenig Daten". */
     val minExposures: Int = DefaultMinExposures,
 ) {
-    fun window(tag: Tag): TagWindow = windows[tag] ?: DefaultTagWindows.getValue(tag)
+    fun window(tag: Tag): TagWindow = windows[tag] ?: tag.defaultWindow
 }
 
 /** What a meal may be followed by: a symptom at or above the threshold, or diarrhoea (Bristol 6–7). */
@@ -83,7 +60,10 @@ data class TriggerResult(
     /** Meals with [tag], newest first. */
     val exposures: List<MealOutcome>,
     val control: Rate,
-    /** Lactose only: meals with lactose and a lactase intake within ±30 min, kept out of both groups. */
+    /**
+     * Meals of a tag with [Tag.offsetBy] taken with that medication within ±30 min, kept out of both groups
+     * (today only lactose with lactase).
+     */
     val withEnzyme: List<MealOutcome>,
     val hint: Hint,
 ) {
@@ -113,7 +93,8 @@ fun hintFor(exposed: Rate, control: Rate, minExposures: Int): Hint {
     }
 }
 
-private val EnzymeRange: Duration = Duration.ofMinutes(30)
+/** A [Tag.offsetBy] medication taken this close to a meal (before or after) offsets the tag (SPEC 6.3 step 7). */
+private val OffsetRange: Duration = Duration.ofMinutes(30)
 private val AntidiarrhealRange: Duration = Duration.ofHours(24)
 
 /**
@@ -134,8 +115,8 @@ fun analyzeTriggers(
     val sortedMeals = meals
         .filterNot { meal -> meal.items.all { it.isDrink } && tagsByMeal.getValue(meal.id).isEmpty() }
         .sortedByDescending { it.time }
-    val enzymeTimes = medication.filter { it.effect == MedEffect.ENZYME }.map { it.time }.sorted()
-    val antidiarrhealTimes = medication.filter { it.effect == MedEffect.ANTIDIARRHEAL }.map { it.time }.sorted()
+    val medicationTimes = medication.groupBy({ it.effect }, { it.time }).mapValues { (_, times) -> times.sorted() }
+    val antidiarrhealTimes = medicationTimes[MedEffect.ANTIDIARRHEAL].orEmpty()
 
     val eventTimes: Map<Outcome, List<Instant>> = Outcome.all.associateWith { outcome ->
         when (outcome) {
@@ -146,6 +127,7 @@ fun analyzeTriggers(
 
     return Tag.entries.flatMap { tag ->
         val window = params.window(tag)
+        val offsetTimes = tag.offsetBy?.let { medicationTimes[it] }.orEmpty()
         Outcome.all.map { outcome ->
             val events = eventTimes.getValue(outcome)
             val exposures = mutableListOf<MealOutcome>()
@@ -160,7 +142,7 @@ fun analyzeTriggers(
                         controlN++
                         if (positive) controlPositive++
                     }
-                    tag == Tag.LACTOSE && enzymeTimes.anyIn(meal.time - EnzymeRange, meal.time + EnzymeRange) ->
+                    offsetTimes.anyIn(meal.time - OffsetRange, meal.time + OffsetRange) ->
                         withEnzyme += MealOutcome(meal.id, positive)
                     else -> exposures += MealOutcome(meal.id, positive)
                 }
