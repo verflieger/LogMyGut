@@ -142,19 +142,22 @@ class FoodRepository(
                     ingredientIds = emptyList(),
                 )
             } else {
-                val updated = existing.copy(
+                val fields = existing.copy(
                     name = name, aliases = aliases, unit = unit, unitLabel = unitLabel, note = draft.note,
-                    parentId = draft.parentId, portionGrams = draft.portionGrams, drink = draft.drink, userModified = existing.builtIn,
+                    parentId = draft.parentId, portionGrams = draft.portionGrams, drink = draft.drink,
                     tagsDetached = existing.tagsDetached || (existing.builtIn && draft.parentId != existing.parentId),
                 )
-                dao.updateFood(updated)
-                if (updated.tagsFollowSeed()) {
-                    val seedRows = dao.getTags(existing.id).map { it.toRow() }.filter { it.source == TagSource.SEED }
+                val rowsBefore = dao.getTags(existing.id).map { it.toRow() }.toSet()
+                if (fields.tagsFollowSeed()) {
+                    val seedRows = rowsBefore.filter { it.source == TagSource.SEED }
                     dao.replaceTags(existing.id, TagSource.USER, userRowsFor(draft.tags, seedRows, parentTags).map { it.toEntity() })
                 } else {
                     // Detached and user-created foods keep their full own list, relative to the (new) parent.
                     dao.replaceAllTags(existing.id, fullRowsFor(draft.tags, parentTags).map { it.toEntity() })
                 }
+                // Saving without a change doesn't mark a built-in food as edited (SPEC 4.1).
+                val changed = fields != existing || dao.getTags(existing.id).map { it.toRow() }.toSet() != rowsBefore
+                dao.updateFood(fields.copy(userModified = existing.userModified || (existing.builtIn && changed)))
                 existing.id
             }
         }
@@ -173,15 +176,15 @@ class FoodRepository(
                 createDish(name, draft.unit, draft.unitLabel, draft.ingredientIds, aliases, draft.drink, draft.portionGrams)
             } else {
                 val unit = if (dao.isUsedInMeals(existing.id)) existing.unit else draft.unit
-                dao.updateFood(
-                    existing.copy(
-                        name = name, aliases = aliases, unit = unit,
-                        unitLabel = storedUnitLabel(unit, draft.unitLabel, fallback = existing.unitLabel),
-                        userModified = existing.builtIn,
-                        drink = draft.drink, portionGrams = draft.portionGrams.takeIf { draft.drink },
-                    ),
+                val fields = existing.copy(
+                    name = name, aliases = aliases, unit = unit,
+                    unitLabel = storedUnitLabel(unit, draft.unitLabel, fallback = existing.unitLabel),
+                    drink = draft.drink, portionGrams = draft.portionGrams.takeIf { draft.drink },
                 )
-                dao.setDishIngredients(existing.id, draft.ingredientIds)
+                // Saving without a change doesn't mark a built-in dish as edited (SPEC 4.1).
+                val recipeChanged = dao.getDishIngredientIds(existing.id).toSet() != draft.ingredientIds.toSet()
+                dao.updateFood(fields.copy(userModified = existing.userModified || (existing.builtIn && (fields != existing || recipeChanged))))
+                if (recipeChanged) dao.replaceDishIngredients(existing.id, draft.ingredientIds)
                 existing.id
             }
         }

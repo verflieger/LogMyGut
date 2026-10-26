@@ -227,6 +227,42 @@ class LibraryTest {
         assertTrue(Tag.FRUCTOSE in foods.getIngredientTags(apfel.id).map { it.tag })
     }
 
+    @Test fun resetOfADishWhoseRecipeWasSavedFromAMealClearsTheMark() = runTest {
+        val curry = foods.search("Indisches Curry").first { it.name == "Indisches Curry" }
+        val recipe = db.foodDao().getDishIngredientIds(curry.id)
+        foods.setDishIngredients(curry.id, recipe.drop(1))
+        assertTrue(foods.getFood(curry.id)!!.userModified)
+
+        foods.resetToSeed(curry.id)
+
+        val reset = foods.getFood(curry.id)!!
+        assertFalse(reset.userModified)
+        assertEquals(recipe.toSet(), db.foodDao().getDishIngredientIds(curry.id).toSet())
+    }
+
+    @Test fun savingABuiltInWithoutAChangeDoesNotMarkIt() = runTest {
+        val kaffee = named("Kaffee")
+        val tags = foods.getIngredientTags(kaffee.id)
+        foods.saveIngredient(
+            IngredientDraft(
+                id = kaffee.id, name = kaffee.name, aliases = kaffee.aliases, unit = kaffee.unit, unitLabel = kaffee.unitLabel,
+                portionGrams = kaffee.portionGrams, note = kaffee.note, parentId = kaffee.parentId, tags = tags, drink = kaffee.drink,
+            ),
+        )
+        assertFalse(foods.getFood(kaffee.id)!!.userModified)
+
+        val curry = foods.search("Indisches Curry").first { it.name == "Indisches Curry" }
+        val dishDraft = DishDraft(
+            id = curry.id, name = curry.name, aliases = curry.aliases, unit = curry.unit, unitLabel = curry.unitLabel,
+            ingredientIds = db.foodDao().getDishIngredientIds(curry.id), drink = curry.drink, portionGrams = curry.portionGrams,
+        )
+        foods.saveDish(dishDraft)
+        assertFalse(foods.getFood(curry.id)!!.userModified)
+
+        foods.saveDish(dishDraft.copy(ingredientIds = dishDraft.ingredientIds.drop(1)))
+        assertTrue(foods.getFood(curry.id)!!.userModified)
+    }
+
     @Test fun unitOfALoggedFoodDoesNotChange() = runTest {
         val semmel = named("Semmel")
         db.journalDao().saveMeal(

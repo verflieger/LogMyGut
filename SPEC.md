@@ -174,11 +174,11 @@ Seed data and editing:
   the names and aliases in the other language are added as aliases, so search finds a food in either language.
   Meals refer to foods by id and the analysis uses tags, so switching languages, or importing a backup made in the
   other language, only renames the built-in foods.
-- Users can edit any ingredient (tags, dose thresholds, unit, aliases, parent) or dish (ingredient list), create new ones,
-  and hide built-in ones. Editing sets `userModified`; such entries keep their name, aliases, note, portion weight,
-  drink flag and recipe against the seed, except that their name still follows the language as long as it is one of
-  the seed's names (or the seed key). A food the user renamed keeps its name. User-created foods are never touched
-  by the seed.
+- Users can edit any ingredient (tags, dose thresholds, unit, aliases, parent) or dish (ingredient list), create new
+  ones, and hide built-in ones. Saving a change sets `userModified` (saving without a change doesn't); such entries keep
+  their name, aliases, note, portion weight, drink flag and recipe against the seed, except that their name still
+  follows the language as long as it is one of the seed's names (or the seed key). A food the user renamed keeps its
+  name. User-created foods are never touched by the seed.
 - **Tags of built-in ingredients: attached or detached.** Each tag row has a source: `SEED` (the seed's tags and
   `removeTags`) or `USER` (the user's decisions). Per tag, a `USER` row wins over the `SEED` row.
   - **Attached** (default): the food has `SEED` rows plus `USER` rows for the user's differences only. The editor
